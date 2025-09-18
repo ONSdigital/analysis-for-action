@@ -175,14 +175,17 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Lower quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
@@ -191,14 +194,17 @@
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+
 </ul>
 
     </div>
@@ -362,6 +368,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lower quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -380,6 +387,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -406,9 +417,8 @@ document.write(`
 <ul class="simple">
 <li><p>Names used in the code are informative and concise.</p></li>
 <li><p>Code logic is clear and avoids unnecessary complexity.</p></li>
-<li><p>Code follows a standard style, e.g. <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8 for Python</a> and <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">Google</a> or <a class="reference external" href="https://style.tidyverse.org/">tidyverse</a> for R.</p></li>
+<li><p>Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.</p></li>
 </ul>
-<!-- Do we want to leave this in? These are external links but are to the main code sites so may not change? Alternatively could link them in additional resources with a caveat about them being owned by Python/R and may change?  -->
 </section>
 <section id="project-structure">
 <h3>Project structure<a class="headerlink" href="#project-structure" title="Link to this heading">#</a></h3>
@@ -457,7 +467,6 @@ document.write(`
 </section>
 <section id="data-management">
 <h3>Data management<a class="headerlink" href="#data-management" title="Link to this heading">#</a></h3>
-<!-- - Published outputs meet [accessibility regulations](https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/). -->
 <ul class="simple">
 <li><p>All data for analysis are stored in an open format, so that specific software is not required to access them.</p></li>
 <li><p>Input data are stored safely and are treated as read-only.</p></li>
@@ -467,7 +476,6 @@ document.write(`
 <li><p>Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.</p></li>
 <li><p>Data quality is monitored.</p></li>
 </ul>
-<!-- Link to unit on data quality -->
 </section>
 <section id="peer-review">
 <h3>Peer review<a class="headerlink" href="#peer-review" title="Link to this heading">#</a></h3>
@@ -525,7 +533,7 @@ document.write(`
 
 <span class="k">- [ ]</span> Names used in the code are informative and concise.
 <span class="k">- [ ]</span> Code logic is clear and avoids unnecessary complexity.
-<span class="k">- [ ]</span> Code follows a standard style, e.g. [<span class="nt">PEP8 for Python</span>](<span class="na">https://www.python.org/dev/peps/pep-0008/</span>) and [<span class="nt">Google</span>](<span class="na">https://google.github.io/styleguide/Rguide.html</span>) or [<span class="nt">tidyverse</span>](<span class="na">https://style.tidyverse.org/</span>) for R.
+<span class="k">- [ ]</span> Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
 
 <span class="gu">### Project structure</span>
 
@@ -537,7 +545,7 @@ document.write(`
 <span class="k">- [ ]</span> Comments are kept up to date, so they do not confuse the reader.
 <span class="k">- [ ]</span> Code is not commented out to adjust which lines of code run.
 <span class="k">- [ ]</span> All functions and classes are documented to describe what they do, what inputs they take and what they return.
-<span class="k">- [ ]</span> Python code is [<span class="nt">documented using docstrings</span>](<span class="na">https://www.python.org/dev/peps/pep-0257/</span>). R code is [<span class="nt">documented using `roxygen2` comments</span>](<span class="na">https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html</span>).
+<span class="k">- [ ]</span> Python code is documented using docstrings. R code is documented using <span class="sb">`roxygen2`</span> comments.
 
 <span class="gu">### Project documentation</span>
 
@@ -578,7 +586,7 @@ document.write(`
 
 <span class="gu">### Testing</span>
 
-<span class="k">- [ ]</span> Core functionality is unit tested as code. See [<span class="sb">`pytest`</span> for Python](https://docs.pytest.org/en/stable/) and [<span class="sb">`testthat`</span> for R](https://testthat.r-lib.org/). 
+<span class="k">- [ ]</span> Core functionality is unit tested as code. See <span class="sb">`pytest`</span> for Python and <span class="sb">`testthat`</span> for R.
 <span class="k">- [ ]</span> Code based tests are run regularly, ideally being automated using continuous integration.
 <span class="k">- [ ]</span> Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 <span class="k">- [ ]</span> Informal tests are recorded near to the code.
@@ -605,6 +613,14 @@ document.write(`
 </pre></div>
 </div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>pytest
+test that
+Google style guide
+PEP8 Style guide
+Tidyverse style guide</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -671,6 +687,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Lower quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -689,6 +706,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

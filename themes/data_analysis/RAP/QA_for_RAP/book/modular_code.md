@@ -83,6 +83,8 @@ break down your code into smaller functions and build up your functionality with
 ```
 
 ### Group data and methods as classes
+**NOT COMPLETE**
+
 
 Classes are fundamental parts of [object-orientated programming (OOP)](glossary.md#object-oriented-programming-oop).
 They create an association between data (attributes of the class) and logic (methods of the class).

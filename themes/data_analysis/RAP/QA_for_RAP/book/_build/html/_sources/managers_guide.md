@@ -5,7 +5,7 @@ or those acting as product owners for analytical products.
 We refer to processes that apply these good practices as a reproducible analytical pipelines (RAP).
 
 Before applying this guidance, you should have a basic awareness of the tools and
-techniques used to do quality analysis as code - the introduction to RAP training <!-- (LINK TO INTRO TO RAP) --> outlines these.
+techniques used to do quality analysis as code - the Introduction to RAP training outlines these.
 You should also be aware of any specific tools and platforms that are used in your organisation and department.
 
 

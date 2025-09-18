@@ -64,7 +64,6 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'learning';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tools" href="tools.html" />
     <link rel="prev" title="Automating code quality assurance" href="continuous_integration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -175,14 +174,17 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
@@ -191,14 +193,17 @@
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Learning resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+
 </ul>
 
     </div>
@@ -362,7 +367,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-programming">Core programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beginner-to-intemediate-pathways">Beginner to intemediate pathways</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-materials">Additional materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-programming">Core Programming</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
@@ -379,11 +389,13 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-software-accessible">Making software accessible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-analytical-pipelines">Reproducible Analytical Pipelines</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-mistakes">Learning from mistakes</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -396,21 +408,47 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="learning-resources">
 <h1>Learning resources<a class="headerlink" href="#learning-resources" title="Link to this heading">#</a></h1>
-<p>This section links to training and self-led learning resources, which relate to sections of the guidance.</p>
-<p>Many of these learning resources point to the UK Statistics Authority Learning Hub.
-All government analysts can request an account for the hub via a <a class="reference external" href="https://forms.office.com/pages/responsepage.aspx?id=vweIB4LOiEa84A2BFoTcRlPdx8djn4tCqrCyavGcBe9UNTY3RUpEQkkwVDhITDAxUk8wTUhBQ01MNS4u&amp;amp;route=shorturl&amp;amp;wdLOR=c0BA596B0-B641-4BF9-BCDB-8C188FCB872C">form</a>.</p>
-<p>Please note that learning resources from non-government training providers (i.e. not accessed through the Hub) may not always follow best practice.
+<p>This section provides links to training and self-led learning resources, which relate to sections of the guidance.</p>
+<p>While a few resources are listed here, many more exist online, yet these may not always follow best practice.
 However, exposure to a range of applied examples will still benefit your learning.
 You should compare and contrast your learning to the good practices outlined in the guidance.</p>
+<section id="beginner-to-intemediate-pathways">
+<h2>Beginner to intemediate pathways<a class="headerlink" href="#beginner-to-intemediate-pathways" title="Link to this heading">#</a></h2>
+<p>For training relating to the topics covered in this guidance, you can visit <a class="reference external" href="https://datasciencecampus.github.io/statistical_programming_training_pathways/">Statistical Programming Pathways</a>. This open source training was developed by the Data Science Campus at the UK Office for National Statistics and has three pathways from beginner to intermediate level for coders and programmers.</p>
+<p><a class="reference external" href="https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_awareness.html">Awareness of Statistical Programming</a> includes training covering:</p>
+<ul class="simple">
+<li><p>Introduction to open source languages</p></li>
+<li><p>Introduction to Git</p></li>
+</ul>
+<p><a class="reference external" href="https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_intro.html">Introduction to Statistical Programming</a> includes training covering:</p>
+<ul class="simple">
+<li><p>Introduction to Python and R</p></li>
+<li><p>Data Visualisation in Python and R</p></li>
+<li><p>Statistics in Python and R</p></li>
+<li><p>Best practice in programming</p></li>
+<li><p>Modular programming</p></li>
+</ul>
+<p><a class="reference external" href="https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_intro.html">Intermediate Statistical Programming</a> includes training covering:</p>
+<ul class="simple">
+<li><p>Reproducible Reporting in Rmarkdown</p></li>
+<li><p>Editing and Imputation in Python and R</p></li>
+<li><p>Version Control using the Command Line</p></li>
+<li><p>Unit Testing</p></li>
+<li><p>Continuous Integration</p></li>
+<li><p>Object Oriented Programming in Python</p></li>
+<li><p>Packaging and Documentation</p></li>
+</ul>
+<!-- Do we want to remove all of these? Or caveat that they may go out of date? -->
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="additional-materials">
+<h1>Additional materials<a class="headerlink" href="#additional-materials" title="Link to this heading">#</a></h1>
+<p>The following links have been included here to show other potential online resources that exist that you may wish to explore and websites of interest. These materials are hosted on external websites that may not be maintained. You can use these as a starting point to find more resources that may be of interest to you.</p>
 <section id="core-programming">
-<h2>Core programming<a class="headerlink" href="#core-programming" title="Link to this heading">#</a></h2>
-<p>The <a class="reference external" href="https://learninghub.ons.gov.uk/course/view.php?id=1273">RAP learning pathway</a> covers training for most of the good practices outlined in this book,
-with a focus on Python and R.
-Other courses below can be used to supplement this learning.</p>
+<h2>Core Programming<a class="headerlink" href="#core-programming" title="Link to this heading">#</a></h2>
 <section id="python">
 <h3>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1199">Introduction to object-oriented programming (OOP) in Python</a></p></li>
 <li><p><a class="reference external" href="https://www.python.org/about/gettingstarted/">The Official Python Getting Started Guide</a></p></li>
 <li><p><a class="reference external" href="https://www.learnpython.org/">Learn Python</a>, supported by DataCamp</p></li>
 </ul>
@@ -434,7 +472,6 @@ Other courses below can be used to supplement this learning.</p>
 <section id="id1">
 <h3>Python<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1156">Dataframes, manipulation and cleaning in Python</a></p></li>
 <li><p><a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/index.html">Python Data Science Handbook</a></p></li>
 <li><p><a class="reference external" href="https://github.com/wesm/pydata-book">Python for Data Analysis</a></p></li>
 </ul>
@@ -442,7 +479,6 @@ Other courses below can be used to supplement this learning.</p>
 <section id="id2">
 <h3>R<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1158">Dataframes, manipulation and cleaning in R</a></p></li>
 <li><p><a class="reference external" href="https://r4ds.had.co.nz/">R for Data Science</a></p></li>
 <li><p><a class="reference external" href="https://adv-r.hadley.nz/index.html">Advanced R</a></p></li>
 </ul>
@@ -450,7 +486,6 @@ Other courses below can be used to supplement this learning.</p>
 <section id="sql">
 <h3>SQL<a class="headerlink" href="#sql" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1162">Foundations of SQL</a></p></li>
 <li><p><a class="reference external" href="https://www.w3schools.com/sql/default.asp">w3schools.com SQL Tutorial</a></p></li>
 <li><p><a class="reference external" href="https://realpython.com/python-sql-libraries/">Python SQL libraries</a></p></li>
 <li><p><a class="reference external" href="http://datacarpentry.org/R-ecology-lesson/05-r-and-databases.html">SQL databases and R</a></p></li>
@@ -462,7 +497,6 @@ Other courses below can be used to supplement this learning.</p>
 <section id="id3">
 <h3>General<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1166">Windows and UNIX Command Line Basics</a></p></li>
 <li><p><a class="reference external" href="https://www.learnenough.com/command-line-tutorial/basics">Learn enough (UNIX) command line to be dangerous</a></p></li>
 <li><p><a class="reference external" href="https://seankross.com/the-unix-workbench/">The UNIX workbench</a></p></li>
 </ul>
@@ -470,8 +504,6 @@ Other courses below can be used to supplement this learning.</p>
 <section id="git">
 <span id="git-learning"></span><h3>Git<a class="headerlink" href="#git" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/enrol/index.php?id=1165">Intro to Git</a></p></li>
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/course/view.php?id=1200">Introduction to continous integration</a></p></li>
 <li><p><a class="reference external" href="https://git-scm.com/book/en/v2">The Pro Git book</a></p></li>
 <li><p><a class="reference external" href="https://swcarpentry.github.io/git-novice/">Software Carpentry: Version Control with Git</a> - an applied project</p></li>
 <li><p>Interactive online training with <a class="reference external" href="https://www.katacoda.com/courses/git">Katacoda</a> or <a class="reference external" href="https://learngitbranching.js.org/">Learn Git Branching</a></p></li>
@@ -480,12 +512,6 @@ Other courses below can be used to supplement this learning.</p>
 <li><p><a class="reference external" href="https://www.atlassian.com/git">Atlassian’s Learn Git</a></p></li>
 </ul>
 </section>
-</section>
-<section id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://learninghub.ons.gov.uk/course/view.php?id=1171">Introduction to Unit Testing in Python and R</a></p></li>
-</ul>
 </section>
 <section id="making-software-accessible">
 <h2>Making software accessible<a class="headerlink" href="#making-software-accessible" title="Link to this heading">#</a></h2>
@@ -550,15 +576,6 @@ The following is a compilation of bad code in Python, but worth a read whatever 
         <p class="prev-next-title">Automating code quality assurance</p>
       </div>
     </a>
-    <a class="right-next"
-       href="tools.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tools</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -575,7 +592,12 @@ The following is a compilation of bad code in Python, but worth a read whatever 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-programming">Core programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Learning resources</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#beginner-to-intemediate-pathways">Beginner to intemediate pathways</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-materials">Additional materials</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-programming">Core Programming</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python">Python</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r">R</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general">General</a></li>
@@ -592,11 +614,13 @@ The following is a compilation of bad code in Python, but worth a read whatever 
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#making-software-accessible">Making software accessible</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-analytical-pipelines">Reproducible Analytical Pipelines</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-from-mistakes">Learning from mistakes</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

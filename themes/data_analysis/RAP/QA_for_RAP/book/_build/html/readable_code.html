@@ -186,7 +186,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
@@ -202,7 +202,6 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
 </ul>
 
     </div>
@@ -425,7 +424,7 @@ That someone might be you in six months time!
 As such, it is important to empathise with these potential users and write code that is tidy, understandable, and does not add unnecessary complexity.
 Doing this will make for a ‘self-documenting’ codebase that does not need as much additional documentation.</p>
 <p>This chapter highlights good coding practices that will improve the readability and maintainability of your code.
-Here, readability refers to how easily another analyst can gain a decent understand of how your code works, within a reasonable amount of time.
+Here, readability refers to how easily another analyst can gain a decent understanding of how your code works, within a reasonable amount of time.
 Maintainability refers to how easily other analysts can understand your code well enough to modify and repair it.</p>
 </section>
 <section id="clean-code">
@@ -476,7 +475,7 @@ This includes variables, functions, classes, constants and any other objects tha
 </pre></div>
 </div>
 </div></div>
-<p>Another developer, or even ‘future you’, would be unable to correctly interpret what these variable names to represent.
+<p>Another developer, or even ‘future you’, would be unable to correctly interpret what these variable names represent.
 Therefore, you should try very hard to avoid cryptic or single-letter identifiers.</p>
 <p>That said, there are situations where some seemingly cryptic identifiers make sense.
 Using single letters to name variables is suitable when implementing methodologies from mathematical notation.
@@ -660,7 +659,7 @@ They should ideally read clearly when called from a class instance - such as <co
 Compare this against <code class="docutils literal notranslate"><span class="pre">bp</span> <span class="pre">=</span> <span class="pre">Reader(book_data)</span></code> then <code class="docutils literal notranslate"><span class="pre">bp.fetch()</span></code>, where there is not enough context.</p>
 <div class="admonition note" id="code-style">
 <p class="admonition-title">Note</p>
-<p>Writing custom classes is more common in Python than in R, as discussed in the <a class="reference internal" href="modular_code.html"><span class="std std-doc">Modular code</span></a> chapter. As such, the examples above only apply to Python.</p>
+<p>Writing custom classes is more common in Python than in R, as discussed in the <a class="reference internal" href="modular_code.html"><span class="std std-doc">Modular code</span></a> chapter. Because of this, the examples above only apply to Python.</p>
 </div>
 </section>
 </section>
@@ -670,7 +669,7 @@ Compare this against <code class="docutils literal notranslate"><span class="pre
 One way R and Python differ, for example, is their use of indentation.
 Indentation is part of the well defined syntax of Python but is not for R.
 This does not mean that you shouldn’t use indentation in R to make your code more readable.
-If in doubt, you should consider consulting how to use formatting to write more readable code by finding the style guidelines for your language.</p>
+If in doubt, consulting the style guidelines for your language can help you to understand how to use formatting to write more readable code.</p>
 <p>Generally, code style guides provide a standard or convention for formatting and laying out your code.
 The purpose of these style guides is to increase consistency across the programming community for a given language.</p>
 <p>They might include how to appropriately:</p>
@@ -682,20 +681,9 @@ The purpose of these style guides is to increase consistency across the programm
 <li><p>provide other useful guidance regarding formatting.</p></li>
 </ul>
 <p>The existence of such style guides does not necessarily mean that each individual or team will apply these conventions to the letter.
-Organisations and developer teams often have needs that might not be addressed in a general style guidance document.
-After all, these documents aim to capture the needs of a diverse group of developers.
-Therefore, these guides are more useful as starting points in a discussion on ‘how should our team be consistent internally in the way we write code?’.</p>
-<figure class="align-default" id="code-quality">
-<a class="reference internal image-reference" href="_images/code_quality.png"><img alt="Comic strip describing a brutal code review." src="_images/code_quality.png" style="width: 80%;" />
-</a>
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Code Quality, from <a class="reference external" href="https://xkcd.com/1513/">xkcd</a></span><a class="headerlink" href="#code-quality" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+These guides are more useful as starting points in a discussion on ‘how should our team be consistent internally in the way we write code?’.</p>
 <p>The core idea around these guides is that individual teams have to either adopt them or adapt them for use while writing code.
-The goals are readability and consistency.
-This consistency between developers will most likely aid speed of development and review,
-as well as the ability of one developer to comprehend code written by their colleagues.</p>
+The goals are readability and consistency.</p>
 <div class="admonition-common-style-guides admonition">
 <p class="admonition-title">Common Style Guides</p>
 <p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> is an official Python style guide, which is widely used.
@@ -706,11 +694,7 @@ The <a class="reference external" href="https://google.github.io/styleguide/Rgui
 <p>There is perhaps a misconception that following style guidelines and formatting your code accordingly is the fundamental goal of writing good code in a given language.</p>
 <p>In reality, guidelines may encourage code-reviews to focus on style over more fundamental problems with the code.
 They have the potential to detract from assessment of whether the code is making the best use of a given language.</p>
-<p>The notion of style goes beyond simple spacing or capitalisation.
-In the same way that knowing and using common idioms such as ‘over the moon’ or ‘cold feet’ make you seem like a more fluent speaker of English,
-a part of being fluent in a programming language is being able to write ‘idiomatic’ code.
-Idiomatic stands for ‘using, containing, or denoting expressions that are natural to a native speaker’.
-In Python, idiomatic approaches to writing code are commonly referred to as ‘pythonic’.</p>
+<p>The notion of style goes beyond simple spacing or capitalisation. It also includes writing code in a way that feels natural and familiar to others who use the language.</p>
 <p>This might mean simplifying complex and perhaps hard to read patterns into a simpler, but well established alternative.
 For example, the pieces of code below are equivalent:</p>
 <div class="sphinx-tabs docutils container">
@@ -749,16 +733,14 @@ For example, the pieces of code below are equivalent:</p>
 </pre></div>
 </div>
 </div></div>
-<p>The ability to write idiomatic code in a given language comes with time.
+<p>The ability to write code with more R or Python language features comes with time.
 However, it is important to think about it while looking at a given piece of code: is it using everything that language ‘X’ has to offer?</p>
-<p>That said, we should still prefer readability over idioms that might make our code more complex.
-For example, attempting to fit too much logic into a single line of code can make it considerably harder to understand.</p>
 </section>
 <section id="automate-style-checks">
 <span id="id1"></span><h4>Automate style checks<a class="headerlink" href="#automate-style-checks" title="Link to this heading">#</a></h4>
 <p>Following a style guide from the beginning of a project is good practice.
-However, checking that code continues to follow a particular style, or to fix code formatting when it doesn’t can be tedious.
-Hence, automated support can be sought to speed up this work,
+However, checking that code continues to follow a particular style, and fixing formatting when it doesn’t can be tedious.
+Automated support can be sought to speed up this work,
 either by providing suggestions as the code is written or by reformatting your code to comply with some style.</p>
 <p>See <a class="reference internal" href="continuous_integration.html#linters-formatters"><span class="std std-ref">Linters and formatters</span></a> for further information on automating these checks.</p>
 </section>
@@ -768,15 +750,12 @@ either by providing suggestions as the code is written or by reformatting your c
 <span id="id2"></span><h2>Software ideas for analysts<a class="headerlink" href="#software-ideas-for-analysts" title="Link to this heading">#</a></h2>
 <p>It’s important to remember that when we write code for analysis, we are developing software.
 Over many years, software engineering teams have developed good practices for creating robust software.
-These practices help to make our code simple, readable, and easier to maintain.
+These practices help to make code simple, readable, and easier to maintain.
 Analysts using code as a means to perform analysis can benefit from at least partially applying such practices in their own codebases.</p>
-<p>This chapter will try to condense key messages and guidelines from these practices, for use by analysts who write code.
-Reading and learning more about these practices will likely to benefit the quality of your code and is highly encouraged.</p>
+<p>This chapter will try to condense key messages and guidelines from these practices, for use by analysts who write code.</p>
 <section id="keep-it-simple">
 <h3>Keep it simple<a class="headerlink" href="#keep-it-simple" title="Link to this heading">#</a></h3>
-<p>The ability to convey information in a simple and clear way matters.</p>
-<p>This is particularly true when explaining concepts that are already complex.
-You are often trying to solve problems that are complex in nature when writing code.
+<p>The ability to convey information in a simple and clear way matters.
 You should avoid introducing extra complexity to these problems, wherever possible.</p>
 <p>Here are a few tips to make sure you keep your project nice and simple:</p>
 <ul class="simple">
@@ -789,18 +768,9 @@ They will most likely be better documented and won’t need extra maintenance.</
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It’s important to capture the requirements of your code before writing it.
-This includes when your code needs to be adapted to meet changing needs.
-You should then aim to meet these requirements in the functionality that your code provides.</p>
-<p>It can be tempting to try to account for every eventuality in your program, but developing anything more than these requirements may not be beneficial.
-There’s a good chance that many cases that you account for will never occur, so you should try to prioritise based on what you’re certain is needed from your code.</p>
-<blockquote>
-<div><p>You ain’t gonna need it</p>
-</div></blockquote>
-<p>Remember that additional features will require more documentation and testing to ensure that they are working correctly.
-Really consider if adding these extras will make your code more or less maintainable, user-friendly and correct.</p>
+<p>It’s important to define what your code needs to do before you start writing it, and focus on meeting those requirements. Avoid over-engineering — handling unlikely scenarios adds complexity without clear benefit. Extra features also demand more testing and documentation, so only include what truly improves clarity, usability, or maintainability.</p>
 </div>
-<p>Lastly, it is worth stressing that complex problems might require complex solutions.
+<p>Sometimes complex problems might require complex solutions.
 In those cases make sure that you only introduce complexity where it is needed.
 You should address necessary complexity with proportionate quality assurance - through documentation, testing and review.
 For instance, if the execution time of your code is critical, then making the code more complex to achieve a faster runtime may be an acceptable trade-off.</p>
@@ -809,14 +779,7 @@ For instance, if the execution time of your code is critical, then making the co
 <h3>Don’t repeat yourself<a class="headerlink" href="#don-t-repeat-yourself" title="Link to this heading">#</a></h3>
 <p>In the section on <a class="reference internal" href="modular_code.html#modular"><span class="std std-ref">modular code</span></a>, you were encouraged to refactor your code into more self-contained components for ease of testing,
 reproducibility and reusability.
-However, it is worth stressing that ‘quick and dirty’ solutions often involve copy-pasted code that is functionally identical.
-This is expected and is natural in the initial stages of a project.
-Nonetheless, repetition not only wastes your time, but it also makes your code more difficult to read.
-Consider a script that contains three copies of a similar piece of code.
-If the code that is used to perform the repetitive task is found to be incorrect, or if a developer wishes to modify the task being performed by this code,
-they must implement a similar change in each of the three copies.
-If only two copies were spotted and amended, there is now a bug sleeping in the code waiting to be triggered…
-Moreover, anyone reviewing the code would need to check that the right logic is being used three times over.</p>
+While copy-pasting code can be a quick fix early in a project, repeated code makes your script harder to read, update, and debug. If one copy needs changing, all must be updated—missing even one can introduce bugs. Refactoring into reusable components avoids this risk and simplifies maintenance.</p>
 <p>To put this in context, let us use an example where the developer wants to get the odd numbers from three different lists of numbers:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-9-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-9-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-9-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: this is an example of bad practice</span>
@@ -874,7 +837,7 @@ Even when you are aware of the difference between the copies, you might be unabl
 The example demonstrates how repetition can add confusion when trying to maintain or review code.</p>
 <p>Modifying multiple copies of a code snippet is laborious and presents a risk - some copies of the repeated code may be modified,
 while others erroneously remain the same.
-This is analogous to modifying the formula in individual cells of a spreadsheet.
+This is similar to modifying the formula in individual cells of a spreadsheet.
 If you refactor repetitive code into functions or classes, then bug fixes or modifications need only be carried out once to change all uses of that code.
 New, intended behaviour is then consistently given by each call of the function or method.</p>
 <p>The following presents how one could change the previous example for the better:</p>
@@ -907,7 +870,7 @@ New, intended behaviour is then consistently given by each call of the function 
 </pre></div>
 </div>
 </div></div>
-<p>If the functionality of <code class="docutils literal notranslate"><span class="pre">get_odd</span></code> needs to be modified, it now need only be done once.
+<p>If the functionality of <code class="docutils literal notranslate"><span class="pre">get_odd</span></code> needs to be modified, it now only needs to be done once.
 Additionally, this code is more concise and its purpose is easier to interpret.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -986,7 +949,6 @@ If the answer is yes, you might opt to write it straight into something more mod
 </section>
 <section id="be-explicit">
 <h3>Be explicit<a class="headerlink" href="#be-explicit" title="Link to this heading">#</a></h3>
-<p>In the literary sense of the word!</p>
 <blockquote class="epigraph">
 <div><p>Explicit is better than implicit</p>
 <p class="attribution">—The Zen of Python (<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">this</span></code>)</p>
@@ -1048,69 +1010,23 @@ It should take on one task and perform it well.
 This is because each piece of code is more robust if there are fewer reasons to change it in the future.</p>
 <p>When you work with code that is designed to multitask,
 it is often difficult to modify this code without having an unintentional effect on other aspects of the software.</p>
-<p>Imagine trying to create a model of the economy, which is a complex web of interconnected interactions.
-Creating ‘abstractions’ in the form of classes or functions that try to model multiple aspects of the economy at once might seem helpful,
-but when used incorrectly might instead add to the complexity.</p>
-<p>For example, consider a class that represents a whole country (<code class="docutils literal notranslate"><span class="pre">Country</span></code>).
-This would represent a model that is trying to predict economic statistics for a country such as unemployment or inflation.
-One can imagine that this class will quickly grow into something unmanageable, as its responsibilities grow in the form of additional methods and attributes.</p>
-<p>Based on the other chapters in this guidance, you might eventually realise that you need to break this class down further.
-If you had applied the idea of single responsibility,
-you might have broken the <code class="docutils literal notranslate"><span class="pre">Country</span></code> class down into smaller components such as <code class="docutils literal notranslate"><span class="pre">UnemploymentModel</span></code>, <code class="docutils literal notranslate"><span class="pre">InflationModel</span></code>.
-These classes would be responsible for doing specific modelling, while the <code class="docutils literal notranslate"><span class="pre">Country</span></code> class might only responsible for presenting the results to,
-let’s say, a higher level economy model that tries to model cross-country trade.</p>
+<p>Imagine trying to build a model of a country’s public health system, which involves many interconnected factors—disease surveillance, healthcare access, vaccination rates, and more. Creating large, all-encompassing abstractions (like a single <code class="docutils literal notranslate"><span class="pre">PublicHealthSystem</span></code> class or function) might seem efficient, but can quickly become overwhelming and hard to manage.</p>
+<p>For instance, a class called <code class="docutils literal notranslate"><span class="pre">CountryHealthProfile</span></code> might aim to model everything from infection rates to hospital capacity. As more responsibilities are added, the class becomes bloated and difficult to maintain.</p>
+<p>Instead, applying the principle of single responsibility helps break this down into focused components—such as <code class="docutils literal notranslate"><span class="pre">InfectionModel</span></code>, <code class="docutils literal notranslate"><span class="pre">VaccinationTracker</span></code>, and <code class="docutils literal notranslate"><span class="pre">HospitalCapacityMonitor</span></code>. Each handles a specific aspect of public health, while the <code class="docutils literal notranslate"><span class="pre">CountryHealthProfile</span></code> class could simply coordinate these models and present a summary to a higher-level system, like a regional health dashboard.</p>
 <p>This simplicity also increases usability, by minimising the number of parameters that each function or class might require.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you remember the <a class="reference internal" href="modular_code.html#interfaces"><span class="std std-ref">section on interfaces</span></a>,
-the different model classes here are a prime example where defining an interface would help you make sure each <code class="docutils literal notranslate"><span class="pre">*Model</span></code> object is interchangeable.</p>
-</div>
 <p>The ‘separation of concerns’ principle captures a similar concept to single responsibility, but on a higher level.
 This principle suggests that your software should be separated into distinct sections that each address a single concern.</p>
-<p>In the previous economic modelling example, you might establish your concerns to be:</p>
-<ul>
-<li><p>Model economy at low level: <code class="docutils literal notranslate"><span class="pre">UnemploymentModel</span></code> and <code class="docutils literal notranslate"><span class="pre">InflationModel</span></code>.</p>
-<p>These are concerned with the ‘low-level’ details of giving estimates of economic output.
-They are independent of each other and concerned only by what they are trying to estimate.</p>
-</li>
-<li><p>Model country level interactions and trade blocks: <code class="docutils literal notranslate"><span class="pre">Country</span></code> and <code class="docutils literal notranslate"><span class="pre">TradeBlock</span></code>.</p>
-<p>These parts of your code relate to higher level concepts.
-They will be using the lower level <code class="docutils literal notranslate"><span class="pre">Model</span></code> classes, but are primarily concerned with interactions between countries.</p>
-</li>
-<li><p>Run simulations given a description of the desired economy.</p>
-<p>Once the model is ready, there might be a <code class="docutils literal notranslate"><span class="pre">SimulationRunner</span></code> that takes in your model of the world economy and runs simulations.
-In this case, this part of your codebase will only revolve around running the actual simulations.</p>
-</li>
-</ul>
-<p>In each of these distinct sections of your codebase there will be multiple classes and functions,
+<p>In each of the distinct sections of your codebase there will be multiple classes and functions,
 which should follow the single responsibility concepts outlined earlier.</p>
-<p>For example, within the section of your code concerned with modelling data, you might have a set of functions to download data from an external data store.
-These functions should only be responsible for receiving the required data safely and providing it to the <code class="docutils literal notranslate"><span class="pre">Model</span></code> object.
-If you had the need to download data from different sources online (i.e., Database, CSV or other), you might create several download functions.
-To pick the right function for each model you might create a <a class="reference external" href="https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)">‘LoaderFactory’</a>
-who’s only responsibility is to provide the <code class="docutils literal notranslate"><span class="pre">Model</span></code> with the right loading function for the right data source.</p>
 <figure class="align-default" id="separation-of-concerns">
 <a class="reference internal image-reference" href="_images/separation_of_concerns.png"><img alt="Representation of concerns and responsibilities within a piece of software." src="_images/separation_of_concerns.png" style="width: 80%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Representation of concerns and responsibilities within a piece of software</span><a class="headerlink" href="#separation-of-concerns" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Representation of concerns and responsibilities within a piece of software</span><a class="headerlink" href="#separation-of-concerns" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>As such, separate sections of your software should be responsible for each of the concerns.
+<p>Separate sections of your software should be responsible for each of the concerns.
 Within each section of your software, distinct functions or classes should be responsible for each task that is required for that section’s overall functionality.</p>
-<div class="admonition-in-the-context-of-functions admonition">
-<p class="admonition-title">In the context of functions</p>
-<p>The previous example was heavily focused on classes and Object-Oriented Programming. The same principles apply in the world of functions.
-You define each concern that is addressed by a module containing functions who follow the single responsibility principle.</p>
-<p>So the previous example could equally include:</p>
-<ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">unemployment_model</span></code> - function running the unemployment modelling.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">inflation_model</span></code> - function running the inflation modelling.</p></li>
-</ul>
-<p>These functions would produce data about a given country, to be stored in an object.
-Another function might then take these data for multiple countries and start modelling it across country boundaries.</p>
-<p>The same core concepts still fully apply.</p>
-</div>
 </section>
 <section id="make-functions-open-to-extension-but-closed-for-modification">
 <h3>Make functions open to extension, but closed for modification<a class="headerlink" href="#make-functions-open-to-extension-but-closed-for-modification" title="Link to this heading">#</a></h3>

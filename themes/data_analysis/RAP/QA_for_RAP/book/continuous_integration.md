@@ -13,9 +13,7 @@ You should run tests whenever you make changes to your project.
 This ensures that changes do not break the existing, intended functionality of your code.
 However, it is easy to forget to run your tests at regular intervals.
 
-"Surely I can automate this too?"
-
-Absolutely! Automatic testing, amongst other quality assurance measures, can be triggered when you make changes to your remote version control repository.
+Automatic testing, amongst other quality assurance measures, can be triggered when you make changes to your remote version control repository.
 You can use these tools to ensure that all changes to a project are tested.
 Additionally, it allows others, who are reviewing your code, to see the results of your tests.
 
@@ -27,7 +25,7 @@ Committing small changes regularly is often referred to as Continuous Integratio
 You can achieve this easily through the use of [version control](version_control.md), such as Git.
 
 You should commit every time you make a working change.
-Fixed a typo? Commit. Fixed a bug? Commit. Added a function? Commit. Added a test? Commit.
+
 As a very rough guide, you should expect to commit a few times each hour and push your changes to your shared software repository at least once a day.
 If the task is unfinished at the end of the day, you should consider if the task has been sufficiently broken down.
 
@@ -38,20 +36,12 @@ You can achieve this in a number of ways such as use of Git hooks and workflows.
 
 ## Use Git hooks to encourage good practice
 
-[Git hooks](https://git-scm.com/docs/githooks) are scripts that can be set to run locally at specific points in your Git workflow,
+Git hooks are scripts that can be set to run locally at specific points in your Git workflow,
 such as pre-commit, pre-push, etc.
 You can use them to automate code quality assurance tasks, e.g., run tests, follow style guides, or enforce commit standards.
 
 For example, you could set up a `pre-commit` or `pre-push` hook that runs your tests before you make each commit or push to the remote repository.
 This might stop your commit/push if the tests fail, so that you won't push breaking changes to your remote repository.
-
-```{note}
-If your code is likely to be run on a range of software versions or operating systems, you can test on a variety of these.
-Tools exist to support local testing of combination software versions and package dependency versions:
-
-* [tox](https://tox.readthedocs.io/en/latest/) or [nox](https://nox.thea.codes/en/stable/) for Python
-* [rhub](https://r-hub.github.io/rhub/) for R
-```
 
 
 (linters-formatters)=
@@ -95,8 +85,7 @@ You can also run multiples of the tools to catch a broader range of stylistic or
 ## Workflows
 
 GitHub Actions and GitLab Pipelines are both able to define custom workflows using YAML.
-Workflow refers to a defined sequence of steps and actions that you need to perform
-to complete a specific task or process.
+Workflow refers to a defined sequence of steps and actions that you need to perform to complete a specific task or process.
 Workflows are commonly used in software development to automate repetitive or complex tasks,
 such as building and deploying software, testing code, and managing code reviews.
 GitHub Actions and GitLab Pipelines both allow automated workflows that trigger
@@ -147,57 +136,47 @@ jobs:
         pytest
 ```
 
-The first section of this example describes when we should run our workflow.
-In this case, we're running the CI workflow whenever code is `push`ed to the `master` branch or where any Pull Request is created.
+The first section of this example describes when you should run the workflow.
+In this case, the CI workflow is run whenever code is `push`ed to the `master` branch or where any Pull Request is created.
 In the case of Pull Requests, the results of the CI workflow will be report on the request's page.
 If any of the workflow stages fail, this can block the merge of these changes onto a more stable branch.
 Subsequent commits to the source branch will trigger the CI workflow to run again.
 
-Below `jobs`, we're defining what tasks we would like to run when we trigger our workflow.
-We define what operating system we would like to run our workflow on - the Linux operating system `ubuntu` here.
+Below `jobs`, the tasks are defined that should run when the workflow is triggered.
+Here the operating system is defined too - the Linux operating system `ubuntu`.
 The `matrix` section under `strategy` defines parameters for the workflow.
-We will repeat the workflow for each combination of parameters supplied here - in this case 4 recent Python versions.
+The workflow will be repeated for each combination of parameters supplied here - in this case 4 recent Python versions.
 
 The individual stages of the workflow are defined under `steps`.
 `steps` typically have an informative name and run code to perform an action.
 Here `uses: actions/checkout@v3` references [existing code](https://github.com/actions/checkout) that will retrieve the code from our repo.
 The subsequent `steps` will use this code.
 The next step provides us with a specific Python version, as specified in the `matrix`.
-Then we install dependencies/requirements for our code and the `pytest` module.
-Finally, we run `pytest` to check that our code is working as expected.
+Then dependencies/requirements are installed for the code and the `pytest` module.
+Finally, run `pytest` to check that the code is working as expected.
 
-This workflow will report whether our test code ran successfully for each of the specified Python versions.
+This workflow will report whether the test code ran successfully for each of the specified Python versions.
 
 #### Configure GitHub actions to build and deploy documentation
 
 It is important to maintain the documentation relating to your project to ensure contributors and users can understand, maintain, and use your product correctly.
 One basic way of doing this is maintaining markdown files within a GitHub repository.
 However, multiple tools exist that can transform these markdown files into HTML content.
-A popular tool for building and deploying HTML documentation is [Sphinx](https://www.sphinx-doc.org/en/master/).
-Here are two examples of repositories that use sphinx to build its documentation:
+A popular tool for building and deploying HTML documentation is Sphinx.
 
-* [Quality assurance of code for analysis and research (this book)](https://github.com/best-practice-and-impact/qa-of-code-guidance/blob/main/.github/workflows/book.yaml)
-* [govcookiecutter](https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml)
-
+The UK Gov Cookie Cutter package 'govcookiecutter' is an example of a repository that uses sphinx to build its documentation. (ref)
+ 
 ### Example GitLab Pipeline
 
-GitLab has an equivalent to GitHub Actions called GitLab Pipelines.
+GitLab has an equivalent to GitHub Actions called GitLab Pipelines. (ref)
 The use cases for these are practically the same, with a change in syntax and file structure.
-[PATRICK'S SOFTWARE BLOG](https://web.archive.org/web/20230321180431/https://www.patricksoftwareblog.com/setting-up-gitlab-ci-for-a-python-application/) provides a simple GitLab
-pipeline example and detailed description on how to use it.
-For further details [GitLab provides documentation on how to create and use GitLab Pipelines](https://docs.gitlab.com/ee/ci/).
 
-### Comprehensive example of automating code quality assurance
+### Example of automating code quality assurance
 
-You can see a detailed example of CI in practice in the `jupyter-book` project.
-A recent version of the
-[`jupyter-book` CI workflow](https://github.com/executablebooks/jupyter-book/blob/6fb0cbe4abb5bc29e9081afbe24f71d864b40475/.github/workflows/tests.yml) includes:
+For an example of continuous intregration, please refer to the RAP in Action material (link to RAP in Action training to be added) to see how this was implemented in a COVID-19 project.
 
-* Checking code against style guidelines, using [pre-commit](https://pre-commit.com/).
-* Running code tests over:
-  * a range of Python versions.
-  * multiple versions of specific dependencies (`sphinx` here).
-  * multiple operating systems.
-* Reporting test coverage.
-* Checking that documentation builds successfully.
-* Deploying a new version of the `jupyter-book` package to [the python package index (PyPI)](https://pypi.org/).
+# References
+
+govcookiecutter  (https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml)
+
+Gitlab Pipelines (https://docs.gitlab.com/ee/ci/).

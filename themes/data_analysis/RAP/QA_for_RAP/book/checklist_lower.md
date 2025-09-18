@@ -11,8 +11,7 @@
 
 - Names used in the code are informative and concise.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) and [Google](https://google.github.io/styleguide/Rguide.html) or [tidyverse](https://style.tidyverse.org/) for R.
-<!-- Do we want to leave this in? These are external links but are to the main code sites so may not change? Alternatively could link them in additional resources with a caveat about them being owned by Python/R and may change?  -->
+- Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
 
 ### Project structure
 
@@ -51,7 +50,6 @@
 
 ### Data management
 
-<!-- - Published outputs meet [accessibility regulations](https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/). -->
 - All data for analysis are stored in an open format, so that specific software is not required to access them.
 - Input data are stored safely and are treated as read-only.
 - Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
@@ -59,7 +57,6 @@
 - Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops. Your analysis code is able to reproduce them at any time.
 - Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
 - Data quality is monitored. 
-<!-- Link to unit on data quality -->
 
 ### Peer review
 
@@ -109,7 +106,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 
 - [ ] Names used in the code are informative and concise.
 - [ ] Code logic is clear and avoids unnecessary complexity.
-- [ ] Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) and [Google](https://google.github.io/styleguide/Rguide.html) or [tidyverse](https://style.tidyverse.org/) for R.
+- [ ] Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
 
 ### Project structure
 
@@ -121,7 +118,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Comments are kept up to date, so they do not confuse the reader.
 - [ ] Code is not commented out to adjust which lines of code run.
 - [ ] All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- [ ] Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/). R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+- [ ] Python code is documented using docstrings. R code is documented using `roxygen2` comments.
 
 ### Project documentation
 
@@ -162,7 +159,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 
 ### Testing
 
-- [ ] Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) and [`testthat` for R](https://testthat.r-lib.org/). 
+- [ ] Core functionality is unit tested as code. See `pytest` for Python and `testthat` for R.
 - [ ] Code based tests are run regularly, ideally being automated using continuous integration.
 - [ ] Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 - [ ] Informal tests are recorded near to the code.
@@ -187,3 +184,12 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] New issues or tasks are guided by users’ needs and stories.
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 ```
+
+
+# References 
+
+pytest
+test that
+Google style guide
+PEP8 Style guide 
+Tidyverse style guide

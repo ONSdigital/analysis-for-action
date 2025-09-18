@@ -175,30 +175,38 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Peer review</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+
 </ul>
 
     </div>
@@ -362,6 +370,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Peer review</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focus-reviews-on-code-quality">Focus reviews on code quality</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-i-easily-understand-what-the-code-does">Can I easily understand what the code does?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-required-functionality-tested-sufficiently">Is the required functionality tested sufficiently?</a></li>
@@ -381,6 +390,10 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -393,28 +406,19 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="peer-review">
 <h1>Peer review<a class="headerlink" href="#peer-review" title="Link to this heading">#</a></h1>
-<p>Peer review of code is a quality assurance activity where a developer, other than the code’s author, views and tests the usage of a piece of code.</p>
+<p>Peer review of code is a quality assurance activity where a developer, who is not the code’s author, views and tests the usage of a piece of code.</p>
 <p>Peer review allows for a fresh pair of eyes to take a look at your work.
 It helps to assure that you have taken an appropriate approach to your analysis and may highlight errors in the analysis process.
 Constructive review feedback helps you to improve your code quality and provides confidence in your work.
 It acts to assure that your analysis is fit for purpose.</p>
 <blockquote class="epigraph">
 <div><p>For analysis to be used to inform a decision it must be possible to assess its utility, reliability,
-and the degree of validation and verification to which it has been subjected.</p>
-<p class="attribution">—<a class="reference external" href="https://www.gov.uk/government/publications/the-aqua-book-guidance-on-producing-quality-analysis-for-government">The Aqua book</a></p>
+and the degree of validation and verification to which it has been subjected. (Ref: Aqua Book)</p>
 </div></blockquote>
-<p><a class="reference external" href="https://www.gov.uk/government/publications/the-aqua-book-guidance-on-producing-quality-analysis-for-government">The Aqua book</a>
-tells us that we should proportionately quality assurance our analysis depending on the complexity and business risk of the analysis.
-This means that you may require both internal and external peer review to adequately assure your analysis.
-We recommend External review if your analysis uses novel or complex techniques,
-if comparison with other analyses cannot be used to challenge your results, or if the analysis is business critical.</p>
-<blockquote class="epigraph">
-<div><p>Continuous challenge and improvement is essential to ensure that the people we serve – ministers and, of course, the public – have trust in our analysis.</p>
-<p class="attribution">—Nick Macphereson, former Permanent Secretary to the Treasury</p>
-</div></blockquote>
+<p>Quality assurance should match the complexity and risk level of your analysis (Ref: Aqua book). This may involve internal and external peer review. External review is recommended for business-critical work, when using complex or novel methods, or when results can’t be easily validated against other analyses.</p>
 <section id="focus-reviews-on-code-quality">
 <h2>Focus reviews on code quality<a class="headerlink" href="#focus-reviews-on-code-quality" title="Link to this heading">#</a></h2>
-<p>Our <a class="reference internal" href="checklists.html"><span class="std std-doc">Code quality assurance checklists</span></a> provide an extensive list of good practices that reviewers can look for.
+<p>The <a class="reference internal" href="checklists.html"><span class="std std-doc">Code quality assurance checklists</span></a> provided give an extensive list of good practices that reviewers can look for.
 Many of these criteria consider the whole project.
 You should tailor your review to the quality assurance criteria that the project is trying to meet and the scale of the review.</p>
 <p>Reviewing is centered around conversations - asking yourself and the reviewer questions.
@@ -427,8 +431,8 @@ While reviewing changes to analytical code, example questions might be:</p>
 <li><p>Is there duplication in the code that could be simplified by refactoring into functions and classes?</p></li>
 <li><p>Are functions and class methods simple, using few parameters?</p></li>
 </ul>
-<p>As we discussed in <a class="reference internal" href="readable_code.html"><span class="std std-doc">Readable code</span></a>, good quality, modular code is easier to read, understand, and maintain.
-Peer review improves the quality of our code through the reviewer’s constructive challenges.
+<p>As discussed in <a class="reference internal" href="readable_code.html"><span class="std std-doc">Readable code</span></a> chapter, good quality modular code is easier to read, understand, and maintain.
+Peer review improves the quality of code through the reviewer’s constructive challenges.
 You might do this as a reviewer by suggesting alternative ways to represent the analysis or
 by asking about decisions that have been made in the approach to the analysis.</p>
 <p>Another benefit, particularly of internal review, is knowledge transfer.
@@ -438,7 +442,7 @@ This may provide your team members with the understanding required to use and ma
 </section>
 <section id="is-the-required-functionality-tested-sufficiently">
 <h3>Is the required functionality tested sufficiently?<a class="headerlink" href="#is-the-required-functionality-tested-sufficiently" title="Link to this heading">#</a></h3>
-<p>If we do not test each part of the code, then we can’t be sure that it works as expected.
+<p>If you do not test each part of the code, then you can not be sure that it works as expected.
 As a reviewer, you should ask whether the amount of testing is proportionate given the risk to the analysis if the code does not work.</p>
 </section>
 <section id="how-easy-will-it-be-to-alter-this-code-when-requirements-change">
@@ -448,9 +452,8 @@ As a reviewer, you should ask whether the amount of testing is proportionate giv
 <li><p>Are high level parameters kept in dedicated configuration files?</p></li>
 <li><p>Or would somebody need to work their way through the code with lots of manual edits to reconfigure for a new run? This is much more risky.</p></li>
 </ul>
-<p>Most analysis stems from some form of customer engagement.
-Throughout design, implementation and review of analysis we must continue to assess whether our analysis is fit for purpose:
-Does it meet the needs of the customer?
+<p>Most analysis arises from stakeholder or user engagement.
+During the design, implementation, and review stages, it’s important to regularly check whether the analysis meets its intended purpose and user needs.
 Document the scope of your analysis and any requirements to make this assessment as easy as possible.
 Support the auditability of your analysis with additional documentation, including assumption logs,
 technical reports describing the analysis and documentation on any verification or validation that has already been carried out.</p>
@@ -472,8 +475,7 @@ Assurance that analysis can be reproduced increases the trust in the results.</p
 <p>Provide practical and constructive feedback.
 For example, you should suggest an improvement or alternative that the developer may consider and learn from.
 You should avoid making feedback personal, although it may be necessary to highlight specific examples.</p>
-<p>The CEDAR feedback model can be a useful framework for structuring review comments.
-This model breaks review down into five sections:</p>
+<p>You may want to follow the following approach when giving feedback:</p>
 <ol class="arabic simple">
 <li><p>Context - describe the issue and the potential impact.</p></li>
 <li><p>Examples - give specific examples of when and where the issue has been present.</p></li>
@@ -481,7 +483,6 @@ This model breaks review down into five sections:</p>
 <li><p>Actions - ask the person receiving feedback to suggest actions that they could follow to avoid this issue in future.</p></li>
 <li><p>Review - revisit the discussion to look for progress following on the feedback.</p></li>
 </ol>
-<p>This approach has been designed from a coaching or mentoring perspective, and can work well in verbal discussion or when giving written feedback.</p>
 </section>
 <section id="document-review-feedback-and-outcomes">
 <h2>Document review feedback and outcomes<a class="headerlink" href="#document-review-feedback-and-outcomes" title="Link to this heading">#</a></h2>
@@ -500,9 +501,8 @@ See <a class="reference internal" href="version_control.html"><span class="std s
 <h2>Give consistent feedback<a class="headerlink" href="#give-consistent-feedback" title="Link to this heading">#</a></h2>
 <p>You might formalise your review using a template, to ensure that review is consistent within a project.
 Templates are useful for setting criteria to review against.
-You should tailor any template to reflect the scope of your review.
-For example, small regular reviews may focus on smaller aspects of the analysis compared to a large project-wide review.
-The general example below is written in Markdown, so that it can be used in version control platform Merge or Pull requests:</p>
+You should tailor any template to reflect the scope of your review.</p>
+<p>The general example below is written in Markdown, so that it can be used in version control platform Merge or Pull requests:</p>
 <div class="highlight-md notranslate"><div class="highlight"><pre><span></span><span class="gu">##  Code review</span>
 
 <span class="gu">#### Documentation</span>
@@ -516,10 +516,8 @@ Any new code includes all the following forms of documentation:
 
 <span class="k">- [ ]</span> <span class="gs">**Installation**</span>: Installation or build of the code succeeds.
 <span class="k">- [ ]</span> <span class="gs">**Functionality**</span>: Any functional claims of new code have been confirmed.
-<span class="k">- [ ]</span> <span class="gs">**Automated tests**</span>: Unit tests cover essential functions for a reasonable range
-  of inputs and conditions. All tests pass on your local machine.
-<span class="k">- [ ]</span> <span class="gs">**Packaging guidelines**</span>: New code conforms to the project contribution
-<span class="gu">  guidelines.</span>
+<span class="k">- [ ]</span> <span class="gs">**Automated tests**</span>: Unit tests cover essential functions for a reasonable range of inputs and conditions. All tests pass on your local machine.
+<span class="gu">- [ ] **Packaging guidelines**: New code conforms to the project contribution guidelines.</span>
 <span class="gu">---</span>
 
 <span class="gu">### Review comments</span>
@@ -538,16 +536,13 @@ Tailor your suggestions to the code that you are reviewing.
 Be critical and clear, but not mean. Ask questions and set actions.
 </pre></div>
 </div>
-<p>Carry out internal review regularly within the development team.
-Reviewing code written by those with more and less experience than you is beneficial for both reviewer and developer.
-You can ask similar questions from both perspectives, for the reviewer to get a good understanding of the approach and decisions behind the analysis.</p>
+<p>Carry out internal reviews regularly within the development team.
+Reviewing code written by those with more and less experience than you is beneficial for both reviewer and developer.</p>
 </section>
 <section id="give-timely-feedback">
 <h2>Give timely feedback<a class="headerlink" href="#give-timely-feedback" title="Link to this heading">#</a></h2>
-<p>Provide feedback in good time so the review process does not hold up development of the code
-and that issues can be addressed before more code is written using the same practices.</p>
-<p>We strongly recommend applying pair programming for code review, as the most timely and practical method.
-However, you may find a separate review process necessary when multiple developers are not available to work at the same time.</p>
+<p>Provide feedback promptly to avoid delaying development and to ensure issues are addressed before they are repeated in further code.</p>
+<p>Pair programming is recommended as the most efficient and practical method for code review. However, you may find a separate review process necessary when multiple developers are not available to work at the same time.</p>
 <section id="review-through-pair-programming">
 <h3>Review through pair programming<a class="headerlink" href="#review-through-pair-programming" title="Link to this heading">#</a></h3>
 <blockquote>
@@ -564,32 +559,45 @@ Despite the upfront cost of two individuals writing the code, the resulting code
 <p>The rotational aspect of pair programming ensures that all team members gain experience from both the author and review perspective.
 From both angles, you’ll learn new programming and communication techniques.
 Additionally, sharing knowledge of how the code works across the team prevents putting too much risk on individuals.</p>
-<p>Developers working in pairs can approve changes to code as it is written. However, you should still document
-key discussions from pair programming sessions to demonstrate which aspects of the code have been reviewed and discussed.</p>
-<p>This blog post from the Government Digital Service provides
-<a class="reference external" href="https://gds.blog.gov.uk/2018/02/06/how-to-pair-program-effectively-in-6-steps/">more detailed steps to apply pair programming</a>.</p>
+<p>Developers working in pairs can approve changes to code as it is written. However, you should still document key discussions from pair programming sessions to demonstrate which aspects of the code have been reviewed and discussed.</p>
+<div class="admonition-note admonition">
+<p class="admonition-title">The six keys steps to pair programming are:</p>
+<ol class="arabic simple">
+<li><p>Prepare
+Set time aside, check in with your partner, plan goals, and ensure a comfortable working setup.</p></li>
+<li><p>Work Closely Together
+Stay engaged through clear communication and shared focus. As one person codes, the other looks for mistakes.</p></li>
+<li><p>Learn and Facilitate Learning
+Support each other’s growth, provide encouragement and guide the less experienced coder towards the solution.</p></li>
+<li><p>Establish a Rhythm
+Switch roles regularly, commit often, celebrate small wins, and take breaks to stay focused.</p></li>
+<li><p>Communicate Effectively
+Share feedback kindly, stay aware of each other’s comfort, and create space for open dialogue.</p></li>
+<li><p>Embrace Challenges
+Accept that not everything will go smoothly. Reflect on issues and learn from them.</p></li>
+</ol>
+</div>
+<p>(Ref: Pair Programming)</p>
 </section>
 <section id="review-separately-when-necessary">
 <h3>Review separately when necessary<a class="headerlink" href="#review-separately-when-necessary" title="Link to this heading">#</a></h3>
 <p>A separate review involves sharing your code with a reviewer, and receiving written feedback.
-We describe this as separate, because code development and review are separate and the code author does not need to be present for the review.
+It is called ‘separate’ because the review happens independently of the author, who doesn’t need to be present.
 This type of review is an iterative process, where the reviewer may make additional suggestions until they are satisfied with the code changes.</p>
 <p>This form of review works best when changes to the code are small and frequent.
 Requesting review of small but regular changes reduces the burden on reviewers, relative to large review of a complete project.
 Similarly to pair programming, reviewing small changes to code allows you to catch issues sooner.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If a project is only reviewed when all of the code has been written, this significantly reduces the benefit of review.</p>
-<p>This creates a much larger burden on the reviewer.
-Additionally, fixing any issues that are identified may take a lot of time to fix.
-A reviewer might highlight that certain quality assurance practices have not been used -
-for example, there has not been enough documentation or automated testing in the project.
+<p>If a project is only reviewed when all of the code has been written, this significantly reduces the benefit of review and creates a much larger burden on the reviewer.</p>
+<p>Additionally, fixing any issues that are identified may take a lot of time to fix.
+A reviewer might highlight that certain quality assurance practices have not been used - for example, there has not been enough documentation or automated testing in the project.
 Adding documentation and testing for the whole project would take substantial effort.
-If this was identified earlier, the improved practices could be applied as the remaining code is developed.</p>
+If identified earlier, the improved practices could be applied as the remaining code is developed.</p>
 </div>
-<p>When you must carry out a review of larger or complete pieces of work, consider reviewing different aspects of the code in separate sessions.
+<p>When reviewing large or complete pieces of work, consider reviewing different aspects of the code in separate sessions.
 For example, reviewing documentation in one session and functionality in the next.</p>
-<p>The thought of someone else reviewing your code in this way encourages good practices from the outset:</p>
+<p>Knowing the code will be reviewed encourages good practices from the start:</p>
 <ul class="simple">
 <li><p>Clear code and documentation - so others with no experience can use and test your code.</p></li>
 <li><p>Usable dependency management - so others can run your code in their own environment.</p></li>
@@ -597,17 +605,17 @@ For example, reviewing documentation in one session and functionality in the nex
 <p>Separate review is aided by version control platforms’ features. See <a class="reference internal" href="version_control.html"><span class="std std-doc">Version control</span></a> for more information.</p>
 <section id="case-study-ropensci-review">
 <h4>Case study - rOpenSci review<a class="headerlink" href="#case-study-ropensci-review" title="Link to this heading">#</a></h4>
-<p>Here we discuss a <a class="reference external" href="https://ropensci.org/">review example from rOpenSci</a>;
+<!-- Replace with example of Peer review? -->
+<p>The following case study discusses a review example from rOpenSci;
 a community led initiative that curates open source, statistical R packages.
 rOpenSci apply a rigorous peer review process to assure the quality of packages before including them in their collection.
 This peer review process is entirely remote and is performed in the open, via GitHub pull requests.</p>
-<p>In this example, from colleagues at Public Health England, <a class="reference external" href="https://github.com/ropensci/software-review/issues/168">the <code class="docutils literal notranslate"><span class="pre">fingertipsR</span></code> package is reviewed</a>.
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">fingertipsR</span></code> package is reviewed](<a class="github reference external" href="https://github.com/ropensci/software-review/issues/168">ropensci/software-review#168</a>) by Public Health England.
 The initial comment describes the package that is being submitted and includes a check against a list of minimum requirements.
-The <a class="reference external" href="http://mangothecat.github.io/goodpractice/"><code class="docutils literal notranslate"><span class="pre">goodpractice</span></code> R package</a> is used to check that good R packaging practices have been followed.
-<a class="reference external" href="https://www.atlassian.com/continuous-delivery/continuous-integration#:~:text=Continuous%20integration%20(CI)%20is%20the,builds%20and%20tests%20then%20run.">Continuous integration</a>
-is commonly used to carry out automated checks on code repositories.
+The <code class="docutils literal notranslate"><span class="pre">goodpractice</span></code> R package is used to check that good R packaging practices have been followed.
+Continuous integration is commonly used to carry out automated checks on code repositories.
 The reports from these checks can save reviewers time, by providing indicators of things like code complexity and test coverage.</p>
-<p>Two external reviews conduct reviews before the package is accepted - these reviews include checking common aspects of code packages,
+<p>Two external reviewers conduct reviews before the package is accepted - these reviews include checking common aspects of code packages,
 like documentation, examples, and automated testing.
 Perhaps the most informative part of these reviews is the detailed bespoke comments.
 Here the reviewers highlight problems, ask questions to clarify aspects of the package design, and suggest improvements to the implementation of the code
@@ -615,9 +623,22 @@ Here the reviewers highlight problems, ask questions to clarify aspects of the p
 <p>Following the reviews, the authors wrote comments describing how the reviewers requested changes were addressed.
 And finally, a sign off confirmed that the reviewers are satisfied with the package.</p>
 <p>Although this review looked at an entire, mature package, you can apply parts of this review process to smaller pieces of code as required.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More examples of peer review can be found in the RAP in Action materials. (Link to be added)</p>
+</div>
 </section>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>the <code class="docutils literal notranslate"><span class="pre">fingertipsR</span></code> package is reviewed](<a class="github reference external" href="https://github.com/ropensci/software-review/issues/168">ropensci/software-review#168</a>)
+<a class="reference external" href="http://mangothecat.github.io/goodpractice/"><code class="docutils literal notranslate"><span class="pre">goodpractice</span></code> R package</a></p>
+<p><a class="reference external" href="https://www.atlassian.com/continuous-delivery/continuous-integration#:~:text=Continuous%20integration%20(CI)%20is%20the,builds%20and%20tests%20then%20run.">Continuous integration</a></p>
+<ol class="arabic simple" start="3">
+<li><p>Pair programming (<a class="reference external" href="https://gds.blog.gov.uk/2018/02/06/how-to-pair-program-effectively-in-6-steps/">https://gds.blog.gov.uk/2018/02/06/how-to-pair-program-effectively-in-6-steps/</a>).</p></li>
+</ol>
 </section>
 
     <script type="text/x-thebe-config">
@@ -684,6 +705,7 @@ And finally, a sign off confirmed that the reviewers are satisfied with the pack
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Peer review</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#focus-reviews-on-code-quality">Focus reviews on code quality</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#can-i-easily-understand-what-the-code-does">Can I easily understand what the code does?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#is-the-required-functionality-tested-sufficiently">Is the required functionality tested sufficiently?</a></li>
@@ -703,6 +725,10 @@ And finally, a sign off confirmed that the reviewers are satisfied with the pack
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>

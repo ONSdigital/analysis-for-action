@@ -27,7 +27,6 @@ Tests that are written in code, to check that other code works as expected.
 Test are like a controlled experience, to check that our code produces the expected outcome.
 Tests can check code multiple levels, for example, checking that an individual function works or checking that a pipeline runs from end to end.
 
-
 ### Code interpreter
 
 A computer program that runs code in a particular programming language.

@@ -1,4 +1,4 @@
-# 1 Principles
+# Principles
 
 Analysis must be fit for purpose.
 If it isn't, there is the risk of misinforming decisions.
@@ -21,90 +21,27 @@ Reproducibility guarantees that you have done what you claim to have done, and t
 Auditability means that you know why you chose your analysis, and who is responsible for each part of it - including assurance.
 Assurance improves the average quality and includes the communication of that quality to users.
 
-## Reproducible
-
-Reproducibility is the only thing that you can guarantee in your analysis.
-It is the first pillar of good analysis.
-If you can't prove that you can run the same analysis, with the same data, and obtain the same results, then you are not adding a valuable analysis.
-The additional assurances of peer review, rigorous testing,
-and validity are secondary to being able to reproduce any analysis that you carry out in a proportionate amount of time.
-
-A reproducible and transparent production process ensures that anyone can follow your steps and understand your results.
-This transparency eases reuse of your methods and results.
-Easy reproducibility helps your colleagues test and validate what you have done.
-Guaranteeing reproducibility means that users and colleagues can focus on verifying that the implementation is correct and that the research is useful for its intended purpose.
-
-Reproducibility relies on effective documentation.
-Good documentation should show how your methodology and your implementation map to each other.
-Good documentation should allow users and other researchers to reuse and adapt your analysis.
-
-Reproducible analysis supports the requirements of the [Code of Practice for Statistics](https://www.statisticsauthority.gov.uk/code-of-practice/)
-around quality assurance and transparency (auditability).
-We share the code we used to produce our outputs wherever possible, along with enough data to allow for proper testing.
-
-
-## Auditable
-
-If decisions are made, based on your analysis, then you must make sure that your analysis and the evidence that you provide are available for scrutiny and audit.
-Auditable analysis is about being able to, at any point, answer:
-
-* Who made each decision?
-* When was this decision made?
-* What evidence was this decision based on?
-
-Answering these questions gives decision makers and users greater trust in your work.
-They know the story of your analysis and why you made certain analytical choices.
-They know who is responsible for each part of the analysis, including the assurance.
-They know exactly what changes have been made at any point.
-
-In a reproducible workflow, you must bring together the code and the data that you used to generate your results.
-Ideally, you would publish these alongside your reports, with a record of analytical choices made and the responsible owners of those choices.
-This increases the trustworthiness of your work.
-More eyes examining your work can point out challenges or flaws that can help you to improve.
-You can be fully open about the decisions you made when you generated your outputs, so that other analysts can follow what you did and re-create them.
-By making your analysis reproducible, you make it easier for others to quality assure, assess and critique.
-
-
-## Assured
-
-Quality Assurance (QA) is vital for good quality analysis.
-If decisions are being made based on analysis then this analysis must be held to high standards.
-This is true for analysis carried out using any medium, including code.
-
-However, some of the analysis that we do in government doesn't bear on decisions at that level.
-We don't want to overburden analysts with QA procedures when they are not required.
-In government we advocate **proportionality** - the right quality assurance procedures for the right analysis.
-You can proportionately assure analysis through peer review and defensive design.
-
-Assurance is best demonstrated through peer review.
-Peer reviewers must be able to understand your analytical choices and be able to reproduce your conclusions.
-Consider dual running, particularly for high risk analysis.
-
-Publish guarantees of quality assurance alongside any report, to be taken into consideration by decision makers.
+More information on these three key principles of good analysis and how they are fulfilled by Reproducible Analytical Pipelines (RAP) can be found in 'Introduction to RAP'.
 
 
 ## Reproducible analytical pipelines
 
-Producing analysis, such as official statistics, can be time-consuming and painstaking.
-We need to make sure that our outputs are both accurate and timely.
-We aim to develop effective and efficient analytical workflows that are repeatable and sustainable over time.
-These workflows should follow the principles of reproducible analysis.
-We call these Reproducible Analytical Pipelines (RAP).
+Producing analysis, such as official statistics, can be time-consuming and painstaking. In this field, outputs need to be both accurate and timely.
+RAPs are effective and efficient analytical workflows that are repeatable and sustainable over time.
 
 Reproducible analysis is often not widely practised across government organisations.
-<!-- This sentence (above) needs work -->
-Many analysts use proprietary (paid-for) analytical tools such as SAS or SPSS in combination with programs like Excel, Word, or Acrobat to create statistical products.
+Many analysts use proprietary analytical tools such as SAS or SPSS in combination with programs like Excel, Word, or Acrobat to create statistical products.
 The processes for creating statistics in this way are usually manual or semi-manual.
-Other analysts then typically repeat parts of the process manually to quality assure the outputs.
 
-This way of working is time consuming and can be frustrating, especially where the manual steps are difficult to replicate quickly.
-Processes like this are also prone to error, because the input data and the outputs are not connected directly, only through the analyst’s manual intervention.
+This can be time consuming and can be frustrating, especially where the manual steps are difficult to replicate quickly.
+Processes like this are also prone to error.
 
-More recently, the tools and techniques available to analysts have evolved.
-Open-source tools like [Python](https://www.python.org/) and [R](https://www.r-project.org/) have become available.
-Coupled with version control and software management platforms like [Git](https://git-scm.com/) and Git-services,
+More recently, the tools and techniques available to analysts have evolved. Open-source tools like Python and R have become available.
+Coupled with version control and software management platforms like Git and Git-services,
 these tools have made it possible to develop automatic, streamlined processes, accompanied by a full audit trail.
 
-RAP was [first piloted in the UK Government Statistical Service in 2017](https://dataingovernment.blog.gov.uk/2017/03/27/reproducible-analytical-pipeline/)
-by analysts in the UK Department for Digital, Culture, Media and Sport (DCMS) and the Department for Education (DfE).
-They collaborated with data scientists from the UK Government Digital Service (GDS) to automate the production of statistical bulletins.
+RAP was [first piloted in the UK Government Statistical Service in 2017](Ref: RAP pilot). by analysts in the UK Department for Digital, Culture, Media and Sport (DCMS) and the Department for Education (DfE). They collaborated with data scientists from the UK Government Digital Service (GDS) to automate the production of statistical bulletins.
+
+# References
+
+RAP Pilot https://dataingovernment.blog.gov.uk/2017/03/27/reproducible-analytical-pipeline/)

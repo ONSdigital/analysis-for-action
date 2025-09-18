@@ -3,7 +3,7 @@
 Analysis is often exploratory and subject to change, which means that scripts and programs can become messy.
 The messier the programs, the harder they are to maintain and change in future.
 
-Good directory structure and file hygiene can go a long way to mitigate this. Some structures have been found to be generally quite effective through trial and error.
+Good directory structure and file hygiene can go a long way to mitigate this. Some structures have been found to be quite effective through trial and error.
 Others are more specific, and - as with all guidelines - should not be taken as mandatory.
 
 
@@ -12,7 +12,7 @@ Others are more specific, and - as with all guidelines - should not be taken as 
 As you begin developing your project, it's a good idea to save your working code in a script file.
 In R these are saved as `.R` files, and in Python as `.py`.
 You can use scripts within an Integrated Development Environment (IDE) like
-[Visual Studio Code](https://code.visualstudio.com/), [RStudio](https://rstudio.com/), or [PyCharm](https://www.jetbrains.com/pycharm/).
+Visual Studio Code, RStudio, or PyCharm.
 Inside an IDE you can usually run through your script line-by-line, or run the whole file at once.
 This can be an easier workflow than running code in the Python or the R console and then rewriting the same code in a script later.
 
@@ -47,11 +47,11 @@ Good naming conventions include:
 * Consistency, above all else.
 * Short but descriptive and human readable names.
 * No spaces, for machine readability - underscores (`_`) or dashes (`-`) are preferred.
-* Use of consistent date formatting (e.g. [YYYY-MM-DD](https://en.wikipedia.org/wiki/ISO_8601)).
+* Use of consistent date formatting (e.g. YYYY-MM-DD)
 * Padding the left side of numbers with zeros to maintain order -  e.g. `001` instead of `1`. The number of zeros should reflect the expected number of files.
 
 When using dates or times to name files, start with the largest unit of time and work towards the smallest.
-So we would use `2020-10-15_data_input`, and not `15-10-2020_data_input`.
+For example, use `2020-10-15_data_input` instead of `15-10-2020_data_input`.
 This will ensure that the default ordering of these files is in chronological order.
 This makes it much easier to find the earliest or latest files.
 
@@ -62,9 +62,9 @@ For example, where the `001_introduction` should come before `002_methodology` a
 ### Organise analysis as a Directed Acyclic Graph
 
 Analysis can best be thought of as a Directed Acyclic Graph (DAG).
-Don't let the name scare you off!
-All we mean by this is that you start off with the input data, you finish with the output(s), and in between there are no lines that link backwards.
+This means that you start off with the input data, you finish with the output(s), and in between there are no lines that link backwards.
 
+<!-- Can we have this image as from wiki? -->
 ```{figure} https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Tred-G.svg/800px-Tred-G.svg.png
 ---
 width: 50%
@@ -125,7 +125,7 @@ This will allow you to record changes to your code independent of other dependen
 
 ### Preserve raw data
 
-You should not alter raw data - treat it as read-only.
+You should not alter raw data, instead treat it as read-only.
 You should conduct data cleaning on a copy of the raw data, so that you can document which cleaning decisions have been made.
 
 Your project structure should include an immutable store for raw data. This does not have to be inside the code repository and it is usually best to separate operational folders for inputs and outputs from the code base.
@@ -149,14 +149,6 @@ It's likely that you've already used a package written by somebody else as part 
 For example, installing additional functionality for Python using `pip install <package>` on the command line or
 running `install.packages("<package>")` in an R interpreter.
 
-```{admonition} Key Learning
-:class: admonition-learning
-
-[The Python Packaging User Guide](https://python-packaging-user-guide.readthedocs.io/) describes good packaging practices using the most up-to-date Python tools.
-While [the R Packages book](https://r-pkgs.org/) provides a comprehensive summary of packaging in R.
-[The rOpenSci packaging guide](https://devguide.ropensci.org/building.html) also contains useful tips for packaging in R.
-```
-
 See [](project_documentation.md) for a summary of common package and project documentation types.
 
 
@@ -169,20 +161,13 @@ It means that members of the team can quickly orient themselves when joining an 
 [Cookiecutter](https://github.com/cookiecutter/cookiecutter) is a command-line tool that creates projects from templates (cookiecutters).
 Using an existing cookiecutter, or creating one to meet your needs, can be a useful way to increase consistency in structure between your projects.
 Increase consistency and good practice by creating common folder structures, laying out essential documentation or even starting off your code with a basic boilerplate.
-This can also save you time. Laying out a structure to include documentation and code testing also encourages  good practices.
-
-Useful cookiecutters include:
-
-* The government data science [govcookiecutter](https://github.com/ukgovdatascience/govcookiecutter), including data security features.
-* The comprehensive Python data science project template [cookiecutter-data-science](http://drivendata.github.io/cookiecutter-data-science/).
-* The Python package template [cookiecutter-pypackage](https://cookiecutter-pypackage.readthedocs.io/en/latest/).
+This can also save you time. Laying out a structure to include documentation and code testing also encourages good practices.
 
 Rstudio provides a standard template for R packages via `File > New Project... > New Directory > R Package`.
-We have created some basic templates for an [R package](https://github.com/best-practice-and-impact/example-package-r)
-and a [Python package](https://github.com/best-practice-and-impact/example-package-python) that may be helpful.
-R project structures can also be set up or extended, one component at a time, using the [`usethis` workflow package](https://usethis.r-lib.org/). usethis() sets up packages that follow the structure in the R packages book.
+R project structures can also be set up or extended, one component at a time, using the `usethis` workflow package. usethis() sets up packages that follow the structure in the R packages book.
 For example, `use_test()` will add the directories necessary for testing using `testthat` and generate basic test file templates for a given function name.
 
+Cookiecutters and project templates for R and Python can be found in our Packages Tool.(Link to RAP in Action)
 
 ## Use version controlled repositories
 

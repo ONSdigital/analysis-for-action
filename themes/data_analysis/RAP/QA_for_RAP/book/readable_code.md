@@ -712,10 +712,6 @@ This is because each piece of code is more robust if there are fewer reasons to 
 When you work with code that is designed to multitask,
 it is often difficult to modify this code without having an unintentional effect on other aspects of the software.
 
-Imagine trying to create a model of the economy, which is a complex web of interconnected interactions.
-Creating 'abstractions' in the form of classes or functions that try to model multiple aspects of the economy at once might seem helpful,
-but when used incorrectly might instead add to the complexity.
-
 Imagine trying to build a model of a country's public health system, which involves many interconnected factors—disease surveillance, healthcare access, vaccination rates, and more. Creating large, all-encompassing abstractions (like a single `PublicHealthSystem` class or function) might seem efficient, but can quickly become overwhelming and hard to manage.
 
 For instance, a class called `CountryHealthProfile` might aim to model everything from infection rates to hospital capacity. As more responsibilities are added, the class becomes bloated and difficult to maintain.
@@ -728,31 +724,8 @@ This simplicity also increases usability, by minimising the number of parameters
 The 'separation of concerns' principle captures a similar concept to single responsibility, but on a higher level.
 This principle suggests that your software should be separated into distinct sections that each address a single concern.
 
-In the previous public health modelling example, you might establish your concerns to be:
-
-- Model economy at low level: `UnemploymentModel` and `InflationModel`.
-
-  These are concerned with the 'low-level' details of giving estimates of economic output.
-  They are independent of each other and concerned only by what they are trying to estimate.
-
-- Model country level interactions and trade blocks: `Country` and `TradeBlock`.
-
-  These parts of your code relate to higher level concepts.
-  They will be using the lower level `Model` classes, but are primarily concerned with interactions between countries.
-
-- Run simulations given a description of the desired economy.
-
-  Once the model is ready, there might be a `SimulationRunner` that takes in your model of the world economy and runs simulations.
-  In this case, this part of your codebase will only revolve around running the actual simulations.
-
-In each of these distinct sections of your codebase there will be multiple classes and functions,
+In each of the distinct sections of your codebase there will be multiple classes and functions,
 which should follow the single responsibility concepts outlined earlier.
-
-For example, within the section of your code concerned with modelling data, you might have a set of functions to download data from an external data store.
-These functions should only be responsible for receiving the required data safely and providing it to the `Model` object.
-If you had the need to download data from different sources online (i.e., Database, CSV or other), you might create several download functions.
-To pick the right function for each model you might create a ['LoaderFactory'](<https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)>)
-who's only responsibility is to provide the `Model` with the right loading function for the right data source.
 
 ```{figure} ./_static/separation_of_concerns.png
 ---
@@ -763,23 +736,8 @@ alt: Representation of concerns and responsibilities within a piece of software.
 Representation of concerns and responsibilities within a piece of software
 ```
 
-As such, separate sections of your software should be responsible for each of the concerns.
+Separate sections of your software should be responsible for each of the concerns.
 Within each section of your software, distinct functions or classes should be responsible for each task that is required for that section's overall functionality.
-
-```{admonition} In the context of functions
-The previous example was heavily focused on classes and Object-Oriented Programming. The same principles apply in the world of functions.
-You define each concern that is addressed by a module containing functions who follow the single responsibility principle.
-
-So the previous example could equally include:
-
-- An `unemployment_model` - function running the unemployment modelling.
-- An `inflation_model` - function running the inflation modelling.
-
-These functions would produce data about a given country, to be stored in an object.
-Another function might then take these data for multiple countries and start modelling it across country boundaries.
-
-The same core concepts still fully apply.
-```
 
 
 ### Make functions open to extension, but closed for modification

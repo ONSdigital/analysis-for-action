@@ -1,12 +1,5 @@
 # Code documentation
 
-```{epigraph}
-Documentation is a love letter that you write to your future self.
-
--- Damian Conway
-```
-
-
 ## Comments
 
 > Use comments sparingly and with purpose
@@ -15,12 +8,12 @@ Comments are lines of text in source code files that typically are not executed 
 They are small notes or annotations written by those working on the code.
 Often, they provide context or explain the reasoning behind implementation decisions.
 
-Comments are essential for explaining non-obvious details around around how and why the code has been written in a particular way to help those working on the code in the future.
-As such, when it comes to providing relevant and perhaps higher-level documentation to the end consumer on the functionality of your code,
+Comments are essential for explaining non-obvious details around how and why the code has been written in a particular way to help those working on the code in the future.
+When it comes to providing relevant and perhaps higher-level documentation to the end consumer on the functionality of your code,
 there are much more appropriate solutions such as [docstrings](docstrings).
 
 Although extremely useful, you should use code comments sparingly.
-Excessive use of code comments often leads to redundancy and can, ironically, make your code harder to read.
+Excessive use of code comments often leads to redundancy and can make your code harder to read.
 It is easy to fail to update comments as you change code. However, outdated and irrelevant comments are likely to confuse or mislead.
 
 ```{note}
@@ -63,12 +56,6 @@ That said, sometimes you will be faced with functions and classes that are compl
 Stopping to reflect on why your documentation is so large is a good prompt to consider whether refactoring is in order.
 
 ````{note}
-```{epigraph}
-Simple is better than complex.
-Complex is better than complicated.
-
--- Zen of Python
-```
 For complex methodologies, it is hard to completely eliminate complexity and it will eventually have to 'sit' somewhere.
 This is natural, as real-world problems can be complex.
 The key is to manage that complexity without adding to it.
@@ -285,7 +272,7 @@ provides a quick reference when more information on its capabilities are require
 
 Lastly, one of the key things to remember when writing docstrings is to **keep them up to date**.
 If these crucial bits of information no longer represent what the code actually does, the end-user will be misled.
-This might lead to problems ranging from wasted time to serious methodological implications or even outputs that are plain wrong.
+This might lead to problems ranging from wasted time to serious methodological implications or even outputs that are wrong.
 
 Therefore, write your docstrings early, preferably as you go along or even beforehand when you have a clear idea of what you want to implement.
 Make sure to update them as you change the functionality of the code.
@@ -294,22 +281,17 @@ Good function or class level documentation is an essential habit to develop when
 ```{note}
 **Docstrings conventions and styles**
 
-The Python example above follows the [numpydocs style](https://numpydoc.readthedocs.io/en/latest/format.html)
-and is a common sight when using the `numpy` python package.
-However, there are various other standards such as [the Google style guides for docstrings](https://google.github.io/styleguide/)
-as well as official [docstring specification for Python](https://www.python.org/dev/peps/pep-0257/).
-The R example uses the [roxygen2 package](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) and follows the [tidyverse style guide](https://style.tidyverse.org/documentation.html).
+The Python example above follows the numpydocs style and is a common sight when using the `numpy` python package.
+However, there are various other standards such as the Google style guides for docstrings 
+as well as official docstring specification for Python.
+The R example uses the roxygen2 package and follows the tidyverse style guide.
 
 In general, the core idea behind style is **consistency**.
-Whatever alterations to these conventions you use for your particular area,
+Whatever alterations to these conventions you use,
 it is much more important to keep them up to date and consistent between your collaborators than the exact choice of a style guide.
 However, as you will see in the section on [generating documentation](generating_docs),
 having a well-known standard in place helps you to find tools that can generate clear, simple and hostable documentation automatically.
 
-Other useful resources include:
-
-- [Python docstring convention](https://www.python.org/dev/peps/pep-0257/)
-- Guidance for [documenting objects and functions in R](http://r-pkgs.had.co.nz/man.html)
 ```
 
 
@@ -379,42 +361,25 @@ These examples document a main analysis script.
 They include enough information that a user can get started, without repeating too much that should be documented elsewhere.
 
 
+<!-- Do we want this section?? -->
 (generating_docs)=
 ## Generate documentation automatically
 
 This section describes tools that automate generation of searchable, user-friendly HTML documentation that can really provide a great experience for end-users.
 Accurate, up to date and accessible documentation is one of the cornerstones of well-adopted, open-source packages.
 
-Perhaps it is worth reflecting on truly how much we use well-rendered documentation for our favourite programming packages.
-It would be much harder it to adopt these packages to solve hard programming problems if they were not well-documented and their documentation was not easily accessible.
-
 The information presented in this section seeks to inform you of how you can take your well-crafted [docstrings](docstrings)
 and turn them into more widely accessible hosted documentation.
-
 
 ### Generate HTML documentation
 
 
 #### Python
 
-For Python, we recommend the Python package [`sphinx`](https://www.sphinx-doc.org/en/master/) for generating HTML documentation.
-Sphinx primarily uses the [`reStructuredText`](https://docutils.sourceforge.io/docs/user/rst/quickstart.html) markup language, which is similar to `markdown`.
-That said, for those more familiar with `markdown` and in teams/environments where learning a new markup language is not a top priority,
-[`sphinx` can be extended to also support `markdown`](https://www.sphinx-doc.org/en/master/usage/markdown.html).
-
-Sphinx supports code highlighting for multiple programming languages within a project. However, you may require other tools to automatically collate documentation from code in languages other than Python. These are not addressed here.
-
-Sphinx also supports theming, with a [myriad of themes](https://www.writethedocs.org/guide/tools/sphinx-themes/) available out of the box.
-You can even develop and adapt the existing themes into a custom theme suitable for your work with a little bit of extra time.
-
-`Sphinx` allows users to develop extensions that extend its functionality, as well as theming support.
-This GitHub repository provides a list of [useful ways to extend the functionality of `sphinx`](https://github.com/yoloseem/awesome-sphinxdoc) to suit your needs.
-
-To illustrate how this can be extremely useful, we will introduce the [doctest extension](https://www.sphinx-doc.org/en/master/usage/extensions/doctest.html).
-It searches your existing docstrings for the `Examples` section and runs all of the included snippets of code, warning you if they do not run successfully.
-This means that you can ensure that your examples written in the documentation run to completion.
-Although this can't replace thorough code testing, it may help you to spot a whole slew of issues stemming from potentially out of date documentation
-and examples that no longer apply when the code has been fundamentally altered.
+For Python, the Python package [`sphinx`](https://www.sphinx-doc.org/en/master/) is useful for generating HTML documentation.
+Sphinx primarily uses the `reStructuredText` markup language, which is similar to `markdown`.
+For those more familiar with `markdown` and in teams/environments where learning a new markup language is not a top priority,
+`sphinx` can be extended to also support `markdown`.
 
 
 #### R
@@ -422,9 +387,6 @@ and examples that no longer apply when the code has been fundamentally altered.
 For R projects, you might want to consider [`pkgdown`](https://pkgdown.r-lib.org/).
 This package will create a HTML references section, containing your code documentation.
 It uses your project's README file as a home page for the site and you can add additional content to the site in the form of [vignettes](https://r-pkgs.org/vignettes.html).
-
-The [package's website](https://pkgdown.r-lib.org/) and [its source code](https://github.com/r-lib/pkgdown/)
-provide a good demonstration of how you would apply it in practice.
 
 
 ### Make human readable documentation easily available to users
@@ -434,12 +396,9 @@ Usually this means looking for an `index.html` file in the output directory and 
 This is sufficient for local usage. However, it is wise to host this documentation somewhere where it will be publicly available to improve the end-user experience and remove the need to browse the files looking for `index.html`.
 
 Your version control platform might support hosting web pages already.
-GitHub provides this hosting via [GitHub Pages](https://pages.github.com/) and is able to host not only documentation,
-but any web page virtually for free. The book that you're reading right now is hosted in this way.
+GitHub provides this hosting via GitHub Pages and is able to host not only documentation, but any web page virtually for free. 
 In many cases, you may also be able to automatically update your hosted documentation using [Continuous Integration](continuous-integration) practices.
 
-[Read the docs](https://readthedocs.org/) is a community-funded project that provides hosting for open source projects and
-is a great place to host any rendered documentation.
 
 ### AI coding assistants
 

@@ -15,8 +15,7 @@
 - Names used in the code are informative and concise.
 - Names used in the code are explicit, rather than implicit.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) and
- [Google](https://google.github.io/styleguide/Rguide.html) or [tidyverse](https://style.tidyverse.org/) for R.
+- Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
 
 ### Project structure
 
@@ -29,7 +28,7 @@
 - Comments are kept up to date, so they do not confuse the reader.
 - Code is not commented out to adjust which lines of code run.
 - All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/). R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+- Python code is documented using docstrings. R code is documented using `roxygen2` comments.
 - Human-readable (preferably HTML) documentation is generated automatically from code documentation.
 
 ### Project documentation
@@ -41,10 +40,8 @@
 - Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
 - Copyright and licenses are specified for both documentation and code.
 - Instructions for how to cite the project are given.
-- Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as [semantic versioning](https://semver.org/).
-<!-- Discuss with team -->
-- A summary of [changes to functionality are documented in a changelog](https://keepachangelog.com/en/1.0.0/) following releases. The changelog is available to users.
-<!-- Discuss with team -->
+- Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.
+- A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.
 - Example usage of packages and underlying functionality is documented for developers and users.
 
 ### Version control
@@ -55,9 +52,8 @@
 - Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.
 - Committing standards are followed such as appropriate commit summary and message supplied.
 - Commits are tagged at significant stages. This is used to indicate the state of code for specific releases or model versions.
-- Continuous integration is applied through tools such as [GitHub Actions](https://github.com/features/actions),
- to ensure that each change is integrated into the workflow smoothly.
- <!-- Discuss with team -->
+- Continuous integration is applied through tools such as GitHub Actions, to ensure that each change is integrated into the workflow smoothly.
+
 
 ### Configuration
 
@@ -69,7 +65,6 @@
 
 ### Data management
 
-<!-- - Published outputs meet [accessibility regulations](https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/). -->
 - All data for analysis are stored in an open format, so that specific software is not required to access them.
 - Input data are stored safely and are treated as read-only.
 - Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
@@ -78,7 +73,6 @@
  Your analysis code is able to reproduce them at any time.
 - Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
 - Data quality is monitored. 
-<!-- Link to data quality unit? -->
 - Fields within input and output datasets are documented in a data dictionary.
 - Large or complex data are stored in a database.
 
@@ -90,7 +84,7 @@
 
 ### Testing
 
-- Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) and [`testthat` for R](https://testthat.r-lib.org/).
+- Core functionality is unit tested as code. See `pytest` for Python and `testthat` for R.
 - Code based tests are run regularly.
 - Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 - Informal tests are recorded near to the code.
@@ -108,8 +102,8 @@
 - Where appropriate, code runs independent of operating system (e.g. suitable management of file paths).
 - Dependencies are managed separately for users, developers, and testers.
 - There are as few dependencies as possible.
-- Package dependencies are managed using an environment manager such as [virtualenv for Python](https://virtualenv.pypa.io/en/latest/)
- or [renv for R](https://rstudio.github.io/renv/articles/renv.html).
+- Package dependencies are managed using an environment manager such as virtualenv for Python
+ or renv for R
 
 ### Logging
 
@@ -127,7 +121,7 @@
 
 ## Template checklist
 
-You can either refer to the checklist above, or use the Markdown template below to include the checklist in your project.
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below, or download a copy of this checklist.
 
 ```{code-block} md
 ## Quality assurance checklist
@@ -145,7 +139,7 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Names used in the code are informative and concise.
 - [ ] Names used in the code are explicit, rather than implicit.
 - [ ] Code logic is clear and avoids unnecessary complexity.
-- [ ] Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) and [Google](https://google.github.io/styleguide/Rguide.html) or [tidyverse](https://style.tidyverse.org/) for R.
+- [ ] Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
 
 ### Project structure
 
@@ -158,7 +152,7 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Comments are kept up to date, so they do not confuse the reader.
 - [ ] Code is not commented out to adjust which lines of code run.
 - [ ] All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- [ ] Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/). R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+- [ ] Python code is documented using docstrings. R code is documented using `roxygen2` comments.
 - [ ] Human-readable (preferably HTML) documentation is generated automatically from code documentation.
 
 ### Project documentation
@@ -170,8 +164,8 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
 - [ ] Copyright and licenses are specified for both documentation and code.
 - [ ] Instructions for how to cite the project are given.
-- [ ] Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as [semantic versioning](https://semver.org/).
-- [ ] A summary of [changes to functionality are documented in a changelog](https://keepachangelog.com/en/1.0.0/) following releases. The changelog is available to users.
+- [ ] Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.
+- [ ] A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.
 - [ ] Example usage of packages and underlying functionality is documented for developers and users.
 
 ### Version control
@@ -182,7 +176,7 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.
 - [ ] Committing standards are followed such as appropriate commit summary and message supplied.
 - [ ] Commits are tagged at significant stages. This is used to indicate the state of code for specific releases or model versions.
-- [ ] Continuous integration is applied through tools such as [GitHub Actions](https://github.com/features/actions), to ensure that each change is integrated into the workflow smoothly.
+- [ ] Continuous integration is applied through tools such as GitHub Actions, to ensure that each change is integrated into the workflow smoothly.
 
 
 ### Configuration
@@ -195,7 +189,6 @@ You can either refer to the checklist above, or use the Markdown template below 
 
 ### Data management
 
-<!-- - Published outputs meet [accessibility regulations](https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/). -->
 - [ ] All data for analysis are stored in an open format, so that specific software is not required to access them.
 - [ ] Input data are stored safely and are treated as read-only.
 - [ ] Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
@@ -214,7 +207,7 @@ You can either refer to the checklist above, or use the Markdown template below 
 
 ### Testing
 
-- [ ] Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) and [`testthat` for R](https://testthat.r-lib.org/).
+- [ ] Core functionality is unit tested as code. See `pytest` for Python and `testthat` for R.
 - [ ] Code based tests are run regularly.
 - [ ] Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 - [ ] Informal tests are recorded near to the code.
@@ -232,7 +225,7 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Where appropriate, code runs independent of operating system (e.g. suitable management of file paths).
 - [ ] Dependencies are managed separately for users, developers, and testers.
 - [ ] There are as few dependencies as possible.
-- [ ] Package dependencies are managed using an environment manager such as [virtualenv for Python](https://virtualenv.pypa.io/en/latest/) or [renv for R](https://rstudio.github.io/renv/articles/renv.html).
+- [ ] Package dependencies are managed using an environment manager such as virtualenv for Python or renv for R.
 
 ### Logging
 
@@ -248,3 +241,12 @@ You can either refer to the checklist above, or use the Markdown template below 
 - [ ] Issues templates are used to ensure proper logging of the title, description, labels and comments.
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 ```
+
+
+# References 
+
+pytest
+test that
+Google style guide
+PEP8 Style guide 
+Tidyverse style guide

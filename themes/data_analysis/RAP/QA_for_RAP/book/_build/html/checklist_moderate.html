@@ -175,14 +175,17 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Moderate quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
@@ -191,14 +194,17 @@
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
+
 </ul>
 
     </div>
@@ -362,6 +368,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Moderate quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -380,6 +387,10 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -410,8 +421,7 @@ document.write(`
 <li><p>Names used in the code are informative and concise.</p></li>
 <li><p>Names used in the code are explicit, rather than implicit.</p></li>
 <li><p>Code logic is clear and avoids unnecessary complexity.</p></li>
-<li><p>Code follows a standard style, e.g. <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8 for Python</a> and
-<a class="reference external" href="https://google.github.io/styleguide/Rguide.html">Google</a> or <a class="reference external" href="https://style.tidyverse.org/">tidyverse</a> for R.</p></li>
+<li><p>Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.</p></li>
 </ul>
 </section>
 <section id="project-structure">
@@ -428,7 +438,7 @@ document.write(`
 <li><p>Comments are kept up to date, so they do not confuse the reader.</p></li>
 <li><p>Code is not commented out to adjust which lines of code run.</p></li>
 <li><p>All functions and classes are documented to describe what they do, what inputs they take and what they return.</p></li>
-<li><p>Python code is <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">documented using docstrings</a>. R code is <a class="reference external" href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">documented using <code class="docutils literal notranslate"><span class="pre">roxygen2</span></code> comments</a>.</p></li>
+<li><p>Python code is documented using docstrings. R code is documented using <code class="docutils literal notranslate"><span class="pre">roxygen2</span></code> comments.</p></li>
 <li><p>Human-readable (preferably HTML) documentation is generated automatically from code documentation.</p></li>
 </ul>
 </section>
@@ -442,14 +452,8 @@ document.write(`
 <li><p>Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.</p></li>
 <li><p>Copyright and licenses are specified for both documentation and code.</p></li>
 <li><p>Instructions for how to cite the project are given.</p></li>
-<li><p>Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as <a class="reference external" href="https://semver.org/">semantic versioning</a>.</p></li>
-</ul>
-<!-- Discuss with team -->
-<ul class="simple">
-<li><p>A summary of <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">changes to functionality are documented in a changelog</a> following releases. The changelog is available to users.</p></li>
-</ul>
-<!-- Discuss with team -->
-<ul class="simple">
+<li><p>Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.</p></li>
+<li><p>A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.</p></li>
 <li><p>Example usage of packages and underlying functionality is documented for developers and users.</p></li>
 </ul>
 </section>
@@ -462,10 +466,8 @@ document.write(`
 <li><p>Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.</p></li>
 <li><p>Committing standards are followed such as appropriate commit summary and message supplied.</p></li>
 <li><p>Commits are tagged at significant stages. This is used to indicate the state of code for specific releases or model versions.</p></li>
-<li><p>Continuous integration is applied through tools such as <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a>,
-to ensure that each change is integrated into the workflow smoothly.</p></li>
+<li><p>Continuous integration is applied through tools such as GitHub Actions, to ensure that each change is integrated into the workflow smoothly.</p></li>
 </ul>
- <!-- Discuss with team -->
 </section>
 <section id="configuration">
 <h3>Configuration<a class="headerlink" href="#configuration" title="Link to this heading">#</a></h3>
@@ -479,7 +481,6 @@ to ensure that each change is integrated into the workflow smoothly.</p></li>
 </section>
 <section id="data-management">
 <h3>Data management<a class="headerlink" href="#data-management" title="Link to this heading">#</a></h3>
-<!-- - Published outputs meet [accessibility regulations](https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/). -->
 <ul class="simple">
 <li><p>All data for analysis are stored in an open format, so that specific software is not required to access them.</p></li>
 <li><p>Input data are stored safely and are treated as read-only.</p></li>
@@ -489,9 +490,6 @@ to ensure that each change is integrated into the workflow smoothly.</p></li>
 Your analysis code is able to reproduce them at any time.</p></li>
 <li><p>Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.</p></li>
 <li><p>Data quality is monitored.</p></li>
-</ul>
-<!-- Link to data quality unit? -->
-<ul class="simple">
 <li><p>Fields within input and output datasets are documented in a data dictionary.</p></li>
 <li><p>Large or complex data are stored in a database.</p></li>
 </ul>
@@ -507,7 +505,7 @@ Your analysis code is able to reproduce them at any time.</p></li>
 <section id="testing">
 <h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Core functionality is unit tested as code. See <a class="reference external" href="https://docs.pytest.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> for Python</a> and <a class="reference external" href="https://testthat.r-lib.org/"><code class="docutils literal notranslate"><span class="pre">testthat</span></code> for R</a>.</p></li>
+<li><p>Core functionality is unit tested as code. See <code class="docutils literal notranslate"><span class="pre">pytest</span></code> for Python and <code class="docutils literal notranslate"><span class="pre">testthat</span></code> for R.</p></li>
 <li><p>Code based tests are run regularly.</p></li>
 <li><p>Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.</p></li>
 <li><p>Informal tests are recorded near to the code.</p></li>
@@ -527,8 +525,8 @@ Your analysis code is able to reproduce them at any time.</p></li>
 <li><p>Where appropriate, code runs independent of operating system (e.g. suitable management of file paths).</p></li>
 <li><p>Dependencies are managed separately for users, developers, and testers.</p></li>
 <li><p>There are as few dependencies as possible.</p></li>
-<li><p>Package dependencies are managed using an environment manager such as <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv for Python</a>
-or <a class="reference external" href="https://rstudio.github.io/renv/articles/renv.html">renv for R</a>.</p></li>
+<li><p>Package dependencies are managed using an environment manager such as virtualenv for Python
+or renv for R</p></li>
 </ul>
 </section>
 <section id="logging">
@@ -552,7 +550,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 </section>
 <section id="template-checklist">
 <h2>Template checklist<a class="headerlink" href="#template-checklist" title="Link to this heading">#</a></h2>
-<p>You can either refer to the checklist above, or use the Markdown template below to include the checklist in your project.</p>
+<p>To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below, or download a copy of this checklist.</p>
 <div class="highlight-md notranslate"><div class="highlight"><pre><span></span><span class="gu">## Quality assurance checklist</span>
 
 <span class="gu">### Modular code</span>
@@ -568,7 +566,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 <span class="k">- [ ]</span> Names used in the code are informative and concise.
 <span class="k">- [ ]</span> Names used in the code are explicit, rather than implicit.
 <span class="k">- [ ]</span> Code logic is clear and avoids unnecessary complexity.
-<span class="k">- [ ]</span> Code follows a standard style, e.g. [<span class="nt">PEP8 for Python</span>](<span class="na">https://www.python.org/dev/peps/pep-0008/</span>) and [<span class="nt">Google</span>](<span class="na">https://google.github.io/styleguide/Rguide.html</span>) or [<span class="nt">tidyverse</span>](<span class="na">https://style.tidyverse.org/</span>) for R.
+<span class="k">- [ ]</span> Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
 
 <span class="gu">### Project structure</span>
 
@@ -581,7 +579,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 <span class="k">- [ ]</span> Comments are kept up to date, so they do not confuse the reader.
 <span class="k">- [ ]</span> Code is not commented out to adjust which lines of code run.
 <span class="k">- [ ]</span> All functions and classes are documented to describe what they do, what inputs they take and what they return.
-<span class="k">- [ ]</span> Python code is [<span class="nt">documented using docstrings</span>](<span class="na">https://www.python.org/dev/peps/pep-0257/</span>). R code is [<span class="nt">documented using `roxygen2` comments</span>](<span class="na">https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html</span>).
+<span class="k">- [ ]</span> Python code is documented using docstrings. R code is documented using <span class="sb">`roxygen2`</span> comments.
 <span class="k">- [ ]</span> Human-readable (preferably HTML) documentation is generated automatically from code documentation.
 
 <span class="gu">### Project documentation</span>
@@ -593,8 +591,8 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 <span class="k">- [ ]</span> Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
 <span class="k">- [ ]</span> Copyright and licenses are specified for both documentation and code.
 <span class="k">- [ ]</span> Instructions for how to cite the project are given.
-<span class="k">- [ ]</span> Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as [<span class="nt">semantic versioning</span>](<span class="na">https://semver.org/</span>).
-<span class="k">- [ ]</span> A summary of [<span class="nt">changes to functionality are documented in a changelog</span>](<span class="na">https://keepachangelog.com/en/1.0.0/</span>) following releases. The changelog is available to users.
+<span class="k">- [ ]</span> Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.
+<span class="k">- [ ]</span> A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.
 <span class="k">- [ ]</span> Example usage of packages and underlying functionality is documented for developers and users.
 
 <span class="gu">### Version control</span>
@@ -605,7 +603,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 <span class="k">- [ ]</span> Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.
 <span class="k">- [ ]</span> Committing standards are followed such as appropriate commit summary and message supplied.
 <span class="k">- [ ]</span> Commits are tagged at significant stages. This is used to indicate the state of code for specific releases or model versions.
-<span class="k">- [ ]</span> Continuous integration is applied through tools such as [<span class="nt">GitHub Actions</span>](<span class="na">https://github.com/features/actions</span>), to ensure that each change is integrated into the workflow smoothly.
+<span class="k">- [ ]</span> Continuous integration is applied through tools such as GitHub Actions, to ensure that each change is integrated into the workflow smoothly.
 
 
 <span class="gu">### Configuration</span>
@@ -618,7 +616,6 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 
 <span class="gu">### Data management</span>
 
-&lt;!-- - Published outputs meet [<span class="nt">accessibility regulations</span>](<span class="na">https://analysisfunction.civilservice.gov.uk/area_of_work/accessibility/</span>). --&gt;
 <span class="k">- [ ]</span> All data for analysis are stored in an open format, so that specific software is not required to access them.
 <span class="k">- [ ]</span> Input data are stored safely and are treated as read-only.
 <span class="k">- [ ]</span> Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
@@ -637,7 +634,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 
 <span class="gu">### Testing</span>
 
-<span class="k">- [ ]</span> Core functionality is unit tested as code. See [<span class="sb">`pytest`</span> for Python](https://docs.pytest.org/en/stable/) and [<span class="sb">`testthat`</span> for R](https://testthat.r-lib.org/).
+<span class="k">- [ ]</span> Core functionality is unit tested as code. See <span class="sb">`pytest`</span> for Python and <span class="sb">`testthat`</span> for R.
 <span class="k">- [ ]</span> Code based tests are run regularly.
 <span class="k">- [ ]</span> Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 <span class="k">- [ ]</span> Informal tests are recorded near to the code.
@@ -655,7 +652,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 <span class="k">- [ ]</span> Where appropriate, code runs independent of operating system (e.g. suitable management of file paths).
 <span class="k">- [ ]</span> Dependencies are managed separately for users, developers, and testers.
 <span class="k">- [ ]</span> There are as few dependencies as possible.
-<span class="k">- [ ]</span> Package dependencies are managed using an environment manager such as [<span class="nt">virtualenv for Python</span>](<span class="na">https://virtualenv.pypa.io/en/latest/</span>) or [<span class="nt">renv for R</span>](<span class="na">https://rstudio.github.io/renv/articles/renv.html</span>).
+<span class="k">- [ ]</span> Package dependencies are managed using an environment manager such as virtualenv for Python or renv for R.
 
 <span class="gu">### Logging</span>
 
@@ -673,6 +670,14 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 </pre></div>
 </div>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<p>pytest
+test that
+Google style guide
+PEP8 Style guide
+Tidyverse style guide</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -739,6 +744,7 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Moderate quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -757,6 +763,10 @@ or <a class="reference external" href="https://rstudio.github.io/renv/articles/r
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
