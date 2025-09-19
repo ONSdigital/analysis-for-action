@@ -1,25 +1,28 @@
 # ONS PPT Code Snippets Repository
 
-This repository contains example code snippets in **Python** and **R** to support learning materials and case studies for the Pandemic Preparedness Toolkit. The content is organized by **themes**, **modules** and **units** to align with the structure of the learning resources.
+This repository contains tools and example code snippets in **Python** and **R** to support materials and case studies for the Pandemic Preparedness Toolkit (PPT). The content is organized by **themes**, **modules** and **units** to align with the structure of the website.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 ons-ppt/
 ├── themes/
 │   ├── module1/
 │   │   ├── unit1/
+│   │   │   ├── docs/
 │   │   │   ├── python/
 │   │   │   │   └── example1.py
 │   │   │   └── r/
 │   │   │       └── example1.R
 │   │   └── unit2/
+│   │       ├── docs/
 │   │       ├── python/
 │   │       └── r/
 │   └── module2/
 │       └── unit1/
+│           ├── docs/
 │           ├── python/
 │           └── r/
 ├── requirements.txt      # Python dependencies
@@ -31,16 +34,17 @@ ons-ppt/
 ```
 
 - **themes/**: Top-level folder containing all themes.
+- **moduleX/unitY/docs/**: Documentation for a specific unit.
 - **moduleX/unitY/python/**: Python code examples for a specific unit.
 - **moduleX/unitY/r/**: R code examples for a specific unit.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Python Setup
 
-1. Ensure you have Python 3.12+ installed.
+1. Ensure you have Python 3.9+ installed (You can install Python or Miniconda from the Software Center if not)
 2. (Recommended) Create a virtual environment:
    ```sh
    python -m venv venv
@@ -73,16 +77,8 @@ ons-ppt/
 
 ---
 
-## 🧑‍💻 How to Use
+## How to Use
 
 - Navigate to the relevant unit and module.
 - Choose the `python/` or `r/` folder depending on your language of interest.
 - Run the code snippets as needed for your learning or case study.
-
----
-
-## 🛡️ Contributing
-
-1. Please do **not** push directly to the `main` branch.  
-2. Submit changes via a pull request.
-3. Ensure all pre-commit checks pass before submitting.
