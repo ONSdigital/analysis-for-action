@@ -3,7 +3,7 @@
 This section of the guidance targets those who manage data analysis, science and engineering work in government
 or those acting as product owners for analytical products.
 
-It aims to help you to apply the good quality assurance practices described. The processes that apply these good practices are referred to here as  reproducible analytical pipelines (RAP).
+It aims to help you to apply the good quality assurance practices described. The processes that apply these good practices are referred to here as reproducible analytical pipelines (RAP).
 
 Before applying this guidance, you should have a basic awareness of the tools and
 techniques used to do quality analysis as code - the Introduction to RAP training outlines these.
@@ -30,7 +30,7 @@ While quality assurance must be applied relative to the risk and complexity of t
 Note that it is important to maintain technical skills for sustainability, to ensure that the analysis can be understood, updated, and maintained.
 ```
 
-Despite the initial cost of developing technical skills, evidence shows that applying good practices increases the efficiency of code development and maintainability of the code (ref).
+Despite the initial cost of developing technical skills,applying good practices can increase the efficiency of code development and maintainability of the code.
 A number of case studies that describe how
 good quality assurance practices have improved government analysis can be found in the Introduction to RAP training <!-- Link to intro to RAP --> and RAP in Action case studies.
 <!-- Link to RAP in action case studies -->
@@ -64,12 +64,12 @@ You and your team should be able to explain why you have chosen the analysis too
 
 ### How are you storing input data?
 
-Versioning input data ensures that we can reproduce our analysis.
+Versioning input data ensures that you can reproduce your analysis.
 
 * You should version input data so that you can reproduce analysis outputs.
 * You should store data in an open format (e.g. CSV or ODS), not formats that are restricted to proprietary software like SAS and Stata.
 * You should store large or complex datasets in a database.
-<!-- Maybe add another bullet point in here about monitoring the quality of data and link to data quality unit? -->
+* You should monitor the quality of data. (Information on data quality can be found in the Quality Assurance of Administrative Data materials)
 
 
 ### How will you keep track of changes to the code and why they were made?
@@ -118,7 +118,7 @@ to assess how the team are progressing towards the target quality assurance prac
 
 ### What are the dependencies?
 
-[Project documentation](project_documentation.md) ensures that others can reproduce our analysis.
+[Project documentation](project_documentation.md) ensures that others can reproduce your analysis.
 
 * You should provide user instructions for running the analysis.
 * You should document software and package versions with the code.
@@ -130,7 +130,7 @@ Typically, you record package versions using `setup.py` and `requirements.txt` f
 
 ### What assumptions does the analysis make?
 
-Transparency of our analysis increases trust.
+Transparency of analysis increases trust.
 
 * You should record assumptions and caveats of the analysis close to the code.
 * You must communicate these to users when releasing results from the analysis.
@@ -138,7 +138,7 @@ Transparency of our analysis increases trust.
 
 ### How has peer review been done?
 
-[Peer review](peer_review.md) increases the quality of our analysis and transfers skills and knowledge.
+[Peer review](peer_review.md) increases the quality of your analysis and transfers skills and knowledge.
 
 * Technical colleagues should conduct internal peer reviews of each change to the code.
 This will identify issues early on and makes the review process more manageable than reviewing only the final analysis.
@@ -149,7 +149,7 @@ This will identify issues early on and makes the review process more manageable 
 
 ### How have you tested the code?
 
-[Testing](testing_code.md) assures us that the code is working correctly.
+[Testing](testing_code.md) assures that the code is working correctly.
 
 * Testing means making sure that the code produces the right outputs for realistic example input data.
 * You should apply automated 'unit' testing to each function to ensure that code continues to work after future changes.
@@ -157,7 +157,7 @@ This will identify issues early on and makes the review process more manageable 
 * Your testing should be more extensive on the most important or complex parts of the code. However, ideally you would test every single function.
 * Tests should account for realistic cases, which might include missing data, zeroes, infinities, negative numbers, wrong data types, and invalid inputs.
 * Reviewers should sign-off that there is enough testing to assure that the code is working as expected.
-* Each time you identify an error in the code,you should add a test to assure that the error does not reoccur.
+* Each time you identify an error in the code, you should add a test to assure that the error does not reoccur.
 
 
 ### What happens when the analysis fails to run?
@@ -185,7 +185,3 @@ Code quality improves over time, as your team learn more about good practices.
 
 * The team should be aiming to meet the agreed assurance level, but should also consider which practices could be applied next to improve the code beyond this.
 * You should review training needs in your team and allow time for continuous personal development of these practices.
-
-# References
-
-[evidence shows that applying good practices increases the efficiency of code development and maintainability of the code](https://www.devops-research.com/research.html).

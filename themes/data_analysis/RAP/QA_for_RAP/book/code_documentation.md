@@ -253,7 +253,7 @@ add_to_each <- function(numbers, add) {
 ````
 
 In this example, the function docstring starts with a brief description.
-It then lists the parameters that our function takes, along with the suggested type for each parameter and a brief description of what they control.
+It then lists the parameters that the function takes, along with the suggested type for each parameter and a brief description of what they control.
 It also tells us that the function will raise an error if the wrong type is provided for the first parameter.
 Note that the listed errors are the errors that are expected by the writer of the documentation,
 other unexpected issues can still occur if the function is not properly tested and will not be signposted in the docstring.

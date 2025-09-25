@@ -132,7 +132,7 @@ In OOP, an ‘interface’ can be defined to act as a blueprint or specification
 
 Perhaps you want to use classes to read and write data - this might require several different classes, with read and write methods for different file formats. For example, one class could deal with storing data in a database, and another could store data in local .csv files instead. In your code, you could switch which class is provided to downstream functions. Your functions don’t need to know if they are reading or writing from databases or .csv files, however, they do require the read and write methods of the class to work in a standard way. An interface would help to define the standard for interacting with this group of classes.
 
-In Python, the abc module allows you to define ‘abstract’ base classes and methods to enforce that your classes provide the required methods [3]. When a subclass does not implement the required abstract methods, instances of the class cannot be created. These abstract base classes achieve the same as interfaces in other object-based languages. We can illustrate this concept in the following example:
+In Python, the abc module allows you to define ‘abstract’ base classes and methods to enforce that your classes provide the required methods [3]. When a subclass does not implement the required abstract methods, instances of the class cannot be created. These abstract base classes achieve the same as interfaces in other object-based languages. This concept is illustrated in the following example:
 
 
 ```python
@@ -179,7 +179,7 @@ A good real-world example of this can be seen in the `scikit-learn` package, whe
 (class-responsibilities)=
 
 ```{note}
-As the complexity of your code grows you might find that one of your classes takes on the majority of the underlying logic. When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic. This class might become overly complex and hence difficult to maintain.  This is known as ‘Data Driven Design’. For more complex analytical work, a better approach might be ‘Responsibility Driven Design’. Here, classes are smaller with more specific responsibilities. This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of our code. However, be aware of the trade-off between the complexity of one large class versus many smaller classes.
+As the complexity of your code grows you might find that one of your classes takes on the majority of the underlying logic. When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic. This class might become overly complex and hence difficult to maintain.  This is known as ‘Data Driven Design’. For more complex analytical work, a better approach might be ‘Responsibility Driven Design’. Here, classes are smaller with more specific responsibilities. This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of your code. However, be aware of the trade-off between the complexity of one large class versus many smaller classes.
 ```
 Responsibility Driven Design makes objects that are usually ‘passive’ become ‘active’. 
 

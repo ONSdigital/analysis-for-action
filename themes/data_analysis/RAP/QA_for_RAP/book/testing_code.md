@@ -18,7 +18,7 @@ Take a risk-based approach to testing. You should use tests proportionately base
 When you are developing your tests, here are some points to think about:    
 
 1.  **You don't need to test everything**. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.
-2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While we can be confident that `round()` works as specified, does it produce what you need?
+2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While you can be confident that `round()` works as specified, does it produce what you need?
 3. **Use tests to validate your approach**. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.
 4. **Test based on risk**. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time. 
 
@@ -350,7 +350,7 @@ This is an iterative approach that involves writing tests before writing the log
 If you know the expected outcome—based on user needs or internal requirements—you can define the test first, before you think about how you are going to write the solution.
 
 TDD typically repeats three steps:
-1. Red - Write a test that we expect to fail.
+1. Red - Write a test that you expect to fail.
 2. Green - Write or update our code to pass the new test.
 3. Refactor - Make improvements to the quality of the code without changing the functionality.
 

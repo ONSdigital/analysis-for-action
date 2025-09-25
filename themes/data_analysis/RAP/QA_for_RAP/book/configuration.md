@@ -123,7 +123,7 @@ utils::write.csv(prediction, output_path)
 
 ````
 
-Separating configuration from the rest of our code makes it easy to adjust parameters and apply them consistently throughout the analysis script.
+Separating configuration from the rest of your code makes it easy to adjust parameters and apply them consistently throughout the analysis script.
 Basic objects (like lists and dictionaries) can be used to group related parameters.
 These objects can then be referenced in the analysis section of the script.
 
@@ -204,7 +204,7 @@ data <- read.csv(config$input_path)
 
 Configuration file formats like YAML and TOML are compact and human-readable.
 This makes them easy to interpret and update, even without knowledge of the underlying code used in the analysis.
-Reading these files in produces a single object containing all of the `key:value` pairs defined in our configuration file.
+Reading these files in produces a single object containing all of the `key:value` pairs defined in the configuration file.
 The configuration parameters can then be selected using their keys in the analysis.
 
 
@@ -262,7 +262,7 @@ To run the analysis with a different configuration, simply pass a new configurat
 
 ```{note}
 It is possible to pass configuration options directly as arguments in this way, instead of referencing a configuration file.
-However, you should use configuration files as they allow us to document which configuration has been used to produce our analysis outputs, for reproducibility.
+However, you should use configuration files as they allow you to document which configuration has been used to produce your analysis outputs, for reproducibility.
 ```
 
 

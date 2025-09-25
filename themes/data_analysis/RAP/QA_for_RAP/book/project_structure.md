@@ -17,9 +17,9 @@ Inside an IDE you can usually run through your script line-by-line, or run the w
 This can be an easier workflow than running code in the Python or the R console and then rewriting the same code in a script later.
 
 Scripts serve as the basic units of saved code.
-Often, we like to define functions or reusable bits of code in one file and then use these in another file.
-For example we may write a few functions that help us to calculate `mean`, `mode`, and `median` of our dataset in the `functions.R` file.
-Then we can use those functions in our main script, saved in `main.R`.
+Often, you like to define functions or reusable bits of code in one file and then use these in another file.
+For example you may write a few functions that help us to calculate `mean`, `mode`, and `median` of your dataset in the `functions.R` file.
+Then we can use those functions in the main script, saved in `main.R`.
 
 Outside of an IDE you can also run your scripts using the Python or R interpreters from the command line.
 Other programs can then use your scripts because of this.

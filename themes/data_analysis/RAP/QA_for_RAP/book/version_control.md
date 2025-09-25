@@ -26,8 +26,8 @@ Development decisions can be detailed alongside changes, using commit messages a
 In turn, this keeps the analysis workspace clean of commented-out old code and numerous files containing previous versions.
 
 Effective use of version control helps to identify which changes have negatively impacted your work and remove them.
-Furthermore, a detailed audit trail allows us to refer to specific versions of our code that have been used to produce outputs,
-which is important for reproducing our analysis.
+Furthermore, a detailed audit trail allows you to refer to specific versions of your code that have been used to produce outputs,
+which is important for reproducing your analysis.
 
 Git is invaluable when recording and combining changes from multiple developers, as merging allows us to resolve conflicts between overlapping changes.
 A remote Git repository maintains a single source of truth, even when multiple individuals are working on a project.
@@ -266,12 +266,12 @@ Instead, keep data versioning separate from code using tools like DVC, or store 
 ### Tag new releases
 
 Regularly `commit`ing changes using Git helps us to create a thorough audit trail of changes to your project.
-However, there may be discrete points in the history of the project that we want to mark for easier future reference.
+However, there may be discrete points in the history of the project that you want to mark for easier future reference.
 This is incredibly useful, as commit hashes like `121b5b4` serve as poor identifiers for human users.
 
 Git allows you to create "tags" to reference specific points in project's history.
 These tags essentially act as an alias for a particular commit hash, so you can refer to it by an informative label.
-You might use tags to mark a particular model version in an analytical project or an important stage of our analysis.
+You might use tags to mark a particular model version in an analytical project or an important stage of your analysis.
 For example, you might tag code that has been used to generate a particular output so that it can easily be accessed to reproduce that output in future.
 If developing a package as part of your analysis, these tags are also commonly used to indicate new package versions.
 
