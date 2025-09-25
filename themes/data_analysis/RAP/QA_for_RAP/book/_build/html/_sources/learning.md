@@ -30,14 +30,12 @@ For training relating to the topics covered in this guidance, you can visit [Sta
 - Object Oriented Programming in Python
 - Packaging and Documentation
 
-<!-- Do we want to remove all of these? Or caveat that they may go out of date? -->
 
 # Additional materials 
 
 The following links have been included here to show other potential online resources that exist that you may wish to explore and websites of interest. These materials are hosted on external websites that may not be maintained. You can use these as a starting point to find more resources that may be of interest to you.
 
 ## Core Programming
-
 ### Python
 
 * [The Official Python Getting Started Guide](https://www.python.org/about/gettingstarted/)
@@ -104,8 +102,7 @@ The following links have been included here to show other potential online resou
 ## Reproducible Analytical Pipelines
 
 * [Analysis Function RAP overview](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
-* [The cross government RAP Champion Network](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/reproducible-analytical-pipeline-rap-champions/)
-* [ONS Data Science Campus RAP learning materials](https://github.com/datasciencecampus/gov-uk-rap-materials)
+* [UK ONS Data Science Campus RAP learning materials](https://github.com/datasciencecampus/gov-uk-rap-materials)
 
 
 ## Learning from mistakes

@@ -27,7 +27,6 @@ Tests that are written in code, to check that other code works as expected.
 Test are like a controlled experience, to check that our code produces the expected outcome.
 Tests can check code multiple levels, for example, checking that an individual function works or checking that a pipeline runs from end to end.
 
-
 ### Code interpreter
 
 A computer program that runs code in a particular programming language.
@@ -83,7 +82,7 @@ GitHub Actions is an example tool for running CI/CD workflows.
 
 Continuous integration describes regularly combining code changes from multiple contributors on a single software project.
 Integrating these changes regularly helps to check that independent changes work correctly together.
-Continous delivery describes automation of the software release process.
+Continuous delivery describes automation of the software release process.
 Automating both of these using a CI/CD tool increases the efficiency of building software and getting it into production.
 
 
@@ -138,12 +137,6 @@ When an object is created by a constructor of a class, the resulting object is c
 
 An IDE is a tool that facilitates software development for a given programming language.
 An IDE will usually consist of a code editor, debugger and development automation tools like a text auto-complete.
-
-
-### Interative Running
-
-Where a script is run as expressions with immediate feedback given, such as in a terminal or command line.
-
 
 ### Logging
 
@@ -224,7 +217,7 @@ It also helps to transfer understanding of the code between members of the team.
 
 ### Pipeline
 
-A orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.
+An orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.
 
 
 ### Procedural Running

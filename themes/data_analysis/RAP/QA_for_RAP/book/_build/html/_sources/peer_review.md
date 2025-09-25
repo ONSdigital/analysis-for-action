@@ -45,7 +45,7 @@ This may provide your team members with the understanding required to use and ma
 
 ### Is the required functionality tested sufficiently?
 
-If you do not test each part of the code, then you can not be sure that it works as expected.
+If you do not test each part of the code, then you cannot be sure that it works as expected.
 As a reviewer, you should ask whether the amount of testing is proportionate given the risk to the analysis if the code does not work.
 
 

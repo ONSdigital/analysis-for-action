@@ -64,8 +64,6 @@ You should **never** include the following in your code repository:
 * Data, except for small example datasets.
 ```
 
-See [](excluding-from-git) for details on how to mitigate the risk of including sensitive information in a Git repository.
-
 It is again worth stressing the importance of not committing sensitive, unpublished, or disclosive data to your Git history.
 If you would like to include an example for end-users, a minimal dummy dataset can be committed to the repository.
 When creating realistic dummy data, care should be taken not to disclose sensitive features of the true data such as distributions and trends.
@@ -97,7 +95,7 @@ This specificity ensures that only intended changes are included, reducing the l
 Using `git status` after adding changes can help to confirm that only the desired changes are included.
 ```
 
-Most commit messages are short and informative, but in some cases you may want to provide more detail.
+Most commit messages are short and informative, but in some cases you may want to provide more detail. [3]
 A concise summary of your change is usually sufficient,
 but remember that it is these commit messages that will be used in the future to understand what changes have been made to your project.
 You might rely on these to identify where an error has been introduced, so it is important that you write these messages clearly and informatively.
@@ -168,7 +166,7 @@ Changes are initially quite experimental, but are refined over a few commits.
 Finally, the complete, working feature is merged back onto the `main` branch.
 
 Many small scale projects iteratively work on individual feature or development branches in this way.
-The [GitHub flow branching strategy](https://guides.github.com/introduction/flow/) uses this approach in combination with [Pull Requests](pull-requests),
+The [GitHub flow branching strategy](https://guides.github.com/introduction/flow/) uses this approach in combination with [Pull Requests](pull-requests) [1],
 to incorporate peer review into the development workflow.
 
 ```{figure} ./_static/git_develop.png
@@ -503,7 +501,7 @@ Collaborators might be tagged or assigned to the task where additional help is r
 If your analysis code is widely useful, others that use your code may also suggest improvement and offer to contribute to the project via these issues.
 
 [Setting issue templates](https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository)
-for your project can be an effective way of encouraging users and collaborators to use informative descriptions when creating issues.
+for your project can be an effective way of encouraging users and collaborators to use informative descriptions when creating issues [2].
 For example, a bug issue should include simple instructions to help maintainers reproduce the problem.
 Feature requests might include information on how the user expects the new feature to work and details what problem it will help them to overcome.
 
@@ -535,7 +533,7 @@ width: 90%
 name: github_pr_changes
 alt: The GitHub Pull Request web interface.
 ---
-Changes from [an example Pull Request on the `fingertipsR` package](https://github.com/ropensci/fingertipsR/pull/91/files).
+Changes from [an example Pull Request on the `fingertipsR` package](https://github.com/ropensci/fingertipsR/pull/91/files) [4].
 ```
 
 In the "Files changed" section of a PR (shown above), altered sections of files are shown before and after the changes were made, on the left and right respectively.
@@ -589,8 +587,16 @@ You should ensure that you synchronise your branch with any new changes before o
 
 Continuous Integration is discussed in more detail in [](continuous_integration.md).
 
-# References
 
-1) Tim Pope. tbaggery - A Note About Git Commit Messages. Tbaggery.com. 2024. Available from: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html [Accessed 2 September 2025]
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-2) The Aqua book (https://www.gov.uk/government/publications/the-aqua-book-guidance-on-producing-quality-analysis-for-government
+1) GitHub. Understanding the GitHub flow [Online]. GitHub Guides. [Accessed 24 September 2025]. Available from: https://guides.github.com/introduction/flow/
+
+2) GitHub Docs. Configuring issue templates for your repository [Online]. GitHub. [Accessed 24 September 2025].  Available from: https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository
+
+3) Tim Pope. tbaggery - A Note About Git Commit Messages. Tbaggery.com; 2024. [Accessed 24 September 2025].  Available from: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+4) GitHub. *ropensci/fingertipsR: Pull request #91 – Add indicator metadata to fingertips_data* [Online]. GitHub. [Accessed 24 September 2025]. Available from: https://github.com/ropensci/fingertipsR/pull/91/files
+
+</details>

@@ -677,7 +677,7 @@ def test_sum_two_nums_parameterise_arg_1(num_1s, expected_out):
 
 ```
 
-We reference the parameter values and expected answers in the same way that we
+The parameter values and expected answers are referenced in the same way that you
 access pytest fixtures, covered earlier in this article. Running `pytest -v`
 reveals 3 tests are run, with the parameterised values printed to the console:
 
@@ -744,40 +744,7 @@ def test_sum_two_nums_stacked_parameterise(num1s, num2s, expected_answers):
         ) == expected_answers[num1s][num2s]
 ```
 
-Executing this test with `pytest -v` shows all combinations are tested:
-
-```{code-block}
-collected 25 items                                                            
-
-foo.py::test_sum_two_nums_stacked_parameterise[0-0] PASSED                [ 14%]
-foo.py::test_sum_two_nums_stacked_parameterise[0-1] PASSED                [ 17%]
-foo.py::test_sum_two_nums_stacked_parameterise[0-2] PASSED                [ 21%]
-foo.py::test_sum_two_nums_stacked_parameterise[0-3] PASSED                [ 25%]
-foo.py::test_sum_two_nums_stacked_parameterise[0-4] PASSED                [ 28%]
-foo.py::test_sum_two_nums_stacked_parameterise[1-0] PASSED                [ 32%]
-foo.py::test_sum_two_nums_stacked_parameterise[1-1] PASSED                [ 35%]
-foo.py::test_sum_two_nums_stacked_parameterise[1-2] PASSED                [ 39%]
-foo.py::test_sum_two_nums_stacked_parameterise[1-3] PASSED                [ 42%]
-foo.py::test_sum_two_nums_stacked_parameterise[1-4] PASSED                [ 46%]
-foo.py::test_sum_two_nums_stacked_parameterise[2-0] PASSED                [ 50%]
-foo.py::test_sum_two_nums_stacked_parameterise[2-1] PASSED                [ 53%]
-foo.py::test_sum_two_nums_stacked_parameterise[2-2] PASSED                [ 57%]
-foo.py::test_sum_two_nums_stacked_parameterise[2-3] PASSED                [ 60%]
-foo.py::test_sum_two_nums_stacked_parameterise[2-4] PASSED                [ 64%]
-foo.py::test_sum_two_nums_stacked_parameterise[3-0] PASSED                [ 67%]
-foo.py::test_sum_two_nums_stacked_parameterise[3-1] PASSED                [ 71%]
-foo.py::test_sum_two_nums_stacked_parameterise[3-2] PASSED                [ 75%]
-foo.py::test_sum_two_nums_stacked_parameterise[3-3] PASSED                [ 78%]
-foo.py::test_sum_two_nums_stacked_parameterise[3-4] PASSED                [ 82%]
-foo.py::test_sum_two_nums_stacked_parameterise[4-0] PASSED                [ 85%]
-foo.py::test_sum_two_nums_stacked_parameterise[4-1] PASSED                [ 89%]
-foo.py::test_sum_two_nums_stacked_parameterise[4-2] PASSED                [ 92%]
-foo.py::test_sum_two_nums_stacked_parameterise[4-3] PASSED                [ 96%]
-foo.py::test_sum_two_nums_stacked_parameterise[4-4] PASSED                [100%]
-
-============================= 25 passed in 0.01s =============================
-
-```
+Executing this test with `pytest -v` would show all combinations are tested.
 
 
 ## Lacking time? The risks to skipping tests

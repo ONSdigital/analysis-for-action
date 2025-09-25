@@ -158,7 +158,7 @@ Many analysts choose to use similar structures for multiple projects even though
 Consistency in structure makes it easier to navigate unfamiliar projects, especially if they use the same coding style.
 It means that members of the team can quickly orient themselves when joining an existing project or starting a new one.
 
-[Cookiecutter](https://github.com/cookiecutter/cookiecutter) is a command-line tool that creates projects from templates (cookiecutters).
+Cookiecutter is a command-line tool that creates projects from templates (cookiecutters) [1].
 Using an existing cookiecutter, or creating one to meet your needs, can be a useful way to increase consistency in structure between your projects.
 Increase consistency and good practice by creating common folder structures, laying out essential documentation or even starting off your code with a basic boilerplate.
 This can also save you time. Laying out a structure to include documentation and code testing also encourages good practices.
@@ -176,3 +176,11 @@ One repository usually contains a single project.
 Developing your project using a version controlled repository has significant benefits for reproducibility.
 
 See [](version_control.md) for more information.
+
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Greenfeld A.R., and contributors. cookiecutter [Online]. GitHub  [Accessed 24 September 2025]. Available from: https://github.com/cookiecutter/cookiecutter
+
+</details>

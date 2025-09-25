@@ -260,7 +260,7 @@ other unexpected issues can still occur if the function is not properly tested a
 Then there is a description of the object that is returned from the function, followed by an example of the functions use.
 Finally, it references a similar related function that might be of interest to the end-user.
 
-The R example uses a format called [roxygen](https://roxygen2.r-lib.org/).
+The R example uses a format called roxygen [1].
 You should use roxygen formatting to write function documentation as part of R packages.
 If you are documenting functions that are not part of a package, you can use regular code comments.
 However, documenting functions using roxygen syntax is very helpful if you are planning on packaging the code in future and gives a clear and standard structure to your documentation.
@@ -281,10 +281,10 @@ Good function or class level documentation is an essential habit to develop when
 ```{note}
 **Docstrings conventions and styles**
 
-The Python example above follows the numpydocs style and is a common sight when using the `numpy` python package.
-However, there are various other standards such as the Google style guides for docstrings 
-as well as official docstring specification for Python.
-The R example uses the roxygen2 package and follows the tidyverse style guide.
+The Python example above follows the numpydocs style [2] and is a common sight when using the `numpy` python package.
+However, there are various other standards such as the Google style guides for docstrings [3]
+as well as official docstring specification for Python [4].
+The R example uses the roxygen2 package and follows the tidyverse style guide [5].
 
 In general, the core idea behind style is **consistency**.
 Whatever alterations to these conventions you use,
@@ -361,7 +361,6 @@ These examples document a main analysis script.
 They include enough information that a user can get started, without repeating too much that should be documented elsewhere.
 
 
-<!-- Do we want this section?? -->
 (generating_docs)=
 ## Generate documentation automatically
 
@@ -376,17 +375,17 @@ and turn them into more widely accessible hosted documentation.
 
 #### Python
 
-For Python, the Python package [`sphinx`](https://www.sphinx-doc.org/en/master/) is useful for generating HTML documentation.
+For Python, the Python package [`sphinx`](https://www.sphinx-doc.org/en/master/) is useful for generating HTML documentation [6].
 Sphinx primarily uses the `reStructuredText` markup language, which is similar to `markdown`.
 For those more familiar with `markdown` and in teams/environments where learning a new markup language is not a top priority,
-`sphinx` can be extended to also support `markdown`.
+`sphinx` can be extended to also support `markdown` [6].
 
 
 #### R
 
-For R projects, you might want to consider [`pkgdown`](https://pkgdown.r-lib.org/).
+For R projects, you might want to consider [`pkgdown`](https://pkgdown.r-lib.org/) [7].
 This package will create a HTML references section, containing your code documentation.
-It uses your project's README file as a home page for the site and you can add additional content to the site in the form of [vignettes](https://r-pkgs.org/vignettes.html).
+It uses your project's README file as a home page for the site and you can add additional content to the site in the form of vignettes [8].
 
 
 ### Make human readable documentation easily available to users
@@ -403,3 +402,25 @@ In many cases, you may also be able to automatically update your hosted document
 ### AI coding assistants
 
 You may have access to an AI coding assistant that you can ask to generate module and function documentation for you. AI assistants can be very effective and can save you a lot of time. If you use one, always check that the documentation it produces is correct, clear and concise and manage your expectation by providing well-defined, bounded requirements. Do not expect a coding assistant to document your entire application correctly with minimal intervention.
+
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Wickham H, Danenberg P, Csárdi G. roxygen2 [online]. R-lib. [Accessed 24 September 2025]. Available from: https://roxygen2.r-lib.org/
+
+2) Numpydoc developers. NumPy/SciPy documentation style guide [online]. numpydoc. [Accessed 24 September 2025]. Available from: https://numpydoc.readthedocs.io/en/latest/format.html
+
+3) Google. Google R Style Guide [Online]. Google. [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+4) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
+
+5) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse. [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
+
+6) Sphinx developers. Sphinx documentation [Online]. sphinx-doc.org. [Accessed September 24 2025]. Available from: https://www.sphinx-doc.org/en/master/
+
+7) Wickham H, Csárdi G. pkgdown [Online]. R-lib. [Accessed September 24 2025]. Available from: https://pkgdown.r-lib.org/
+
+8) Wickham H. Vignettes [Online]. In: R Packages. 2nd ed. r-pkgs.org. [Accessed September 24 2025]. Available from: https://r-pkgs.org/vignettes.html
+
+</details>

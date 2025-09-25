@@ -41,7 +41,7 @@ Using spreadsheets to store data introduces problems like these:
   * Converting dates to a different datetime format.
   * Converting numbers or text that resemble dates to dates.
 
-Stories of spreadsheet errors have been reported globally across academia, healthcare, police force, government and private organisations (ref). This illustrates the risks associated with spreadsheet used, and how these problems are more common than you might think.
+Stories of spreadsheet errors have been reported globally across academia, healthcare, police force, government and private organisations [1]. This illustrates the risks associated with spreadsheet used, and how these problems are more common than you might think.
 
 ### Databases
 
@@ -144,6 +144,9 @@ Finally, for this to be effective, your analysis should record the version of da
 You might document this in analysis reports or automatically logged by your code.
 
 
-# References
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-[spreadsheet related errors and their consequences](https://eusprig.org/research-info/horror-stories/) 
+1) European Spreadsheet Risks Interest Group (EuSpRiG). Spreadsheet horror stories [Online]. EuSpRiG. [Accessed 24 September 2025]. Available from: https://eusprig.org/research-info/horror-stories/
+
+</details>

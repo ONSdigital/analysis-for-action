@@ -5,9 +5,9 @@
 
 Treating a problem as an idea or concept, rather than a detailed individual example.
 
-Abstraction is used to manage the complexity of software, by describing our logic in a more generic way or by hiding complexity.
-When we use similar logic in multiple parts of our code, we can abstract this logic into a generic function or method to be reused.
-When part of our process is very complex, but is self-contained, we can hide this complexity by putting it inside a function and referring to the function.
+Abstraction is used to manage the complexity of software, by describing your logic in a more generic way or by hiding complexity.
+When you use similar logic in multiple parts of your code, we can abstract this logic into a generic function or method to be reused.
+When part of your process is very complex, but is self-contained, you can hide this complexity by putting it inside a function and referring to the function.
 
 
 ### Application Programming Interface (API)
@@ -24,7 +24,7 @@ A variable associated with a class object.
 ### Automated testing
 
 Tests that are written in code, to check that other code works as expected.
-Test are like a controlled experience, to check that our code produces the expected outcome.
+Test are like a controlled experience, to check that your code produces the expected outcome.
 Tests can check code multiple levels, for example, checking that an individual function works or checking that a pipeline runs from end to end.
 
 ### Code interpreter
@@ -58,7 +58,7 @@ The most common cloud platforms are Google Cloud Platform (GCP), Amazon Web Serv
 ### Code
 
 The part of software that contains program instructions.
-In analysis, code is a set of human-readable instructions that tell a computer how to carry out our analysis.
+In analysis, code is a set of human-readable instructions that tell a computer how to carry out your analysis.
 
 
 ### Code repository
@@ -82,7 +82,7 @@ GitHub Actions is an example tool for running CI/CD workflows.
 
 Continuous integration describes regularly combining code changes from multiple contributors on a single software project.
 Integrating these changes regularly helps to check that independent changes work correctly together.
-Continous delivery describes automation of the software release process.
+Continuous delivery describes automation of the software release process.
 Automating both of these using a CI/CD tool increases the efficiency of building software and getting it into production.
 
 
@@ -114,11 +114,11 @@ In a RAP context, where a pipeline or process is run in different ways, on diffe
 
 ### Functions and methods
 
-Functions and methods are named units of logic that can be used multiple times in our code.
+Functions and methods are named units of logic that can be used multiple times in your code.
 Methods are similar to functions, but are associated with a class.
 Functions and methods are crucial for creating modular code.
 
-Functions are written to generalise a piece of logic, so that it can be used consistently in multiple places in our code.
+Functions are written to generalise a piece of logic, so that it can be used consistently in multiple places in your code.
 You might define a function for a particular statistical method, validation check or to manipulate data in a certain way.
 
 
@@ -137,12 +137,6 @@ When an object is created by a constructor of a class, the resulting object is c
 
 An IDE is a tool that facilitates software development for a given programming language.
 An IDE will usually consist of a code editor, debugger and development automation tools like a text auto-complete.
-
-
-### Interative Running
-
-Where a script is run as expressions with immediate feedback given, such as in a terminal or command line.
-
 
 ### Logging
 
@@ -186,7 +180,7 @@ Classes are often used to represent a real life entity - for example a bank acco
 
 A type of software license that allows users to view the software's code.
 Open-source code is openly available to anyone.
-Using open-source software and publishing our code with open-source licenses ensures that our users can easily understand and reproduce our analysis.
+Using open-source software and publishing your code with open-source licenses ensures that your users can easily understand and reproduce your analysis.
 
 Open-source programming languages are free to use.
 We recommend using Python and R, which support the good practices outlined in this guidance.
@@ -223,7 +217,7 @@ It also helps to transfer understanding of the code between members of the team.
 
 ### Pipeline
 
-A orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.
+An orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.
 
 
 ### Procedural Running
@@ -251,8 +245,7 @@ Ability to gain an understanding of code within a reasonable amount of time.
 
 Reproducible Analytical Pipelines (RAP) are analyses that are carried out following good software engineering practices that are described by this guidance.
 They focus on the use of open-source analytical tools and a variety of techniques to deliver reproducible, auditable, and assured data analyses.
-RAP is more generally a culture of wanting to improve the quality of our analysis, by improving the quality assurance of our analysis code.
-
+RAP is more generally a culture of wanting to improve the quality of your analysis, by improving the quality assurance of your analysis code.
 
 ### Scripts
 

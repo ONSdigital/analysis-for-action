@@ -135,9 +135,9 @@ You should include things that are dependent on the computer that you are using 
 
 ## Use separate configuration files
 
-The previous example one step further using independent configuration files.
-We simply take our collection of variables, containing parameters and options for our analysis, and move them to a separate file.
-These files can be written in the same language as your code or other simple languages, as we'll describe in the following subsections.
+The previous example can be taken one step further using independent configuration files.
+For this, the collection of variables, containing parameters and options for the analysis are moved to a separate file.
+These files can be written in the same language as your code or other simple languages, as described in the following subsections.
 
 Instead of defining parameters in your script, you can store them in a separate configuration file. This keeps your code focused on logic and makes it easier to switch between setups.
 

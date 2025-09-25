@@ -173,31 +173,41 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Glossary of terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
+
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="principles.html">1 Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
 </ul>
 
     </div>
@@ -381,7 +391,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instance">Instance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrated-development-environment-ide">Integrated development environment (IDE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interative-running">Interative Running</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">Logging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintainability">Maintainability</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modularity">Modularity</a></li>
@@ -487,7 +496,7 @@ This can include running automated tests against your code and deploying the lat
 GitHub Actions is an example tool for running CI/CD workflows.</p>
 <p>Continuous integration describes regularly combining code changes from multiple contributors on a single software project.
 Integrating these changes regularly helps to check that independent changes work correctly together.
-Continous delivery describes automation of the software release process.
+Continuous delivery describes automation of the software release process.
 Automating both of these using a CI/CD tool increases the efficiency of building software and getting it into production.</p>
 </section>
 <section id="debugger">
@@ -533,10 +542,6 @@ Used to version changes to code for any programming language.</p>
 <h3>Integrated development environment (IDE)<a class="headerlink" href="#integrated-development-environment-ide" title="Link to this heading">#</a></h3>
 <p>An IDE is a tool that facilitates software development for a given programming language.
 An IDE will usually consist of a code editor, debugger and development automation tools like a text auto-complete.</p>
-</section>
-<section id="interative-running">
-<h3>Interative Running<a class="headerlink" href="#interative-running" title="Link to this heading">#</a></h3>
-<p>Where a script is run as expressions with immediate feedback given, such as in a terminal or command line.</p>
 </section>
 <section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Link to this heading">#</a></h3>
@@ -604,7 +609,7 @@ It also helps to transfer understanding of the code between members of the team.
 </section>
 <section id="pipeline">
 <h3>Pipeline<a class="headerlink" href="#pipeline" title="Link to this heading">#</a></h3>
-<p>A orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.</p>
+<p>An orchestrated chain of programs that will execute the next program(s) in the chain when a program completes successfully. Outputs will be stored on completion of a program and will feed in as inputs to the next program(s) in the chain.</p>
 </section>
 <section id="procedural-running">
 <h3>Procedural Running<a class="headerlink" href="#procedural-running" title="Link to this heading">#</a></h3>
@@ -747,7 +752,6 @@ This helps keep track of dependencies and avoid conflicts between different proj
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git">Git</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instance">Instance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integrated-development-environment-ide">Integrated development environment (IDE)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interative-running">Interative Running</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging">Logging</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maintainability">Maintainability</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modularity">Modularity</a></li>

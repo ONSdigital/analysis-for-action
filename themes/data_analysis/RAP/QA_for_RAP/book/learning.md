@@ -6,7 +6,7 @@ While a few resources are listed here, many more exist online, yet these may not
 However, exposure to a range of applied examples will still benefit your learning.
 You should compare and contrast your learning to the good practices outlined in the guidance.
 
-## Beginner to intemediate pathways
+## Beginner to intermediate pathways
 
 For training relating to the topics covered in this guidance, you can visit [Statistical Programming Pathways](https://datasciencecampus.github.io/statistical_programming_training_pathways/). This open source training was developed by the Data Science Campus at the UK Office for National Statistics and has three pathways from beginner to intermediate level for coders and programmers.
 
@@ -30,14 +30,12 @@ For training relating to the topics covered in this guidance, you can visit [Sta
 - Object Oriented Programming in Python
 - Packaging and Documentation
 
-<!-- Do we want to remove all of these? Or caveat that they may go out of date? -->
 
 # Additional materials 
 
 The following links have been included here to show other potential online resources that exist that you may wish to explore and websites of interest. These materials are hosted on external websites that may not be maintained. You can use these as a starting point to find more resources that may be of interest to you.
 
 ## Core Programming
-
 ### Python
 
 * [The Official Python Getting Started Guide](https://www.python.org/about/gettingstarted/)
@@ -104,8 +102,7 @@ The following links have been included here to show other potential online resou
 ## Reproducible Analytical Pipelines
 
 * [Analysis Function RAP overview](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/)
-* [The cross government RAP Champion Network](https://analysisfunction.civilservice.gov.uk/support/reproducible-analytical-pipelines/reproducible-analytical-pipeline-rap-champions/)
-* [ONS Data Science Campus RAP learning materials](https://github.com/datasciencecampus/gov-uk-rap-materials)
+* [UK ONS Data Science Campus RAP learning materials](https://github.com/datasciencecampus/gov-uk-rap-materials)
 
 
 ## Learning from mistakes

@@ -24,10 +24,10 @@ The following are suggestions for a good README:
 ## Contributing guidance
 
 When collaborating, it is also useful to set out the standards used within your project.
-This might include particular packages required for certain tasks and guidance on the [code style](code-style) used in the project.
+This might include particular packages required for certain tasks and guidance on the code style used in the project.
 Consider including a code of conduct if you plan to have contributors from outside your organisation.
 
-The following is an example of the CONTRIBUTING file from the [gptables package](https://github.com/best-practice-and-impact/gptables/blob/master/CONTRIBUTING.md):
+The following is an example of the CONTRIBUTING file from the [gptables package](https://github.com/best-practice-and-impact/gptables/blob/master/CONTRIBUTING.md) [1]:
 `````{tabs}
 
 ````{tab} Markdown
@@ -188,7 +188,7 @@ Docstrings may contain examples applying individual functional units, while vign
 Vignettes demonstrate the intended use for these classes and functions in a realistic context.
 This shows users how different code elements interact and how they might use your code in their own program.
 
-Another good example is this vignette describing [how to design vignettes](http://r-pkgs.had.co.nz/vignettes.html) in Rmarkdown.
+Another good example is this vignette describing [how to design vignettes](http://r-pkgs.had.co.nz/vignettes.html) in Rmarkdown [2].
 You can produce this type of documentation in any format, though Rmarkdown is particularly effectively at combining sections of code,
 code outputs, and descriptive text.
 
@@ -212,7 +212,7 @@ While changes to the minor and patch numbers indicate changes that are either co
 width: 70%
 name: semantic_versioning
 ---
-Semantic versioning
+Semantic versioning [3]
 ```
 
 You'll see this, or a similar version numbering, on packages that you install for Python and R.
@@ -249,13 +249,12 @@ Your changelog can be in any format and should be associated with your code docu
 
 ## Copyright and Licenses
 
-Copyright indicates ownership of work.
-
-Licenses outline the conditions under which others may use, modify and/or redistribute your work.
+Copyright indicates ownership of work. Licenses outline the conditions under which others may use, modify and/or redistribute your work.
 As such, including a license with code is important for users and other developers alike.
 
 Both copyright and license are usually placed in a LICENSE file in your project.
-The following example shows an example of an MIT LICENSE file that might be used on UK Government projects:
+
+For example, within the UK all materials created by civil servants, ministers, government departments and their agencies are covered by Crown copyright [4]. The following example shows an example of an MIT LICENSE file that might be used on UK Government projects:
 
 > Copyright 2020, Crown copyright
 >
@@ -286,5 +285,18 @@ Personal benefits from open sourcing include:
 While the public benefit from:
 
 - Transparency - stakeholders can understand and reproduce your analysis.
-- Sharing value - others can benefit from our work, either through reuse or demonstration of good practices.
-- Sharing opportunity - others can gain insight and experience from reading and possibly contributing to  your code.
+- Sharing value - others can benefit from your work, either through reuse or demonstration of good practices.
+- Sharing opportunity - others can gain insight and experience from reading and possibly contributing to your code.
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Office for National Statistics. Contributing to gptables [Online]. GitHub. [Accessed 24 September 2025]. Available from: https://github.com/ONSdigital/gptables/blob/main/CONTRIBUTING.md
+
+2) Wickham H. Vignettes [Online]. In: R Packages. 2nd ed. r-pkgs.org. [Accessed 24 September 2025]. Available from: https://r-pkgs.org/vignettes.html
+
+3) Preston-Werner T. Semantic Versioning 2.0.0 [Online]. semver.org. [Accessed 24 September 2025]. Available from: https://semver.org/
+
+4) The National Archives. Crown copyright [Online]. UK Government Licensing Framework. [Accessed 24 September 2025]. Available from: https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
+
+</details>

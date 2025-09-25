@@ -5,14 +5,14 @@ These have been tailored to support analytical workflows.
 ```{admonition} Pre-requisites
 :class: admonition-learning
 
-You will get the most benefit from this section, if you understand and are comfortable with core programming concepts such as:
+You will get the most benefit from this chapter, if you understand and are comfortable with core programming concepts such as:
 
 * storing information in variables
 * using control flow, such as if-statements and for-loops.
 * writing code as functions or classes.
 * using functions or classes in your code.
 
-There are links in the [](learning.md) section of the book to relevant training.
+There are links in the [](learning.md) section of this guidance to relevant training.
 ```
 
 
@@ -45,7 +45,7 @@ Regardless of the language, you can group your code into self-contained parts su
 ### Write re-usable code as functions
 
 In the early stages of analysis, it is common to copy and paste code to 'make it work'. As the code matures, it is worth taking repetitive code and turning it into functions.
-Functions allow us to make a piece of logic reusable in a consistent and readable way, and also makes it easier for us to [test our logic](testing_code.md).
+Functions allow a piece of logic to be made reusable in a consistent and readable way, and also makes it easier to [test logic](testing_code.md).
 
 When starting to write functions, you should consider what is the right level of complexity for a single function.
 A helpful starting point is to consider if the code containing the logic can be turned into a concise and readable function. Signs that the code is too complex to work as a single function are that the function is very long or you have to pass it lots of arguments to get it to work.
@@ -54,7 +54,6 @@ then use these smaller functions to build up a larger high-level function that p
 Smaller functions also have the advantage that you might also be able to re-use them in other places in your code. For example, in other high-level functions that perform similar tasks.
 
 This approach helps you break complex logic down into small, understandable chunks that can be documented and tested more easily. 
-<!-- Possible example code here? -->
 
 When writing functions, it is also important to consider how they interact with other parts of your code.
 As a general rule of thumb, your code should run in the same way if a call to your function was replaced by the value that it would have returned.
@@ -83,157 +82,58 @@ break down your code into smaller functions and build up your functionality with
 ```
 
 ### Group data and methods as classes
-**NOT COMPLETE**
 
-
-Classes are fundamental parts of [object-orientated programming (OOP)](glossary.md#object-oriented-programming-oop).
+Classes are a core part of [object-orientated programming (OOP)](glossary.md#object-oriented-programming-oop).
 They create an association between data (attributes of the class) and logic (methods of the class).
-Classes can be useful when representing real objects in our code, as the examples below demonstrate.
 
-Although classes exist in R, writing custom classes is less common than it is in Python (and other OOP enabling languages).
-Because of this, the following sub-section will focus primarily on **Python classes**. If you are coding in R, you may wish to [move to the next section.](#split-complex-code-into-multiple-scripts)
+Although classes exist in R, writing custom classes is less common than it is in Python (and other OOP enabling languages) [1].
+Because of this, the following sub-section will focus primarily on **Python classes**. If you are coding in R, you may wish to [move to the next section.](#split-complex-code-into-multiple-scripts). Training on OOP can be found in the learning resources chapter.
 
-With a more complex system, OOP can help to reduce complexity by hiding low-level details from users, such as an internal state.
+**Classes are not a requirement when developing RAPs.** However, they can be useful to help make code more organised and maintainable in complex pipelines. For example, they can be useful when representing real-world objects in your code and simplifying complex systems by hiding low-level details from users, such as an internal state.
 
 ```{note}
 An object's 'state' is usually a set of variables that are particular to a given instance of a class.
 To illustrate, imagine a patient record that is represented by a `Record` class.
 You can have many instances of this class (many unique patient record), each defined by the following internal state:
 
-- patient name
-- patient number
-- test result
+- Indiviudal name
+- Patient number
+- Number of appointments
 ```
 
-When writing classes consider marking such state as 'private', since the end user does not need to know all of the state associated with an object.
-This prevents users from accessing attributes directly, instead accessing them through class methods (functions defined with the class).
+When writing classes consider marking such states as ‘private’, since the end user does not need to know all the states associated with an object. This prevents users from accessing attributes directly, instead accessing them through class methods.
 
 ````{admonition} Method vs Function
-When talking about methods, we mean functions that are strictly 'attached' to a given class.
-The following example illustrates the difference between the two:
-
-```python
-# Defining a class with a diagnose method
-class Car:
-    """A car class"""
-    wheels = 4
-    def __init__(self, brand):
-        self.brand = brand
-
-    def diagnose(self):
-        ...
-
-# versus defining a standalone diagnosis function
-def diagnose(car, ...):
-    """A car diagnosis function"""
-    ...
-
-
-# Calling a method on a class instance that holds it's own state
-cadillac = Car(brand="Cadillac")
-cadillac.diagnose()
-
-# Calling a function by passing all relevant information explicitly
-# Note: for the sake of variety the information about the car is represented in a dictionary
-diagnose({"brand":"Cadillac", "wheels":4})
-```
-
+Methods in this context refer to functions that are strictly ‘attached’ to a given class. 
 ````
 
-In some languages 'private' state can be used to prevent access to parts of your class.
-In Python [truly private instance variables do not exist](https://docs.python.org/3/tutorial/classes.html#private-variables),
-so it is not possible to prevent access to any part of your class.
-The standard convention in Python is to prefix attribute names with a single underscore (`_my_class_attribute`)
-to indicate that users shouldn't be concerned with these attributes.
-
-In addition to private attributes, you can use the same naming convention to indicate that a method is 'private' and should not be used by users.
-This can be useful when writing reusable low-level methods within an object, analogous to breaking a large function down into multiple smaller functions.
-These private methods can then be called by high-level methods that are exposed to users.
+In some languages ‘private’ state can be used to prevent access to parts of your class. In Python truly private instance variables do not exist [2], so it is not possible to prevent access to any part of your class. The standard convention in Python is to prefix attribute names with a single underscore (`_my_class_attribute`) to indicate that users shouldn’t be concerned with these attributes. You can also use the same naming convention to indicate that a method is ‘private’ and should not be used by users.
 
 ```{caution}
 In Python, the notion of 'private' does not mean secure.
 The main goal of private attributes and methods is to expose less unnecessary information to the anyone using your class in their code.
 ```
+When using classes in code, the methods a class provides are more important than what type it is defined as. This is known as ‘duck typing’; if a class has the same methods as another class, then you can use either class in your code.
 
-```python
-class HealthRecord:
-    def __init__(self, balance, credentials):
-        self._balance = balance
-        self._credentials = credentials
+Object-Orientated Programming introduces the concept of inheritance, where a class can ‘inherit’ methods from another class to extend it. In this situation, a new class ‘subclasses’ the ‘parent’ that it is inheriting from. When defining multiple classes with similar functionality, inheritance can be used to store the shared logic in a separate class type, which you can then extend by subclassing.
 
-    def _private_withdraw(self, amount):
-        """Private withdrawal helper method."""
-        self._balance -= amount
-
-    def _check_credentials(self, credentials):
-        """Private check helper method."""
-        if credentials == self._credentials:
-            return True
-        else:
-            return False
-
-    def withdraw(self, credentials, amount):
-        """Public withdrawal method."""
-        if _check_credentials(credentials):
-            self._private_withdraw(amount)
-```
-
-When using classes in our code, we care more about what methods a class provides than what `type` it is defined as.
-This is known as 'duck typing'; if a class has the same methods as another class, then you can use either class in your code.
-
-> If it walks like a duck, and it quacks like a duck, then it must be a duck.
-
-Given the example above, if we created a class `LoyaltyAccount` with the same `withdraw` method for withdrawing points,
-we could feasible switch between using the `BankAccount` and `LoyaltyAccount` classes without affecting how our code runs.
-
-Object-Orientated Programming introduces the concept of inheritance - where a class can 'inherit' methods from another class in order to extend it.
-In this situation, a new class 'subclasses' the 'superclass' or 'parent' that it is inheriting from.
-When defining multiple classes with similar functionality, inheritance can be used to store the shared logic in a separate class type,
-which we can then extend by subclassing.
-For example, we might create an `Account` class to store a `balance` and the logic behind our `withdraw` method.
-Our `BankAccount` and `LoyaltyAccount` could then subclass `Account` to extend it with any additional logic that is specific to their account types.
+You can apply this similarly to functions. If you were to increase the domain and range of a function, to account for new cases, then this function should observe the same interface as the previous function.
 
 ```{note}
-[Liskov substitution](https://en.wikipedia.org/wiki/Liskov_substitution_principle) states that
-subclasses should not damage the functionality of their parent class in their implementation.
-They should extend their usefulness, but retain their original functionality.
-If our `BankAccount` class inherits from `Account` we should consider that 'a `BankAccount` is an `Account`'.
-Liskov substitution strengthens this statement to '`BankAccount` is interchangeable with an `Account`';
-we can replace any `Account` with `BankAccount` without changing how our code runs.
-This is because `BankAccount` provides all of the same methods that an `Account` does.
-
-You can apply this similarly to functions.
-If you were to increase the domain and range of a function, to account for new cases, then this function should observe the same interface as the previous function.
-
 In short:
 
 - You should be able to replace objects with instances of their subclasses, without altering the correctness of that program.
 - You should be able to replace functions with similar functions that share the same interface.
 ```
 
-However, we should be wary that inheritance locks our class in to the object that it inherits from.
-If the superclass changes, our class is forced to change with it.
-When using inheritance to reuse code from an unrelated class, 'encapsulation' may be more appropriate.
-For example, a `Car` class might want to use a method from an `Engine` class, but a car could not be substituted for an engine.
-It would not be suitable for `Car` to inherit from `Engine`.
-Therefore, you might keep a private instance of the `Engine` class you wish to re-use, and delegate the work down to it in the `Car` methods.
-Then, if you change your mind about using this `Engine` class in your `Car` class, you aren't tied to it and can easily replace it.
+However, note that inheritance locks your class into the object it inherits from. If the superclass changes, your class is forced to change with it. 
 
-(interfaces)=
-In OOP, an 'interface' can be defined to act as a blueprint or specification for writing classes.
-An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes.
-Perhaps we want to use classes to read and write data - this might require several different classes, with `read` and `write` methods for different file formats.
-For example, one class could deal with storing data in a database, and another could store data in local `.csv` files instead.
-In our code, we could switch which class is provided to downstream functions.
-Our functions don't need to know if they are reading or writing from databases or `.csv` files,
-however, they do require the `read` and `write` methods of the class to work in a standard way.
-An `interface` would help to define the standard for interacting with this group of classes.
+In OOP, an ‘interface’ can be defined to act as a blueprint or specification for writing classes. An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes. 
 
-In Python, the `abc` module allows us to define ['abstract' base classes and methods](https://docs.python.org/3/library/abc.html)
-to enforce that our classes provide the required methods.
-When a subclass does not implement the required abstract methods, instances of the class cannot be created.
-These abstract base classes achieve the same as interfaces in other object-based languages.
-We can illustrate this concept in the following example:
+Perhaps you want to use classes to read and write data - this might require several different classes, with read and write methods for different file formats. For example, one class could deal with storing data in a database, and another could store data in local .csv files instead. In your code, you could switch which class is provided to downstream functions. Your functions don’t need to know if they are reading or writing from databases or .csv files, however, they do require the read and write methods of the class to work in a standard way. An interface would help to define the standard for interacting with this group of classes.
+
+In Python, the abc module allows you to define ‘abstract’ base classes and methods to enforce that your classes provide the required methods [3]. When a subclass does not implement the required abstract methods, instances of the class cannot be created. These abstract base classes achieve the same as interfaces in other object-based languages. We can illustrate this concept in the following example:
+
 
 ```python
 from abc import ABC, abstractmethod
@@ -271,65 +171,32 @@ class SqlHandler(FileHandler):
        return data
 ```
 
-When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), we can easily switch between them.
-A good real-world example of this can be seen in the `scikit-learn` package, where the different linear model types are represented by different classes.
-Each linear model class supports a common set of methods, e.g. `fit()` and `predict()`.
-As such, you can use any model in a pipeline and swap them out with minimal effort.
-Therefore, when thinking about how to break you code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.
+When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), you can easily switch between them. 
+
+A good real-world example of this can be seen in the `scikit-learn` package, where the different linear model types are represented by different classes. Each linear model class supports a common set of methods, e.g. fit() and predict(). As such, you can use any model in a pipeline and swap them out with minimal effort. Therefore, when thinking about how to break you code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.
 
 
 (class-responsibilities)=
 
 ```{note}
-A word of caution, when creating your own classes.
-It is easy to start to mapping nouns in system descriptions to classes, and any adjectives applied to the nouns as methods.
-For example: 'the model loads the data', which implies that `Model` is a class that should have a `load_data` method.
-This works well for small systems, but as the complexity of your code grows you might find that one of your classes gains the majority of the underlying logic.
-This often leads to one class with many methods, while other classes just store data with very few methods.
-We describe this as 'Data Driven Design'.
-
-When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code's logic.
-This class might become overly complex and hence difficult to maintain.
-Consequently, changes to requirements will cause this one class to change, which may affect other unrelated functionality in the class.
-
-For more complex analytical work, a better approach might be [Responsibility Driven Design](https://en.wikipedia.org/wiki/Responsibility-driven_design).
-Here, we write small classes with a focussed responsibility.
-This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of our code.
-However, be aware of the trade-off between the complexity of one large class versus many smaller classes.
+As the complexity of your code grows you might find that one of your classes takes on the majority of the underlying logic. When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic. This class might become overly complex and hence difficult to maintain.  This is known as ‘Data Driven Design’. For more complex analytical work, a better approach might be ‘Responsibility Driven Design’. Here, classes are smaller with more specific responsibilities. This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of our code. However, be aware of the trade-off between the complexity of one large class versus many smaller classes.
 ```
-
-[Responsibility Driven Design](https://en.wikipedia.org/wiki/Responsibility-driven_design) makes objects that are usually 'passive' become 'active'.
-For example, with a banking system, an  object representing a bank account, and handling all money movements, might become overly complex.
-Instead, objects representing `Cheques` and `Cash` might be designed with payment methods.
-In this situation, a `Cheque` knows how much money it contains and how to pay itself into an account.
-A `Cheque`'s responsibility is to retrieve money from its associated account and pay itself in to another bank account.
-If we later needed to add new payment methods, the existing payment type classes (`Cheque` and `Cash`) will unlikely to be affected.
-The bank account's responsibility is holding money, receiving it and paying it out.
+Responsibility Driven Design makes objects that are usually ‘passive’ become ‘active’. 
 
 ```{tip}
-Many [Design Patterns](https://en.wikipedia.org/wiki/Software_design_pattern) are available with OOP.
+Many Design Patterns are available with OOP.
 These are reusable solutions to common problems.
 ```
-
-Finally, be wary when using classes to 'chain' methods together.
-For instance, if a 'book' has a 'publisher' and the publisher has an 'address', you could write `book.publisher().address().postcode()`.
-However, chains like this are fragile as they depend on multiple parts of the system not changing.
-The 'Demeter' research project found that this style of code produce a high proportion of bugs,
-resulting in the [Law of Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter): 'Only talk to your immediate friends'.
-Namely, only access the objects you know about directly within a class.
-This reduces the opportunity for your code to be damaged by a change in your dependencies.
-There is a penalty for this - you replace with `book.publisherPostcode()` which internally would call `publisher.postcode()`,
-so we've added a method to `publisher` as well as `book`; we're trading maintainability for complexity, so consider if it is worthwhile.
-
 To summarise:
+* Classes hide implementation detail from users, enabling implementation to be changed without affecting users.
+* You should look to use consistent methods in a group of related classes, so that you can switch between them without affecting the code using it. You should consider Python ‘duck typing’ or abstract classes and methods.
+* You should avoid storing all logic in a single class. Instead, distribute logic between smaller classes based on specific responsibilities.
+* Be aware of trading maintainability for complexity - one large class or too many classes can be hard to understand.
+* You will find Design Patterns a useful toolbox as they have solutions to many common problems.
+* You should opt for encapsulation over inheritance, especially with code reuse.
 
-- Classes hide implementation detail from users, enabling implementation to be changed without affecting users.
-- You should look to use consistent methods in a group of related classes, so that you can switch between them without affecting the code using it.
-You should consider Python 'duck typing' or abstract classes and methods.
-- You should avoid storing all logic in a single class. Instead, distribute logic based on responsibilities.
-- Be aware of trading maintainability for complexity - one large class or too many classes can be hard to understand.
-- You will find Design Patterns a useful toolbox as they have solutions to many common problems.
-- You should opt for encapsulation over inheritance, especially with code reuse.
+**For more information on object-oriented programming, please see the learning resources.**
+
 
 
 ### Split complex code into multiple scripts
@@ -566,3 +433,14 @@ The steps that you've taken to simplify your notebook code will make your code m
 
 Keep in mind that other analysts can still run notebook files out of order, so they should not be used as the main method of actually generating outputs.
 Output generation should instead be trusted to scripts, where human decisions do not alter the order that code is run.
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Wickham H. Object-oriented programming [Online]. In: Advanced R. 2nd ed. Tidyverse [Accessed 24 September 2025]. Available from: https://adv-r.hadley.nz/oo.html
+
+2) Python Software Foundation. Classes – Private variables [Online]. Python 3 Documentation [Accessed 24 September 2025]. Available from: https://docs.python.org/3/tutorial/classes.html#private-variables
+
+3) Python Software Foundation. abc — Abstract Base Classes [Online]. Python 3 Documentation [Accessed 24 September 2025]. Available from: https://docs.python.org/3/library/abc.html
+
+</details>

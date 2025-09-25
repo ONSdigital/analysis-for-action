@@ -12,7 +12,7 @@ You will get the most benefit from this section, if you understand and are comfo
 * writing code as functions or classes.
 * using functions or classes in your code.
 
-There are links in the [](learning.md) section of the book to relevant training.
+There are links in the [](learning.md) section of this guidance to relevant training.
 ```
 
 

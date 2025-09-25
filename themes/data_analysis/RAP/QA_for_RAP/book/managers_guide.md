@@ -2,7 +2,8 @@
 
 This section of the guidance targets those who manage data analysis, science and engineering work in government
 or those acting as product owners for analytical products.
-We refer to processes that apply these good practices as a reproducible analytical pipelines (RAP).
+
+It aims to help you to apply the good quality assurance practices described. The processes that apply these good practices are referred to here as  reproducible analytical pipelines (RAP).
 
 Before applying this guidance, you should have a basic awareness of the tools and
 techniques used to do quality analysis as code - the Introduction to RAP training outlines these.
@@ -29,8 +30,7 @@ While quality assurance must be applied relative to the risk and complexity of t
 Note that it is important to maintain technical skills for sustainability, to ensure that the analysis can be understood, updated, and maintained.
 ```
 
-Despite the initial cost of developing technical skills,
-[evidence shows that applying good practices increases the efficiency of code development and maintainability of the code](https://www.devops-research.com/research.html).
+Despite the initial cost of developing technical skills, evidence shows that applying good practices increases the efficiency of code development and maintainability of the code (ref).
 A number of case studies that describe how
 good quality assurance practices have improved government analysis can be found in the Introduction to RAP training <!-- Link to intro to RAP --> and RAP in Action case studies.
 <!-- Link to RAP in action case studies -->
@@ -185,3 +185,7 @@ Code quality improves over time, as your team learn more about good practices.
 
 * The team should be aiming to meet the agreed assurance level, but should also consider which practices could be applied next to improve the code beyond this.
 * You should review training needs in your team and allow time for continuous personal development of these practices.
+
+# References
+
+[evidence shows that applying good practices increases the efficiency of code development and maintainability of the code](https://www.devops-research.com/research.html).

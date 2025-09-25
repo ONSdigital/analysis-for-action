@@ -12,7 +12,7 @@ You should also be familiar with core programming concepts such as:
 * storing information in variables.
 * using control flow, such as if-statements and for-loops.
 
-You can find links to relevant training in the [](learning.md) section of the book.
+You can find links to relevant training in the [](learning.md) section of this guidance.
 ```
 
 
@@ -24,7 +24,7 @@ Code is read more often than it is written.
 -- Guido van Rossum (creator of Python)
 ```
 
-When writing code, we should expect that at some point someone else will need to understand, use, and adapt it.
+When writing code, you should expect that at some point someone else will need to understand, use, and adapt it.
 That someone might be you in six months time!
 As such, it is important to empathise with these potential users and write code that is tidy, understandable, and does not add unnecessary complexity.
 Doing this will make for a 'self-documenting' codebase that does not need as much additional documentation.
@@ -165,7 +165,7 @@ letters_2 <- c("x", "y", "z")
 ```
 ````
 
-Here we can infer what these lists and vectors contain, but it is not apparent what makes `letters_1` different to `letters_2`.
+Here you can infer what these lists and vectors contain, but it is not apparent what makes `letters_1` different to `letters_2`.
 
 Variable names can be used to document differences between variables, or to incrementally describe changes made to a variable.
 
@@ -188,7 +188,7 @@ letters_first_three_reversed <- rev(letters_first_three)
 Here the naming convention indicates that both lists are similar, but also describes the differences between them.
 It is also clear how the third, new list relates to the first list that was used to create it.
 
-With more informative names, we obviously lose the brevity of variable names:
+With more informative names, you obviously lose the brevity of variable names:
 
 ```none
 letters_first_three_reversed_plus_t_minus_a_converted_to_greek
@@ -339,15 +339,15 @@ They might include how to appropriately:
 - provide other useful guidance regarding formatting.
 
 The existence of such style guides does not necessarily mean that each individual or team will apply these conventions to the letter.
-These guides are more useful as starting points in a discussion on 'how should our team be consistent internally in the way we write code?'.
+These guides are more useful as starting points in a discussion on 'how should your team be consistent internally in the way you write code?'.
 
 
 The core idea around these guides is that individual teams have to either adopt them or adapt them for use while writing code.
 The goals are readability and consistency.
 
 ```{admonition} Common Style Guides
-[PEP8](https://www.python.org/dev/peps/pep-0008/) is an official Python style guide, which is widely used.
-The [Google](https://google.github.io/styleguide/Rguide.html) and [tidyverse](https://style.tidyverse.org/) style guides are commonly used for R.
+PEP8 is an official Python style guide [1], which is widely used.
+The Google [2] and tidyverse style guides are commonly used for R [3].
 ```
 
 
@@ -420,7 +420,7 @@ See [](linters-formatters) for further information on automating these checks.
 (software-ideas-for-analysts)=
 ## Software ideas for analysts
 
-It's important to remember that when we write code for analysis, we are developing software.
+It's important to remember that when you write code for analysis, you are developing software.
 Over many years, software engineering teams have developed good practices for creating robust software.
 These practices help to make code simple, readable, and easier to maintain.
 Analysts using code as a means to perform analysis can benefit from at least partially applying such practices in their own codebases.
@@ -674,7 +674,7 @@ In Python and R, `0` will also evaluate to `False`.
 Therefore, it is unclear whether the programmer intended that the statement is printed when the count is 0.
 If a count of 0 should be printed, then this lack of specificity has created a bug.
 
-To perform the same decision explicitly, we should specify the exact condition under which the student count should be printed.
+To perform the same decision explicitly, you should specify the exact condition under which the student count should be printed.
 
 ````{tabs}
 ```{code-tab} py
@@ -696,7 +696,7 @@ if (student_count >= 0) {
 ````
 
 Now the count is printed if it is more than or equal to 0.
-It's clear that we intend for this to be the case.
+It's clear this is the intended case.
 
 
 ### Separate responsibilities
@@ -746,12 +746,12 @@ This means that it should be possible to extend the functionality of classes or 
 
 ````{tabs}
 ```{code-tab} python
-# some function that we want to keep closed for modification
+# some function that you want to keep closed for modification
 def core_method(data):
     ...
     return result
 
-# if we want to extend a function without modifying it, we can always do the following
+# if you want to extend a function without modifying it, you can always do the following
 def extended_functionality(results):
      ...
      return extended_result
@@ -762,13 +762,13 @@ def extended_methodology(data):
 ```
 
 ```{code-tab} r R
-# some function that we want to keep closed for modification
+# some function that you want to keep closed for modification
 core_method <- function(data) {
   ...
   return(result)
 }
 
-# if we want to extend a function without modifying it, we can always do the following
+# if you want to extend a function without modifying it, you can always do the following
 extended_functionality <- function(result) {
   ...
   return(extended_result)
@@ -791,7 +791,7 @@ When you think about the consequences of this, the open-closed principle gives y
 2. The ability to easily add more functionality, as your code evolves.
 
 ````{note}
-In functional programming we use higher-order functions and functional composition to enact these principles.
+In functional programming you use higher-order functions and functional composition to enact these principles.
 'Functional composition' deserves a brief explanation, as a concept that might be keenly used in a data analytics pipeline.
 
 In simple terms, functional composition is a mathematical idea that takes two functions $f$ and $g$ and produces function $h$, such that $h(x) = g(f(x))$.
@@ -817,15 +817,15 @@ report <- report(model(load(filepath)))
 ```
 ````
 
-We will now assume that these individual functions are closed for modification.
-However, we can extend the functionality of `load` by adding a `clean` function that cleans the data. In which case, we end up with:
+Now assume that these individual functions are closed for modification.
+However, you can extend the functionality of `load` by adding a `clean` function that cleans the data. In which case, you end up with:
 
 ````{tabs}
 ```{code-tab} python
-# We can extend this without modifying the source code of `load`
+# You can extend this without modifying the source code of `load`
 report = report(model(clean(load(filepath))))
 
-# or we can first define a new load as follows
+# or you can first define a new load as follows
 def new_load(filepath):
     return clean(load(filepath))
 
@@ -835,22 +835,33 @@ report = report(model(new_load(filepath)))
 new_load = lambda data: clean(load(data))
 report = report(model(new_load(filepath)))
 
-# We can even use this to create a single function to run our defined pipeline
+# You can even use this to create a single function to run our defined pipeline
 pipeline = lambda data: report(model(clean(load(filepath))))
 report = pipeline(filepath)
 ```
 
 ```{code-tab} r R
-# We can extend this without modifying the source code of `load`
+# You can extend this without modifying the source code of `load`
 report <- report(model(clean(load(filepath))))
 
-# or we can first define a new load as follows
+# or You can first define a new load as follows
 new_load <- function(filepath) clean(load(filepath))
 
 report <- report(model(new_load(filepath)))
 
-# We can even use this to create a single function to run our defined pipeline
+# You can even use this to create a single function to run our defined pipeline
 pipeline <- function(data) report(model(clean(load(filepath))))
 report = pipeline(filepath)
 ```
 ````
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
+
+2) Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
+
+</details>

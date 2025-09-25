@@ -11,7 +11,7 @@
 
 - Names used in the code are informative and concise.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
+- Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) [1] and [Google](https://google.github.io/styleguide/Rguide.html) [2] or [tidyverse](https://style.tidyverse.org/) for R [3].
 
 ### Project structure
 
@@ -23,7 +23,7 @@
 - Comments are kept up to date, so they do not confuse the reader.
 - Code is not commented out to adjust which lines of code run.
 - All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/). R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html).
+- Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/) [4]. R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) [5].
 
 ### Project documentation
 
@@ -64,7 +64,7 @@
 
 ### Testing
 
-- Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) and [`testthat` for R](https://testthat.r-lib.org/).
+- Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) [6] and [`testthat` for R](https://testthat.r-lib.org/) [7] .
 - Code based tests are run regularly, ideally being automated using continuous integration.
 - Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 - Informal tests are recorded near to the code.
@@ -185,11 +185,21 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 ```
 
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-# References 
+1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
 
-pytest
-test that
-Google style guide
-PEP8 Style guide 
-Tidyverse style guide
+2) Google. Google R Style Guide [Online]. Google [Accesed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accesed September 24 2025]. Available from: https://style.tidyverse.org/
+
+4) Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accesed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0257/
+
+5) Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accesed September 24 2025]. Available from: https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
+
+6) pytest-dev. pytest documentation [Online]. pytest [Accesed September 24 2025]. Available from: https://docs.pytest.org/en/stable/
+
+7) Wickham H. testthat: Unit testing for R [Online]. R-lib [Accesed September 24 2025]. Available from: https://testthat.r-lib.org/
+
+</details>
