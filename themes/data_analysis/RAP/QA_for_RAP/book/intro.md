@@ -1,6 +1,6 @@
 # Quality assurance of code for analysis and research
 
-This guidance outlines software engineering good practices for writing and producing Reproducible Analytical Pipelines (RAP) for data and analysis, and provides quality assurance methods for this. This guidance builds upon the information in 'Introduction to RAP' and real life examples from 'RAP in Action'. This guidance has been developed for international users from on the [Government Analysis Function (AF) guidance, also known as the Duck Book,](https://best-practice-and-impact.github.io/qa-of-code-guidance/intro.html) produced by the Analysis Standards and Pipelines hub of the UK Office for National Statistics [1].
+This guidance outlines software engineering good practices for writing and producing Reproducible Analytical Pipelines (RAP) for data and analysis, and provides quality assurance methods for this. This guidance builds upon the information in 'Introduction to RAP' and real life examples from 'RAP in Action'. This guidance has been developed for international users from the [Government Analysis Function (AF) guidance, also known as the Duck Book,](https://best-practice-and-impact.github.io/qa-of-code-guidance/intro.html) produced by the Analysis Standards and Pipelines hub of the UK Office for National Statistics [1].
 
 You can use this guidance as a book to learn more on good practices, or refer to specific chapters to guide you in your coding and analytical workflows.
 You can also find training for many of these good practices in [](learning.md).
