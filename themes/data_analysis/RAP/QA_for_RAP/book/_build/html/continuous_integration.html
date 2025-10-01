@@ -175,33 +175,25 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -370,7 +362,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Automating code quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automate-tests-to-reduce-risk-of-errors">Automate tests to reduce risk of errors</a></li>
 </ul>
@@ -386,15 +377,10 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-github-actions-to-build-and-deploy-documentation">Configure GitHub actions to build and deploy documentation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gitlab-pipeline">Example GitLab Pipeline</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-automating-code-quality-assurance">Example of automating code quality assurance</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -513,7 +499,7 @@ The <code class="docutils literal notranslate"><span class="pre">YAML</span></co
 <span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">3.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.9</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.11</span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
 
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
 <span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
@@ -542,7 +528,7 @@ The <code class="docutils literal notranslate"><span class="pre">matrix</span></
 The workflow will be repeated for each combination of parameters supplied here - in this case 4 recent Python versions.</p>
 <p>The individual stages of the workflow are defined under <code class="docutils literal notranslate"><span class="pre">steps</span></code>.
 <code class="docutils literal notranslate"><span class="pre">steps</span></code> typically have an informative name and run code to perform an action.
-Here <code class="docutils literal notranslate"><span class="pre">uses:</span> <span class="pre">actions/checkout&#64;v3</span></code> references <a class="reference external" href="https://github.com/actions/checkout">existing code</a> that will retrieve the code from our repo.
+Here <code class="docutils literal notranslate"><span class="pre">uses:</span> <span class="pre">actions/checkout&#64;v4</span></code> references <a class="reference external" href="https://github.com/actions/checkout">existing code</a> that will retrieve the code from the repo.
 The subsequent <code class="docutils literal notranslate"><span class="pre">steps</span></code> will use this code.
 The next step provides us with a specific Python version, as specified in the <code class="docutils literal notranslate"><span class="pre">matrix</span></code>.
 Then dependencies/requirements are installed for the code and the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> module.
@@ -555,24 +541,20 @@ Finally, run <code class="docutils literal notranslate"><span class="pre">pytest
 One basic way of doing this is maintaining markdown files within a GitHub repository.
 However, multiple tools exist that can transform these markdown files into HTML content.
 A popular tool for building and deploying HTML documentation is Sphinx.</p>
-<p>The UK Gov Cookie Cutter package ‘govcookiecutter’ is an example of a repository that uses sphinx to build its documentation. (ref)</p>
+<p>The UK Gov Cookie Cutter package ‘govcookiecutter’ is an example of a repository that uses sphinx to build its documentation [1].</p>
 </section>
-</section>
-<section id="example-gitlab-pipeline">
-<h3>Example GitLab Pipeline<a class="headerlink" href="#example-gitlab-pipeline" title="Link to this heading">#</a></h3>
-<p>GitLab has an equivalent to GitHub Actions called GitLab Pipelines. (ref)
-The use cases for these are practically the same, with a change in syntax and file structure.</p>
 </section>
 <section id="example-of-automating-code-quality-assurance">
 <h3>Example of automating code quality assurance<a class="headerlink" href="#example-of-automating-code-quality-assurance" title="Link to this heading">#</a></h3>
-<p>For an example of continuous intregration, please refer to the RAP in Action material (link to RAP in Action training to be added) to see how this was implemented in a COVID-19 project.</p>
+<p>For an example of continuous integration, please refer to the RAP in Action material to see how this was implemented in a COVID-19 project.</p>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>GitHub. <em>best-practice-and-impact/govcookiecutter: govcookiecutter-deploy-documentation.yml</em> [Online]. GitHub. [Accessed 24 September 2025] Available from: <a class="github reference external" href="https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml">best-practice-and-impact/govcookiecutter</a></p></li>
+</ol>
+</details>
 </section>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
-<p>govcookiecutter  (<a class="github reference external" href="https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml">best-practice-and-impact/govcookiecutter</a>)</p>
-<p>Gitlab Pipelines (<a class="reference external" href="https://docs.gitlab.com/ee/ci/">https://docs.gitlab.com/ee/ci/</a>).</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -639,7 +621,6 @@ The use cases for these are practically the same, with a change in syntax and fi
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Automating code quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivation">Motivation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automate-tests-to-reduce-risk-of-errors">Automate tests to reduce risk of errors</a></li>
 </ul>
@@ -655,15 +636,10 @@ The use cases for these are practically the same, with a change in syntax and fi
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-github-actions-to-build-and-deploy-documentation">Configure GitHub actions to build and deploy documentation</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-gitlab-pipeline">Example GitLab Pipeline</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-automating-code-quality-assurance">Example of automating code quality assurance</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

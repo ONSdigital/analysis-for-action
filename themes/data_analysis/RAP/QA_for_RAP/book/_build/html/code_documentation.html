@@ -200,6 +200,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
 </ul>
 
     </div>
@@ -612,13 +613,13 @@ Hence the focus on detail and comprehensiveness is key - this is the first point
 </div>
 </div></div>
 <p>In this example, the function docstring starts with a brief description.
-It then lists the parameters that our function takes, along with the suggested type for each parameter and a brief description of what they control.
+It then lists the parameters that the function takes, along with the suggested type for each parameter and a brief description of what they control.
 It also tells us that the function will raise an error if the wrong type is provided for the first parameter.
 Note that the listed errors are the errors that are expected by the writer of the documentation,
 other unexpected issues can still occur if the function is not properly tested and will not be signposted in the docstring.
 Then there is a description of the object that is returned from the function, followed by an example of the functions use.
 Finally, it references a similar related function that might be of interest to the end-user.</p>
-<p>The R example uses a format called <a class="reference external" href="https://roxygen2.r-lib.org/">roxygen</a>.
+<p>The R example uses a format called roxygen [1].
 You should use roxygen formatting to write function documentation as part of R packages.
 If you are documenting functions that are not part of a package, you can use regular code comments.
 However, documenting functions using roxygen syntax is very helpful if you are planning on packaging the code in future and gives a clear and standard structure to your documentation.</p>
@@ -635,10 +636,10 @@ Good function or class level documentation is an essential habit to develop when
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Docstrings conventions and styles</strong></p>
-<p>The Python example above follows the numpydocs style and is a common sight when using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> python package.
-However, there are various other standards such as the Google style guides for docstrings
-as well as official docstring specification for Python.
-The R example uses the roxygen2 package and follows the tidyverse style guide.</p>
+<p>The Python example above follows the numpydocs style [2] and is a common sight when using the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> python package.
+However, there are various other standards such as the Google style guides for docstrings [3]
+as well as official docstring specification for Python [4].
+The R example uses the roxygen2 package and follows the tidyverse style guide [5].</p>
 <p>In general, the core idea behind style is <strong>consistency</strong>.
 Whatever alterations to these conventions you use,
 it is much more important to keep them up to date and consistent between your collaborators than the exact choice of a style guide.
@@ -699,7 +700,6 @@ You do not need to include module documentation if a file only contains one func
 </div></div>
 <p>These examples document a main analysis script.
 They include enough information that a user can get started, without repeating too much that should be documented elsewhere.</p>
-<!-- Do we want this section?? -->
 </section>
 </section>
 <section id="generate-documentation-automatically">
@@ -712,16 +712,16 @@ and turn them into more widely accessible hosted documentation.</p>
 <h3>Generate HTML documentation<a class="headerlink" href="#generate-html-documentation" title="Link to this heading">#</a></h3>
 <section id="python">
 <h4>Python<a class="headerlink" href="#python" title="Link to this heading">#</a></h4>
-<p>For Python, the Python package <a class="reference external" href="https://www.sphinx-doc.org/en/master/"><code class="docutils literal notranslate"><span class="pre">sphinx</span></code></a> is useful for generating HTML documentation.
+<p>For Python, the Python package <a class="reference external" href="https://www.sphinx-doc.org/en/master/"><code class="docutils literal notranslate"><span class="pre">sphinx</span></code></a> is useful for generating HTML documentation [6].
 Sphinx primarily uses the <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> markup language, which is similar to <code class="docutils literal notranslate"><span class="pre">markdown</span></code>.
 For those more familiar with <code class="docutils literal notranslate"><span class="pre">markdown</span></code> and in teams/environments where learning a new markup language is not a top priority,
-<code class="docutils literal notranslate"><span class="pre">sphinx</span></code> can be extended to also support <code class="docutils literal notranslate"><span class="pre">markdown</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">sphinx</span></code> can be extended to also support <code class="docutils literal notranslate"><span class="pre">markdown</span></code> [6].</p>
 </section>
 <section id="r">
 <h4>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h4>
-<p>For R projects, you might want to consider <a class="reference external" href="https://pkgdown.r-lib.org/"><code class="docutils literal notranslate"><span class="pre">pkgdown</span></code></a>.
+<p>For R projects, you might want to consider <a class="reference external" href="https://pkgdown.r-lib.org/"><code class="docutils literal notranslate"><span class="pre">pkgdown</span></code></a> [7].
 This package will create a HTML references section, containing your code documentation.
-It uses your project’s README file as a home page for the site and you can add additional content to the site in the form of <a class="reference external" href="https://r-pkgs.org/vignettes.html">vignettes</a>.</p>
+It uses your project’s README file as a home page for the site and you can add additional content to the site in the form of vignettes [8].</p>
 </section>
 </section>
 <section id="make-human-readable-documentation-easily-available-to-users">
@@ -736,7 +736,19 @@ In many cases, you may also be able to automatically update your hosted document
 <section id="ai-coding-assistants">
 <h3>AI coding assistants<a class="headerlink" href="#ai-coding-assistants" title="Link to this heading">#</a></h3>
 <p>You may have access to an AI coding assistant that you can ask to generate module and function documentation for you. AI assistants can be very effective and can save you a lot of time. If you use one, always check that the documentation it produces is correct, clear and concise and manage your expectation by providing well-defined, bounded requirements. Do not expect a coding assistant to document your entire application correctly with minimal intervention.</p>
-</section>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Wickham H, Danenberg P, Csárdi G. roxygen2 [online]. R-lib. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://roxygen2.r-lib.org/">https://roxygen2.r-lib.org/</a></p></li>
+<li><p>Numpydoc developers. NumPy/SciPy documentation style guide [online]. numpydoc. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">https://numpydoc.readthedocs.io/en/latest/format.html</a></p></li>
+<li><p>Google. Google R Style Guide [Online]. Google. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">https://google.github.io/styleguide/Rguide.html</a></p></li>
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>Wickham H. The Tidyverse Style Guide [Online]. Tidyverse. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></p></li>
+<li><p>Sphinx developers. Sphinx documentation [Online]. <a class="reference external" href="http://sphinx-doc.org">sphinx-doc.org</a>. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.sphinx-doc.org/en/master/">https://www.sphinx-doc.org/en/master/</a></p></li>
+<li><p>Wickham H, Csárdi G. pkgdown [Online]. R-lib. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://pkgdown.r-lib.org/">https://pkgdown.r-lib.org/</a></p></li>
+<li><p>Wickham H. Vignettes [Online]. In: R Packages. 2nd ed. <a class="reference external" href="http://r-pkgs.org">r-pkgs.org</a>. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://r-pkgs.org/vignettes.html">https://r-pkgs.org/vignettes.html</a></p></li>
+</ol>
+</details></section>
 </section>
 </section>
 

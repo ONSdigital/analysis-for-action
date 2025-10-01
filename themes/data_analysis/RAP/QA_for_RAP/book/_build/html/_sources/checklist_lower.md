@@ -190,16 +190,16 @@ To use this checklist in your project, you can either refer to the checklist abo
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
 
-2) Google. Google R Style Guide [Online]. Google [Accesed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+2) Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
 
-3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accesed September 24 2025]. Available from: https://style.tidyverse.org/
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
 
-4) Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accesed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0257/
+4) Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0257/
 
-5) Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accesed September 24 2025]. Available from: https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
+5) Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accessed September 24 2025]. Available from: https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
 
-6) pytest-dev. pytest documentation [Online]. pytest [Accesed September 24 2025]. Available from: https://docs.pytest.org/en/stable/
+6) pytest-dev. pytest documentation [Online]. pytest [Accessed September 24 2025]. Available from: https://docs.pytest.org/en/stable/
 
-7) Wickham H. testthat: Unit testing for R [Online]. R-lib [Accesed September 24 2025]. Available from: https://testthat.r-lib.org/
+7) Wickham H. testthat: Unit testing for R [Online]. R-lib [Accessed September 24 2025]. Available from: https://testthat.r-lib.org/
 
 </details>

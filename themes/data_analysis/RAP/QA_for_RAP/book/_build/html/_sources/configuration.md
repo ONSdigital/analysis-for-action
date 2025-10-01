@@ -123,7 +123,7 @@ utils::write.csv(prediction, output_path)
 
 ````
 
-Separating configuration from the rest of our code makes it easy to adjust parameters and apply them consistently throughout the analysis script.
+Separating configuration from the rest of your code makes it easy to adjust parameters and apply them consistently throughout the analysis script.
 Basic objects (like lists and dictionaries) can be used to group related parameters.
 These objects can then be referenced in the analysis section of the script.
 
@@ -135,9 +135,9 @@ You should include things that are dependent on the computer that you are using 
 
 ## Use separate configuration files
 
-The previous example one step further using independent configuration files.
-We simply take our collection of variables, containing parameters and options for our analysis, and move them to a separate file.
-These files can be written in the same language as your code or other simple languages, as we'll describe in the following subsections.
+The previous example can be taken one step further using independent configuration files.
+For this, the collection of variables, containing parameters and options for the analysis are moved to a separate file.
+These files can be written in the same language as your code or other simple languages, as described in the following subsections.
 
 Instead of defining parameters in your script, you can store them in a separate configuration file. This keeps your code focused on logic and makes it easier to switch between setups.
 
@@ -204,7 +204,7 @@ data <- read.csv(config$input_path)
 
 Configuration file formats like YAML and TOML are compact and human-readable.
 This makes them easy to interpret and update, even without knowledge of the underlying code used in the analysis.
-Reading these files in produces a single object containing all of the `key:value` pairs defined in our configuration file.
+Reading these files in produces a single object containing all of the `key:value` pairs defined in the configuration file.
 The configuration parameters can then be selected using their keys in the analysis.
 
 
@@ -262,7 +262,7 @@ To run the analysis with a different configuration, simply pass a new configurat
 
 ```{note}
 It is possible to pass configuration options directly as arguments in this way, instead of referencing a configuration file.
-However, you should use configuration files as they allow us to document which configuration has been used to produce our analysis outputs, for reproducibility.
+However, you should use configuration files as they allow you to document which configuration has been used to produce your analysis outputs, for reproducibility.
 ```
 
 

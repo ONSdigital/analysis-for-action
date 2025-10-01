@@ -200,6 +200,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
 </ul>
 
     </div>
@@ -407,9 +408,9 @@ This file can be any text type, including <code class="docutils literal notransl
 <section id="contributing-guidance">
 <h2>Contributing guidance<a class="headerlink" href="#contributing-guidance" title="Link to this heading">#</a></h2>
 <p>When collaborating, it is also useful to set out the standards used within your project.
-This might include particular packages required for certain tasks and guidance on the <a class="reference internal" href="readable_code.html#code-style"><span class="std std-ref">code style</span></a> used in the project.
+This might include particular packages required for certain tasks and guidance on the code style used in the project.
 Consider including a code of conduct if you plan to have contributors from outside your organisation.</p>
-<p>The following is an example of the CONTRIBUTING file from the <a class="reference external" href="https://github.com/best-practice-and-impact/gptables/blob/master/CONTRIBUTING.md">gptables package</a>:</p>
+<p>The following is an example of the CONTRIBUTING file from the <a class="reference external" href="https://github.com/best-practice-and-impact/gptables/blob/master/CONTRIBUTING.md">gptables package</a> [1]:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Markdown</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">HTML</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Contributing
 
@@ -551,7 +552,7 @@ Docstrings may contain examples applying individual functional units, while vign
 <p><a class="reference internal" href="code_documentation.html#docstrings"><span class="std std-ref">Docstrings</span></a> can be used to describe individual functional code elements.
 Vignettes demonstrate the intended use for these classes and functions in a realistic context.
 This shows users how different code elements interact and how they might use your code in their own program.</p>
-<p>Another good example is this vignette describing <a class="reference external" href="http://r-pkgs.had.co.nz/vignettes.html">how to design vignettes</a> in Rmarkdown.
+<p>Another good example is this vignette describing <a class="reference external" href="http://r-pkgs.had.co.nz/vignettes.html">how to design vignettes</a> in Rmarkdown [2].
 You can produce this type of documentation in any format, though Rmarkdown is particularly effectively at combining sections of code,
 code outputs, and descriptive text.</p>
 <p>You might also consider providing examples in an interactive notebook that users can run for themselves.</p>
@@ -570,7 +571,7 @@ While changes to the minor and patch numbers indicate changes that are either co
 <a class="reference internal image-reference" href="_images/semantic_versioning.png"><img alt="_images/semantic_versioning.png" src="_images/semantic_versioning.png" style="width: 70%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Semantic versioning</span><a class="headerlink" href="#semantic-versioning" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Semantic versioning [3]</span><a class="headerlink" href="#semantic-versioning" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>You’ll see this, or a similar version numbering, on packages that you install for Python and R.</p>
@@ -603,11 +604,10 @@ Your changelog can be in any format and should be associated with your code docu
 </section>
 <section id="copyright-and-licenses">
 <h2>Copyright and Licenses<a class="headerlink" href="#copyright-and-licenses" title="Link to this heading">#</a></h2>
-<p>Copyright indicates ownership of work.</p>
-<p>Licenses outline the conditions under which others may use, modify and/or redistribute your work.
+<p>Copyright indicates ownership of work. Licenses outline the conditions under which others may use, modify and/or redistribute your work.
 As such, including a license with code is important for users and other developers alike.</p>
-<p>Both copyright and license are usually placed in a LICENSE file in your project.
-The following example shows an example of an MIT LICENSE file that might be used on UK Government projects:</p>
+<p>Both copyright and license are usually placed in a LICENSE file in your project.</p>
+<p>For example, within the UK all materials created by civil servants, ministers, government departments and their agencies are covered by Crown copyright [4]. The following example shows an example of an MIT LICENSE file that might be used on UK Government projects:</p>
 <blockquote>
 <div><p>Copyright 2020, Crown copyright</p>
 <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”),
@@ -633,10 +633,18 @@ Government analyst should aim to make all new source code open, unless it is jus
 <p>While the public benefit from:</p>
 <ul class="simple">
 <li><p>Transparency - stakeholders can understand and reproduce your analysis.</p></li>
-<li><p>Sharing value - others can benefit from our work, either through reuse or demonstration of good practices.</p></li>
-<li><p>Sharing opportunity - others can gain insight and experience from reading and possibly contributing to  your code.</p></li>
+<li><p>Sharing value - others can benefit from your work, either through reuse or demonstration of good practices.</p></li>
+<li><p>Sharing opportunity - others can gain insight and experience from reading and possibly contributing to your code.</p></li>
 </ul>
-</section>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Office for National Statistics. Contributing to gptables [Online]. GitHub. [Accessed 24 September 2025]. Available from: <a class="github reference external" href="https://github.com/ONSdigital/gptables/blob/main/CONTRIBUTING.md">ONSdigital/gptables</a></p></li>
+<li><p>Wickham H. Vignettes [Online]. In: R Packages. 2nd ed. <a class="reference external" href="http://r-pkgs.org">r-pkgs.org</a>. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://r-pkgs.org/vignettes.html">https://r-pkgs.org/vignettes.html</a></p></li>
+<li><p>Preston-Werner T. Semantic Versioning 2.0.0 [Online]. <a class="reference external" href="http://semver.org">semver.org</a>. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://semver.org/">https://semver.org/</a></p></li>
+<li><p>The National Archives. Crown copyright [Online]. UK Government Licensing Framework. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/</a></p></li>
+</ol>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">

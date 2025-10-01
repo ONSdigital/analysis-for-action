@@ -18,7 +18,7 @@
 - Names used in the code are informative and concise.
 - Names used in the code are explicit, rather than implicit.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
+- Code follows a standard style, e.g. PEP8 for Python [1] or Google [2] and tidyverse for R [3].
 
 ### Project structure
 
@@ -31,8 +31,7 @@
 - Comments are kept up to date, so they do not confuse the reader.
 - Code is not commented out to adjust which lines of code run.
 - All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- Python code is documented using docstrings. R code is
- documented using `roxygen2` comments.
+- Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/) [4]. R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) [5].
 - Human-readable (preferably HTML) documentation is generated automatically from code documentation.
 - Documentation is hosted for easy access. GitHub Pages and Read the Docs provide a free service for hosting documentation publicly.
 
@@ -45,7 +44,7 @@
 - Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
 - Copyright and licenses are specified for both documentation and code.
 - Instructions for how to cite the project are given.
-- Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.
+- Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning [6].
 - A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.
 - Example usage of packages and underlying functionality is documented for developers and users.
 - Design certificates confirm that the design is compliant with requirements.
@@ -94,7 +93,7 @@
 
 ### Testing
 
-- Core functionality is unit tested as code. See `pytest` for Pythonand `testthat` for R.
+- Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) [7] and [`testthat` for R](https://testthat.r-lib.org/) [8].
 - Code based tests are run regularly and after every significant change to the code.
 - Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
 - Informal tests are recorded near to the code.
@@ -114,7 +113,8 @@
 - Where appropriate, code runs independently of the operating system (for example there is suitable management of file paths for different operating systems).
 - Dependencies are managed separately for users, developers, and testers.
 - There are as few dependencies as possible.
-- Package dependencies are managed using an environment manager such as virtualenv for Python or renv for R.
+- Package dependencies are managed using an environment manager such as [virtualenv for Python](https://virtualenv.pypa.io/en/latest/) [9]
+ or [renv for R](https://rstudio.github.io/renv/articles/renv.html) [10].
 - Docker containers or virtual machine builds are available for the code execution environment and these are version controlled.
 
 ### Logging
@@ -267,10 +267,27 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Quality assurance standards and processes for the project are defined. 
 ```
 
-# References 
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-pytest
-test that
-Google style guide
-PEP8 Style guide 
-Tidyverse style guide
+1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
+
+2) Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
+
+4) Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0257/
+
+5) Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accessed September 24 2025]. Available from: https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
+
+6) Preston-Werner T. Semantic Versioning 2.0.0 [Online]. semver.org [Accessed September 24 2025]. Available from: https://semver.org/
+
+7) pytest-dev. pytest documentation [Online]. pytest [Accessed September 24 2025]. Available from: https://docs.pytest.org/en/stable/
+
+8) Wickham H. testthat: Unit testing for R [Online]. R-lib [Accessed September 24 2025]. Available from: https://testthat.r-lib.org/
+
+9) virtualenv. Virtualenv documentation [Online]. Python Packaging Authority [Accessed September 24 2025] Available from: https://virtualenv.pypa.io/en/latest/
+
+10) Ushey K. renv: Project environments for R [Online]. RStudio [Accessed September 24 2025]. Available from: https://rstudio.github.io/renv/articles/renv.html
+
+</details>

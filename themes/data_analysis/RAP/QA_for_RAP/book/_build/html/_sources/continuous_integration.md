@@ -118,7 +118,7 @@ jobs:
         python-version: [3.8, 3.9, 3.10, 3.11]
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
@@ -149,7 +149,7 @@ The workflow will be repeated for each combination of parameters supplied here -
 
 The individual stages of the workflow are defined under `steps`.
 `steps` typically have an informative name and run code to perform an action.
-Here `uses: actions/checkout@v3` references [existing code](https://github.com/actions/checkout) that will retrieve the code from our repo.
+Here `uses: actions/checkout@v4` references [existing code](https://github.com/actions/checkout) that will retrieve the code from the repo.
 The subsequent `steps` will use this code.
 The next step provides us with a specific Python version, as specified in the `matrix`.
 Then dependencies/requirements are installed for the code and the `pytest` module.
@@ -164,19 +164,15 @@ One basic way of doing this is maintaining markdown files within a GitHub reposi
 However, multiple tools exist that can transform these markdown files into HTML content.
 A popular tool for building and deploying HTML documentation is Sphinx.
 
-The UK Gov Cookie Cutter package 'govcookiecutter' is an example of a repository that uses sphinx to build its documentation. (ref)
- 
-### Example GitLab Pipeline
-
-GitLab has an equivalent to GitHub Actions called GitLab Pipelines. (ref)
-The use cases for these are practically the same, with a change in syntax and file structure.
+The UK Gov Cookie Cutter package 'govcookiecutter' is an example of a repository that uses sphinx to build its documentation [1].
 
 ### Example of automating code quality assurance
 
-For an example of continuous intregration, please refer to the RAP in Action material (link to RAP in Action training to be added) to see how this was implemented in a COVID-19 project.
+For an example of continuous integration, please refer to the RAP in Action material to see how this was implemented in a COVID-19 project.
 
-# References
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-govcookiecutter  (https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml)
+1) GitHub. *best-practice-and-impact/govcookiecutter: govcookiecutter-deploy-documentation.yml* [Online]. GitHub. [Accessed 24 September 2025] Available from: https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml
 
-Gitlab Pipelines (https://docs.gitlab.com/ee/ci/).
+</details>

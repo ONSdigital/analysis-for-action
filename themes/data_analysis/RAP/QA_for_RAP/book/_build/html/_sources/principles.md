@@ -40,8 +40,11 @@ More recently, the tools and techniques available to analysts have evolved. Open
 Coupled with version control and software management platforms like Git and Git-services,
 these tools have made it possible to develop automatic, streamlined processes, accompanied by a full audit trail.
 
-RAP was [first piloted in the UK Government Statistical Service in 2017](Ref: RAP pilot). by analysts in the UK Department for Digital, Culture, Media and Sport (DCMS) and the Department for Education (DfE). They collaborated with data scientists from the UK Government Digital Service (GDS) to automate the production of statistical bulletins.
+RAP was first piloted in the UK Government Statistical Service in 2017 [1] by analysts in the UK Department for Digital, Culture, Media and Sport (DCMS) and the Department for Education (DfE). They collaborated with data scientists from the UK Government Digital Service (GDS) to automate the production of statistical bulletins.
 
-# References
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-RAP Pilot https://dataingovernment.blog.gov.uk/2017/03/27/reproducible-analytical-pipeline/)
+1) UK Government Analysis Function. Reproducible Analytical Pipeline [Online]. Data in Government Blog; 27 March 2017 [Accessed 24 September 2025]. Available from: https://dataingovernment.blog.gov.uk/2017/03/27/reproducible-analytical-pipeline/
+
+</details>

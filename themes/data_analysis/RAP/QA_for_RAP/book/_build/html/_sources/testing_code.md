@@ -1,8 +1,6 @@
 # Testing code
 
-Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected.  
-
-You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.  
+Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected. You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.  
 
 Testing brings strong benefits. It helps you assure your code quality and makes developing your code more efficient.
 Code that has not been tested is more likely to contain errors and need more maintenance in the future.
@@ -20,7 +18,7 @@ Take a risk-based approach to testing. You should use tests proportionately base
 When you are developing your tests, here are some points to think about:    
 
 1.  **You don't need to test everything**. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.
-2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While we can be confident that `round()` works as specified, does it produce what you need?
+2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While you can be confident that `round()` works as specified, does it produce what you need?
 3. **Use tests to validate your approach**. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.
 4. **Test based on risk**. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time. 
 
@@ -47,7 +45,6 @@ As an analyst, you routinely check that your analysis is carried out correctly.
 You might do this informally by running all or part of your analysis with example data or subsets of real data.
 
 While this builds confidence, these checks should be reproducible. As code changes, tests must be repeatable and produce consistent results, both for you and others.
-
 To ensure this, you can represent checks as code. This lets you or another analyst carry out the same verification again to get the same results. If a test is done manually, add a coded version so it can be rerun reliably.
 
 Code that you write for testing should also follow the good practices described earlier on in this resource, in particular [](readable_code).
@@ -252,8 +249,8 @@ For R, you need to specify the name of your package within the `testthat.R` file
 
 ## Structuring tests
 
-To maintain a consistency across modules you develop, you should follow PEP8 (Python)
-or Google / tidyverse (R) standards when structuring unit tests.
+To maintain a consistency across modules you develop, you should follow PEP8 (Python) [1]
+or Google / tidyverse (R) [2, 3] standards when structuring unit tests.
 
 For python this involves importing all needed functions at the beginning of the test file.
 To ensure you import the correct functions from your module,
@@ -261,7 +258,6 @@ it is recommended to install a local editable version into your virtual environm
 Run `pip install -e .` and any changes made to your
 module functions will also be updated in your python environment.
 Following this it is recommended to define fixtures, classes and then test functions.
-
 
 You should follow a similar structure in R, with all modules loaded in the beginning of a test script.
 Test contexts and then functions should be defined in turn.
@@ -337,154 +333,6 @@ When devising an integration or end-to-end testing it’s important to follow th
 - Document: Keep a record of tests, results, and issues found. This helps with future testing and understanding what changes might affect integration.
 
 
-
-
-## Isolate code tests from external systems
-<!-- Edit once confirmation from Alex, remove or match word doc -->
-Testing code that interacts with an external system can be particularly challenging when you can't guarantee
-that the system will provide you with the same response each time; this could include code querying a database or
-making API requests, for example.
-
-Best practice is to separate external system dependencies from your code tests as much as possible. This can mitigate against various risks, depending on your application:
-
-- Testing database interaction with a production database could result in damage to, or loss of, data.
-- Making real API calls when testing a function that handles requests could incur unintended monetary costs.
-
-Isolating code from external systems allows for tests to run without reliance on the real systems; for example, tests for a database interaction that can still run even if the database connection goes down.
-Writing tests in this way means that tests evaluate how your code handles an output or response, and not the system dependency itself.
-This is another benefit of enforcing isolation in unit tests - helping you understand when errors are coming from an external system, and when they're coming from your code.
-The unit of code being tested is referred to as the 'System Under Test' (SUT).
-
-One way of achieving this is with mocking. This is where a response from an outside system is replaced with a mock object that you can test your code against.
-In this example, there's a function making an API request in `src/handle_api_request.py`, and two test functions in `tests/test_handle_api_request.py`.
-The response from `requests.get()` is mocked with a `Mock()` object, to which `text` and `status_code` attributes are assigned.
-You can now evaluate the `get_response()` function for how it handles successful and unsuccessful requests; but thanks to the mocking, get requests are not made to `http://example.com`.
-
-```{code-block} python
-# AI has been used to produce content within this artefact.
-
-# src/handle_api_request.py
-import requests
-
-def get_response(url: str):
-    response = requests.get(url)
-    if response.status_code != 200:
-        raise(requests.HTTPError("Unsuccessful request"))
-
-    return response.text
-
-...
-
-# tests/test_handle_api_request.py
-from src.api_requests import get_response
-import requests
-import pytest
-from unittest import mock
-
-@mock.patch("requests.get")
-def test_get_response_success(mock_requests_get):
-    mock_response = mock.Mock()
-    mock_response.text = "Successful"
-    mock_response.status_code = 200
-
-    mock_requests_get.return_value = mock_response
-    
-    actual = get_response("http://example.com/good-request")
-    assert(actual == "Successful")
-
-@mock.patch("requests.get")
-def test_get_response_fail(mock_requests_get):
-    mock_response = mock.Mock()
-    mock_response.status_code = 400
-    mock_requests_get.return_value = mock_response
-    
-    with pytest.raises(requests.HTTPError):
-        actual = get_response("http://example.com/bad-request")
-
-```
-
-These tests pass successfully. However, if the mocking was implemented incorrectly and the real request executed, our tests may continue to pass depending on how the response was handled by our function. Better practice is to assert that the mock function was called - for example, with `mock_function.assert_called()` or `mock_function.assert_called_one_with(parameter)` - in order be assured of the tests working as expected. Additional stringency comes from matching warnings and error message strings with `pytest.raises()`.
-
-```{code-block} python
-# tests/test_handle_api_request.py
-from src.api_requests import get_response
-import requests
-import pytest
-from unittest import mock
-
-@mock.patch("requests.get")
-def test_get_response_success(mock_requests_get):
-    mock_response = mock.Mock()
-    mock_response.text = "Successful"
-    mock_response.status_code = 200
-
-    mock_requests_get.return_value = mock_response
-    
-    actual = get_response("http://example.com/good-request")
-    assert(actual == "Successful")
-
-    mock_requests_get.assert_called()
-    mock_requests_get.assert_called_once_with("http://example.com/good-request")
-
-
-@mock.patch("requests.get")
-def test_get_response_fail(mock_requests_get):
-    mock_response = mock.Mock()
-    mock_response.status_code = 400
-    mock_requests_get.return_value = mock_response
-    
-    with pytest.raises(requests.HTTPError, match="Unsuccessful request"):
-        get_response("http://example.com/bad-request")
-
-    mock_requests_get.assert_called()
-    mock_requests_get.assert_called_once_with("http://example.com/bad-request")
-
-```
-
-Consider using fixtures to make test code more concise by generating the necessary `Mock` object attributes dynamically. Use [`Mock.reset_mock()`](https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.reset_mock) to remove the attributes associated with a mock object between different test cases.
-
-```
-# tests/test_handle_api_request.py
-from src.api_requests import get_response
-import requests
-import pytest
-from unittest import mock
-
-@pytest.fixture(scope="function")
-def mock_response():
-    def _create_mock_response(url):
-        """factory function allows flexible return values when evaluated"""
-        mock_response = mock.Mock()
-        if url == "http://example.com/good-request":
-            mock_response.text = "Successful"
-            mock_response.status_code = 200
-        elif url == "http://example.com/bad-request":
-            mock_response.status_code = 400
-        return mock_response
-    return _create_mock_response
-
-
-@mock.patch("requests.get")
-def test_get_response_all_conditions(mock_requests_get, mock_response):
-
-    good_url = "http://example.com/good-request"
-    mock_requests_get.return_value = mock_response(good_url)
-    actual = get_response(good_url)
-    assert actual == "Successful"
-    mock_requests_get.assert_called_once_with(good_url)
-
-    mock_requests_get.reset_mock()
-
-    bad_url = "http://example.com/bad-request"
-    mock_requests_get.return_value = mock_response(bad_url)
-    with pytest.raises(requests.HTTPError, match="Unsuccessful request"):
-        get_response(bad_url)
-    mock_requests_get.assert_called_once_with(bad_url)
-
-```
-
-[Monkeypatching](https://docs.pytest.org/en/stable/how-to/monkeypatch.html#how-to-monkeypatch-mock-modules-and-environments) in `pytest` provides an alternative way of handling mock objects and attributes, and allows for the mocking of environment variables.
-
 ## Write tests to assure that bugs are fixed
 
 Each time you find a bug in your code, you should write a new test to assert that the code works correctly.
@@ -495,148 +343,64 @@ will continue to assure that bugs you have already fixed will not reappear.
 Doing this increases the coverage of your tests in a proportionate way.
 
 ## Write tests before writing logic
-<!-- Potentially remove -->
 
 The best practice for testing code is to use test-driven development (TDD).
 This is an iterative approach that involves writing tests before writing the logic to meet the tests.
 
-For a piece of analysis logic, you should know in advance what the desired outcome is.
-This might be from a user need (for example, someone needs output data in a certain shape) or an internal requirement (for example, you need to impute all missing values).
-Given that you know the expected outcome, you can write the test before you think about how you are going to write the solution.
+If you know the expected outcome—based on user needs or internal requirements—you can define the test first, before you think about how you are going to write the solution.
 
 TDD typically repeats three steps:
-1. Red - Write a test that we expect to fail.
+1. Red - Write a test that you expect to fail.
 2. Green - Write or update our code to pass the new test.
 3. Refactor - Make improvements to the quality of the code without changing the functionality.
 
-As with any code that is adequately covered by tests, code written using TDD can be safely refactored.
-You can be more confident that your tests will capture any changes that would unintentionally alter the way our code works.
+As with any code that is adequately covered by tests, code written using TDD can be safely refactored. You can be more confident that your tests will capture any changes that would unintentionally alter the way your code works.
 
-Repeat the above three steps to gradually increase the complexity of your code.
-The first test you write should focus on the minimum functionality.
-Then this minimal functionality is implemented, to do nothing more than the test requires.
-On the next iteration the test becomes more complex, as does the code logic.
-In each iteration the refactoring steps means that you manage the increasing complexity of the code.
+This iterative approach also helps manage complexity. You should start by writing tests with minimal functionality and gradually expanding both tests and logic.
 
-This approach provides many benefits beyond good test coverage.
-The iterative nature of TDD encourages you to follow a number of other good practices.
-These include keeping test data minimal and keeping functions or classes simple and focussed on doing one thing well.
-TDD requires practice but is proven to produce clean, robust and adaptable code.
+Beyond test coverage, TDD encourages best practices, including keeping test data minimal, writing simple functions and classes and developing focused code. Though it takes practice, it leads to clean, robust and adaptable code.
 
 
-## Modelling-relevant testing
 
-To ensure you conduct model-relevant tests within the analysis, it is important to use data that is representative of real-world scenarios and free from biases. Select diverse datasets that reflect the variety of conditions the model will encounter in practice. Additionally, it is important to regularly update test data to capture any changes in the environment or user behaviour.
+## Acceptance and Stress Testing in Reproducible Analytical Pipelines
+
+In the development of reproducible analytical pipelines, acceptance testing and stress testing can be useful to consider, to ensure reliability, usability, and robustness of pipelines.
 
 ### Acceptance testing
-Acceptance testing ensures that the model meets specified requirements and performs well in real-world scenarios. It verifies that the model's outputs align with business needs and user expectations. There are three types of acceptance testing:
+Acceptance testing verifies that the pipeline meets user, business, and operational requirements. It ensures that analytical outputs are accurate, relevant, and aligned with stakeholder expectations. There are three types of acceptance testing:
+* User Acceptance Testing (UAT) enables end-users to test the pipeline to ensure it meets their needs and provides accurate outputs.
+* Business Acceptance Testing (BAT) ensures the pipeline supports business processes and integrates smoothly with existing workflows.
+* Operational Acceptance Testing (OAT) checks that the pipeline is ready for deployment, including aspects like error handling, maintenance, and recovery.
 
-•	User Acceptance Testing (UAT): End-users test the system to ensure it meets their needs and provides accurate outputs. This involves real-world scenarios where users interact with the model and provide feedback on its performance.
-
-•	Business Acceptance Testing (BAT): Validates that the system meets business requirements and integrates well with existing workflows. This type of testing ensures that the model supports business processes and delivers value to the organization.
-
-•	Operational Acceptance Testing (OAT): Ensures the system is operationally ready, including backup, recovery, and maintenance. This involves testing the model's performance under different operational conditions to ensure it can handle various scenarios.
-
-
-### Defining and Using Appropriate Metrics
-
-Evaluating model performance using metrics is essential. Choose metrics that align with the specific goals of the project and provide meaningful insights into the performance of the model in this context.
-
-Use appropriate metrics to evaluate model performance. For example, precision and recall are well established measures for evaluating the performance of data linkage. The right metrics help assess the model's effectiveness in different scenarios.
-
-### Cross-Validation Techniques
-
-To ensure that the model generalises well to unseen data, you can use techniques like k-fold cross-validation. This method involves dividing the data into k subsets and training the model k times, each time using a different subset as the validation set and the remaining data as the training set. Cross-validation helps identify potential overfitting and ensures that the model performs consistently across different data subsets.
+These tests help validate that the pipeline is not only technically sound but also fit for purpose in real-world settings.
 
 ### Stress Testing
 
-Stress testing evaluates how the model performs under extreme conditions or with noisy data. This helps identify the model's robustness and ability to handle unexpected inputs. Stress testing involves introducing variations or noise into the input data and observing how this affects the model's outputs. This type of testing is useful for understanding the model's limits and ensuring it can handle real-world challenges.
+Stress testing evaluates the pipeline’s resilience under extreme or unexpected conditions—such as large datasets or noisy data.
 
-### Sensitivity Analysis
-
-Sensitivity analysis tests how sensitive the model's outputs are to changes in input data or parameters. This analysis helps understand the model's behaviour and identify potential weaknesses. Sensitivity analysis involves systematically varying the input data or model parameters and measuring the impact on the model's outputs. This helps in identifying critical factors that influence the model's performance and making necessary adjustments.
-
-### Model Interpretability
-
-Implementing methods to make the model's outputs interpretable is essential for building trust with stakeholders. Techniques like SHAP (SHapley Additive exPlanations) values or LIME (Local Interpretable Model-agnostic Explanations) can help explain the model's decisions. These methods provide insights into how different features contribute to the model's outputs, making it easier for analysts and stakeholders to understand and trust the model's outputs.
-
-### Model Optimisation
-
-Use optimisation to adjust the model's parameters to achieve the best overall performance. Continuous optimisation ensures that the model remains effective and efficient over time as inputs change. There are lots of techniques available to optimise performance; most are designed to help find the best parameters for the model to enhance its accuracy and efficiency.
-
-Examples of optimisation techniques for machine learning include grid search and parameter tuning. Grid search involves systematically searching through a predefined set of hyperparameters, while hyperparameter tuning adjusts the model's parameters to achieve the best possible performance.
+By simulating challenging scenarios, stress testing helps identify performance issues and ensures the pipeline can maintain integrity and produce reliable outputs even under pressure. Stress testing involves introducing variations or noise into the input data and observing how this affects the pipeline’s outputs, to ensure it can handle real-world challenges.
 
 ## Reduce repetition in test code (fixtures and parameterised tests)
-<!-- Do we need all of this?? Is it too high level -->
-Where possible, you should reduce repetition in your tests. Tests are code too, so you should still [make this code reusable](functions).
-As with functional code, test code is much easier to maintain when it is modular and reusable.
+Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is [modular and reusable. 
 
 ### Use fixtures to reduce repetition in test set up
 
-As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run.
-You can be more tolerant of repetition in test code.
-However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently.
+As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run. You can be more tolerant of repetition in test code. However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently. You can use fixtures to help avoid this form of repetition in tests. 
 
-You can use fixtures to help avoid this form of repetition in tests.
-A fixture allows you to define your test preparation and clean up as functions.
-You then use the fixture to carry out these steps consistently for each test that they are required for.
+A fixture allows you to define your test preparation and clean up as functions. You then use the fixture to carry out these steps consistently for each test that they are required for.
 
-In Class-based testing frameworks, these functions tend to be separated into `SetUp` and `TearDown` functions.
-These are set to run before and after each test, respectively.
+In Class-based testing frameworks, these functions tend to be separated into `SetUp` and `TearDown` functions. These are set to run before and after each test, respectively.
 
-Fixtures can be most useful when setting up a test object takes a large amount of time or resource.
-They can be designed to run for each test, once for a group of tests or once for the whole test suite.
+Fixtures can be scoped to run:
+* Per test (function)
+* Per group of tests
+* Once per session (session), useful for expensive setup like starting a Spark session.
 
-```{code-block} python
-import pytest
-from pyspark.sql import SparkSession
-
-@pytest.fixture(scope="session")
-def spark_session():
-    """Session-wide SparkSession to optimise testing PySpark functions."""
-    spark_session = SparkSession.builder.master("local[*]").getOrCreate()
-    yield spark_session
-    spark_session.stop()
-
-def test_my_function(spark_session):
-    ...
-
-def test_another_function(spark_session):
-    ...
-```
-
-This example shows a fixture named `spark_session` with a testing session scope.
-Starting a new spark session can take a few seconds, so creating a new session
-for each test function would significantly increase the time it takes to run all of the tests.
-With a session level scope, you call the function once for the whole testing session
-and share the resulting `SparkSession` object between your tests.
-Reusing the same `SparkSession` object is safe to do if none of our tests modify the object.
-
-```{code-block} python
-import pytest
-
-@pytest.fixture(scope="function")
-def database_connection():
-    database_connection = connect_to_test_database()
-    yield database_connection
-    database_connection.reset_to_default()
-
-def test_my_function(database_connection):
-    ...
-
-def test_another_function(database_connection):
-    ...
-```
-
-Fixtures can also be useful for undoing any effects that each test run might have on the global environment.
-For example, they can remove test data which has been written to a temporary file or database.
-The example above shows how you might use a fixture to reset a test database between each test.
-It uses a test function scope, so the fixture is run separately for each test function that uses it.
-The fixture performs a reset on the database after the database connection has been used by the test.
+Fixtures also help reset environments, such as cleaning up test databases or temporary files.
 
 For usage details see the documentation for packages that offer fixtures:
-* [Python `pytest` Fixture](https://docs.pytest.org/en/stable/fixture.html) documentation
-* [R `testthat` Fixture](https://testthat.r-lib.org/articles/test-fixtures.html) documentation
+* [Python `pytest` Fixture](https://docs.pytest.org/en/stable/fixture.html) documentation [4]
+* [R `testthat` Fixture](https://testthat.r-lib.org/articles/test-fixtures.html) documentation [5]
 
 ### Use parameterisation to reduce repetition in test logic
 
@@ -645,113 +409,34 @@ Parameterisation allows reduction of repetition in test code, in a similar way t
 Specify pairs of inputs and expected outputs, so your testing tool can repeat the same test for each scenario.
 
 Using parameterisation in a test framework is equivalent to using a for-loop to apply a test function over multiple inputs and expected outputs.
-Using functionality from test packages may provide improved running efficiency and more detailed reporting of test failures.
 
-In `pytest`, this can be achieved using the [Parametrize mark](https://docs.pytest.org/en/stable/parametrize.html).
+In `pytest`, this can be achieved using the [Parametrize mark](https://docs.pytest.org/en/stable/parametrize.html) [6].
 
 In R, the `patrick` package extends `testthat` to provide a
-[`with_parameters_test_that`](https://rdrr.io/cran/patrick/man/with_parameters_test_that.html) function to achieve this.
-
-### Define Source Code
-
-Take the below function for example, which can take 2 arguments.
-
-```{code-block} python
-def sum_two_nums(num1:int, num2:int) -> int:
-    """Sum two numbers. Numbers can be integer or float."""
-    return num1 + num2
-```
-
-### Simple Parameterisation
-
-It is simple to check multiple assertions for this simple function. In the most
-basic example, simply define a parameterised list of parameter values and
-expected outcomes.
-
-```{code-block} python
-import pytest
-
-@pytest.mark.parametrize("num_1s, expected_out", [(1, 2), (-1, 0), (0, 1)])
-def test_sum_two_nums_parameterise_arg_1(num_1s, expected_out):
-    assert sum_two_nums(num1=num_1s, num2=1) == expected_out
-
-```
-
-The parameter values and expected answers are referenced in the same way that you
-access pytest fixtures, covered earlier in this article. Running `pytest -v`
-reveals 3 tests are run, with the parameterised values printed to the console:
-
-```{code-block}
-
-collected 3 items                                                             
-
-foo.py::test_sum_two_nums_parameterise_arg_1[1-2] PASSED                  [ 33%]
-foo.py::test_sum_two_nums_parameterise_arg_1[-1-0] PASSED                 [ 66%]
-foo.py::test_sum_two_nums_parameterise_arg_1[0-1] PASSED                  [100%]
-
-============================= 3 passed in 0.00s ==============================
-
-```
-
-It would be trivial to repeat a similar parameterised test for `num_2` values.
-But how is it possible to make assertions when parameterising **both**
-arguments?
-
-### Stacked Parameterisation
-
-In order to test multiple values for `num1` and `num2`, a fixture should be
-defined that returns a dictionary of the expected values. For example:
-
-```{code-block} python
-
-@pytest.fixture
-def expected_answers() -> dict:
-    """A nested dictionary of expected answers for all combinations in 0:5.
-
-    First level key corresponds to `num1` and the second level key to `num2`.
-    The dictionary values are the expected answers. So that when we subset the
-    dictionary with parameterised values, we provide the expected values to
-    assert statements.
-
-    Returns
-    -------
-    dict
-        Dictionary of cases and their expected tuples.
-    """
-    expected= {
-        0: {0: 0, 1: 1, 2: 2, 3: 3, 4: 4,},
-        1: {0: 1, 1: 2, 2: 3, 3: 4, 4: 5,},
-        2: {0: 2, 1: 3, 2: 4, 3: 5, 4: 6,},
-        3: {0: 3, 1: 4, 2: 5, 3: 6, 4: 7,},
-        4: {0: 4, 1: 5, 2: 6, 3: 7, 4: 8,},
-    }
-    return expected
-
-```
-
-This fixture of expected answers can be served to a parameterised test and the
-returned dictionary can be accessed to provide the expected answer for
-parameter combinations. To parameterise both of the required arguments,
-the parameterise statements are simply stacked on top of each other:
-
-```{code-block} python
-
-@pytest.mark.parametrize("num1s", range(0,5))
-@pytest.mark.parametrize("num2s", range(0,5))
-def test_sum_two_nums_stacked_parameterise(num1s, num2s, expected_answers):
-    assert sum_two_nums(
-        num1=num1s, num2=num2s
-        ) == expected_answers[num1s][num2s]
-```
-
-Executing this test with `pytest -v` would show all combinations are tested.
+[`with_parameters_test_that`](https://rdrr.io/cran/patrick/man/with_parameters_test_that.html) function to achieve this [7].
 
 
 ## Lacking time? The risks to skipping tests
 In an ideal world, you would never skip testing code, ensuring the software is reliable
-and easily reproducible. However, in practice there are times when skipping tests may be necessary —
-perhaps due to tight deadlines, limited resources, or the need to quickly get a feature up
+and easily reproducible. However, in practice there are times when skipping tests may be necessary, such as due to tight deadlines, limited resources, or the need to quickly get a feature up
 and running. While this can save time in the moment, it’s important to be cautious, as
 skipping tests can lead to hidden problems that may become harder to fix later, particularly
 as the project grows. Whenever tests are set aside, it’s best to have a plan for going back to add
 them, to avoid risks to the stability and quality of the software.
+
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
+
+2) Google. Google R Style Guide [Online]. Google. [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse. [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
+
+4) pytest. Fixtures: explicit, modular, scalable [Online]. [Accessed September 24 2025]. Available from: https://docs.pytest.org/en/stable/explanation/fixtures.html
+
+5) testthat. Test fixtures [Online]. testthat.r-lib.org. [Accessed September 25 2025]. Available from: https://testthat.r-lib.org/articles/test-fixtures.html
+
+6) pytest. How to parametrize fixtures and test functions [Online]. pytest.org. [Accessed September 25 2025]. Available from: https://docs.pytest.org/en/stable/how-to/parametrize.html
+
+</details>

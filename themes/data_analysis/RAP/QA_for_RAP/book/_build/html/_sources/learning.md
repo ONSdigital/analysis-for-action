@@ -6,7 +6,7 @@ While a few resources are listed here, many more exist online, yet these may not
 However, exposure to a range of applied examples will still benefit your learning.
 You should compare and contrast your learning to the good practices outlined in the guidance.
 
-## Beginner to intemediate pathways
+## Beginner to intermediate pathways
 
 For training relating to the topics covered in this guidance, you can visit [Statistical Programming Pathways](https://datasciencecampus.github.io/statistical_programming_training_pathways/). This open source training was developed by the Data Science Campus at the UK Office for National Statistics and has three pathways from beginner to intermediate level for coders and programmers.
 

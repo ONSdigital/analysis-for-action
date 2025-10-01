@@ -175,36 +175,27 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary of terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
-
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -386,25 +377,16 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-different-parts-of-the-code-interact-correctly-using-integration-tests">Test that different parts of the code interact correctly using integration tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-the-analysis-runs-as-expected-using-end-to-end-tests">Test that the analysis runs as expected using end-to-end tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-integration-and-end-to-end-testing">Good practices for integration and end-to-end testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolate-code-tests-from-external-systems">Isolate code tests from external systems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-to-assure-that-bugs-are-fixed">Write tests to assure that bugs are fixed</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-before-writing-logic">Write tests before writing logic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-relevant-testing">Modelling-relevant testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines">Acceptance and Stress Testing in Reproducible Analytical Pipelines</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-testing">Acceptance testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-and-using-appropriate-metrics">Defining and Using Appropriate Metrics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-techniques">Cross-Validation Techniques</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-testing">Stress Testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-analysis">Sensitivity Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretability">Model Interpretability</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-optimisation">Model Optimisation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests">Reduce repetition in test code (fixtures and parameterised tests)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-fixtures-to-reduce-repetition-in-test-set-up">Use fixtures to reduce repetition in test set up</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-parameterisation-to-reduce-repetition-in-test-logic">Use parameterisation to reduce repetition in test logic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-source-code">Define Source Code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-parameterisation">Simple Parameterisation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacked-parameterisation">Stacked Parameterisation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lacking-time-the-risks-to-skipping-tests">Lacking time? The risks to skipping tests</a></li>
@@ -421,8 +403,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="testing-code">
 <h1>Testing code<a class="headerlink" href="#testing-code" title="Link to this heading">#</a></h1>
-<p>Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected.</p>
-<p>You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.</p>
+<p>Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected. You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.</p>
 <p>Testing brings strong benefits. It helps you assure your code quality and makes developing your code more efficient.
 Code that has not been tested is more likely to contain errors and need more maintenance in the future.</p>
 <section id="what-should-i-test">
@@ -434,7 +415,7 @@ Code that has not been tested is more likely to contain errors and need more mai
 <p>When you are developing your tests, here are some points to think about:</p>
 <ol class="arabic simple">
 <li><p><strong>You don’t need to test everything</strong>. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.</p></li>
-<li><p><strong>Check tool suitability</strong>. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R <code class="docutils literal notranslate"><span class="pre">round()</span></code> function intentionally behaves differently to the rounding function in Excel. While we can be confident that <code class="docutils literal notranslate"><span class="pre">round()</span></code> works as specified, does it produce what you need?</p></li>
+<li><p><strong>Check tool suitability</strong>. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R <code class="docutils literal notranslate"><span class="pre">round()</span></code> function intentionally behaves differently to the rounding function in Excel. While you can be confident that <code class="docutils literal notranslate"><span class="pre">round()</span></code> works as specified, does it produce what you need?</p></li>
 <li><p><strong>Use tests to validate your approach</strong>. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.</p></li>
 <li><p><strong>Test based on risk</strong>. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time.</p></li>
 </ol>
@@ -458,8 +439,8 @@ It is more difficult to test code that is not in a package and therefore follow 
 <h2>Write reproducible tests<a class="headerlink" href="#write-reproducible-tests" title="Link to this heading">#</a></h2>
 <p>As an analyst, you routinely check that your analysis is carried out correctly.
 You might do this informally by running all or part of your analysis with example data or subsets of real data.</p>
-<p>While this builds confidence, these checks should be reproducible. As code changes, tests must be repeatable and produce consistent results, both for you and others.</p>
-<p>To ensure this, you can represent checks as code. This lets you or another analyst carry out the same verification again to get the same results. If a test is done manually, add a coded version so it can be rerun reliably.</p>
+<p>While this builds confidence, these checks should be reproducible. As code changes, tests must be repeatable and produce consistent results, both for you and others.
+To ensure this, you can represent checks as code. This lets you or another analyst carry out the same verification again to get the same results. If a test is done manually, add a coded version so it can be rerun reliably.</p>
 <p>Code that you write for testing should also follow the good practices described earlier on in this resource, in particular <a class="reference internal" href="readable_code.html"><span class="doc std std-doc">Readable code</span></a>.</p>
 </section>
 <section id="write-repeatable-tests">
@@ -636,8 +617,8 @@ For R, you need to specify the name of your package within the <code class="docu
 </section>
 <section id="structuring-tests">
 <h2>Structuring tests<a class="headerlink" href="#structuring-tests" title="Link to this heading">#</a></h2>
-<p>To maintain a consistency across modules you develop, you should follow PEP8 (Python)
-or Google / tidyverse (R) standards when structuring unit tests.</p>
+<p>To maintain a consistency across modules you develop, you should follow PEP8 (Python) [1]
+or Google / tidyverse (R) [2, 3] standards when structuring unit tests.</p>
 <p>For python this involves importing all needed functions at the beginning of the test file.
 To ensure you import the correct functions from your module,
 it is recommended to install a local editable version into your virtual environment.
@@ -711,143 +692,6 @@ Integration tests that check very specific outcomes will need to be updated with
 <li><p>Document: Keep a record of tests, results, and issues found. This helps with future testing and understanding what changes might affect integration.</p></li>
 </ul>
 </section>
-<section id="isolate-code-tests-from-external-systems">
-<h2>Isolate code tests from external systems<a class="headerlink" href="#isolate-code-tests-from-external-systems" title="Link to this heading">#</a></h2>
-<!-- Edit once confirmation from Alex, remove or match word doc -->
-<p>Testing code that interacts with an external system can be particularly challenging when you can’t guarantee
-that the system will provide you with the same response each time; this could include code querying a database or
-making API requests, for example.</p>
-<p>Best practice is to separate external system dependencies from your code tests as much as possible. This can mitigate against various risks, depending on your application:</p>
-<ul class="simple">
-<li><p>Testing database interaction with a production database could result in damage to, or loss of, data.</p></li>
-<li><p>Making real API calls when testing a function that handles requests could incur unintended monetary costs.</p></li>
-</ul>
-<p>Isolating code from external systems allows for tests to run without reliance on the real systems; for example, tests for a database interaction that can still run even if the database connection goes down.
-Writing tests in this way means that tests evaluate how your code handles an output or response, and not the system dependency itself.
-This is another benefit of enforcing isolation in unit tests - helping you understand when errors are coming from an external system, and when they’re coming from your code.
-The unit of code being tested is referred to as the ‘System Under Test’ (SUT).</p>
-<p>One way of achieving this is with mocking. This is where a response from an outside system is replaced with a mock object that you can test your code against.
-In this example, there’s a function making an API request in <code class="docutils literal notranslate"><span class="pre">src/handle_api_request.py</span></code>, and two test functions in <code class="docutils literal notranslate"><span class="pre">tests/test_handle_api_request.py</span></code>.
-The response from <code class="docutils literal notranslate"><span class="pre">requests.get()</span></code> is mocked with a <code class="docutils literal notranslate"><span class="pre">Mock()</span></code> object, to which <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">status_code</span></code> attributes are assigned.
-You can now evaluate the <code class="docutils literal notranslate"><span class="pre">get_response()</span></code> function for how it handles successful and unsuccessful requests; but thanks to the mocking, get requests are not made to <code class="docutils literal notranslate"><span class="pre">http://example.com</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># AI has been used to produce content within this artefact.</span>
-
-<span class="c1"># src/handle_api_request.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">get_response</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-        <span class="k">raise</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">(</span><span class="s2">&quot;Unsuccessful request&quot;</span><span class="p">))</span>
-
-    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-
-<span class="o">...</span>
-
-<span class="c1"># tests/test_handle_api_request.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.api_requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_response</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">unittest</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock</span>
-
-<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_get_response_success</span><span class="p">(</span><span class="n">mock_requests_get</span><span class="p">):</span>
-    <span class="n">mock_response</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Successful&quot;</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
-
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span>
-    
-    <span class="n">actual</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;http://example.com/good-request&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">actual</span> <span class="o">==</span> <span class="s2">&quot;Successful&quot;</span><span class="p">)</span>
-
-<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_get_response_fail</span><span class="p">(</span><span class="n">mock_requests_get</span><span class="p">):</span>
-    <span class="n">mock_response</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">400</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span>
-    
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">):</span>
-        <span class="n">actual</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;http://example.com/bad-request&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>These tests pass successfully. However, if the mocking was implemented incorrectly and the real request executed, our tests may continue to pass depending on how the response was handled by our function. Better practice is to assert that the mock function was called - for example, with <code class="docutils literal notranslate"><span class="pre">mock_function.assert_called()</span></code> or <code class="docutils literal notranslate"><span class="pre">mock_function.assert_called_one_with(parameter)</span></code> - in order be assured of the tests working as expected. Additional stringency comes from matching warnings and error message strings with <code class="docutils literal notranslate"><span class="pre">pytest.raises()</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_handle_api_request.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.api_requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_response</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">unittest</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock</span>
-
-<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_get_response_success</span><span class="p">(</span><span class="n">mock_requests_get</span><span class="p">):</span>
-    <span class="n">mock_response</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Successful&quot;</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
-
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span>
-    
-    <span class="n">actual</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;http://example.com/good-request&quot;</span><span class="p">)</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">actual</span> <span class="o">==</span> <span class="s2">&quot;Successful&quot;</span><span class="p">)</span>
-
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called</span><span class="p">()</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s2">&quot;http://example.com/good-request&quot;</span><span class="p">)</span>
-
-
-<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_get_response_fail</span><span class="p">(</span><span class="n">mock_requests_get</span><span class="p">):</span>
-    <span class="n">mock_response</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-    <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">400</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span>
-    
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Unsuccessful request&quot;</span><span class="p">):</span>
-        <span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;http://example.com/bad-request&quot;</span><span class="p">)</span>
-
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called</span><span class="p">()</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="s2">&quot;http://example.com/bad-request&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Consider using fixtures to make test code more concise by generating the necessary <code class="docutils literal notranslate"><span class="pre">Mock</span></code> object attributes dynamically. Use <a class="reference external" href="https://docs.python.org/3/library/unittest.mock.html#unittest.mock.Mock.reset_mock"><code class="docutils literal notranslate"><span class="pre">Mock.reset_mock()</span></code></a> to remove the attributes associated with a mock object between different test cases.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_handle_api_request.py</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">src.api_requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_response</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">unittest</span><span class="w"> </span><span class="kn">import</span> <span class="n">mock</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">mock_response</span><span class="p">():</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_mock_response</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;factory function allows flexible return values when evaluated&quot;&quot;&quot;</span>
-        <span class="n">mock_response</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">url</span> <span class="o">==</span> <span class="s2">&quot;http://example.com/good-request&quot;</span><span class="p">:</span>
-            <span class="n">mock_response</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Successful&quot;</span>
-            <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
-        <span class="k">elif</span> <span class="n">url</span> <span class="o">==</span> <span class="s2">&quot;http://example.com/bad-request&quot;</span><span class="p">:</span>
-            <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">400</span>
-        <span class="k">return</span> <span class="n">mock_response</span>
-    <span class="k">return</span> <span class="n">_create_mock_response</span>
-
-
-<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_get_response_all_conditions</span><span class="p">(</span><span class="n">mock_requests_get</span><span class="p">,</span> <span class="n">mock_response</span><span class="p">):</span>
-
-    <span class="n">good_url</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/good-request&quot;</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span><span class="p">(</span><span class="n">good_url</span><span class="p">)</span>
-    <span class="n">actual</span> <span class="o">=</span> <span class="n">get_response</span><span class="p">(</span><span class="n">good_url</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">actual</span> <span class="o">==</span> <span class="s2">&quot;Successful&quot;</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">good_url</span><span class="p">)</span>
-
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">reset_mock</span><span class="p">()</span>
-
-    <span class="n">bad_url</span> <span class="o">=</span> <span class="s2">&quot;http://example.com/bad-request&quot;</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span><span class="p">(</span><span class="n">bad_url</span><span class="p">)</span>
-    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">HTTPError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Unsuccessful request&quot;</span><span class="p">):</span>
-        <span class="n">get_response</span><span class="p">(</span><span class="n">bad_url</span><span class="p">)</span>
-    <span class="n">mock_requests_get</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">bad_url</span><span class="p">)</span>
-
-</pre></div>
-</div>
-<p><a class="reference external" href="https://docs.pytest.org/en/stable/how-to/monkeypatch.html#how-to-monkeypatch-mock-modules-and-environments">Monkeypatching</a> in <code class="docutils literal notranslate"><span class="pre">pytest</span></code> provides an alternative way of handling mock objects and attributes, and allows for the mocking of environment variables.</p>
-</section>
 <section id="write-tests-to-assure-that-bugs-are-fixed">
 <h2>Write tests to assure that bugs are fixed<a class="headerlink" href="#write-tests-to-assure-that-bugs-are-fixed" title="Link to this heading">#</a></h2>
 <p>Each time you find a bug in your code, you should write a new test to assert that the code works correctly.
@@ -858,131 +702,57 @@ Doing this increases the coverage of your tests in a proportionate way.</p>
 </section>
 <section id="write-tests-before-writing-logic">
 <h2>Write tests before writing logic<a class="headerlink" href="#write-tests-before-writing-logic" title="Link to this heading">#</a></h2>
-<!-- Potentially remove -->
 <p>The best practice for testing code is to use test-driven development (TDD).
 This is an iterative approach that involves writing tests before writing the logic to meet the tests.</p>
-<p>For a piece of analysis logic, you should know in advance what the desired outcome is.
-This might be from a user need (for example, someone needs output data in a certain shape) or an internal requirement (for example, you need to impute all missing values).
-Given that you know the expected outcome, you can write the test before you think about how you are going to write the solution.</p>
+<p>If you know the expected outcome—based on user needs or internal requirements—you can define the test first, before you think about how you are going to write the solution.</p>
 <p>TDD typically repeats three steps:</p>
 <ol class="arabic simple">
-<li><p>Red - Write a test that we expect to fail.</p></li>
+<li><p>Red - Write a test that you expect to fail.</p></li>
 <li><p>Green - Write or update our code to pass the new test.</p></li>
 <li><p>Refactor - Make improvements to the quality of the code without changing the functionality.</p></li>
 </ol>
-<p>As with any code that is adequately covered by tests, code written using TDD can be safely refactored.
-You can be more confident that your tests will capture any changes that would unintentionally alter the way our code works.</p>
-<p>Repeat the above three steps to gradually increase the complexity of your code.
-The first test you write should focus on the minimum functionality.
-Then this minimal functionality is implemented, to do nothing more than the test requires.
-On the next iteration the test becomes more complex, as does the code logic.
-In each iteration the refactoring steps means that you manage the increasing complexity of the code.</p>
-<p>This approach provides many benefits beyond good test coverage.
-The iterative nature of TDD encourages you to follow a number of other good practices.
-These include keeping test data minimal and keeping functions or classes simple and focussed on doing one thing well.
-TDD requires practice but is proven to produce clean, robust and adaptable code.</p>
+<p>As with any code that is adequately covered by tests, code written using TDD can be safely refactored. You can be more confident that your tests will capture any changes that would unintentionally alter the way your code works.</p>
+<p>This iterative approach also helps manage complexity. You should start by writing tests with minimal functionality and gradually expanding both tests and logic.</p>
+<p>Beyond test coverage, TDD encourages best practices, including keeping test data minimal, writing simple functions and classes and developing focused code. Though it takes practice, it leads to clean, robust and adaptable code.</p>
 </section>
-<section id="modelling-relevant-testing">
-<h2>Modelling-relevant testing<a class="headerlink" href="#modelling-relevant-testing" title="Link to this heading">#</a></h2>
-<p>To ensure you conduct model-relevant tests within the analysis, it is important to use data that is representative of real-world scenarios and free from biases. Select diverse datasets that reflect the variety of conditions the model will encounter in practice. Additionally, it is important to regularly update test data to capture any changes in the environment or user behaviour.</p>
+<section id="acceptance-and-stress-testing-in-reproducible-analytical-pipelines">
+<h2>Acceptance and Stress Testing in Reproducible Analytical Pipelines<a class="headerlink" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines" title="Link to this heading">#</a></h2>
+<p>In the development of reproducible analytical pipelines, acceptance testing and stress testing can be useful to consider, to ensure reliability, usability, and robustness of pipelines.</p>
 <section id="acceptance-testing">
 <h3>Acceptance testing<a class="headerlink" href="#acceptance-testing" title="Link to this heading">#</a></h3>
-<p>Acceptance testing ensures that the model meets specified requirements and performs well in real-world scenarios. It verifies that the model’s outputs align with business needs and user expectations. There are three types of acceptance testing:</p>
-<p>•	User Acceptance Testing (UAT): End-users test the system to ensure it meets their needs and provides accurate outputs. This involves real-world scenarios where users interact with the model and provide feedback on its performance.</p>
-<p>•	Business Acceptance Testing (BAT): Validates that the system meets business requirements and integrates well with existing workflows. This type of testing ensures that the model supports business processes and delivers value to the organization.</p>
-<p>•	Operational Acceptance Testing (OAT): Ensures the system is operationally ready, including backup, recovery, and maintenance. This involves testing the model’s performance under different operational conditions to ensure it can handle various scenarios.</p>
-</section>
-<section id="defining-and-using-appropriate-metrics">
-<h3>Defining and Using Appropriate Metrics<a class="headerlink" href="#defining-and-using-appropriate-metrics" title="Link to this heading">#</a></h3>
-<p>Evaluating model performance using metrics is essential. Choose metrics that align with the specific goals of the project and provide meaningful insights into the performance of the model in this context.</p>
-<p>Use appropriate metrics to evaluate model performance. For example, precision and recall are well established measures for evaluating the performance of data linkage. The right metrics help assess the model’s effectiveness in different scenarios.</p>
-</section>
-<section id="cross-validation-techniques">
-<h3>Cross-Validation Techniques<a class="headerlink" href="#cross-validation-techniques" title="Link to this heading">#</a></h3>
-<p>To ensure that the model generalises well to unseen data, you can use techniques like k-fold cross-validation. This method involves dividing the data into k subsets and training the model k times, each time using a different subset as the validation set and the remaining data as the training set. Cross-validation helps identify potential overfitting and ensures that the model performs consistently across different data subsets.</p>
+<p>Acceptance testing verifies that the pipeline meets user, business, and operational requirements. It ensures that analytical outputs are accurate, relevant, and aligned with stakeholder expectations. There are three types of acceptance testing:</p>
+<ul class="simple">
+<li><p>User Acceptance Testing (UAT) enables end-users to test the pipeline to ensure it meets their needs and provides accurate outputs.</p></li>
+<li><p>Business Acceptance Testing (BAT) ensures the pipeline supports business processes and integrates smoothly with existing workflows.</p></li>
+<li><p>Operational Acceptance Testing (OAT) checks that the pipeline is ready for deployment, including aspects like error handling, maintenance, and recovery.</p></li>
+</ul>
+<p>These tests help validate that the pipeline is not only technically sound but also fit for purpose in real-world settings.</p>
 </section>
 <section id="stress-testing">
 <h3>Stress Testing<a class="headerlink" href="#stress-testing" title="Link to this heading">#</a></h3>
-<p>Stress testing evaluates how the model performs under extreme conditions or with noisy data. This helps identify the model’s robustness and ability to handle unexpected inputs. Stress testing involves introducing variations or noise into the input data and observing how this affects the model’s outputs. This type of testing is useful for understanding the model’s limits and ensuring it can handle real-world challenges.</p>
-</section>
-<section id="sensitivity-analysis">
-<h3>Sensitivity Analysis<a class="headerlink" href="#sensitivity-analysis" title="Link to this heading">#</a></h3>
-<p>Sensitivity analysis tests how sensitive the model’s outputs are to changes in input data or parameters. This analysis helps understand the model’s behaviour and identify potential weaknesses. Sensitivity analysis involves systematically varying the input data or model parameters and measuring the impact on the model’s outputs. This helps in identifying critical factors that influence the model’s performance and making necessary adjustments.</p>
-</section>
-<section id="model-interpretability">
-<h3>Model Interpretability<a class="headerlink" href="#model-interpretability" title="Link to this heading">#</a></h3>
-<p>Implementing methods to make the model’s outputs interpretable is essential for building trust with stakeholders. Techniques like SHAP (SHapley Additive exPlanations) values or LIME (Local Interpretable Model-agnostic Explanations) can help explain the model’s decisions. These methods provide insights into how different features contribute to the model’s outputs, making it easier for analysts and stakeholders to understand and trust the model’s outputs.</p>
-</section>
-<section id="model-optimisation">
-<h3>Model Optimisation<a class="headerlink" href="#model-optimisation" title="Link to this heading">#</a></h3>
-<p>Use optimisation to adjust the model’s parameters to achieve the best overall performance. Continuous optimisation ensures that the model remains effective and efficient over time as inputs change. There are lots of techniques available to optimise performance; most are designed to help find the best parameters for the model to enhance its accuracy and efficiency.</p>
-<p>Examples of optimisation techniques for machine learning include grid search and parameter tuning. Grid search involves systematically searching through a predefined set of hyperparameters, while hyperparameter tuning adjusts the model’s parameters to achieve the best possible performance.</p>
+<p>Stress testing evaluates the pipeline’s resilience under extreme or unexpected conditions—such as large datasets or noisy data.</p>
+<p>By simulating challenging scenarios, stress testing helps identify performance issues and ensures the pipeline can maintain integrity and produce reliable outputs even under pressure. Stress testing involves introducing variations or noise into the input data and observing how this affects the pipeline’s outputs, to ensure it can handle real-world challenges.</p>
 </section>
 </section>
 <section id="reduce-repetition-in-test-code-fixtures-and-parameterised-tests">
 <h2>Reduce repetition in test code (fixtures and parameterised tests)<a class="headerlink" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests" title="Link to this heading">#</a></h2>
-<!-- Do we need all of this?? Is it too high level -->
-<p>Where possible, you should reduce repetition in your tests. Tests are code too, so you should still <a class="reference internal" href="modular_code.html#functions"><span class="std std-ref">make this code reusable</span></a>.
-As with functional code, test code is much easier to maintain when it is modular and reusable.</p>
+<p>Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is [modular and reusable.</p>
 <section id="use-fixtures-to-reduce-repetition-in-test-set-up">
 <h3>Use fixtures to reduce repetition in test set up<a class="headerlink" href="#use-fixtures-to-reduce-repetition-in-test-set-up" title="Link to this heading">#</a></h3>
-<p>As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run.
-You can be more tolerant of repetition in test code.
-However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently.</p>
-<p>You can use fixtures to help avoid this form of repetition in tests.
-A fixture allows you to define your test preparation and clean up as functions.
-You then use the fixture to carry out these steps consistently for each test that they are required for.</p>
-<p>In Class-based testing frameworks, these functions tend to be separated into <code class="docutils literal notranslate"><span class="pre">SetUp</span></code> and <code class="docutils literal notranslate"><span class="pre">TearDown</span></code> functions.
-These are set to run before and after each test, respectively.</p>
-<p>Fixtures can be most useful when setting up a test object takes a large amount of time or resource.
-They can be designed to run for each test, once for a group of tests or once for the whole test suite.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyspark.sql</span><span class="w"> </span><span class="kn">import</span> <span class="n">SparkSession</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">spark_session</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Session-wide SparkSession to optimise testing PySpark functions.&quot;&quot;&quot;</span>
-    <span class="n">spark_session</span> <span class="o">=</span> <span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-    <span class="k">yield</span> <span class="n">spark_session</span>
-    <span class="n">spark_session</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_my_function</span><span class="p">(</span><span class="n">spark_session</span><span class="p">):</span>
-    <span class="o">...</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_another_function</span><span class="p">(</span><span class="n">spark_session</span><span class="p">):</span>
-    <span class="o">...</span>
-</pre></div>
-</div>
-<p>This example shows a fixture named <code class="docutils literal notranslate"><span class="pre">spark_session</span></code> with a testing session scope.
-Starting a new spark session can take a few seconds, so creating a new session
-for each test function would significantly increase the time it takes to run all of the tests.
-With a session level scope, you call the function once for the whole testing session
-and share the resulting <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code> object between your tests.
-Reusing the same <code class="docutils literal notranslate"><span class="pre">SparkSession</span></code> object is safe to do if none of our tests modify the object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">database_connection</span><span class="p">():</span>
-    <span class="n">database_connection</span> <span class="o">=</span> <span class="n">connect_to_test_database</span><span class="p">()</span>
-    <span class="k">yield</span> <span class="n">database_connection</span>
-    <span class="n">database_connection</span><span class="o">.</span><span class="n">reset_to_default</span><span class="p">()</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_my_function</span><span class="p">(</span><span class="n">database_connection</span><span class="p">):</span>
-    <span class="o">...</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_another_function</span><span class="p">(</span><span class="n">database_connection</span><span class="p">):</span>
-    <span class="o">...</span>
-</pre></div>
-</div>
-<p>Fixtures can also be useful for undoing any effects that each test run might have on the global environment.
-For example, they can remove test data which has been written to a temporary file or database.
-The example above shows how you might use a fixture to reset a test database between each test.
-It uses a test function scope, so the fixture is run separately for each test function that uses it.
-The fixture performs a reset on the database after the database connection has been used by the test.</p>
+<p>As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run. You can be more tolerant of repetition in test code. However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently. You can use fixtures to help avoid this form of repetition in tests.</p>
+<p>A fixture allows you to define your test preparation and clean up as functions. You then use the fixture to carry out these steps consistently for each test that they are required for.</p>
+<p>In Class-based testing frameworks, these functions tend to be separated into <code class="docutils literal notranslate"><span class="pre">SetUp</span></code> and <code class="docutils literal notranslate"><span class="pre">TearDown</span></code> functions. These are set to run before and after each test, respectively.</p>
+<p>Fixtures can be scoped to run:</p>
+<ul class="simple">
+<li><p>Per test (function)</p></li>
+<li><p>Per group of tests</p></li>
+<li><p>Once per session (session), useful for expensive setup like starting a Spark session.</p></li>
+</ul>
+<p>Fixtures also help reset environments, such as cleaning up test databases or temporary files.</p>
 <p>For usage details see the documentation for packages that offer fixtures:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">Python <code class="docutils literal notranslate"><span class="pre">pytest</span></code> Fixture</a> documentation</p></li>
-<li><p><a class="reference external" href="https://testthat.r-lib.org/articles/test-fixtures.html">R <code class="docutils literal notranslate"><span class="pre">testthat</span></code> Fixture</a> documentation</p></li>
+<li><p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">Python <code class="docutils literal notranslate"><span class="pre">pytest</span></code> Fixture</a> documentation [4]</p></li>
+<li><p><a class="reference external" href="https://testthat.r-lib.org/articles/test-fixtures.html">R <code class="docutils literal notranslate"><span class="pre">testthat</span></code> Fixture</a> documentation [5]</p></li>
 </ul>
 </section>
 <section id="use-parameterisation-to-reduce-repetition-in-test-logic">
@@ -990,102 +760,31 @@ The fixture performs a reset on the database after the database connection has b
 <p>Similar steps are often repeated when testing multiple combinations of inputs and outputs.
 Parameterisation allows reduction of repetition in test code, in a similar way to writing your logic in functions.
 Specify pairs of inputs and expected outputs, so your testing tool can repeat the same test for each scenario.</p>
-<p>Using parameterisation in a test framework is equivalent to using a for-loop to apply a test function over multiple inputs and expected outputs.
-Using functionality from test packages may provide improved running efficiency and more detailed reporting of test failures.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, this can be achieved using the <a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrize mark</a>.</p>
+<p>Using parameterisation in a test framework is equivalent to using a for-loop to apply a test function over multiple inputs and expected outputs.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, this can be achieved using the <a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrize mark</a> [6].</p>
 <p>In R, the <code class="docutils literal notranslate"><span class="pre">patrick</span></code> package extends <code class="docutils literal notranslate"><span class="pre">testthat</span></code> to provide a
-<a class="reference external" href="https://rdrr.io/cran/patrick/man/with_parameters_test_that.html"><code class="docutils literal notranslate"><span class="pre">with_parameters_test_that</span></code></a> function to achieve this.</p>
-</section>
-<section id="define-source-code">
-<h3>Define Source Code<a class="headerlink" href="#define-source-code" title="Link to this heading">#</a></h3>
-<p>Take the below function for example, which can take 2 arguments.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sum_two_nums</span><span class="p">(</span><span class="n">num1</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">num2</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sum two numbers. Numbers can be integer or float.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">num1</span> <span class="o">+</span> <span class="n">num2</span>
-</pre></div>
-</div>
-</section>
-<section id="simple-parameterisation">
-<h3>Simple Parameterisation<a class="headerlink" href="#simple-parameterisation" title="Link to this heading">#</a></h3>
-<p>It is simple to check multiple assertions for this simple function. In the most
-basic example, simply define a parameterised list of parameter values and
-expected outcomes.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;num_1s, expected_out&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_sum_two_nums_parameterise_arg_1</span><span class="p">(</span><span class="n">num_1s</span><span class="p">,</span> <span class="n">expected_out</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="n">sum_two_nums</span><span class="p">(</span><span class="n">num1</span><span class="o">=</span><span class="n">num_1s</span><span class="p">,</span> <span class="n">num2</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">expected_out</span>
-</pre></div>
-</div>
-<p>The parameter values and expected answers are referenced in the same way that you
-access pytest fixtures, covered earlier in this article. Running <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-v</span></code>
-reveals 3 tests are run, with the parameterised values printed to the console:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">collected</span> <span class="mi">3</span> <span class="n">items</span>                                                             
-
-<span class="n">foo</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_two_nums_parameterise_arg_1</span><span class="p">[</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="n">PASSED</span>                  <span class="p">[</span> <span class="mi">33</span><span class="o">%</span><span class="p">]</span>
-<span class="n">foo</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_two_nums_parameterise_arg_1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span><span class="p">]</span> <span class="n">PASSED</span>                 <span class="p">[</span> <span class="mi">66</span><span class="o">%</span><span class="p">]</span>
-<span class="n">foo</span><span class="o">.</span><span class="n">py</span><span class="p">::</span><span class="n">test_sum_two_nums_parameterise_arg_1</span><span class="p">[</span><span class="mi">0</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="n">PASSED</span>                  <span class="p">[</span><span class="mi">100</span><span class="o">%</span><span class="p">]</span>
-
-<span class="o">=============================</span> <span class="mi">3</span> <span class="n">passed</span> <span class="ow">in</span> <span class="mf">0.00</span><span class="n">s</span> <span class="o">==============================</span>
-</pre></div>
-</div>
-<p>It would be trivial to repeat a similar parameterised test for <code class="docutils literal notranslate"><span class="pre">num_2</span></code> values.
-But how is it possible to make assertions when parameterising <strong>both</strong>
-arguments?</p>
-</section>
-<section id="stacked-parameterisation">
-<h3>Stacked Parameterisation<a class="headerlink" href="#stacked-parameterisation" title="Link to this heading">#</a></h3>
-<p>In order to test multiple values for <code class="docutils literal notranslate"><span class="pre">num1</span></code> and <code class="docutils literal notranslate"><span class="pre">num2</span></code>, a fixture should be
-defined that returns a dictionary of the expected values. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">expected_answers</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A nested dictionary of expected answers for all combinations in 0:5.</span>
-
-<span class="sd">    First level key corresponds to `num1` and the second level key to `num2`.</span>
-<span class="sd">    The dictionary values are the expected answers. So that when we subset the</span>
-<span class="sd">    dictionary with parameterised values, we provide the expected values to</span>
-<span class="sd">    assert statements.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    dict</span>
-<span class="sd">        Dictionary of cases and their expected tuples.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">expected</span><span class="o">=</span> <span class="p">{</span>
-        <span class="mi">0</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">4</span><span class="p">,},</span>
-        <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">5</span><span class="p">,},</span>
-        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">6</span><span class="p">,},</span>
-        <span class="mi">3</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">7</span><span class="p">,},</span>
-        <span class="mi">4</span><span class="p">:</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">8</span><span class="p">,},</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">expected</span>
-</pre></div>
-</div>
-<p>This fixture of expected answers can be served to a parameterised test and the
-returned dictionary can be accessed to provide the expected answer for
-parameter combinations. To parameterise both of the required arguments,
-the parameterise statements are simply stacked on top of each other:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;num1s&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;num2s&quot;</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">test_sum_two_nums_stacked_parameterise</span><span class="p">(</span><span class="n">num1s</span><span class="p">,</span> <span class="n">num2s</span><span class="p">,</span> <span class="n">expected_answers</span><span class="p">):</span>
-    <span class="k">assert</span> <span class="n">sum_two_nums</span><span class="p">(</span>
-        <span class="n">num1</span><span class="o">=</span><span class="n">num1s</span><span class="p">,</span> <span class="n">num2</span><span class="o">=</span><span class="n">num2s</span>
-        <span class="p">)</span> <span class="o">==</span> <span class="n">expected_answers</span><span class="p">[</span><span class="n">num1s</span><span class="p">][</span><span class="n">num2s</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>Executing this test with <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">-v</span></code> would show all combinations are tested.</p>
+<a class="reference external" href="https://rdrr.io/cran/patrick/man/with_parameters_test_that.html"><code class="docutils literal notranslate"><span class="pre">with_parameters_test_that</span></code></a> function to achieve this [7].</p>
 </section>
 </section>
 <section id="lacking-time-the-risks-to-skipping-tests">
 <h2>Lacking time? The risks to skipping tests<a class="headerlink" href="#lacking-time-the-risks-to-skipping-tests" title="Link to this heading">#</a></h2>
 <p>In an ideal world, you would never skip testing code, ensuring the software is reliable
-and easily reproducible. However, in practice there are times when skipping tests may be necessary —
-perhaps due to tight deadlines, limited resources, or the need to quickly get a feature up
+and easily reproducible. However, in practice there are times when skipping tests may be necessary, such as due to tight deadlines, limited resources, or the need to quickly get a feature up
 and running. While this can save time in the moment, it’s important to be cautious, as
 skipping tests can lead to hidden problems that may become harder to fix later, particularly
 as the project grows. Whenever tests are set aside, it’s best to have a plan for going back to add
 them, to avoid risks to the stability and quality of the software.</p>
-</section>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>Google. Google R Style Guide [Online]. Google. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">https://google.github.io/styleguide/Rguide.html</a></p></li>
+<li><p>Wickham H. The Tidyverse Style Guide [Online]. Tidyverse. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></p></li>
+<li><p>pytest. Fixtures: explicit, modular, scalable [Online]. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://docs.pytest.org/en/stable/explanation/fixtures.html">https://docs.pytest.org/en/stable/explanation/fixtures.html</a></p></li>
+<li><p>testthat. Test fixtures [Online]. <a class="reference external" href="http://testthat.r-lib.org">testthat.r-lib.org</a>. [Accessed September 25 2025]. Available from: <a class="reference external" href="https://testthat.r-lib.org/articles/test-fixtures.html">https://testthat.r-lib.org/articles/test-fixtures.html</a></p></li>
+<li><p>pytest. How to parametrize fixtures and test functions [Online]. <a class="reference external" href="http://pytest.org">pytest.org</a>. [Accessed September 25 2025]. Available from: <a class="reference external" href="https://docs.pytest.org/en/stable/how-to/parametrize.html">https://docs.pytest.org/en/stable/how-to/parametrize.html</a></p></li>
+</ol>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1165,25 +864,16 @@ them, to avoid risks to the stability and quality of the software.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-different-parts-of-the-code-interact-correctly-using-integration-tests">Test that different parts of the code interact correctly using integration tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-the-analysis-runs-as-expected-using-end-to-end-tests">Test that the analysis runs as expected using end-to-end tests</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-integration-and-end-to-end-testing">Good practices for integration and end-to-end testing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolate-code-tests-from-external-systems">Isolate code tests from external systems</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-to-assure-that-bugs-are-fixed">Write tests to assure that bugs are fixed</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-before-writing-logic">Write tests before writing logic</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modelling-relevant-testing">Modelling-relevant testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines">Acceptance and Stress Testing in Reproducible Analytical Pipelines</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-testing">Acceptance testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-and-using-appropriate-metrics">Defining and Using Appropriate Metrics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation-techniques">Cross-Validation Techniques</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-testing">Stress Testing</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sensitivity-analysis">Sensitivity Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-interpretability">Model Interpretability</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-optimisation">Model Optimisation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests">Reduce repetition in test code (fixtures and parameterised tests)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-fixtures-to-reduce-repetition-in-test-set-up">Use fixtures to reduce repetition in test set up</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-parameterisation-to-reduce-repetition-in-test-logic">Use parameterisation to reduce repetition in test logic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-source-code">Define Source Code</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-parameterisation">Simple Parameterisation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stacked-parameterisation">Stacked Parameterisation</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lacking-time-the-risks-to-skipping-tests">Lacking time? The risks to skipping tests</a></li>

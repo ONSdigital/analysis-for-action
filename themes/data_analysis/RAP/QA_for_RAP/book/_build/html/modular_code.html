@@ -175,36 +175,27 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary of terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
-
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -400,7 +391,7 @@ document.write(`
 These have been tailored to support analytical workflows.</p>
 <div class="admonition-learning admonition">
 <p class="admonition-title">Pre-requisites</p>
-<p>You will get the most benefit from this section, if you understand and are comfortable with core programming concepts such as:</p>
+<p>You will get the most benefit from this chapter, if you understand and are comfortable with core programming concepts such as:</p>
 <ul class="simple">
 <li><p>storing information in variables</p></li>
 <li><p>using control flow, such as if-statements and for-loops.</p></li>
@@ -432,14 +423,13 @@ Regardless of the language, you can group your code into self-contained parts su
 <section id="write-re-usable-code-as-functions">
 <span id="functions"></span><h3>Write re-usable code as functions<a class="headerlink" href="#write-re-usable-code-as-functions" title="Link to this heading">#</a></h3>
 <p>In the early stages of analysis, it is common to copy and paste code to ‘make it work’. As the code matures, it is worth taking repetitive code and turning it into functions.
-Functions allow us to make a piece of logic reusable in a consistent and readable way, and also makes it easier for us to <a class="reference internal" href="testing_code.html"><span class="std std-doc">test our logic</span></a>.</p>
+Functions allow a piece of logic to be made reusable in a consistent and readable way, and also makes it easier to <a class="reference internal" href="testing_code.html"><span class="std std-doc">test logic</span></a>.</p>
 <p>When starting to write functions, you should consider what is the right level of complexity for a single function.
 A helpful starting point is to consider if the code containing the logic can be turned into a concise and readable function. Signs that the code is too complex to work as a single function are that the function is very long or you have to pass it lots of arguments to get it to work.
 If this is what you find, it is usually best to break the code into multiple smaller functions. You can
 then use these smaller functions to build up a larger high-level function that performs the group of actions that you need.
 Smaller functions also have the advantage that you might also be able to re-use them in other places in your code. For example, in other high-level functions that perform similar tasks.</p>
 <p>This approach helps you break complex logic down into small, understandable chunks that can be documented and tested more easily.</p>
-<!-- Possible example code here? -->
 <p>When writing functions, it is also important to consider how they interact with other parts of your code.
 As a general rule of thumb, your code should run in the same way if a call to your function was replaced by the value that it would have returned.
 This is called ‘referential transparency’.</p>
@@ -465,141 +455,48 @@ break down your code into smaller functions and build up your functionality with
 </section>
 <section id="group-data-and-methods-as-classes">
 <h3>Group data and methods as classes<a class="headerlink" href="#group-data-and-methods-as-classes" title="Link to this heading">#</a></h3>
-<p><strong>NOT COMPLETE</strong></p>
-<p>Classes are fundamental parts of <a class="reference internal" href="glossary.html#object-oriented-programming-oop"><span class="std std-ref">object-orientated programming (OOP)</span></a>.
-They create an association between data (attributes of the class) and logic (methods of the class).
-Classes can be useful when representing real objects in our code, as the examples below demonstrate.</p>
-<p>Although classes exist in R, writing custom classes is less common than it is in Python (and other OOP enabling languages).
-Because of this, the following sub-section will focus primarily on <strong>Python classes</strong>. If you are coding in R, you may wish to <a class="reference internal" href="#split-complex-code-into-multiple-scripts">move to the next section.</a></p>
-<p>With a more complex system, OOP can help to reduce complexity by hiding low-level details from users, such as an internal state.</p>
+<p>Classes are a core part of <a class="reference internal" href="glossary.html#object-oriented-programming-oop"><span class="std std-ref">object-orientated programming (OOP)</span></a>.
+They create an association between data (attributes of the class) and logic (methods of the class).</p>
+<p>Although classes exist in R, writing custom classes is less common than it is in Python (and other OOP enabling languages) [1].
+Because of this, the following sub-section will focus primarily on <strong>Python classes</strong>. If you are coding in R, you may wish to <a class="reference internal" href="#split-complex-code-into-multiple-scripts">move to the next section.</a>. Training on OOP can be found in the learning resources chapter.</p>
+<p><strong>Classes are not a requirement when developing RAPs.</strong> However, they can be useful to help make code more organised and maintainable in complex pipelines. For example, they can be useful when representing real-world objects in your code and simplifying complex systems by hiding low-level details from users, such as an internal state.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>An object’s ‘state’ is usually a set of variables that are particular to a given instance of a class.
 To illustrate, imagine a patient record that is represented by a <code class="docutils literal notranslate"><span class="pre">Record</span></code> class.
 You can have many instances of this class (many unique patient record), each defined by the following internal state:</p>
 <ul class="simple">
-<li><p>patient name</p></li>
-<li><p>patient number</p></li>
-<li><p>test result</p></li>
+<li><p>Indiviudal name</p></li>
+<li><p>Patient number</p></li>
+<li><p>Number of appointments</p></li>
 </ul>
 </div>
-<p>When writing classes consider marking such state as ‘private’, since the end user does not need to know all of the state associated with an object.
-This prevents users from accessing attributes directly, instead accessing them through class methods (functions defined with the class).</p>
+<p>When writing classes consider marking such states as ‘private’, since the end user does not need to know all the states associated with an object. This prevents users from accessing attributes directly, instead accessing them through class methods.</p>
 <div class="admonition-method-vs-function admonition">
 <p class="admonition-title">Method vs Function</p>
-<p>When talking about methods, we mean functions that are strictly ‘attached’ to a given class.
-The following example illustrates the difference between the two:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defining a class with a diagnose method</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A car class&quot;&quot;&quot;</span>
-    <span class="n">wheels</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">brand</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">brand</span> <span class="o">=</span> <span class="n">brand</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">diagnose</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="o">...</span>
-
-<span class="c1"># versus defining a standalone diagnosis function</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">diagnose</span><span class="p">(</span><span class="n">car</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A car diagnosis function&quot;&quot;&quot;</span>
-    <span class="o">...</span>
-
-
-<span class="c1"># Calling a method on a class instance that holds it&#39;s own state</span>
-<span class="n">cadillac</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">brand</span><span class="o">=</span><span class="s2">&quot;Cadillac&quot;</span><span class="p">)</span>
-<span class="n">cadillac</span><span class="o">.</span><span class="n">diagnose</span><span class="p">()</span>
-
-<span class="c1"># Calling a function by passing all relevant information explicitly</span>
-<span class="c1"># Note: for the sake of variety the information about the car is represented in a dictionary</span>
-<span class="n">diagnose</span><span class="p">({</span><span class="s2">&quot;brand&quot;</span><span class="p">:</span><span class="s2">&quot;Cadillac&quot;</span><span class="p">,</span> <span class="s2">&quot;wheels&quot;</span><span class="p">:</span><span class="mi">4</span><span class="p">})</span>
-</pre></div>
+<p>Methods in this context refer to functions that are strictly ‘attached’ to a given class.</p>
 </div>
-</div>
-<p>In some languages ‘private’ state can be used to prevent access to parts of your class.
-In Python <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html#private-variables">truly private instance variables do not exist</a>,
-so it is not possible to prevent access to any part of your class.
-The standard convention in Python is to prefix attribute names with a single underscore (<code class="docutils literal notranslate"><span class="pre">_my_class_attribute</span></code>)
-to indicate that users shouldn’t be concerned with these attributes.</p>
-<p>In addition to private attributes, you can use the same naming convention to indicate that a method is ‘private’ and should not be used by users.
-This can be useful when writing reusable low-level methods within an object, analogous to breaking a large function down into multiple smaller functions.
-These private methods can then be called by high-level methods that are exposed to users.</p>
+<p>In some languages ‘private’ state can be used to prevent access to parts of your class. In Python truly private instance variables do not exist [2], so it is not possible to prevent access to any part of your class. The standard convention in Python is to prefix attribute names with a single underscore (<code class="docutils literal notranslate"><span class="pre">_my_class_attribute</span></code>) to indicate that users shouldn’t be concerned with these attributes. You can also use the same naming convention to indicate that a method is ‘private’ and should not be used by users.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>In Python, the notion of ‘private’ does not mean secure.
 The main goal of private attributes and methods is to expose less unnecessary information to the anyone using your class in their code.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">HealthRecord</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">balance</span><span class="p">,</span> <span class="n">credentials</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_balance</span> <span class="o">=</span> <span class="n">balance</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_credentials</span> <span class="o">=</span> <span class="n">credentials</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_private_withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Private withdrawal helper method.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_balance</span> <span class="o">-=</span> <span class="n">amount</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credentials</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Private check helper method.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">credentials</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_credentials</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">withdraw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">credentials</span><span class="p">,</span> <span class="n">amount</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Public withdrawal method.&quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">_check_credentials</span><span class="p">(</span><span class="n">credentials</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_private_withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>When using classes in our code, we care more about what methods a class provides than what <code class="docutils literal notranslate"><span class="pre">type</span></code> it is defined as.
-This is known as ‘duck typing’; if a class has the same methods as another class, then you can use either class in your code.</p>
-<blockquote>
-<div><p>If it walks like a duck, and it quacks like a duck, then it must be a duck.</p>
-</div></blockquote>
-<p>Given the example above, if we created a class <code class="docutils literal notranslate"><span class="pre">LoyaltyAccount</span></code> with the same <code class="docutils literal notranslate"><span class="pre">withdraw</span></code> method for withdrawing points,
-we could feasible switch between using the <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> and <code class="docutils literal notranslate"><span class="pre">LoyaltyAccount</span></code> classes without affecting how our code runs.</p>
-<p>Object-Orientated Programming introduces the concept of inheritance - where a class can ‘inherit’ methods from another class in order to extend it.
-In this situation, a new class ‘subclasses’ the ‘superclass’ or ‘parent’ that it is inheriting from.
-When defining multiple classes with similar functionality, inheritance can be used to store the shared logic in a separate class type,
-which we can then extend by subclassing.
-For example, we might create an <code class="docutils literal notranslate"><span class="pre">Account</span></code> class to store a <code class="docutils literal notranslate"><span class="pre">balance</span></code> and the logic behind our <code class="docutils literal notranslate"><span class="pre">withdraw</span></code> method.
-Our <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> and <code class="docutils literal notranslate"><span class="pre">LoyaltyAccount</span></code> could then subclass <code class="docutils literal notranslate"><span class="pre">Account</span></code> to extend it with any additional logic that is specific to their account types.</p>
+<p>When using classes in code, the methods a class provides are more important than what type it is defined as. This is known as ‘duck typing’; if a class has the same methods as another class, then you can use either class in your code.</p>
+<p>Object-Orientated Programming introduces the concept of inheritance, where a class can ‘inherit’ methods from another class to extend it. In this situation, a new class ‘subclasses’ the ‘parent’ that it is inheriting from. When defining multiple classes with similar functionality, inheritance can be used to store the shared logic in a separate class type, which you can then extend by subclassing.</p>
+<p>You can apply this similarly to functions. If you were to increase the domain and range of a function, to account for new cases, then this function should observe the same interface as the previous function.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution</a> states that
-subclasses should not damage the functionality of their parent class in their implementation.
-They should extend their usefulness, but retain their original functionality.
-If our <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> class inherits from <code class="docutils literal notranslate"><span class="pre">Account</span></code> we should consider that ‘a <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> is an <code class="docutils literal notranslate"><span class="pre">Account</span></code>’.
-Liskov substitution strengthens this statement to ‘<code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> is interchangeable with an <code class="docutils literal notranslate"><span class="pre">Account</span></code>’;
-we can replace any <code class="docutils literal notranslate"><span class="pre">Account</span></code> with <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> without changing how our code runs.
-This is because <code class="docutils literal notranslate"><span class="pre">BankAccount</span></code> provides all of the same methods that an <code class="docutils literal notranslate"><span class="pre">Account</span></code> does.</p>
-<p>You can apply this similarly to functions.
-If you were to increase the domain and range of a function, to account for new cases, then this function should observe the same interface as the previous function.</p>
 <p>In short:</p>
 <ul class="simple">
 <li><p>You should be able to replace objects with instances of their subclasses, without altering the correctness of that program.</p></li>
 <li><p>You should be able to replace functions with similar functions that share the same interface.</p></li>
 </ul>
 </div>
-<p>However, we should be wary that inheritance locks our class in to the object that it inherits from.
-If the superclass changes, our class is forced to change with it.
-When using inheritance to reuse code from an unrelated class, ‘encapsulation’ may be more appropriate.
-For example, a <code class="docutils literal notranslate"><span class="pre">Car</span></code> class might want to use a method from an <code class="docutils literal notranslate"><span class="pre">Engine</span></code> class, but a car could not be substituted for an engine.
-It would not be suitable for <code class="docutils literal notranslate"><span class="pre">Car</span></code> to inherit from <code class="docutils literal notranslate"><span class="pre">Engine</span></code>.
-Therefore, you might keep a private instance of the <code class="docutils literal notranslate"><span class="pre">Engine</span></code> class you wish to re-use, and delegate the work down to it in the <code class="docutils literal notranslate"><span class="pre">Car</span></code> methods.
-Then, if you change your mind about using this <code class="docutils literal notranslate"><span class="pre">Engine</span></code> class in your <code class="docutils literal notranslate"><span class="pre">Car</span></code> class, you aren’t tied to it and can easily replace it.</p>
-<p id="interfaces">In OOP, an ‘interface’ can be defined to act as a blueprint or specification for writing classes.
-An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes.
-Perhaps we want to use classes to read and write data - this might require several different classes, with <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code> methods for different file formats.
-For example, one class could deal with storing data in a database, and another could store data in local <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files instead.
-In our code, we could switch which class is provided to downstream functions.
-Our functions don’t need to know if they are reading or writing from databases or <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files,
-however, they do require the <code class="docutils literal notranslate"><span class="pre">read</span></code> and <code class="docutils literal notranslate"><span class="pre">write</span></code> methods of the class to work in a standard way.
-An <code class="docutils literal notranslate"><span class="pre">interface</span></code> would help to define the standard for interacting with this group of classes.</p>
-<p>In Python, the <code class="docutils literal notranslate"><span class="pre">abc</span></code> module allows us to define <a class="reference external" href="https://docs.python.org/3/library/abc.html">‘abstract’ base classes and methods</a>
-to enforce that our classes provide the required methods.
-When a subclass does not implement the required abstract methods, instances of the class cannot be created.
-These abstract base classes achieve the same as interfaces in other object-based languages.
-We can illustrate this concept in the following example:</p>
+<p>However, note that inheritance locks your class into the object it inherits from. If the superclass changes, your class is forced to change with it.</p>
+<p>In OOP, an ‘interface’ can be defined to act as a blueprint or specification for writing classes. An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes.</p>
+<p>Perhaps you want to use classes to read and write data - this might require several different classes, with read and write methods for different file formats. For example, one class could deal with storing data in a database, and another could store data in local .csv files instead. In your code, you could switch which class is provided to downstream functions. Your functions don’t need to know if they are reading or writing from databases or .csv files, however, they do require the read and write methods of the class to work in a standard way. An interface would help to define the standard for interacting with this group of classes.</p>
+<p>In Python, the abc module allows you to define ‘abstract’ base classes and methods to enforce that your classes provide the required methods [3]. When a subclass does not implement the required abstract methods, instances of the class cannot be created. These abstract base classes achieve the same as interfaces in other object-based languages. This concept is illustrated in the following example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">FileHandler</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
@@ -635,58 +532,28 @@ We can illustrate this concept in the following example:</p>
        <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 </div>
-<p>When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), we can easily switch between them.
-A good real-world example of this can be seen in the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> package, where the different linear model types are represented by different classes.
-Each linear model class supports a common set of methods, e.g. <code class="docutils literal notranslate"><span class="pre">fit()</span></code> and <code class="docutils literal notranslate"><span class="pre">predict()</span></code>.
-As such, you can use any model in a pipeline and swap them out with minimal effort.
-Therefore, when thinking about how to break you code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.</p>
+<p>When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), you can easily switch between them.</p>
+<p>A good real-world example of this can be seen in the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> package, where the different linear model types are represented by different classes. Each linear model class supports a common set of methods, e.g. fit() and predict(). As such, you can use any model in a pipeline and swap them out with minimal effort. Therefore, when thinking about how to break you code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.</p>
 <div class="admonition note" id="class-responsibilities">
 <p class="admonition-title">Note</p>
-<p>A word of caution, when creating your own classes.
-It is easy to start to mapping nouns in system descriptions to classes, and any adjectives applied to the nouns as methods.
-For example: ‘the model loads the data’, which implies that <code class="docutils literal notranslate"><span class="pre">Model</span></code> is a class that should have a <code class="docutils literal notranslate"><span class="pre">load_data</span></code> method.
-This works well for small systems, but as the complexity of your code grows you might find that one of your classes gains the majority of the underlying logic.
-This often leads to one class with many methods, while other classes just store data with very few methods.
-We describe this as ‘Data Driven Design’.</p>
-<p>When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic.
-This class might become overly complex and hence difficult to maintain.
-Consequently, changes to requirements will cause this one class to change, which may affect other unrelated functionality in the class.</p>
-<p>For more complex analytical work, a better approach might be <a class="reference external" href="https://en.wikipedia.org/wiki/Responsibility-driven_design">Responsibility Driven Design</a>.
-Here, we write small classes with a focussed responsibility.
-This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of our code.
-However, be aware of the trade-off between the complexity of one large class versus many smaller classes.</p>
+<p>As the complexity of your code grows you might find that one of your classes takes on the majority of the underlying logic. When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic. This class might become overly complex and hence difficult to maintain.  This is known as ‘Data Driven Design’. For more complex analytical work, a better approach might be ‘Responsibility Driven Design’. Here, classes are smaller with more specific responsibilities. This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of your code. However, be aware of the trade-off between the complexity of one large class versus many smaller classes.</p>
 </div>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Responsibility-driven_design">Responsibility Driven Design</a> makes objects that are usually ‘passive’ become ‘active’.
-For example, with a banking system, an  object representing a bank account, and handling all money movements, might become overly complex.
-Instead, objects representing <code class="docutils literal notranslate"><span class="pre">Cheques</span></code> and <code class="docutils literal notranslate"><span class="pre">Cash</span></code> might be designed with payment methods.
-In this situation, a <code class="docutils literal notranslate"><span class="pre">Cheque</span></code> knows how much money it contains and how to pay itself into an account.
-A <code class="docutils literal notranslate"><span class="pre">Cheque</span></code>’s responsibility is to retrieve money from its associated account and pay itself in to another bank account.
-If we later needed to add new payment methods, the existing payment type classes (<code class="docutils literal notranslate"><span class="pre">Cheque</span></code> and <code class="docutils literal notranslate"><span class="pre">Cash</span></code>) will unlikely to be affected.
-The bank account’s responsibility is holding money, receiving it and paying it out.</p>
+<p>Responsibility Driven Design makes objects that are usually ‘passive’ become ‘active’.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Many <a class="reference external" href="https://en.wikipedia.org/wiki/Software_design_pattern">Design Patterns</a> are available with OOP.
+<p>Many Design Patterns are available with OOP.
 These are reusable solutions to common problems.</p>
 </div>
-<p>Finally, be wary when using classes to ‘chain’ methods together.
-For instance, if a ‘book’ has a ‘publisher’ and the publisher has an ‘address’, you could write <code class="docutils literal notranslate"><span class="pre">book.publisher().address().postcode()</span></code>.
-However, chains like this are fragile as they depend on multiple parts of the system not changing.
-The ‘Demeter’ research project found that this style of code produce a high proportion of bugs,
-resulting in the <a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_Demeter">Law of Demeter</a>: ‘Only talk to your immediate friends’.
-Namely, only access the objects you know about directly within a class.
-This reduces the opportunity for your code to be damaged by a change in your dependencies.
-There is a penalty for this - you replace with <code class="docutils literal notranslate"><span class="pre">book.publisherPostcode()</span></code> which internally would call <code class="docutils literal notranslate"><span class="pre">publisher.postcode()</span></code>,
-so we’ve added a method to <code class="docutils literal notranslate"><span class="pre">publisher</span></code> as well as <code class="docutils literal notranslate"><span class="pre">book</span></code>; we’re trading maintainability for complexity, so consider if it is worthwhile.</p>
 <p>To summarise:</p>
 <ul class="simple">
 <li><p>Classes hide implementation detail from users, enabling implementation to be changed without affecting users.</p></li>
-<li><p>You should look to use consistent methods in a group of related classes, so that you can switch between them without affecting the code using it.
-You should consider Python ‘duck typing’ or abstract classes and methods.</p></li>
-<li><p>You should avoid storing all logic in a single class. Instead, distribute logic based on responsibilities.</p></li>
+<li><p>You should look to use consistent methods in a group of related classes, so that you can switch between them without affecting the code using it. You should consider Python ‘duck typing’ or abstract classes and methods.</p></li>
+<li><p>You should avoid storing all logic in a single class. Instead, distribute logic between smaller classes based on specific responsibilities.</p></li>
 <li><p>Be aware of trading maintainability for complexity - one large class or too many classes can be hard to understand.</p></li>
 <li><p>You will find Design Patterns a useful toolbox as they have solutions to many common problems.</p></li>
 <li><p>You should opt for encapsulation over inheritance, especially with code reuse.</p></li>
 </ul>
+<p><strong>For more information on object-oriented programming, please see the learning resources.</strong></p>
 </section>
 <section id="split-complex-code-into-multiple-scripts">
 <h3>Split complex code into multiple scripts<a class="headerlink" href="#split-complex-code-into-multiple-scripts" title="Link to this heading">#</a></h3>
@@ -889,7 +756,14 @@ Here are a few suggestions to consider when refactoring code from notebooks:</p>
 The steps that you’ve taken to simplify your notebook code will make your code much easier to understand by readers.</p>
 <p>Keep in mind that other analysts can still run notebook files out of order, so they should not be used as the main method of actually generating outputs.
 Output generation should instead be trusted to scripts, where human decisions do not alter the order that code is run.</p>
-</section>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Wickham H. Object-oriented programming [Online]. In: Advanced R. 2nd ed. Tidyverse [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://adv-r.hadley.nz/oo.html">https://adv-r.hadley.nz/oo.html</a></p></li>
+<li><p>Python Software Foundation. Classes – Private variables [Online]. Python 3 Documentation [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://docs.python.org/3/tutorial/classes.html#private-variables">https://docs.python.org/3/tutorial/classes.html#private-variables</a></p></li>
+<li><p>Python Software Foundation. abc — Abstract Base Classes [Online]. Python 3 Documentation [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://docs.python.org/3/library/abc.html">https://docs.python.org/3/library/abc.html</a></p></li>
+</ol>
+</details></section>
 </section>
 </section>
 

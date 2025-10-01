@@ -175,33 +175,25 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -370,7 +362,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data management</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-storage">Data storage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spreadsheets">Spreadsheets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#databases">Databases</a></li>
@@ -382,10 +373,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-data">Version control data</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -433,7 +420,7 @@ Using spreadsheets to store data introduces problems like these:</p>
 </ul>
 </li>
 </ul>
-<p>Stories of spreadsheet errors have been reported globally across academia, healthcare, police force, government and private organisations (ref). This illustrates the risks associated with spreadsheet used, and how these problems are more common than you might think.</p>
+<p>Stories of spreadsheet errors have been reported globally across academia, healthcare, police force, government and private organisations [1]. This illustrates the risks associated with spreadsheet used, and how these problems are more common than you might think.</p>
 </section>
 <section id="databases">
 <h3>Databases<a class="headerlink" href="#databases" title="Link to this heading">#</a></h3>
@@ -523,11 +510,12 @@ Additionally, do not modify file versions after they have been used for analysis
 All modifications to the data should result in new versions.</p>
 <p>Finally, for this to be effective, your analysis should record the version of data you used to generate a specified set of outputs.
 You might document this in analysis reports or automatically logged by your code.</p>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
-<p><a class="reference external" href="https://eusprig.org/research-info/horror-stories/">spreadsheet related errors and their consequences</a></p>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>European Spreadsheet Risks Interest Group (EuSpRiG). Spreadsheet horror stories [Online]. EuSpRiG. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://eusprig.org/research-info/horror-stories/">https://eusprig.org/research-info/horror-stories/</a></p></li>
+</ol>
+</details></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -594,7 +582,6 @@ You might document this in analysis reports or automatically logged by your code
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Data management</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-storage">Data storage</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spreadsheets">Spreadsheets</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#databases">Databases</a></li>
@@ -606,10 +593,6 @@ You might document this in analysis reports or automatically logged by your code
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control-data">Version control data</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

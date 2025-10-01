@@ -9,10 +9,10 @@ It acts to assure that your analysis is fit for purpose.
 
 ```{epigraph}
 For analysis to be used to inform a decision it must be possible to assess its utility, reliability,
-and the degree of validation and verification to which it has been subjected. (Ref: Aqua Book)
+and the degree of validation and verification to which it has been subjected [1].
 ```
 
-Quality assurance should match the complexity and risk level of your analysis (Ref: Aqua book). This may involve internal and external peer review. External review is recommended for business-critical work, when using complex or novel methods, or when results can't be easily validated against other analyses.
+Quality assurance should match the complexity and risk level of your analysis [1]. This may involve internal and external peer review. External review is recommended for business-critical work, when using complex or novel methods, or when results can't be easily validated against other analyses.
 
 ## Focus reviews on code quality
 
@@ -178,7 +178,7 @@ Additionally, sharing knowledge of how the code works across the team prevents p
 
 Developers working in pairs can approve changes to code as it is written. However, you should still document key discussions from pair programming sessions to demonstrate which aspects of the code have been reviewed and discussed.
 
-```{admonition} The six keys steps to pair programming are:
+```{admonition} The six keys steps to pair programming are [2]:
 :class: admonition-note
 
 1. Prepare
@@ -200,8 +200,6 @@ Share feedback kindly, stay aware of each other’s comfort, and create space fo
 Accept that not everything will go smoothly. Reflect on issues and learn from them.
 
 ```
-(Ref: Pair Programming)
-
 
 ### Review separately when necessary
 
@@ -236,15 +234,15 @@ Separate review is aided by version control platforms' features. See [](version_
 #### Case study - rOpenSci review
 <!-- Replace with example of Peer review? -->
 
-The following case study discusses a review example from rOpenSci;
+The following discusses a review example from rOpenSci;
 a community led initiative that curates open source, statistical R packages.
 rOpenSci apply a rigorous peer review process to assure the quality of packages before including them in their collection.
 This peer review process is entirely remote and is performed in the open, via GitHub pull requests.
 
-In this example, the `fingertipsR` package is reviewed](https://github.com/ropensci/software-review/issues/168) by Public Health England.
+In this example, the [`fingertipsR` package is reviewed](https://github.com/ropensci/software-review/issues/168) [3] by Public Health England.
 The initial comment describes the package that is being submitted and includes a check against a list of minimum requirements.
 The `goodpractice` R package is used to check that good R packaging practices have been followed.
-Continuous integration is commonly used to carry out automated checks on code repositories.
+Continuous integration is commonly used to carry out automated checks on code repositories [4].
 The reports from these checks can save reviewers time, by providing indicators of things like code complexity and test coverage.
 
 Two external reviewers conduct reviews before the package is accepted - these reviews include checking common aspects of code packages,
@@ -259,14 +257,19 @@ And finally, a sign off confirmed that the reviewers are satisfied with the pack
 Although this review looked at an entire, mature package, you can apply parts of this review process to smaller pieces of code as required.
 
 ```{Note}
-More examples of peer review can be found in the RAP in Action materials. (Link to be added)
+More real world examples of peer review can be found in the RAP in Action materials.
 ```
 
 
-# References
-the `fingertipsR` package is reviewed](https://github.com/ropensci/software-review/issues/168) 
-[`goodpractice` R package](http://mangothecat.github.io/goodpractice/) 
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 
-[Continuous integration](https://www.atlassian.com/continuous-delivery/continuous-integration#:~:text=Continuous%20integration%20(CI)%20is%20the,builds%20and%20tests%20then%20run.)
+1) HM Treasury. The Aqua Book: guidance on producing quality analysis for government [Online]. GOV.UK. [Accessed 24 September 2025] Available from: https://www.gov.uk/guidance/the-aqua-book
 
-3) Pair programming (https://gds.blog.gov.uk/2018/02/06/how-to-pair-program-effectively-in-6-steps/).
+2) Government Digital Service (GDS). How to pair program effectively in 6 steps [Online]. GOV.UK; February 6 2018.[Accessed September 24 2025]. Available from: https://gds.blog.gov.uk/2018/02/06/how-to-pair-program-effectively-in-6-steps/
+
+3) GitHub. *ropensci/software-review: Issue #168 – Submission: fingertipsR* [Online]. GitHub. [Accessed 24 September 2025]. Available from: https://github.com/ropensci/software-review/issues/168
+
+4) Atlassian. Continuous integration [Online]. Atlassian. [Accessed 24 September 2025]. Available from: https://www.atlassian.com/continuous-delivery/continuous-integration#:~:text=Continuous%20integration%20(CI)%20is%20the,builds%20and%20tests%20then%20run.
+
+</details>

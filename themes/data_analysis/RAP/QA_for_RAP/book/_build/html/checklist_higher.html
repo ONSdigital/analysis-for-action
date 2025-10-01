@@ -173,36 +173,27 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary of terms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
-
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -371,7 +362,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Higher quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -390,10 +380,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -427,7 +413,7 @@ and still work as expected.</p></li>
 <li><p>Names used in the code are informative and concise.</p></li>
 <li><p>Names used in the code are explicit, rather than implicit.</p></li>
 <li><p>Code logic is clear and avoids unnecessary complexity.</p></li>
-<li><p>Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.</p></li>
+<li><p>Code follows a standard style, e.g. PEP8 for Python [1] or Google [2] and tidyverse for R [3].</p></li>
 </ul>
 </section>
 <section id="project-structure">
@@ -444,8 +430,7 @@ and still work as expected.</p></li>
 <li><p>Comments are kept up to date, so they do not confuse the reader.</p></li>
 <li><p>Code is not commented out to adjust which lines of code run.</p></li>
 <li><p>All functions and classes are documented to describe what they do, what inputs they take and what they return.</p></li>
-<li><p>Python code is documented using docstrings. R code is
-documented using <code class="docutils literal notranslate"><span class="pre">roxygen2</span></code> comments.</p></li>
+<li><p>Python code is <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">documented using docstrings</a> [4]. R code is <a class="reference external" href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">documented using <code class="docutils literal notranslate"><span class="pre">roxygen2</span></code> comments</a> [5].</p></li>
 <li><p>Human-readable (preferably HTML) documentation is generated automatically from code documentation.</p></li>
 <li><p>Documentation is hosted for easy access. GitHub Pages and Read the Docs provide a free service for hosting documentation publicly.</p></li>
 </ul>
@@ -460,7 +445,7 @@ documented using <code class="docutils literal notranslate"><span class="pre">ro
 <li><p>Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.</p></li>
 <li><p>Copyright and licenses are specified for both documentation and code.</p></li>
 <li><p>Instructions for how to cite the project are given.</p></li>
-<li><p>Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning.</p></li>
+<li><p>Releases of the project used for reports, publications, or other outputs are versioned using a standard pattern such as semantic versioning [6].</p></li>
 <li><p>A summary of changes to functionality are documented in a changelog following releases. The changelog is available to users.</p></li>
 <li><p>Example usage of packages and underlying functionality is documented for developers and users.</p></li>
 <li><p>Design certificates confirm that the design is compliant with requirements.</p></li>
@@ -519,7 +504,7 @@ Your analysis code is able to reproduce them at any time.</p></li>
 <section id="testing">
 <h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Core functionality is unit tested as code. See <code class="docutils literal notranslate"><span class="pre">pytest</span></code> for Pythonand <code class="docutils literal notranslate"><span class="pre">testthat</span></code> for R.</p></li>
+<li><p>Core functionality is unit tested as code. See <a class="reference external" href="https://docs.pytest.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">pytest</span></code> for Python</a> [7] and <a class="reference external" href="https://testthat.r-lib.org/"><code class="docutils literal notranslate"><span class="pre">testthat</span></code> for R</a> [8].</p></li>
 <li><p>Code based tests are run regularly and after every significant change to the code.</p></li>
 <li><p>Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.</p></li>
 <li><p>Informal tests are recorded near to the code.</p></li>
@@ -541,7 +526,8 @@ Your analysis code is able to reproduce them at any time.</p></li>
 <li><p>Where appropriate, code runs independently of the operating system (for example there is suitable management of file paths for different operating systems).</p></li>
 <li><p>Dependencies are managed separately for users, developers, and testers.</p></li>
 <li><p>There are as few dependencies as possible.</p></li>
-<li><p>Package dependencies are managed using an environment manager such as virtualenv for Python or renv for R.</p></li>
+<li><p>Package dependencies are managed using an environment manager such as <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">virtualenv for Python</a> [9]
+or <a class="reference external" href="https://rstudio.github.io/renv/articles/renv.html">renv for R</a> [10].</p></li>
 <li><p>Docker containers or virtual machine builds are available for the code execution environment and these are version controlled.</p></li>
 </ul>
 </section>
@@ -698,15 +684,22 @@ Your analysis code is able to reproduce them at any time.</p></li>
 <span class="k">- [ ]</span> Quality assurance standards and processes for the project are defined. 
 </pre></div>
 </div>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">https://google.github.io/styleguide/Rguide.html</a></p></li>
+<li><p>Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: <a class="reference external" href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></p></li>
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0257/">https://www.python.org/dev/peps/pep-0257/</a></p></li>
+<li><p>Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accessed September 24 2025]. Available from: <a class="reference external" href="https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html">https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html</a></p></li>
+<li><p>Preston-Werner T. Semantic Versioning 2.0.0 [Online]. <a class="reference external" href="http://semver.org">semver.org</a> [Accessed September 24 2025]. Available from: <a class="reference external" href="https://semver.org/">https://semver.org/</a></p></li>
+<li><p>pytest-dev. pytest documentation [Online]. pytest [Accessed September 24 2025]. Available from: <a class="reference external" href="https://docs.pytest.org/en/stable/">https://docs.pytest.org/en/stable/</a></p></li>
+<li><p>Wickham H. testthat: Unit testing for R [Online]. R-lib [Accessed September 24 2025]. Available from: <a class="reference external" href="https://testthat.r-lib.org/">https://testthat.r-lib.org/</a></p></li>
+<li><p>virtualenv. Virtualenv documentation [Online]. Python Packaging Authority [Accessed September 24 2025] Available from: <a class="reference external" href="https://virtualenv.pypa.io/en/latest/">https://virtualenv.pypa.io/en/latest/</a></p></li>
+<li><p>Ushey K. renv: Project environments for R [Online]. RStudio [Accessed September 24 2025]. Available from: <a class="reference external" href="https://rstudio.github.io/renv/articles/renv.html">https://rstudio.github.io/renv/articles/renv.html</a></p></li>
+</ol>
+</details>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
-<p>pytest
-test that
-Google style guide
-PEP8 Style guide
-Tidyverse style guide</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -773,7 +766,6 @@ Tidyverse style guide</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Higher quality assurance</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-assurance-checklist">Quality assurance checklist</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modular-code">Modular code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-coding-practices">Good coding practices</a></li>
@@ -792,10 +784,6 @@ Tidyverse style guide</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#template-checklist">Template checklist</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

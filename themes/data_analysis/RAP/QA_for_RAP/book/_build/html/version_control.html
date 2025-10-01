@@ -175,33 +175,25 @@
 <li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
-
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Version control</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
@@ -370,7 +362,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Version control</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-an-audit-trail-of-changes">Keep an audit trail of changes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#include-code-and-documentation-in-version-control">Include code and documentation in version control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-sensitive-information-from-version-control">Exclude sensitive information from version control</a></li>
@@ -398,10 +389,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -435,8 +422,8 @@ It’s important to be able to answer the following questions about your analysi
 Development decisions can be detailed alongside changes, using commit messages and Pull or Merge Requests.
 In turn, this keeps the analysis workspace clean of commented-out old code and numerous files containing previous versions.</p>
 <p>Effective use of version control helps to identify which changes have negatively impacted your work and remove them.
-Furthermore, a detailed audit trail allows us to refer to specific versions of our code that have been used to produce outputs,
-which is important for reproducing our analysis.</p>
+Furthermore, a detailed audit trail allows you to refer to specific versions of your code that have been used to produce outputs,
+which is important for reproducing your analysis.</p>
 <p>Git is invaluable when recording and combining changes from multiple developers, as merging allows us to resolve conflicts between overlapping changes.
 A remote Git repository maintains a single source of truth, even when multiple individuals are working on a project.
 Additionally, version control platforms, like GitHub and GitLab, can make it easier to track and review ongoing work.
@@ -473,7 +460,6 @@ This avoids duplication of effort and keeps review embedded in the development w
 <li><p>Data, except for small example datasets.</p></li>
 </ul>
 </div>
-<p>See <a class="reference internal" href="#excluding-from-git"><span class="std std-ref">Avoid committing sensitive information to Git repositories</span></a> for details on how to mitigate the risk of including sensitive information in a Git repository.</p>
 <p>It is again worth stressing the importance of not committing sensitive, unpublished, or disclosive data to your Git history.
 If you would like to include an example for end-users, a minimal dummy dataset can be committed to the repository.
 When creating realistic dummy data, care should be taken not to disclose sensitive features of the true data such as distributions and trends.
@@ -500,7 +486,7 @@ This specificity ensures that only intended changes are included, reducing the l
 (when they are not included in <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>).
 Using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> after adding changes can help to confirm that only the desired changes are included.</p>
 </div>
-<p>Most commit messages are short and informative, but in some cases you may want to provide more detail.
+<p>Most commit messages are short and informative, but in some cases you may want to provide more detail. [3]
 A concise summary of your change is usually sufficient,
 but remember that it is these commit messages that will be used in the future to understand what changes have been made to your project.
 You might rely on these to identify where an error has been introduced, so it is important that you write these messages clearly and informatively.</p>
@@ -559,7 +545,7 @@ You should aim to only merge onto a more stable branch when you don’t expect i
 Changes are initially quite experimental, but are refined over a few commits.
 Finally, the complete, working feature is merged back onto the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p>
 <p>Many small scale projects iteratively work on individual feature or development branches in this way.
-The <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow branching strategy</a> uses this approach in combination with <a class="reference internal" href="#pull-requests"><span class="std std-ref">Pull Requests</span></a>,
+The <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow branching strategy</a> uses this approach in combination with <a class="reference internal" href="#pull-requests"><span class="std std-ref">Pull Requests</span></a> [1],
 to incorporate peer review into the development workflow.</p>
 <figure class="align-default" id="git-develop">
 <a class="reference internal image-reference" href="_images/git_develop.png"><img alt="Iteratively creating and merging a develop branch from a main branch." src="_images/git_develop.png" style="width: 90%;" />
@@ -642,11 +628,11 @@ If this is difficult to do, it may be that your scripts need to be modularised o
 <section id="tag-new-releases">
 <h3>Tag new releases<a class="headerlink" href="#tag-new-releases" title="Link to this heading">#</a></h3>
 <p>Regularly <code class="docutils literal notranslate"><span class="pre">commit</span></code>ing changes using Git helps us to create a thorough audit trail of changes to your project.
-However, there may be discrete points in the history of the project that we want to mark for easier future reference.
+However, there may be discrete points in the history of the project that you want to mark for easier future reference.
 This is incredibly useful, as commit hashes like <code class="docutils literal notranslate"><span class="pre">121b5b4</span></code> serve as poor identifiers for human users.</p>
 <p>Git allows you to create “tags” to reference specific points in project’s history.
 These tags essentially act as an alias for a particular commit hash, so you can refer to it by an informative label.
-You might use tags to mark a particular model version in an analytical project or an important stage of our analysis.
+You might use tags to mark a particular model version in an analytical project or an important stage of your analysis.
 For example, you might tag code that has been used to generate a particular output so that it can easily be accessed to reproduce that output in future.
 If developing a package as part of your analysis, these tags are also commonly used to indicate new package versions.</p>
 <p>By default, tags will reference the current position in history (i.e., the latest commit or <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>).
@@ -841,7 +827,7 @@ In turn, developers in the community can then address these issues to improve th
 Collaborators might be tagged or assigned to the task where additional help is required.
 If your analysis code is widely useful, others that use your code may also suggest improvement and offer to contribute to the project via these issues.</p>
 <p><a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository">Setting issue templates</a>
-for your project can be an effective way of encouraging users and collaborators to use informative descriptions when creating issues.
+for your project can be an effective way of encouraging users and collaborators to use informative descriptions when creating issues [2].
 For example, a bug issue should include simple instructions to help maintainers reproduce the problem.
 Feature requests might include information on how the user expects the new feature to work and details what problem it will help them to overcome.</p>
 </section>
@@ -865,7 +851,7 @@ You’re able to view the list of individual commits that are included in the pu
 <a class="reference internal image-reference" href="_images/github_pr_changes.png"><img alt="The GitHub Pull Request web interface." src="_images/github_pr_changes.png" style="width: 90%;" />
 </a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Changes from <a class="reference external" href="https://github.com/ropensci/fingertipsR/pull/91/files">an example Pull Request on the <code class="docutils literal notranslate"><span class="pre">fingertipsR</span></code> package</a>.</span><a class="headerlink" href="#github-pr-changes" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Changes from <a class="reference external" href="https://github.com/ropensci/fingertipsR/pull/91/files">an example Pull Request on the <code class="docutils literal notranslate"><span class="pre">fingertipsR</span></code> package</a> [4].</span><a class="headerlink" href="#github-pr-changes" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>In the “Files changed” section of a PR (shown above), altered sections of files are shown before and after the changes were made, on the left and right respectively.
@@ -910,15 +896,17 @@ You should ensure that you synchronise your branch with any new changes before o
 <section id="use-github-actions-for-continous-integration">
 <h3>Use GitHub Actions for continous integration<a class="headerlink" href="#use-github-actions-for-continous-integration" title="Link to this heading">#</a></h3>
 <p>Continuous Integration is discussed in more detail in <a class="reference internal" href="continuous_integration.html"><span class="std std-doc">Automating code quality assurance</span></a>.</p>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h1>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
 <ol class="arabic simple">
-<li><p>Tim Pope. tbaggery - A Note About Git Commit Messages. <a class="reference external" href="http://Tbaggery.com">Tbaggery.com</a>. 2024. Available from: <a class="reference external" href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html</a> [Accessed 2 September 2025]</p></li>
-<li><p>The Aqua book (<a class="reference external" href="https://www.gov.uk/government/publications/the-aqua-book-guidance-on-producing-quality-analysis-for-government">https://www.gov.uk/government/publications/the-aqua-book-guidance-on-producing-quality-analysis-for-government</a></p></li>
+<li><p>GitHub. Understanding the GitHub flow [Online]. GitHub Guides. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://guides.github.com/introduction/flow/">https://guides.github.com/introduction/flow/</a></p></li>
+<li><p>GitHub Docs. Configuring issue templates for your repository [Online]. GitHub. [Accessed 24 September 2025].  Available from: <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository">https://docs.github.com/en/free-pro-team&#64;latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository</a></p></li>
+<li><p>Tim Pope. tbaggery - A Note About Git Commit Messages. <a class="reference external" href="http://Tbaggery.com">Tbaggery.com</a>; 2024. [Accessed 24 September 2025].  Available from: <a class="reference external" href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html</a></p></li>
+<li><p>GitHub. <em>ropensci/fingertipsR: Pull request #91 – Add indicator metadata to fingertips_data</em> [Online]. GitHub. [Accessed 24 September 2025]. Available from: <a class="github reference external" href="https://github.com/ropensci/fingertipsR/pull/91/files">ropensci/fingertipsR#files</a></p></li>
 </ol>
+</details>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -985,7 +973,6 @@ You should ensure that you synchronise your branch with any new changes before o
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Version control</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keep-an-audit-trail-of-changes">Keep an audit trail of changes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#include-code-and-documentation-in-version-control">Include code and documentation in version control</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exclude-sensitive-information-from-version-control">Exclude sensitive information from version control</a></li>
@@ -1013,10 +1000,6 @@ You should ensure that you synchronise your branch with any new changes before o
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

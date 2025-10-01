@@ -202,6 +202,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
 </ul>
 
     </div>
@@ -411,7 +412,7 @@ You should also be familiar with core programming concepts such as:</p>
 <li><p>storing information in variables.</p></li>
 <li><p>using control flow, such as if-statements and for-loops.</p></li>
 </ul>
-<p>You can find links to relevant training in the <a class="reference internal" href="learning.html"><span class="std std-doc">Learning resources</span></a> section of the book.</p>
+<p>You can find links to relevant training in the <a class="reference internal" href="learning.html"><span class="std std-doc">Learning resources</span></a> section of this guidance.</p>
 </div>
 <section id="motivation">
 <h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
@@ -419,7 +420,7 @@ You should also be familiar with core programming concepts such as:</p>
 <div><p>Code is read more often than it is written.</p>
 <p class="attribution">—Guido van Rossum (creator of Python)</p>
 </div></blockquote>
-<p>When writing code, we should expect that at some point someone else will need to understand, use, and adapt it.
+<p>When writing code, you should expect that at some point someone else will need to understand, use, and adapt it.
 That someone might be you in six months time!
 As such, it is important to empathise with these potential users and write code that is tidy, understandable, and does not add unnecessary complexity.
 Doing this will make for a ‘self-documenting’ codebase that does not need as much additional documentation.</p>
@@ -536,7 +537,7 @@ However, unless the suffix itself is meaningful within the context of the rest o
 </pre></div>
 </div>
 </div></div>
-<p>Here we can infer what these lists and vectors contain, but it is not apparent what makes <code class="docutils literal notranslate"><span class="pre">letters_1</span></code> different to <code class="docutils literal notranslate"><span class="pre">letters_2</span></code>.</p>
+<p>Here you can infer what these lists and vectors contain, but it is not apparent what makes <code class="docutils literal notranslate"><span class="pre">letters_1</span></code> different to <code class="docutils literal notranslate"><span class="pre">letters_2</span></code>.</p>
 <p>Variable names can be used to document differences between variables, or to incrementally describe changes made to a variable.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-3-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">letters_first_three</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
@@ -554,7 +555,7 @@ However, unless the suffix itself is meaningful within the context of the rest o
 </div></div>
 <p>Here the naming convention indicates that both lists are similar, but also describes the differences between them.
 It is also clear how the third, new list relates to the first list that was used to create it.</p>
-<p>With more informative names, we obviously lose the brevity of variable names:</p>
+<p>With more informative names, you obviously lose the brevity of variable names:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>letters_first_three_reversed_plus_t_minus_a_converted_to_greek
 </pre></div>
 </div>
@@ -681,13 +682,13 @@ The purpose of these style guides is to increase consistency across the programm
 <li><p>provide other useful guidance regarding formatting.</p></li>
 </ul>
 <p>The existence of such style guides does not necessarily mean that each individual or team will apply these conventions to the letter.
-These guides are more useful as starting points in a discussion on ‘how should our team be consistent internally in the way we write code?’.</p>
+These guides are more useful as starting points in a discussion on ‘how should your team be consistent internally in the way you write code?’.</p>
 <p>The core idea around these guides is that individual teams have to either adopt them or adapt them for use while writing code.
 The goals are readability and consistency.</p>
 <div class="admonition-common-style-guides admonition">
 <p class="admonition-title">Common Style Guides</p>
-<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a> is an official Python style guide, which is widely used.
-The <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">Google</a> and <a class="reference external" href="https://style.tidyverse.org/">tidyverse</a> style guides are commonly used for R.</p>
+<p>PEP8 is an official Python style guide [1], which is widely used.
+The Google [2] and tidyverse style guides are commonly used for R [3].</p>
 </div>
 <section id="write-code-that-other-programmers-will-find-easy-to-read">
 <h4>Write code that other programmers will find easy to read<a class="headerlink" href="#write-code-that-other-programmers-will-find-easy-to-read" title="Link to this heading">#</a></h4>
@@ -748,7 +749,7 @@ either by providing suggestions as the code is written or by reformatting your c
 </section>
 <section id="software-ideas-for-analysts">
 <span id="id2"></span><h2>Software ideas for analysts<a class="headerlink" href="#software-ideas-for-analysts" title="Link to this heading">#</a></h2>
-<p>It’s important to remember that when we write code for analysis, we are developing software.
+<p>It’s important to remember that when you write code for analysis, you are developing software.
 Over many years, software engineering teams have developed good practices for creating robust software.
 These practices help to make code simple, readable, and easier to maintain.
 Analysts using code as a means to perform analysis can benefit from at least partially applying such practices in their own codebases.</p>
@@ -977,7 +978,7 @@ For example, in Python <code class="docutils literal notranslate"><span class="p
 In Python and R, <code class="docutils literal notranslate"><span class="pre">0</span></code> will also evaluate to <code class="docutils literal notranslate"><span class="pre">False</span></code>.
 Therefore, it is unclear whether the programmer intended that the statement is printed when the count is 0.
 If a count of 0 should be printed, then this lack of specificity has created a bug.</p>
-<p>To perform the same decision explicitly, we should specify the exact condition under which the student count should be printed.</p>
+<p>To perform the same decision explicitly, you should specify the exact condition under which the student count should be printed.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-13-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-13-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">student_count</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -996,7 +997,7 @@ If a count of 0 should be printed, then this lack of specificity has created a b
 </div>
 </div></div>
 <p>Now the count is printed if it is more than or equal to 0.
-It’s clear that we intend for this to be the case.</p>
+It’s clear this is the intended case.</p>
 </section>
 <section id="separate-responsibilities">
 <h3>Separate responsibilities<a class="headerlink" href="#separate-responsibilities" title="Link to this heading">#</a></h3>
@@ -1032,12 +1033,12 @@ Within each section of your software, distinct functions or classes should be re
 <h3>Make functions open to extension, but closed for modification<a class="headerlink" href="#make-functions-open-to-extension-but-closed-for-modification" title="Link to this heading">#</a></h3>
 <p>This means that it should be possible to extend the functionality of classes or functions, without modifying their source code or how they work.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-14-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-14-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-14-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># some function that we want to keep closed for modification</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-14-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-14-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-14-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-14-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># some function that you want to keep closed for modification</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">core_method</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">return</span> <span class="n">result</span>
 
-<span class="c1"># if we want to extend a function without modifying it, we can always do the following</span>
+<span class="c1"># if you want to extend a function without modifying it, you can always do the following</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">extended_functionality</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
      <span class="o">...</span>
      <span class="k">return</span> <span class="n">extended_result</span>
@@ -1047,13 +1048,13 @@ Within each section of your software, distinct functions or classes should be re
      <span class="k">return</span> <span class="n">extended_functionality</span><span class="p">(</span><span class="n">core_results</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-14-Ug==" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-14-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># some function that we want to keep closed for modification</span>
+</div><div aria-labelledby="tab-14-Ug==" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-14-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># some function that you want to keep closed for modification</span>
 <span class="n">core_method</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kc">...</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="p">}</span>
 
-<span class="c1"># if we want to extend a function without modifying it, we can always do the following</span>
+<span class="c1"># if you want to extend a function without modifying it, you can always do the following</span>
 <span class="n">extended_functionality</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kc">...</span>
 <span class="w">  </span><span class="kr">return</span><span class="p">(</span><span class="n">extended_result</span><span class="p">)</span>
@@ -1076,7 +1077,7 @@ Within each section of your software, distinct functions or classes should be re
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In functional programming we use higher-order functions and functional composition to enact these principles.
+<p>In functional programming you use higher-order functions and functional composition to enact these principles.
 ‘Functional composition’ deserves a brief explanation, as a concept that might be keenly used in a data analytics pipeline.</p>
 <p>In simple terms, functional composition is a mathematical idea that takes two functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> and produces function <span class="math notranslate nohighlight">\(h\)</span>, such that <span class="math notranslate nohighlight">\(h(x) = g(f(x))\)</span>.
 Analysts familiar with R’s <code class="docutils literal notranslate"><span class="pre">%&gt;%</span></code> operator will find this idea familiar.</p>
@@ -1097,13 +1098,13 @@ You can lay out your code to be easily composable with the following functions, 
 </div>
 </div></div>
 </div>
-<p>We will now assume that these individual functions are closed for modification.
-However, we can extend the functionality of <code class="docutils literal notranslate"><span class="pre">load</span></code> by adding a <code class="docutils literal notranslate"><span class="pre">clean</span></code> function that cleans the data. In which case, we end up with:</p>
+<p>Now assume that these individual functions are closed for modification.
+However, you can extend the functionality of <code class="docutils literal notranslate"><span class="pre">load</span></code> by adding a <code class="docutils literal notranslate"><span class="pre">clean</span></code> function that cleans the data. In which case, you end up with:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-16-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-16-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-16-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can extend this without modifying the source code of `load`</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-16-Ug==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-Ug==" name="Ug==" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-16-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-16-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can extend this without modifying the source code of `load`</span>
 <span class="n">report</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">clean</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
 
-<span class="c1"># or we can first define a new load as follows</span>
+<span class="c1"># or you can first define a new load as follows</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">new_load</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">clean</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
 
@@ -1113,26 +1114,33 @@ However, we can extend the functionality of <code class="docutils literal notran
 <span class="n">new_load</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">data</span><span class="p">:</span> <span class="n">clean</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 <span class="n">report</span> <span class="o">=</span> <span class="n">report</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">new_load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)))</span>
 
-<span class="c1"># We can even use this to create a single function to run our defined pipeline</span>
+<span class="c1"># You can even use this to create a single function to run our defined pipeline</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">data</span><span class="p">:</span> <span class="n">report</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">clean</span><span class="p">(</span><span class="n">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
 <span class="n">report</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-16-Ug==" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-16-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># We can extend this without modifying the source code of `load`</span>
+</div><div aria-labelledby="tab-16-Ug==" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-16-Ug==" name="Ug==" role="tabpanel" tabindex="0"><div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can extend this without modifying the source code of `load`</span>
 <span class="n">report</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="nf">model</span><span class="p">(</span><span class="nf">clean</span><span class="p">(</span><span class="nf">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
 
-<span class="c1"># or we can first define a new load as follows</span>
+<span class="c1"># or You can first define a new load as follows</span>
 <span class="n">new_load</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="w"> </span><span class="nf">clean</span><span class="p">(</span><span class="nf">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
 
 <span class="n">report</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="nf">model</span><span class="p">(</span><span class="nf">new_load</span><span class="p">(</span><span class="n">filepath</span><span class="p">)))</span>
 
-<span class="c1"># We can even use this to create a single function to run our defined pipeline</span>
+<span class="c1"># You can even use this to create a single function to run our defined pipeline</span>
 <span class="n">pipeline</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="nf">report</span><span class="p">(</span><span class="nf">model</span><span class="p">(</span><span class="nf">clean</span><span class="p">(</span><span class="nf">load</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
 <span class="n">report</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">pipeline</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
-</section>
+<details> 
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">https://google.github.io/styleguide/Rguide.html</a></p></li>
+<li><p>Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: <a class="reference external" href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></p></li>
+</ol>
+</details></section>
 </section>
 </section>
 
