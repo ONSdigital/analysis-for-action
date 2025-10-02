@@ -5,7 +5,7 @@ Documenting your project will makes it much easier for others to understand your
 
 ## README
 
-When working on a collaborative or open coding project, it's good practice to describe an overview of your project in a README file.
+When working on a collaborative or open coding project, it is good practice to describe an overview of your project in a README file.
 This allows users or developers to grasp the overall goal of your project.
 As well as a description of the project, it might include examples using your code or references to other associated projects.
 This file can be any text type, including `.txt`, `.md`, and `.rst`, and can be associated with your automated documentation.
@@ -211,11 +211,12 @@ While changes to the minor and patch numbers indicate changes that are either co
 ---
 width: 70%
 name: semantic_versioning
+alt: Version number 1.5.3 with labels: 1 (Major, not backwards compatible), 5 (Minor, backwards compatible), 3 (Patch, bug fixes only).
 ---
 Semantic versioning [3]
 ```
 
-You'll see this, or a similar version numbering, on packages that you install for Python and R.
+You will see this, or a similar version numbering, on packages that you install for Python and R.
 
 
 ## Changelog

@@ -38,7 +38,7 @@ good quality assurance practices have improved government analysis can be found 
 Not following good practices creates [technical debt](glossary.md#technical-debt), which slows down further development of the analysis.
 This can be necessary for delivering to short deadlines, but you should set aside time to address this for continued development of the analysis.
 
-Where quality assurance of the code doesn't meet your target level of assurance,
+Where quality assurance of the code does not meet your target level of assurance,
 for example where there is limited time or skill,
 then you should supplement this with more in-depth assurance of outputs.
 This might include dual running the analysis with an independent system and consistency checks across the output data.

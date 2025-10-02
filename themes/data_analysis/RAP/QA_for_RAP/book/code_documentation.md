@@ -62,8 +62,8 @@ The key is to manage that complexity without adding to it.
 ````
 
 Comments can be used more effectively to explain **why** you have written code in a certain way.
-For example, you might explain to other analysts and developers why a section of your code doesn't follow standard practices,
-perhaps because the typical method didn't work.
+For example, you might explain to other analysts and developers why a section of your code does not follow standard practices,
+perhaps because the typical method did not work.
 This type of comment helps to clarify your decision-making process, without needing to describe the individual steps taken.
 
 In short, comments that explain **why** you made programming choices will help your future self and other developers to understand your intentions.
@@ -71,7 +71,7 @@ In short, comments that explain **why** you made programming choices will help y
 ```{code-block}
 # Tried solution X, but Y worked better because of Z
 
-# Don't use function X here, because of Y
+# Don not use function X here, because of Y
 
 # Temporary work around for bug in function X
 # TODO: fix function X, so that Y
@@ -130,12 +130,12 @@ Doing so reduces the reproducibility of your analysis, increases the risk that i
 
 ```{code-tab} py
 print("Run me!")
-# print("Don't run me...")
+# print("Do not run me...")
 ```
 
 ```{code-tab} r R
 print("Run me!")
-# print("Don't run me...")
+# print("Do not run me...")
 ```
 
 ````
@@ -178,7 +178,7 @@ Docstrings commonly describe:
 - what the function or class does
 - what parameters the function or class takes as arguments and their types
 - what the code returns
-- what common errors can occur and the exceptions they'll raise
+- what common errors can occur and the exceptions they will raise
 - links to or descriptions of the methodology the function implements
 - example usage of the function
 - references to other functions or classes that are related to this function

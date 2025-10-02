@@ -12,7 +12,7 @@ For analysis to be used to inform a decision it must be possible to assess its u
 and the degree of validation and verification to which it has been subjected [1].
 ```
 
-Quality assurance should match the complexity and risk level of your analysis [1]. This may involve internal and external peer review. External review is recommended for business-critical work, when using complex or novel methods, or when results can't be easily validated against other analyses.
+Quality assurance should match the complexity and risk level of your analysis [1]. This may involve internal and external peer review. External review is recommended for business-critical work, when using complex or novel methods, or when results cannot be easily validated against other analyses.
 
 ## Focus reviews on code quality
 
@@ -57,7 +57,7 @@ In more depth:
 * Or would somebody need to work their way through the code with lots of manual edits to reconfigure for a new run? This is much more risky.
 
 Most analysis arises from stakeholder or user engagement.
-During the design, implementation, and review stages, it's important to regularly check whether the analysis meets its intended purpose and user needs.
+During the design, implementation, and review stages, it is important to regularly check whether the analysis meets its intended purpose and user needs.
 Document the scope of your analysis and any requirements to make this assessment as easy as possible.
 Support the auditability of your analysis with additional documentation, including assumption logs,
 technical reports describing the analysis and documentation on any verification or validation that has already been carried out.
@@ -162,7 +162,7 @@ Pair programming is recommended as the most efficient and practical method for c
 
 > Two heads are better than one.
 
-Review doesn't have to be an arduous standalone task.
+Review does not have to be an arduous standalone task.
 Pair programming combines the code writing and the review process into a single step.
 Here, two or three developers work together to write a single piece of code.
 Each developer takes turns to actively author parts of the code, while others provide real-time feedback on the code being written.
@@ -173,7 +173,7 @@ Working in this way can be more efficient than reviewing code separately - you i
 Despite the upfront cost of two individuals writing the code, the resulting code is often higher quality and contains fewer bugs.
 
 The rotational aspect of pair programming ensures that all team members gain experience from both the author and review perspective.
-From both angles, you'll learn new programming and communication techniques.
+From both angles, you will learn new programming and communication techniques.
 Additionally, sharing knowledge of how the code works across the team prevents putting too much risk on individuals.
 
 Developers working in pairs can approve changes to code as it is written. However, you should still document key discussions from pair programming sessions to demonstrate which aspects of the code have been reviewed and discussed.

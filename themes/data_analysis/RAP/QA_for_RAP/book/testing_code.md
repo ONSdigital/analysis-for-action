@@ -17,7 +17,7 @@ Take a risk-based approach to testing. You should use tests proportionately base
 
 When you are developing your tests, here are some points to think about:    
 
-1.  **You don't need to test everything**. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.
+1.  **You do not need to test everything**. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.
 2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While you can be confident that `round()` works as specified, does it produce what you need?
 3. **Use tests to validate your approach**. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.
 4. **Test based on risk**. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time. 
@@ -71,7 +71,7 @@ check the proportion of heads versus tails is close to half (within a reasonable
 Run **all** tests whenever you make changes to your analysis.
 This ensures that changes do not break the existing, intended functionality of your code.
 Running the entire collection of tests has the added benefit of detecting unexpected side-effects of your changes.
-For example, you might detect an unexpected failure in part of your code that you didn't change.
+For example, you might detect an unexpected failure in part of your code that you did not change.
 
 If you run tests regularly, you will be more able to fix any issues before changes are added to a stable or production version of your code (e.g. the `main` Git branch).
 
@@ -110,7 +110,7 @@ This assumes that your function is working correctly.
 You must create your test data independently, ensuring that it reflects how you want your code to work, rather than how it currently works.
 ```
 
-It's tempting to create a test dataset that closely mimics your real data. 
+It is tempting to create a test dataset that closely mimics your real data. 
 
 However, using minimal and general data in tests make it clearer on what is being tested, and also avoids any unnecessary disclosure.
 
@@ -306,7 +306,7 @@ When changes are made to individual imputation methods you might not expect thes
 This test helps to identify cases where this inadvertently has changed.
 
 ```{note}
-Integration tests are more robust when they focus on general high level outcomes that you don't expect to change often.
+Integration tests are more robust when they focus on general high level outcomes that you do not expect to change often.
 Integration tests that check very specific outcomes will need to be updated with any small change to the logic within the part that is being tested.
 ```
 

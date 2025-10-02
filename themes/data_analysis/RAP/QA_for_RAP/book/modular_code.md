@@ -22,12 +22,12 @@ Even experienced programmers can find it difficult to understand code that is re
 This makes assuring, testing or changing the code more difficult.
 You may also find it harder to spot and fix mistakes.
 
-Code that isn't modular can cause a range of issues:
+Code that is not modular can cause a range of issues:
 
 - walls of repetitive code that are hard to absorb.
 - long, complex scripts that are hard to follow.
 - over-complicated code where a simpler solution could be used.
-- a code base that makes it difficult to find what you're looking for.
+- a code base that makes it difficult to find what you are looking for.
 
 This chapter highlights ways to write modular code that is easy to read, review, and maintain.
 These practices will also help you implement the other good coding practices you will come across in this guidance, such as version control, review, testing and documentation.
@@ -238,7 +238,7 @@ Consider a project where an analyst has created one large data analysis script.
 Upon reflection, they decide to split the logic from their pipeline into groups of functions relating to 'data processing', 'data modelling', and 'result presentation'.
 They then create a file to contain each of these groups of functions: `processing.py`, `modelling.py`, and `reporting.py`.
 They decide that they want to have a pipeline script called `main`, but they want to keep this script readable and simple.
-In R, it's best to also use an R project file.
+In R, it is best to also use an R project file.
 Working within a project allows you to use relative file paths and avoid the need to refer to specific script locations.
 Their directory now looks something similar to:
 
@@ -272,7 +272,7 @@ project
 R projects are a really useful and simple way to organise your projects better.
 However, be sure to check your settings.
 R projects save history and data by default.
-This is not a good idea if you're using git, as it means data can easily make its way into the version history.
+This is not a good idea if you are using git, as it means data can easily make its way into the version history.
 To disable these options in RStudio, open the project options menu in the tools tab.
 In the menu, set the options "save workspace to .RDATA on exit" and "Always save history" to "No".
 Alternatively, you can edit the .Rproj file in an editor of your choice by adding these settings:
@@ -429,7 +429,7 @@ Here are a few suggestions to consider when refactoring code from notebooks:
 - For new analysis, reuse functionality from these modules in new notebooks and continue to document your analytical thinking alongside your code in these notebooks.
 
 After this, you might turn existing notebooks into HTML to send to stakeholders, or save them as they are to enable analytical peers can re-run and review your notebooks.
-The steps that you've taken to simplify your notebook code will make your code much easier to understand by readers.
+The steps that you have taken to simplify your notebook code will make your code much easier to understand by readers.
 
 Keep in mind that other analysts can still run notebook files out of order, so they should not be used as the main method of actually generating outputs.
 Output generation should instead be trusted to scripts, where human decisions do not alter the order that code is run.

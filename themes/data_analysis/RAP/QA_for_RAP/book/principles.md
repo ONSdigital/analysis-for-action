@@ -1,7 +1,7 @@
 # Principles
 
 Analysis must be fit for purpose.
-If it isn't, there is the risk of misinforming decisions.
+If it is not, there is the risk of misinforming decisions.
 Bad analysis can result in harm or misallocation of public funds.
 Therefore the right steps must be taken to ensure high quality analysis.
 
@@ -12,7 +12,7 @@ Programming in analysis makes each of these principles easier to fulfil in most 
 ---
 width: 50%
 name: repro_stack
-alt: Founding principles of good analysis.
+alt: A pyramid divided into three horizontal layers labelled from bottom to top: Reproducible, Auditable, and Assured. 
 ---
 Founding principles of good analysis
 ```
