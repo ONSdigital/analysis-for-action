@@ -1,3 +1,13 @@
+## Pull request naming convention
+   Use clear, consistent Pull Request (PR) names to make collaboration easier. Follow this format:
+
+   ```
+   <theme>.<module>.<unit>.<unit_name>_<short_description_or_product_name>
+   ```
+
+   **Example:**
+   - `2.2.1.intro_to_rap_code_snippets`
+
 ## Description
 Please include a summary of the changes.
 
@@ -14,6 +24,8 @@ Please include a summary of the changes.
 
 ## Checklist:
 
+- [ ] **Test run**: Have you run the code to ensure it works as expected?
+- [ ] **Dependencies**: Have you added any new dependencies to `requirements.txt`
 - [ ] **Confidentiality**: Has any sensitive data been removed from code, properly protected, anonymised, or encrypted where necessary?
 - [ ] **Clear naming conventions**: Are variables, functions, and classes named descriptively and consistently?
 - [ ] **Modularity**: Is the code divided into clear, reusable functions or modules?
@@ -22,7 +34,6 @@ Please include a summary of the changes.
 - [ ] **Avoid hardcoding**: Have any hardcoded values values (like file paths or constants) hardcoded been removed?
 - [ ] **Resource management**: Does the code handle memory and processing efficiently, avoiding unnecessary data duplication or excessive memory usage?
 - [ ] **Usage instructions**: Is there documentation explaining how to set up and run the code, such as README files?
-- [ ] **Scalability**: Has the code been designed and tested to ensure it can scale efficiently for larger datasets or more complex requirements while maintaining reasonable execution time?
 
 <br>
 
