@@ -1,0 +1,73 @@
+# pyproject.toml for python_rap_demo RAP project
+#
+# This file is a central configuration file for modern Python projects and packages.
+# It defines settings for tools like pytest, coverage, isort, black, flake8, bandit, and more—all in one place.
+# For RAP (Reproducible Analytical Pipeline) projects, pyproject.toml helps automate and standardise testing, formatting, linting, and security checks.
+#
+# Why is it important?
+# - Makes your project easier to set up, maintain, and share
+# - Ensures consistent behaviour across different environments and contributors
+# - Supports reproducibility and automation (key RAP principles)
+#
+# What can you do with it?
+# - Configure code style, test options, and security checks
+# - Add or update tool settings as your project grows
+# - Use it with package managers (like Poetry) for dependency management and building packages
+#
+# For more info, see https://packaging.python.org/en/latest/specifications/pyproject_toml/
+
+# Coverage configuration: controls code coverage measurement for tests
+[tool.coverage.run]
+source = [
+    "./"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:"
+]
+
+# isort configuration: sorts Python import statements for consistency
+[tool.isort]
+profile = "black"
+
+# pytest configuration: sets options for running unit tests
+[tool.pytest.ini_options]
+addopts = [
+    "-vv",                # Verbose output
+    "--doctest-modules"   # Run doctests in modules
+]
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE"
+]
+testpaths = [
+    "./tests"             # Where to find test files
+]
+
+# bandit configuration: checks for security issues in Python code
+[tool.bandit]
+exclude_dirs = ["tests", "docs"]
+skips = []
+
+# Build system configuration: required for Poetry and other build tools
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# black configuration: sets code formatting rules
+[tool.black]
+line-length = 100
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | __pycache__
+    | build
+    | dist
+    | tests
+)/
+'''
+
+# flake8 configuration: sets linting rules for code style and errors
+[tool.flake8]
+max-line-length = 100
