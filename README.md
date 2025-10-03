@@ -50,7 +50,7 @@ analysis-for-action/
    python -m venv .venv
    ```
 3. Activate the virtual environment:
-   - Windows:
+   - Windows (cmd):
      ```sh
      .venv\Scripts\activate
      ```
