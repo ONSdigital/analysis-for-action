@@ -16,6 +16,11 @@ cd analysis-for-action
 ### 2. **Making Changes**
 
 - Create a new branch for your changes.
+- Add code and documentation to the correct folder, following the project structure:
+  - For example, to add Python code for "Intro to RAP", place your file in:
+    `themes/2_data_analysis/2_rap/1_intro_to_rap/python/`
+  - For R code, use the corresponding `r/` folder in the same unit.
+  - For documentation, use the `docs/` folder in the relevant unit.
 - Commit and push your code to your branch.
 - Add any dependencies to the relevant files:
   - For Python, update `requirements.txt`.
