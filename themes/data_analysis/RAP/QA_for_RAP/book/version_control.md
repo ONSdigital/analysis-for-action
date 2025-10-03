@@ -397,7 +397,7 @@ To prevent this, the best way is to:
 jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace <notebook_file_path>
 ```
 
-As this can easily be forgetten, you can automate this process using Git filter:
+As this can easily be forgotten, you can automate this process using Git filter:
 
 1. Set an attribute on notebook files by creating a `.gitattributes` file in the root of your repo:
 

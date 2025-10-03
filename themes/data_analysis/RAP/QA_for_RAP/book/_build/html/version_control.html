@@ -411,7 +411,7 @@ Many of the examples used in this section refer to the command-line interface fo
 <section id="keep-an-audit-trail-of-changes">
 <h2>Keep an audit trail of changes<a class="headerlink" href="#keep-an-audit-trail-of-changes" title="Link to this heading">#</a></h2>
 <p>As discussed in the chapter on <a class="reference internal" href="principles.html"><span class="std std-doc">Principles</span></a>, an audit trail is essential for assuring quality analysis.
-It’s important to be able to answer the following questions about your analysis:</p>
+It is important to be able to answer the following questions about your analysis:</p>
 <ul class="simple">
 <li><p>What changes have been made to the project?</p></li>
 <li><p>When were those changes made?</p></li>
@@ -520,7 +520,7 @@ For example, if working alone on a project you might only be working a single de
 or might choose to track all changes on a single <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.
 The <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">master</span></code> branch is the default highest level branch in a Git repository.</p>
 <figure class="align-default" id="git-master">
-<a class="reference internal image-reference" href="_images/git_main.png"><img alt="Commits along a single &quot;main&quot; Git branch." src="_images/git_main.png" style="width: 70%;" />
+<a class="reference internal image-reference" href="_images/git_main.png"><img alt="Diagram showing a horizontal flow from 'main' through five empty circles connected in sequence, demonstrating commits along a single “main” Git branch." src="_images/git_main.png" style="width: 70%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 5 </span><span class="caption-text">Commits along a single “main” Git branch.</span><a class="headerlink" href="#git-master" title="Link to this image">#</a></p>
@@ -533,9 +533,9 @@ When you make changes to code, they may initially be less stable or reliable.
 Therefore, you should make these changes on a new branch so that the working code on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is unaffected.
 As the changes to the code are refined, it becomes safer to merge these changes onto a higher level branch such as <code class="docutils literal notranslate"><span class="pre">main</span></code>.
 For example, when the code has been reviewed and suitably tested.
-You should aim to only merge onto a more stable branch when you don’t expect it to break the working code on the target branch.</p>
+You should aim to only merge onto a more stable branch when you do not expect it to break the working code on the target branch.</p>
 <figure class="align-default" id="git-feature">
-<a class="reference internal image-reference" href="_images/git_feature.png"><img alt="Creating a feature branch from a main branch." src="_images/git_feature.png" style="width: 70%;" />
+<a class="reference internal image-reference" href="_images/git_feature.png"><img alt="Diagram demonstrating the addition of a new feature, which sits above and parallel to the main branch." src="_images/git_feature.png" style="width: 70%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 6 </span><span class="caption-text">Working on changes on a single <code class="docutils literal notranslate"><span class="pre">feature</span></code> branch.</span><a class="headerlink" href="#git-feature" title="Link to this image">#</a></p>
@@ -548,7 +548,7 @@ Finally, the complete, working feature is merged back onto the <code class="docu
 The <a class="reference external" href="https://guides.github.com/introduction/flow/">GitHub flow branching strategy</a> uses this approach in combination with <a class="reference internal" href="#pull-requests"><span class="std std-ref">Pull Requests</span></a> [1],
 to incorporate peer review into the development workflow.</p>
 <figure class="align-default" id="git-develop">
-<a class="reference internal image-reference" href="_images/git_develop.png"><img alt="Iteratively creating and merging a develop branch from a main branch." src="_images/git_develop.png" style="width: 90%;" />
+<a class="reference internal image-reference" href="_images/git_develop.png"><img alt="Diagram showing iterations of creating and merging a develop branch from a main branch." src="_images/git_develop.png" style="width: 90%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 7 </span><span class="caption-text">Iteratively working on a <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</span><a class="headerlink" href="#git-develop" title="Link to this image">#</a></p>
@@ -557,7 +557,7 @@ to incorporate peer review into the development workflow.</p>
 <p>You can create multiple branches from the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch at any point.
 You might do this when multiple features are being developed in parallel, or perhaps when multiple analysts wish to make changes to the same piece of code independently.</p>
 <figure class="align-default" id="git-multiple-features">
-<a class="reference internal image-reference" href="_images/git_multiple_features.png"><img alt="Two features branches created from a single main branch." src="_images/git_multiple_features.png" style="width: 90%;" />
+<a class="reference internal image-reference" href="_images/git_multiple_features.png"><img alt="Diagram with a main branch in black, and two diverging branches named feature-1, in orange, and feature-2, in green. Each have directional arrows and commit points to the main branch." src="_images/git_multiple_features.png" style="width: 90%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 8 </span><span class="caption-text">Working on multiple parallel branches.</span><a class="headerlink" href="#git-multiple-features" title="Link to this image">#</a></p>
@@ -577,7 +577,7 @@ You might create additional sub-branches when the development of a feature invol
 or when a problem needs to be fixed during development of a feature.
 Deeper branching usually reflects work that is less stable and more exploratory or experimental.</p>
 <figure class="align-default" id="git-deeper-branching">
-<a class="reference internal image-reference" href="_images/git_deeper_branching.png"><img alt="A sub branch being created from a feature branch." src="_images/git_deeper_branching.png" style="width: 90%;" />
+<a class="reference internal image-reference" href="_images/git_deeper_branching.png"><img alt="Diagram showing a sub branch being created from a feature branch." src="_images/git_deeper_branching.png" style="width: 90%;" />
 </a>
 <figcaption>
 <p><span class="caption-number">Fig. 9 </span><span class="caption-text">Using deeper branching to manage sub-tasks.</span><a class="headerlink" href="#git-deeper-branching" title="Link to this image">#</a></p>
@@ -594,7 +594,7 @@ This approach can be useful when deploying code directly into production from th
 However, analysts should use the most simple and beneficial approach to branching depending on their project.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Although the examples above use very simple branch names, it’s important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on.</p>
+<p>Although the examples above use very simple branch names, it is important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on.</p>
 </div>
 </section>
 <section id="resolve-merge-conflicts">
@@ -846,7 +846,7 @@ This is useful when breaking down tasks into smaller chunks.
 Use checklists to help the reviewer review all the relevant parts of the pull request when requesting a review.
 As a reviewer, use checklists to list changes needed before the pull request can be approved.</p>
 <p>Alongside the main “Conversation” view of a pull request, the GitHub web interface also provides a useful overview of changes that are included in the pull request.
-You’re able to view the list of individual commits that are included in the pull request and, better still, you can view changes to each file in detail.</p>
+You are able to view the list of individual commits that are included in the pull request and, better still, you can view changes to each file in detail.</p>
 <figure class="align-default" id="github-pr-changes">
 <a class="reference internal image-reference" href="_images/github_pr_changes.png"><img alt="The GitHub Pull Request web interface." src="_images/github_pr_changes.png" style="width: 90%;" />
 </a>

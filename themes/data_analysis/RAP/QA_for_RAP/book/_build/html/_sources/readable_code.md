@@ -81,7 +81,7 @@ y = 42
 
 z = pd.DataFrame()
 
-my_favourite_number = "ssh, I'm a string"
+my_favourite_number = "ssh, I am a string"
 ```
 
 ```{code-tab} r R
@@ -91,7 +91,7 @@ y <- 42
 
 z <- data.frame()
 
-my_favourite_number <- "ssh, I'm a string"
+my_favourite_number <- "ssh, I am a string"
 ```
 ````
 
@@ -195,7 +195,7 @@ letters_first_three_reversed_plus_t_minus_a_converted_to_greek
 ```
 
 There is a clear trade-off between the usability and informativeness of variable names.
-You'll need to use your best judgement to adapt variable names in order to keep them informative but reasonably concise.
+You will need to use your best judgement to adapt variable names in order to keep them informative but reasonably concise.
 
 ```{note}
 You will be more aware of this trade-off in languages like Python, where indentation is part of the syntax to denote code blocks.
@@ -211,7 +211,7 @@ You should respect the best practices already covered in the [Naming variables](
 However, there are a few other points worth raising that are exclusive to function and method names.
 
 Firstly, your user should be able to infer the purpose or action of a function from its name.
-A warning sign that your function may be overly complex or require further detail in its documentation is when you find that you can't describe the overall task performed by the function in a few words.
+A warning sign that your function may be overly complex or require further detail in its documentation is when you find that you cannot describe the overall task performed by the function in a few words.
 
 It can be effective to describe the specific task a function performs in its name, starting with a verb:
 
@@ -324,7 +324,7 @@ Writing custom classes is more common in Python than in R, as discussed in the [
 Programming languages can differ in lots of ways.
 One way R and Python differ, for example, is their use of indentation.
 Indentation is part of the well defined syntax of Python but is not for R.
-This does not mean that you shouldn't use indentation in R to make your code more readable.
+This does not mean that you should not use indentation in R to make your code more readable.
 If in doubt, consulting the style guidelines for your language can help you to understand how to use formatting to write more readable code.
 
 Generally, code style guides provide a standard or convention for formatting and laying out your code.
@@ -410,7 +410,7 @@ However, it is important to think about it while looking at a given piece of cod
 #### Automate style checks
 
 Following a style guide from the beginning of a project is good practice.
-However, checking that code continues to follow a particular style, and fixing formatting when it doesn't can be tedious.
+However, checking that code continues to follow a particular style, and fixing formatting when it does not can be tedious.
 Automated support can be sought to speed up this work,
 either by providing suggestions as the code is written or by reformatting your code to comply with some style.
 
@@ -420,7 +420,7 @@ See [](linters-formatters) for further information on automating these checks.
 (software-ideas-for-analysts)=
 ## Software ideas for analysts
 
-It's important to remember that when you write code for analysis, you are developing software.
+It is important to remember that when you write code for analysis, you are developing software.
 Over many years, software engineering teams have developed good practices for creating robust software.
 These practices help to make code simple, readable, and easier to maintain.
 Analysts using code as a means to perform analysis can benefit from at least partially applying such practices in their own codebases.
@@ -437,13 +437,13 @@ Here are a few tips to make sure you keep your project nice and simple:
 
 - Solve the problem - do not get distracted and make sure you have a clear outcome in mind.
 - Try not to 'reinvent the wheel' - use existing packages when they already have functionality that solves the problem.
-They will most likely be better documented and won't need extra maintenance.
+They will most likely be better documented and will not need extra maintenance.
 - Split your code into understandable parts - consider how to [make your code modular](modular).
-- Don't over-engineer your solution - if it is understandable and works, refrain from over-complicating for the sake of small increases in efficiency.
+- Don not over-engineer your solution - if it is understandable and works, refrain from over-complicating for the sake of small increases in efficiency.
 - When you have a choice of alternative packages to do the same thing, use one and stick to it. For example, the R packages dplyr and sqldf both enable the use of selection and filtering operations. Stick to one unless there is a very good reason to use both. When choosing between alternatives, think about their familiarity for other coders, ease of use and efficiency.
 
 ```{note}
-It's important to define what your code needs to do before you start writing it, and focus on meeting those requirements. Avoid over-engineering — handling unlikely scenarios adds complexity without clear benefit. Extra features also demand more testing and documentation, so only include what truly improves clarity, usability, or maintainability.
+It is important to define what your code needs to do before you start writing it, and focus on meeting those requirements. Avoid over-engineering — handling unlikely scenarios adds complexity without clear benefit. Extra features also demand more testing and documentation, so only include what truly improves clarity, usability, or maintainability.
 ```
 
 Sometimes complex problems might require complex solutions.
@@ -731,7 +731,7 @@ which should follow the single responsibility concepts outlined earlier.
 ---
 width: 80%
 name: separation_of_concerns
-alt: Representation of concerns and responsibilities within a piece of software.
+alt: Diagram titled 'Software' showing two concerns, each with three responsibilities.
 ---
 Representation of concerns and responsibilities within a piece of software
 ```

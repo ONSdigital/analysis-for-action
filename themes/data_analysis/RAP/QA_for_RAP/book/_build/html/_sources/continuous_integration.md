@@ -41,7 +41,7 @@ such as pre-commit, pre-push, etc.
 You can use them to automate code quality assurance tasks, e.g., run tests, follow style guides, or enforce commit standards.
 
 For example, you could set up a `pre-commit` or `pre-push` hook that runs your tests before you make each commit or push to the remote repository.
-This might stop your commit/push if the tests fail, so that you won't push breaking changes to your remote repository.
+This might stop your commit/push if the tests fail, so that you will not push breaking changes to your remote repository.
 
 
 (linters-formatters)=

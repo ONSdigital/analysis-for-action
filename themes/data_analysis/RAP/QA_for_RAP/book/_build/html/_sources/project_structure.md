@@ -9,7 +9,7 @@ Others are more specific, and - as with all guidelines - should not be taken as 
 
 ## Run scripts from end to end to ensure your code is executed reproducibly
 
-As you begin developing your project, it's a good idea to save your working code in a script file.
+As you begin developing your project, it is a good idea to save your working code in a script file.
 In R these are saved as `.R` files, and in Python as `.py`.
 You can use scripts within an Integrated Development Environment (IDE) like
 Visual Studio Code, RStudio, or PyCharm.
@@ -69,7 +69,7 @@ This means that you start off with the input data, you finish with the output(s)
 ---
 width: 50%
 name: dag
-alt: Analysis is a directed, acyclic graph that links the input data through a series of steps to the outputs.
+alt: Directed graph with nodes a, b, c, d, and e showing relationships across a series of steps.
 ---
 Defining analysis as a DAG - linking the input data at (a) to the output at (e).
 ```
@@ -145,7 +145,7 @@ Code that is complex, high risk or reusable between projects can benefit from be
 Modules are single files that contain one or more reusable units of code.
 A package typically contains multiple related modules.
 
-It's likely that you've already used a package written by somebody else as part of your analysis.
+It is likely that you have already used a package written by somebody else as part of your analysis.
 For example, installing additional functionality for Python using `pip install <package>` on the command line or
 running `install.packages("<package>")` in an R interpreter.
 

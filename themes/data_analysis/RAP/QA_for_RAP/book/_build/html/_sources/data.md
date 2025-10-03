@@ -118,7 +118,7 @@ For variables in tabular datasets, you might document:
 To reproduce your analysis, you need to be able to identify the data that you used.
 Data change over time;
 Open data and other secondary data may be revised over time or cease to be available with no notice.
-You can't rely on owners of data to provide historical versions of their data.
+You cannot rely on owners of data to provide historical versions of their data.
 
 As an analyst, it is your responsibility to ensure you identify the exact data that you have used.
 

@@ -14,7 +14,7 @@ Many of the examples used in this section refer to the command-line interface fo
 ## Keep an audit trail of changes
 
 As discussed in the chapter on [](principles.md), an audit trail is essential for assuring quality analysis.
-It's important to be able to answer the following questions about your analysis:
+It is important to be able to answer the following questions about your analysis:
 
 * What changes have been made to the project?
 * When were those changes made?
@@ -138,7 +138,7 @@ The `main` or `master` branch is the default highest level branch in a Git repos
 ---
 width: 70%
 name: git_master
-alt: Commits along a single "main" Git branch.
+alt: Diagram showing a horizontal flow from 'main' through five empty circles connected in sequence, demonstrating commits along a single “main” Git branch. 
 ---
 Commits along a single "main" Git branch.
 ```
@@ -150,13 +150,13 @@ When you make changes to code, they may initially be less stable or reliable.
 Therefore, you should make these changes on a new branch so that the working code on the `main` branch is unaffected.
 As the changes to the code are refined, it becomes safer to merge these changes onto a higher level branch such as `main`.
 For example, when the code has been reviewed and suitably tested.
-You should aim to only merge onto a more stable branch when you don't expect it to break the working code on the target branch.
+You should aim to only merge onto a more stable branch when you do not expect it to break the working code on the target branch.
 
 ```{figure} ./_static/git_feature.png
 ---
 width: 70%
 name: git_feature
-alt: Creating a feature branch from a main branch.
+alt: Diagram demonstrating the addition of a new feature, which sits above and parallel to the main branch.
 ---
 Working on changes on a single `feature` branch.
 ```
@@ -173,7 +173,7 @@ to incorporate peer review into the development workflow.
 ---
 width: 90%
 name: git_develop
-alt: Iteratively creating and merging a develop branch from a main branch.
+alt: Diagram showing iterations of creating and merging a develop branch from a main branch.
 ---
 Iteratively working on a `develop` branch.
 ```
@@ -185,7 +185,7 @@ You might do this when multiple features are being developed in parallel, or per
 ---
 width: 90%
 name: git_multiple_features
-alt: Two features branches created from a single main branch.
+alt: Diagram with a main branch in black, and two diverging branches named feature-1, in orange, and feature-2, in green. Each have directional arrows and commit points to the main branch. 
 ---
 Working on multiple parallel branches.
 ```
@@ -209,7 +209,7 @@ Deeper branching usually reflects work that is less stable and more exploratory 
 ---
 width: 90%
 name: git_deeper_branching
-alt: A sub branch being created from a feature branch.
+alt: Diagram showing a sub branch being created from a feature branch.
 ---
 Using deeper branching to manage sub-tasks.
 ```
@@ -226,7 +226,7 @@ This approach can be useful when deploying code directly into production from th
 However, analysts should use the most simple and beneficial approach to branching depending on their project.
 
 ```{note}
-Although the examples above use very simple branch names, it's important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on. 
+Although the examples above use very simple branch names, it is important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on. 
 ```
 
 
@@ -525,7 +525,7 @@ Use checklists to help the reviewer review all the relevant parts of the pull re
 As a reviewer, use checklists to list changes needed before the pull request can be approved.
 
 Alongside the main "Conversation" view of a pull request, the GitHub web interface also provides a useful overview of changes that are included in the pull request.
-You're able to view the list of individual commits that are included in the pull request and, better still, you can view changes to each file in detail.
+You are able to view the list of individual commits that are included in the pull request and, better still, you can view changes to each file in detail.
 
 ```{figure} ./_static/github_pr_changes.png
 ---

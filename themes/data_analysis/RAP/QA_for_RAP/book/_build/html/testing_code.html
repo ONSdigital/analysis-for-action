@@ -414,7 +414,7 @@ Code that has not been tested is more likely to contain errors and need more mai
 <p>Take a risk-based approach to testing. You should use tests proportionately based on your analysis.  This usually means writing more tests for parts of your code that are very new, more complex, or carry more risk.</p>
 <p>When you are developing your tests, here are some points to think about:</p>
 <ol class="arabic simple">
-<li><p><strong>You don’t need to test everything</strong>. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.</p></li>
+<li><p><strong>You do not need to test everything</strong>. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.</p></li>
 <li><p><strong>Check tool suitability</strong>. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R <code class="docutils literal notranslate"><span class="pre">round()</span></code> function intentionally behaves differently to the rounding function in Excel. While you can be confident that <code class="docutils literal notranslate"><span class="pre">round()</span></code> works as specified, does it produce what you need?</p></li>
 <li><p><strong>Use tests to validate your approach</strong>. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.</p></li>
 <li><p><strong>Test based on risk</strong>. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time.</p></li>
@@ -462,7 +462,7 @@ check the proportion of heads versus tails is close to half (within a reasonable
 <p>Run <strong>all</strong> tests whenever you make changes to your analysis.
 This ensures that changes do not break the existing, intended functionality of your code.
 Running the entire collection of tests has the added benefit of detecting unexpected side-effects of your changes.
-For example, you might detect an unexpected failure in part of your code that you didn’t change.</p>
+For example, you might detect an unexpected failure in part of your code that you did not change.</p>
 <p>If you run tests regularly, you will be more able to fix any issues before changes are added to a stable or production version of your code (e.g. the <code class="docutils literal notranslate"><span class="pre">main</span></code> Git branch).</p>
 <p>If you have altered the functionality of your code, this will likely break existing tests.
 Failing tests here act as a good reminder that you should update your tests and documentation to reflect the new functionality.
@@ -497,7 +497,7 @@ If you do this the test will check that the function is running in the same way 
 This assumes that your function is working correctly.</p>
 <p>You must create your test data independently, ensuring that it reflects how you want your code to work, rather than how it currently works.</p>
 </div>
-<p>It’s tempting to create a test dataset that closely mimics your real data.</p>
+<p>It is tempting to create a test dataset that closely mimics your real data.</p>
 <p>However, using minimal and general data in tests make it clearer on what is being tested, and also avoids any unnecessary disclosure.</p>
 <p>Note that the way you write your test affects how the function is implemented.
 Using minimal, generalised data encourages you to follow good practices when designing your function.</p>
@@ -668,7 +668,7 @@ When changes are made to individual imputation methods you might not expect thes
 This test helps to identify cases where this inadvertently has changed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Integration tests are more robust when they focus on general high level outcomes that you don’t expect to change often.
+<p>Integration tests are more robust when they focus on general high level outcomes that you do not expect to change often.
 Integration tests that check very specific outcomes will need to be updated with any small change to the logic within the part that is being tested.</p>
 </div>
 </section>

@@ -312,4 +312,4 @@ my_key <- Sys.getenv("SECRET_KEY")
 
 ````
 
-It is then safer for this code to be shared with others, as they can't acquire your credentials without access to your environment.
+It is then safer for this code to be shared with others, as they cannot acquire your credentials without access to your environment.
