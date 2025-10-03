@@ -31,7 +31,7 @@ Please include a summary of the changes.
 - [ ] **Modularity**: Is the code divided into clear, reusable functions or modules?
 - [ ] **Code comments**: Are there sufficient comments explaining key parts of the logic, especially complex ones?
 - [ ] **Code formatting**: Is the code written in both R/Python language?
-- [ ] **Avoid hardcoding**: Have any hardcoded values values (like file paths or constants) hardcoded been removed?
+- [ ] **Avoid hardcoding**: Have any hardcoded values (like file paths or constants) been removed?
 - [ ] **Resource management**: Does the code handle memory and processing efficiently, avoiding unnecessary data duplication or excessive memory usage?
 - [ ] **Usage instructions**: Is there documentation explaining how to set up and run the code, such as README files?
 
