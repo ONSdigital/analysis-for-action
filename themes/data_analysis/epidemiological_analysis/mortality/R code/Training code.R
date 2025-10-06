@@ -735,9 +735,13 @@ certtype_lookup <- tibble::tibble(
   )
 )
 
-
-# Step 4: Calculate summary statistics grouped by CERTTYPE
-delay_by_certtype <- deaths %>%
+# Step 4: Filter to deaths registered in 2024
+# This ensures the analysis is limited to a single registration year.
+deaths_2024 <- deaths %>%
+  filter(lubridate::year(DOR) == 2024)
+ 
+# Step 5: Calculate summary statistics grouped by CERTTYPE
+delay_by_certtype <- deaths_2024 %>%
   group_by(CERTTYPE) %>%
   summarise(
     median_delay = median(delay, na.rm = TRUE),
