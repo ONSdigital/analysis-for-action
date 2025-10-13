@@ -1,21 +1,3 @@
-# pyproject.toml for python_rap_demo RAP project
-#
-# This file is a central configuration file for modern Python projects and packages.
-# It defines settings for tools like pytest, coverage, isort, black, flake8, bandit, and more—all in one place.
-# For RAP (Reproducible Analytical Pipeline) projects, pyproject.toml helps automate and standardise testing, formatting, linting, and security checks.
-#
-# Why is it important?
-# - Makes your project easier to set up, maintain, and share
-# - Ensures consistent behaviour across different environments and contributors
-# - Supports reproducibility and automation (key RAP principles)
-#
-# What can you do with it?
-# - Configure code style, test options, and security checks
-# - Add or update tool settings as your project grows
-# - Use it with package managers (like Poetry) for dependency management and building packages
-#
-# For more info, see https://packaging.python.org/en/latest/specifications/pyproject_toml/
-
 # Coverage configuration: controls code coverage measurement for tests
 [tool.coverage.run]
 source = [
