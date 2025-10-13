@@ -46,7 +46,7 @@ create_bar_chart <- function(){
 
 
 
-  vulnerable <- read_csv("D:/repos/ons-ppt/data/vulnerable.csv")
+  vulnerable <- read_csv("D:/repos/analysis-for-action/data/vulnerable.csv")
 
 
 

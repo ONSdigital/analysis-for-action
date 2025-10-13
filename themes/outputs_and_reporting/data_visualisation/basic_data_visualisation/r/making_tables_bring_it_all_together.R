@@ -20,7 +20,7 @@ create_table <- function(){
 
   # Importing data using the readr package and read_csv function
 
-  vulnerable <- read_csv("D:/repos/ons-ppt/data/vulnerable.csv")
+  vulnerable <- read_csv("D:/repos/analysis-for-action/data/vulnerable.csv")
 
 
   # Prepare the data to make it suitable for a table
