@@ -120,7 +120,7 @@ create_bar_chart <- function(){
 
   )
 
-  # Export
+  # Export chart as .svg file
 
 
 

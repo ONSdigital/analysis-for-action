@@ -96,7 +96,7 @@ create_table <- function(){
 
     )
 
-  # Save the table as HTML
+  # Save the table as HTML file
 
   vuln_for_select_countries_3y %>%
 
