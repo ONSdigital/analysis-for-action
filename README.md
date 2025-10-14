@@ -1,13 +1,13 @@
-# ONS PPT Code Snippets Repository
+# Analysis for Action code snippets repository
 
-This repository contains tools and example code snippets in **Python** and **R** to support materials and case studies for the Pandemic Preparedness Toolkit (PPT). The content is organized by **themes**, **modules** and **units** to align with the structure of the website.
+This repository contains tools and example code snippets in **Python** and **R** to support materials and case studies for the Analysis for Action platform. The content is organized by **themes**, **modules** and **units** to align with the structure of the website.
 
 ---
 
 ## Repository Structure
 
 ```
-ons-ppt/
+analysis-for-action/
 ├── themes/
 │   ├── module1/
 │   │   ├── unit1/
@@ -44,23 +44,27 @@ ons-ppt/
 
 ### Python Setup
 
-1. Ensure you have Python 3.9+ installed (You can install Python or Miniconda from the Software Center if not)
+1. Ensure you have Python 3.9+ installed
 2. (Recommended) Create a virtual environment:
    ```sh
-   python -m venv venv
+   python -m venv .venv
    ```
 3. Activate the virtual environment:
-   - Windows:
+   - Windows (cmd):
      ```sh
-     venv\Scripts\activate
+     .venv\Scripts\activate
      ```
    - macOS/Linux:
      ```sh
-     source venv/bin/activate
+     source .venv/bin/activate
      ```
 4. Install dependencies:
    ```sh
    pip install -r requirements.txt
+   ```
+5. This repository uses `pre-commit` to manage git hooks. To set it up, run:
+   ```sh
+   pre-commit install
    ```
 
 ### R Setup

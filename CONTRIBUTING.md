@@ -5,71 +5,45 @@ Thank you for your interest in contributing to this project.
 
 ## Contribution Process
 
-### 1. **Forking and Cloning the Repository**
-   To begin contributing, you need your own copy of the repository:
+### 1. **Cloning the Repository**
+To begin contributing, clone the repository directly:
 
-   - **Fork the Repository:**
-     1. Go to the GitHub page of this repository.
-     2. Click the **Fork** button at the top right. This creates a copy under your GitHub account.
-   - **Clone Your Fork Locally:**
-     1. On your forked repository page, click the **Code** button and copy the URL.
-     2. Open your terminal and run:
-        ```cmd
-        git clone <your-fork-url>
-        cd <repo-folder>
-        ```
-   - **Set Upstream Remote (optional, for syncing with original repo):**
-     ```cmd
-     git remote add upstream https://github.com/ONSdigital/ons-ppt.git
-     ```
+```cmd
+git clone https://github.com/ONSdigital/analysis-for-action.git
+cd analysis-for-action
+```
 
 ### 2. **Making Changes**
 
-- Create a new branch for your changes:
-    ```cmd
-    git checkout -b feature/your-branch-name
-    ```
-- Open the project.
-- Edit files, add features, or fix bugs as needed.
-- Stage and commit your changes:
-    ```cmd
-    git add .
-    git commit -m "Describe your changes"
-    ```
-- Push your branch to your forked repository:
-    ```cmd
-    git push origin feature/your-branch-name
-    ```
+- Create a new branch for your changes.
+- Add code and documentation to the correct folder, following the project structure:
+  - For example, to add Python code for "Intro to RAP", place your file in:
+    `themes/2_data_analysis/2_rap/1_intro_to_rap/python/`
+  - For R code, use the corresponding `r/` folder in the same unit.
+  - For documentation, use the `docs/` folder in the relevant unit.
+- Commit and push your code to your branch.
+- Add any dependencies to the relevant files:
+  - For Python, update `requirements.txt`.
+  - For R, use `renv::snapshot()` to update `renv.lock`.
+- Ensure your code has been peer reviewed and meets the project's coding standards.
 
 ### 3. **Pull Requests**
-- Go to your fork on GitHub.
-- Click **Compare & pull request**.
-- Fill in details and submit the pull request to the original repository.
+
+- When you create a Pull Request (PR), always select the `dev` branch as the target for merging your changes.
+  **Do not select `main` as the target branch.**
+- Fill in details and submit the pull request.
 - Clearly describe your changes and reference any relevant issues.
+- The code must be reviewed by at least one tester and a member of the UK analysis for action team before it is merged.
 
-## **Branch Naming Convention**
-   Use clear, consistent branch names to make collaboration easier. Follow this format:
+## **Pull Request Naming Convention**
+Use clear, consistent Pull Request (PR) names to make collaboration easier. Follow this format:
 
-   ```
-   <type>/<theme>.<module>.<unit>.<unit_name>_<short_description_or_product_name>
-   ```
+```
+<theme>.<module>.<unit>.<unit_name>_<short_description_or_product_name>
+```
 
-   **Examples:**
-   - `feat/2.2.1.intro_to_rap_code_snippets` (new feature)
-   - `bug/1.1.1.households_fix_nulls` (bug fix)
-   - `chore/3.1.1.data_vis_update_docs` (documentation or maintenance)
-
-   **Branch type prefixes:**
-   - `feat` or `feature`: new user-facing feature
-   - `bug` or `bugfix`: fix for a user-facing bug
-   - `refactor`: code improvements (e.g. renaming, restructuring)
-   - `test`: adding or improving tests
-   - `chore`: maintenance tasks (e.g. updating docs, configs)
-
-   **Tips:**
-   - Use short, descriptive names after the prefix and numbers.
-   - Separate words with underscores for readability.
-   - Match the theme/module/unit numbers to the folder structure if possible.
+**Example:**
+- `2.2.1.intro_to_rap_code_snippets`
 
 ## Questions
-If you have questions, please contact the project maintainers directly at [PPT@ons.gov.uk](PPT@ons.gov.uk).
+If you have questions, please contact the project maintainers directly at [analysisforaction@ons.gov.uk](analysisforaction@ons.gov.uk).
