@@ -1,23 +1,23 @@
+## Script to accompany 'Bring it all together' section of Basic Data Visualisation
+
+# Set up
+
+install.packages(c(
+  readr, # for read_csv()
+  dplyr, # for data manipulation
+  tidyr, # for pivot_wider() and drop_na()
+  janitor, # for clean_names()
+  gt # for creating and styling tables
+))
+
+
+library(readr)
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(gt)
+
 create_table <- function(){
-  ## Script to accompany 'Bring it all together' section of Basic Data Visualisation
-
-  # Set up
-
-  install.packages(c(
-    readr, # for read_csv()
-    dplyr, # for data manipulation
-    tidyr, # for pivot_wider() and drop_na()
-    janitor, # for clean_names()
-    gt # for creating and styling tables
-  ))
-
-
-  library(readr)
-  library(dplyr)
-  library(tidyr)
-  library(janitor)
-  library(gt)
-
   # Importing data using the readr package and read_csv function
 
   vulnerable <- read_csv("D:/repos/analysis-for-action/data/vulnerable.csv")
@@ -100,6 +100,6 @@ create_table <- function(){
 
   vuln_for_select_countries_3y %>%
 
-    gtsave(filename = "R_table.html", path = "D:/Temp/")
+    gtsave(filename = "R_table.html", path = "D:/repos/analysis-for-action/output")
 }
 create_table()

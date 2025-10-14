@@ -1,22 +1,20 @@
-create_bar_chart <- function(){
-  # Set up
+# Set up
 
+install.packages(c(
 
-  install.packages(c(
+  readr, # for read_csv()
 
-    readr, # for read_csv()
+  dplyr, # for data manipulation
 
-    dplyr, # for data manipulation
+  janitor, # for clean_names()
 
-    janitor, # for clean_names()
+  ggplot2, # for visualising data
 
-    ggplot2, # for visualising data
+  tidyr, # for tidying data
 
-    tidyr, # for tidying data
+  scales, # for automatically determining labels for axes and legends
 
-    scales, # for automatically determining labels for axes and legends
-
-    patchwork, # for combining plots
+  patchwork, # for combining plots
 
   ))
 
@@ -24,24 +22,24 @@ create_bar_chart <- function(){
 
 
 
-  library(readr)
+library(readr)
 
-  library(dplyr)
+library(dplyr)
 
-  library(janitor)
+library(janitor)
 
-  library(ggplot2)
+library(ggplot2)
 
-  library(tidyr)
+library(tidyr)
 
-  library(scales)
+library(scales)
 
-  library(patchwork)
-
-
+library(patchwork)
 
 
 
+
+create_bar_chart <- function(){
   ## Importing data using the readr package and read_csv function
 
 
@@ -130,7 +128,7 @@ create_bar_chart <- function(){
 
     plot = bar_chart,
 
-    path = "D:/Temp",
+    path = "D:/repos/analysis-for-action/output",
 
     width = 7,
 
