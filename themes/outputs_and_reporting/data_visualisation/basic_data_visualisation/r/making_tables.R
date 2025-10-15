@@ -184,7 +184,7 @@ vuln_for_select_countries_3y %>%
   
   cols_align(align = "right",
              
-             columns = vars(x1997, x2002, x2007)
+             columns = c(x1997, x2002, x2007)
              
   )
 
@@ -228,9 +228,9 @@ vuln_for_select_countries_3y_rearrange <-vuln_for_select_countries_3y %>%
      
      groupname_col = "continent") %>%
   
-  cols_move(columns = vars(x2002, x1997),
+  cols_move(columns = c(x2002, x1997),
             
-            after = vars(x2007)
+            after = c(x2007)
             
   )
 
@@ -418,7 +418,7 @@ vuln_for_select_countries_3y %>%
     
     locations = cells_body(
       
-      columns = vars(x1997),
+      columns = c(x1997),
       
       rows = x1997 == max(x1997, na.rm = TRUE) # Changes the colour of the cell with the highest value
       
