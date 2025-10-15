@@ -69,7 +69,7 @@ repos:
         exclude: ^docs/user_guide/user_documentation\.md$
       - id: nbqa-black
         name: nbqa-black - consistent Python code formatting (notebooks; auto-fixes)
-        additional_dependencies: [ black==21.5b2 ]
+        additional_dependencies: [ black==21.5b2, "click<8.1.0" ]
         exclude: ^docs/user_guide/user_documentation\.md$
 
   - repo: https://github.com/Yelp/detect-secrets
