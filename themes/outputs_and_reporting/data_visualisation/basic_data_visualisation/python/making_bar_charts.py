@@ -7,12 +7,11 @@ def making_bar_charts():
     vulnerable = pd.read_csv("data/vulnerable.csv")
 
     # Filter years to only 1997
-    vuln_filter = (vulnerable[vulnerable["year"].isin([1997])])
+    vuln_filter = vulnerable[vulnerable["year"].isin([1997])]
 
-    pivot_vuln_filter = vuln_filter.groupby('continent').agg({'country': 'count'}).reset_index()
+    pivot_vuln_filter = vuln_filter.groupby("continent").agg({"country": "count"}).reset_index()
 
     pivot_vuln_filter = pivot_vuln_filter.rename(columns={"country": "count"})
-
 
     # Count the number of countries in each continent to be used to create labels
     column = vuln_filter.iloc[0:, 1]
@@ -67,5 +66,6 @@ def making_bar_charts():
     vuln_plot.show()
 
     vuln_plot.write_html("output/python_bar_chart.html")
+
 
 making_bar_charts()

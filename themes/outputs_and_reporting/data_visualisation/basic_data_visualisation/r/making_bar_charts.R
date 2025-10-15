@@ -19,7 +19,7 @@ library(janitor)
 library(ggplot2)
 library(tidyr)
 library(scales)
-library(patchwork) 
+library(patchwork)
 
 
 ## Importing data using the readr package and read_csv function
@@ -40,14 +40,14 @@ vulnerable <- read_csv("C:/Users/bestj/OneDrive - Office for National Statistics
 filter(vulnerable, year == 1997) %>%
   ggplot() +
   geom_bar(mapping = aes(x = continent)) +
-  
-# The code below removes the padding between the bars and the axis at the start of each bar, 
-# but keeps a small gap at the end  
-  
+
+# The code below removes the padding between the bars and the axis at the start of each bar,
+# but keeps a small gap at the end
+
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05)))
-  
+
 
 ## Flip the chart to be horizontal
 # Flip the chart using coord_flip()
@@ -94,7 +94,7 @@ filter(vulnerable, year == 1997) %>%
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
@@ -102,7 +102,7 @@ filter(vulnerable, year == 1997) %>%
     subtitle = "Number of countries by continent",
     x = "",
     y = "Number of countries"
-  
+
   )
 
 # Alternatively, have the labels appear at the start of each bar
@@ -147,7 +147,7 @@ filter(vulnerable, year == 1997) %>%
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))
   ) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
@@ -162,7 +162,7 @@ filter(vulnerable, year == 1997) %>%
     panel.grid.major.x = element_line(color = "grey85", size = 0.5),
     panel.grid.major.y = element_blank()
   )
-    
+
 
 # Rank categories in descending order (highest first)
 # For a frequency chart, this needs to be done manually
@@ -182,10 +182,10 @@ ggplot(ranked_categories) +
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
-  scale_y_continuous(breaks = pretty(c(0, 60), n = 10)) + 
+  scale_y_continuous(breaks = pretty(c(0, 60), n = 10)) +
   labs(
     title = "Figure 1: Africa has the most countries by continent",
     subtitle = "Number of countries by continent",
@@ -207,7 +207,7 @@ ggplot(ranked_categories) +
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
@@ -222,7 +222,7 @@ ggplot(ranked_categories) +
     panel.grid.major.x = element_line(color = "grey85", size = 0.5),
     panel.grid.major.y = element_blank()
   )
-    
+
 # Change the colour of bars
 
 # Change all bars to dark blue
@@ -232,7 +232,7 @@ ggplot(ranked_categories) +
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
@@ -247,7 +247,7 @@ ggplot(ranked_categories) +
     panel.grid.major.x = element_line(color = "grey85", size = 0.5),
     panel.grid.major.y = element_blank()
   )
-    
+
 # Change the bar for Africa to a dark blue, and all the other bars to a light grey
 
 ggplot(ranked_categories) +
@@ -261,7 +261,7 @@ ggplot(ranked_categories) +
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
@@ -281,13 +281,13 @@ ggplot(ranked_categories) +
 
 # Define the chart as an object
 
-vuln_countries = 
+vuln_countries =
   ggplot(ranked_categories) +
   geom_bar(mapping = aes(x = level_continent), fill = "#003d59", width = 0.6) +
   scale_y_continuous(
     breaks = pretty(c(0, 60), n = 10),
     expand = expansion(mult = c(0, 0.05))) +
-  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..), 
+  geom_text(stat = "count", aes(x = continent, y = ..count.., label = ..count..),
             hjust = -0.4, color = "black", size = 3) +
   coord_flip() +
   labs(
