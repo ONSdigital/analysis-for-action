@@ -1,0 +1,55 @@
+# Coverage configuration: controls code coverage measurement for tests
+[tool.coverage.run]
+source = [
+    "./"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:"
+]
+
+# isort configuration: sorts Python import statements for consistency
+[tool.isort]
+profile = "black"
+
+# pytest configuration: sets options for running unit tests
+[tool.pytest.ini_options]
+addopts = [
+    "-vv",                # Verbose output
+    "--doctest-modules"   # Run doctests in modules
+]
+doctest_optionflags = [
+    "NORMALIZE_WHITESPACE"
+]
+testpaths = [
+    "./tests"             # Where to find test files
+]
+
+# bandit configuration: checks for security issues in Python code
+[tool.bandit]
+exclude_dirs = ["tests", "docs"]
+skips = []
+
+# Build system configuration: required for Poetry and other build tools
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# black configuration: sets code formatting rules
+[tool.black]
+line-length = 100
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | __pycache__
+    | build
+    | dist
+    | tests
+)/
+'''
+
+# flake8 configuration: sets linting rules for code style and errors
+[tool.flake8]
+max-line-length = 100
