@@ -2,11 +2,11 @@
    Use clear, consistent Pull Request (PR) names to make collaboration easier. Follow this format:
 
    ```
-   <theme>.<module>.<unit>.<unit_name>_<short_description_or_product_name>
+   <theme>.<module>.<unit>. <unit_name> <short_description_or_product_name>
    ```
 
    **Example:**
-   - `2.2.1.intro_to_rap_code_snippets`
+   - `2.2.1. Intro to RAP Code snippets`
 
 ## Description
 Please include a summary of the changes.
