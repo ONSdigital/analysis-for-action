@@ -18,10 +18,10 @@ library(janitor)
 library(gt)
 
 create_table <- function(){
+  
   # Importing data using the readr package and read_csv function
 
   vulnerable <- read_csv("D:/repos/analysis-for-action/data/vulnerable.csv")
-
 
   # Prepare the data to make it suitable for a table
 
@@ -72,6 +72,8 @@ create_table <- function(){
 
     ) %>%
 
+    # Add a source
+    
     tab_source_note(source_note = gt::md("Source: Pandemic Preparedness Toolkit")
 
     ) %>%
@@ -100,6 +102,6 @@ create_table <- function(){
 
   vuln_for_select_countries_3y %>%
 
-    gtsave(filename = "R_table.html", path = "D:/repos/analysis-for-action/output")
+    gtsave(filename = "R_table.html", path = "D:TEMP/")
 }
 create_table()
