@@ -202,16 +202,15 @@ vuln_for_select_countries_3y %>%
              use_seps = TRUE,
              
              decimals = 0)
+  
 
-# Add a suffix
+# Format numbers to include a suffix
 
 vuln_for_select_countries_3y %>%
   
   gt(rowname_col = "country",
      
      groupname_col = "continent") %>%
-  
-# Format numbers
   
   fmt_number(columns = everything(),
              
