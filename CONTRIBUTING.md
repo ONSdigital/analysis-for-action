@@ -46,11 +46,6 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
    pre-commit install
    ```
 
-For R, run the provided `setup.R` script to install required packages:
-```R
-source("setup.R")
-```
-
 ### 3. **Adding your code and data**
 
 - Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`.
