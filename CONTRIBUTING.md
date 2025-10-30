@@ -63,7 +63,7 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
 
 - Add any dependencies to the relevant files:
   - For Python, update `requirements.txt`.
-  - For R, use `renv::snapshot()` to update `renv.lock`.
+  - For R, add the package names to the `setup.R` script if new packages are required.
 
 - Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
 
