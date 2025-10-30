@@ -1,2 +1,10 @@
 streamlit
+kaleido==1.1.0
+nbformat
+plotly
 pandas
+pytest
+pre-commit
+detect-secrets
+bandit
+pyyaml
