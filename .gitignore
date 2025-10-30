@@ -20,11 +20,6 @@ pythonenv*
 pyvenv.cfg
 pip-selfcheck.json
 
-# Excel files
-*.xlsx
-*.xls
-*.csv
-
 # R build files
 .Rproj.user
 .Rhistory
