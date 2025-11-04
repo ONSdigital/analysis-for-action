@@ -5,6 +5,13 @@ library(shiny)
 library(colourpicker)
 
 # ---- Helper Functions ----------------------------------------------------
+#' Convert Hexadecimal Color to RGB
+#'
+#' @param hex A hexadecimal color string (e.g., "#FFFFFF" or "#FFF").
+#' @return A named vector with RGB values (r, g, b).
+#' @examples
+#' hex_to_rgb("#FFFFFF")
+#' hex_to_rgb("#FFF")
 hex_to_rgb <- function(hex) {
   hex <- gsub("#", "", hex)
   if (nchar(hex) == 3) {
@@ -15,10 +22,22 @@ hex_to_rgb <- function(hex) {
   rgb
 }
 
+#' Normalize RGB Values
+#'
+#' @param rgb A numeric vector of RGB values.
+#' @return A numeric vector of normalized RGB values (0-1).
+#' @examples
+#' normalise_rgb(c(255, 255, 255))
 normalise_rgb <- function(rgb) {
   rgb / 255
 }
 
+#' Apply Gamma Correction to a Channel
+#'
+#' @param channel A numeric value representing a color channel (0-1).
+#' @return A gamma-corrected numeric value.
+#' @examples
+#' gamma_correct(0.5)
 gamma_correct <- function(channel) {
   if (channel <= 0.03928) {
     channel / 12.92
@@ -27,14 +46,33 @@ gamma_correct <- function(channel) {
   }
 }
 
+#' Apply Gamma Correction to RGB Values
+#'
+#' @param rgb A numeric vector of RGB values (0-1).
+#' @return A numeric vector of gamma-corrected RGB values.
+#' @examples
+#' apply_gamma_correction(c(0.5, 0.5, 0.5))
 apply_gamma_correction <- function(rgb) {
   sapply(rgb, gamma_correct)
 }
 
+#' Calculate Relative Luminance
+#'
+#' @param rgb A numeric vector of gamma-corrected RGB values.
+#' @return A numeric value representing relative luminance.
+#' @examples
+#' relative_luminance(c(0.5, 0.5, 0.5))
 relative_luminance <- function(rgb) {
   0.2126 * rgb[1] + 0.7152 * rgb[2] + 0.0722 * rgb[3]
 }
 
+#' Calculate Contrast Ratio
+#'
+#' @param l1 Relative luminance of the first color.
+#' @param l2 Relative luminance of the second color.
+#' @return A numeric value representing the contrast ratio.
+#' @examples
+#' contrast_ratio(0.5, 0.2)
 contrast_ratio <- function(l1, l2) {
   L1 <- max(l1, l2)
   L2 <- min(l1, l2)
@@ -44,10 +82,22 @@ contrast_ratio <- function(l1, l2) {
   (L1 + 0.05) / (L2 + 0.05)
 }
 
+#' Format Contrast Ratio
+#'
+#' @param r A numeric value representing the contrast ratio.
+#' @return A formatted string of the contrast ratio.
+#' @examples
+#' format_ratio(4.56789)
 format_ratio <- function(r) {
   format(round(r, 2), nsmall = 2, trim = TRUE)
 }
 
+#' Validate Hexadecimal Color Strings
+#'
+#' @param cols A character vector of hexadecimal color strings.
+#' @return Throws an error if any color is invalid.
+#' @examples
+#' validate_colours(c("#FFFFFF", "#000000"))
 validate_colours <- function(cols) {
   for (colour in cols) {
     if (is.null(colour)) {
@@ -63,10 +113,25 @@ validate_colours <- function(cols) {
   }
 }
 
+#' Blend Foreground and Background Colors
+#'
+#' @param fg_rgb A numeric vector of foreground RGB values.
+#' @param bg_rgb A numeric vector of background RGB values.
+#' @param alpha A numeric value representing the alpha transparency (0-1).
+#' @return A named vector of blended RGB values.
+#' @examples
+#' blend_colours(c(1, 0, 0), c(0, 0, 1), 0.5)
 blend_colours <- function(fg_rgb, bg_rgb, alpha) {
   setNames(alpha * fg_rgb + (1 - alpha) * bg_rgb, c("r", "g", "b"))
 }
 
+#' Adjust Lightness of a Hexadecimal Color
+#'
+#' @param hex_colour A hexadecimal color string.
+#' @param lightness A numeric value representing the desired lightness (0-1).
+#' @return A hexadecimal color string with adjusted lightness.
+#' @examples
+#' adjust_lightness("#FFFFFF", 0.5)
 adjust_lightness <- function(hex_colour, lightness) {
   rgb <- hex_to_rgb(hex_colour) / 255
   hls <- grDevices::convertColor(matrix(rgb, ncol = 3), from = "sRGB", to = "HLS")
@@ -77,6 +142,12 @@ adjust_lightness <- function(hex_colour, lightness) {
   sprintf("#%02x%02x%02x", as.integer(rgb2[1] * 255), as.integer(rgb2[2] * 255), as.integer(rgb2[3] * 255))
 }
 
+#' Get Lightness of a Hexadecimal Color
+#'
+#' @param hex_colour A hexadecimal color string.
+#' @return A numeric value representing the lightness (0-1).
+#' @examples
+#' get_lightness("#FFFFFF")
 get_lightness <- function(hex_colour) {
   rgb <- hex_to_rgb(hex_colour) / 255
   hls <- grDevices::convertColor(matrix(rgb, ncol = 3), from = "sRGB", to = "HLS")
