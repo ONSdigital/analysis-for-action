@@ -77,10 +77,6 @@ analysis-for-action/
    source("setup.R")
    ```
    This will install all necessary R packages for the project.
-3. This repository uses `pre-commit` to manage git hooks. To set it up you need to install the python requirements (Step 4 in [Python Setup](#python-setup)), and then run:
-   ```sh
-   pre-commit install
-   ```
 
 ---
 
