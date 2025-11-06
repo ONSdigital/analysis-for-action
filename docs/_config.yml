@@ -1,0 +1,4 @@
+title: "Colour Contrast Checker"
+description: "A tool to check WCAG compliance for colour contrast."
+theme: jekyll-theme-primer
+markdown: kramdown
