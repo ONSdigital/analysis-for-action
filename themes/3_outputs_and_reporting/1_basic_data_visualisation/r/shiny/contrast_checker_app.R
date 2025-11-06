@@ -171,7 +171,9 @@ ui <- fluidPage(
           window.parent.postMessage({
               type: 'iframeHeight',
               height,
-          });
+          },
+          '*',
+        );
       }
 
       window.addEventListener('load', () => {
