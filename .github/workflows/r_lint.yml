@@ -1,4 +1,6 @@
 name: R Linting
+permissions:
+  contents: read
 on:
   pull_request:
     paths:
