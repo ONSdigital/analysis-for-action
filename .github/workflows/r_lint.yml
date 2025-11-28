@@ -34,8 +34,12 @@ jobs:
       - name: Get changed R files
         id: changed_r_files
         run: |
-          git fetch origin ${{ github.base_ref }}
-          git diff --name-only origin/${{ github.base_ref }}...${{ github.sha }} -- '*.R' > changed_r_files.txt
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git fetch origin ${{ github.event.pull_request.base.ref }}
+            git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} -- '*.R' > changed_r_files.txt
+          else
+            git diff --name-only ${{ github.event.before }} ${{ github.sha }} -- '*.R' > changed_r_files.txt
+          fi
 
       - name: Annotate lintr warnings
         run: Rscript .github/run_linters.R changed_r_files.txt
