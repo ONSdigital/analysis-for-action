@@ -1,7 +1,4 @@
 # Contributing
-Thank you for your interest in contributing to this project.
-
-**Please note:** We are not accepting public contributions at this stage. This guidance is intended only for delivery partners and approved collaborators.
 
 ## Contents
 - [What to Contribute](#what-to-contribute)
@@ -51,13 +48,16 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
 - Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`.
 
 - Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure):
-  - For example, to add Python code for "Intro to RAP", place your files in:
-    `themes/data_analysis/rap/intro_to_rap/python/`
+  - For example, to add Python code for "Intro to RAP" learning resource, place your files in:
+    `learning_resources/data_analysis/rap/intro_to_rap/python/`
+    Or, for a tool:
+    `tools/data_analysis/tool_name/python/`
+    > Note: You may need to create the folder yourself if it doesn't already exist.
   - For R code, use the corresponding `r/` folder in the same unit.
   - For documentation, use the `docs/` folder in the relevant unit.
   - You may need to create the folder yourself.
 
-- Add data to the `data/` folder at the project root.
+- Add data for learning resource code to the `learning_resources/data/` folder.
 
 - Ensure no sensitive code or data is included before committing and pushing changes.
 
@@ -66,6 +66,8 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
   - For R, add the package names to the `setup.R` script if new packages are required.
 
 - Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
+
+> **Note**: Example folder structures and code are provided in the `learning_resources/` and `tools/` directories.
 
 ### 4. **Pull Requests**
 
