@@ -3,25 +3,26 @@
 ## Contents
 - [What to Contribute](#what-to-contribute)
 - [Contribution Process](#contribution-process)
-  - [Cloning the Repository](#1-cloning-the-repository)
-  - [Set-up](#2-set-up)
-  - [Adding your code and data](#3-adding-your-code-and-data)
-  - [Pull Requests](#4-pull-requests)
+  - [1. Cloning the Repository](#1-cloning-the-repository)
+  - [2. Set-up](#2-set-up)
+  - [3. Adding your code and data](#3-adding-your-code-and-data)
+  - [4. Pull Requests](#4-pull-requests)
 - [Coding standards](#coding-standards)
 - [Raising Issues](#raising-issues)
 - [Questions](#questions)
 
 ## What to Contribute
-This repository should include code and data that directly relates to written content on the Analysis for Action platform, including:
-- code snippets in Python and R,
+This repository should include code and data that directly relates to written content or tools on the Analysis for Action platform, including:
+- runnable code snippets in Python and R,
 - example datasets,
-- documentation to support understanding and use of the code snippets,
-- small tools that are included within a unit.
+- small tools that are included within a unit,
+- documentation to support understanding and use of the code snippets and tools.
 
 This repository should **not** include:
 - sensitive data,
 - large tools or applications (these should be in their own repositories),
-- written unit content that is or will be hosted on the Analysis for Action platform.
+- written unit content that is or will be hosted on the Analysis for Action platform,
+- code from written unit content that is not runnable i.e. only used as an example.
 
 ## Contribution Process
 
@@ -45,29 +46,44 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
 
 ### 3. **Adding your code and data**
 
-- Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`.
+#### Branching
+Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`, `outputs_and_reporting_contrast_checker`.
 
-- Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure):
-  - For example, to add Python code for "Intro to RAP" learning resource, place your files in:
-    `learning_resources/data_analysis/rap/intro_to_rap/python/`
-    Or, for a tool:
-    `tools/data_analysis/tool_name/python/`
-    > Note: You may need to create the folder yourself if it doesn't already exist.
-  - For R code, use the corresponding `r/` folder in the same unit.
-  - For documentation, use the `docs/` folder in the relevant unit.
-  - You may need to create the folder yourself.
+#### Where to add your code
+Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure). For example:
+- to add Python code for "Intro to RAP" learning resource, place your files in - `learning_resources/data_analysis/rap/intro_to_rap/python/`  
+- Or for a tool - `tools/data_analysis/tool_name/python/` 
+- For R code, use the corresponding `r/` folder in the same unit.
+- For documentation, use the `docs/` folder in the relevant unit.
+- You may need to create the folders yourself if they do not already exist.
 
-- Add data for learning resource code to the `learning_resources/data/` folder.
+> **Note**: Example folder structures and code are provided in the `learning_resources/_example_theme/` and `tools/_example_theme/` directories.
 
-- Ensure no sensitive code or data is included before committing and pushing changes.
+#### File types
 
-- Add any dependencies to the relevant files:
-  - For Python, update `requirements.txt`.
-  - For R, add the package names to the `setup.R` script if new packages are required.
+#### *Learning resources*  
+Use **.ipynb** and **Rmd** files to show runnable Python and R code used in written learning resources. Templates for each can be found in the below:
+ - Python notebook template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb](learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb)
+ - R markdown template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd](learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd)
 
-- Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
+#### *Tools*
+Code files and structure will vary for each tool. As a minimum ensure code follows the [coding standards](#coding-standards).
 
-> **Note**: Example folder structures and code are provided in the `learning_resources/` and `tools/` directories.
+Examples of best practice code for tools can be found in the below:
+ - Python tool example - [tools\\_example_theme\\_example_tool\\python\\tool.py](tools\\_example_theme\\_example_tool\\python\\tool.py)
+ - R tool example - [tools\\_example_theme\\_example_tool\\r\\tool.R](tools\\_example_theme\\_example_tool\\r\\tool.R)
+
+#### Where to add data
+Add data for learning resource code to the `learning_resources/data/` folder.
+
+> **Ensure no sensitive code or data is included before committing and pushing changes.**
+
+#### Where to add dependencies
+Add any dependencies to the relevant files:
+- For Python, update `requirements.txt`.
+- For R, add the package names to the `setup.R` script if new packages are required.
+
+Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
 
 ### 4. **Pull Requests**
 
