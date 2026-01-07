@@ -1,5 +1,5 @@
 ---
-title: "[unit name], [chapter name] - Code examples"
+title: "[unit name], [chapter name] - Code snippets"
 output: html_document
 ---
 
