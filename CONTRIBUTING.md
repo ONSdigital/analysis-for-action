@@ -50,28 +50,21 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
 Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`, `outputs_and_reporting_contrast_checker`.
 
 #### Where to add your code
-Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure). For example:
-- to add Python code for "Intro to RAP" learning resource, place your files in - `learning_resources/data_analysis/rap/intro_to_rap/python/`  
-- Or for a tool - `tools/data_analysis/tool_name/python/` 
-- For R code, use the corresponding `r/` folder in the same unit.
-- For documentation, use the `docs/` folder in the relevant unit.
-- You may need to create the folders yourself if they do not already exist.
 
-> **Note**: Example folder structures and code are provided in the `learning_resources/_example_theme/` and `tools/_example_theme/` directories.
+##### Learning resources
+- Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure). 
+- Python code should be added to the `python/` folder as an `.ipynb` notebook file.
+- R code should be to the `r/` folder as an `.Rmd` R markdown file.
+- Documentation should be added to the `docs/` folder as a `.md` markdown file.
+- You may need to create the folders yourself if they do not already exist. 
 
-#### File types
-
-#### *Learning resources*  
-Use **.ipynb** and **Rmd** files to show runnable Python and R code used in written learning resources. Templates for each can be found in the below:
+Templates for each can be found the below:
  - Python notebook template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb](learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb)
  - R markdown template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd](learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd)
+ - Instructions template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md](learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md)
 
-#### *Tools*
-Code files and structure will vary for each tool. As a minimum ensure code follows the [coding standards](#coding-standards).
-
-Examples of best practice code for tools can be found in the below:
- - Python tool example - [tools\\_example_theme\\_example_tool\\python\\tool.py](tools\\_example_theme\\_example_tool\\python\\tool.py)
- - R tool example - [tools\\_example_theme\\_example_tool\\r\\tool.R](tools\\_example_theme\\_example_tool\\r\\tool.R)
+##### Tools
+Code files and structure will vary for each tool. As a minimum ensure code follows the [coding standards](#coding-standards) and contains a README file explaining its purpose and how it can be used or adapted by the user.
 
 #### Where to add data
 Add data for learning resource code to the `learning_resources/data/` folder.
