@@ -9,10 +9,10 @@ This repository contains tools and example code snippets in **Python** and **R**
 ```
 analysis-for-action/
 ├── learning_resources/             # Top-level folder containing all learning resource code examples.
-│   ├── data/                       # Example datasets used for learning resource examples.
 │   ├── theme1/                     # A specific theme (e.g., data_analysis, outputs_and_reporting).
-│   │   ├── module1/                # A module within a theme.
-│   │   │   ├── unit1/              # A unit within a module.
+│   │   ├── data/                   # Example datasets used for learning resource examples.
+│   │   ├── module1/                # A module within a theme (e.g., reproducible_analytical_pipelines, data_visualisation).
+│   │   │   ├── unit1/              # A unit within a module (e.g., intro_to_rap, basic_data_visualisation).
 │   │   │   │   ├── docs/           # Documentation for the specific unit code examples.
 │   │   │   │   ├── python/         # Python code examples for the specific unit.
 │   │   │   │   │   └── example1.py
@@ -29,7 +29,7 @@ analysis-for-action/
 │   │           └── r/
 ├── tools/                    # Top-level folder containing all tools.
 │   ├── theme1/               # A specific theme (e.g., data_analysis, outputs_and_reporting).
-│   │   └── tool1/            # A specific tool.
+│   │   └── tool1/            # A specific tool (e.g. epidemic_curve_modelling_dashboard, digital_dashboards).
 │   │       ├── docs/         # Documentation for the specific tool.
 │   │       ├── python/       # Python code for the specific tool.
 │   │       │   └── tool.py
@@ -84,7 +84,7 @@ analysis-for-action/
 Learning resources and tools are structured in the same way as the platform content.
 
 `learning_resources/` contains code snippets and examples relating to written content.
-`tools/` contains more comprehensive scripts and functions that can be used as standalone tools that can be adapted for your own use.
+`tools/` contains more comprehensive scripts and functions that can be used as standalone tools or adapted for different contexts and use cases.
 
 > Note: Some tools on the platform are located in standalone repositories. Please refer to the platform for the full range of tools.
 
