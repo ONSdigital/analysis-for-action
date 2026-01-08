@@ -1,0 +1,9 @@
+Package: tool_name
+Type: Package
+Title: Tool name
+Version: 0.1.0
+Author: your_name
+Maintainer: Analysis for Action Team <analysisforaction@ons.gov.uk>
+Description: Add a brief description.
+License: MIT
+Imports: roxygen2
