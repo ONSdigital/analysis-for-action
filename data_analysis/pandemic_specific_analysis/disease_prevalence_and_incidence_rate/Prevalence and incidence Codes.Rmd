@@ -1,0 +1,243 @@
+---
+title: "Prevalence and incidence Codes"
+output: html_document
+---
+
+
+
+
+```{r}
+# installing the required packages
+
+
+install.packages("tidyverse") # for data management and wranging 
+install.packages("here") # for directory path way 
+install.packages("rio") # import and exporting data set
+
+
+library(tidyverse)
+library(here)
+library(rio)
+
+
+```
+
+
+
+
+
+## creating dummary data set
+
+```{r}
+
+# data prepation. 
+## create a data frame with two columns district and first_quarter_cases
+
+# disrict names
+district <- c("Lilongwe", "Dedza", "Salima")
+
+# first quarter cases
+first_quarter_cases<- c(5673, 1863, 9011)
+
+# second quarter cases
+second_quarter_cases <- c(1653, 901, 653)
+
+# mid year population
+mid_year_population <- c(1805980, 784085, 808956)
+
+df1<- data.frame(district, first_quarter_cases, mid_year_population)
+
+
+```
+
+
+## Prevalence proportion
+
+```{r}
+# Prevalence proportion
+
+
+
+# merging the two quarters data of cases columns
+
+df2 <- data.frame(district, first_quarter_cases, second_quarter_cases, mid_year_population)
+
+
+# calculate total cases for each district
+df3<- df2|>
+  mutate(total_cases=round(first_quarter_cases+second_quarter_cases))
+
+
+# calculate cumulative prevalence proportion 
+
+sum(df3$total_cases)/sum(df3$mid_year_population) * 100
+
+
+# calculate prevalence proportion for each district
+
+df4<- df3|> 
+  mutate(prevalence=round(total_cases/mid_year_population*100, 2))
+
+
+```
+
+
+
+
+
+
+
+##Incidence Proportion
+
+```{r}
+
+(sum(df1$first_quarter_cases, na.rm = TRUE) / sum(df1$mid_year_population, na.rm = TRUE))*100
+
+```
+
+
+
+##Incidence Proportion for Lilongwe
+
+```{r}
+
+
+df1|>
+  filter(district== "Lilongwe" ) |> 
+  mutate(incidence_prop=round((first_quarter_cases/mid_year_population)*100,2)) |> 
+  select(incidence_prop) |> 
+  print()
+
+
+```
+
+## Incidence Rate
+
+```{r}
+
+
+Total_days_obs <- 816*21 # 816 days observed for 21 people
+Years_obs <- ceiling(Total_days_obs/365)  # The assumption is not a leap year
+Incidence_rate <-  (5/Years_obs)*10
+print(Incidence_rate) 
+
+
+```
+
+
+
+
+
+# Risk Ratio (RR)
+
+```{r}
+
+## load the epitools package. 
+library(epitools) 
+
+
+# create a data frame with two columns vaccine_state and disease_outcome
+df6 <- data.frame(
+ vaccine_state= sample(rep(c("Vaccinated", "Unvaccinated"), 20)),   
+ disease_outcome= sample(rep(c("Positive", "Negative"), 20)) # 
+# print out the first 6 variables from the data set created will use the head() function  
+
+)
+
+# calculating  the risk ratio, the following code line will be used 
+riskratio(df6$vaccine_state, df6$disease_outcome)
+
+
+
+# calculate the odds ratio 
+
+oddsratio(df6$vaccine_state, df6$disease_outcome)
+
+```
+
+# using real world data to plot dual axis plot
+
+
+
+# loading packages 
+```{r}
+library(rio)
+library(tidyverse)
+library(here)
+library(janitor)
+
+
+```
+
+
+# loading data set
+```{r}
+
+df1 <- import(here("data", "Daily_Cholera_Data.xlsx")) |> 
+  clean_names() |> 
+  select(date, district, cases, deaths)
+
+
+
+  
+
+```
+
+## data preparation.
+
+```{r}
+df2<- df1 |> 
+  mutate(epiweek=floor_date(date, unit = "weeks")) |> 
+  group_by(epiweek, cases, deaths) |> 
+  summarise(cases=sum(cases), 
+            deaths=sum(deaths)) |> 
+  # ungroup() |> 
+  filter(epiweek>="2022-01-01")
+
+
+```
+
+
+# ## Plotting dual axis plot
+
+
+```{r}
+
+
+# Scaling factor so deaths align with secondary axis max = 100
+scale_factor <- max(df2$cases, na.rm = TRUE) / 1
+
+
+
+df2 |>
+  ggplot(aes(x = epiweek)) +
+  # Cases as bars
+  geom_col(aes(y = cases), fill = "orange") +
+  # Deaths as line (scaled)
+  geom_line(aes(y = deaths* scale_factor), 
+            color = "red", size = 1) +
+  # Primary and secondary axes
+  scale_y_continuous(
+    name = "Cases",
+    sec.axis = sec_axis(~ . / scale_factor, 
+                        name = "Deaths")
+  ) +
+  labs(
+    x = "Epidemiological Week",
+    title = "Weekly Epi curve of cholera cases in Malawi March 2022 to July 2024", 
+    y= "Cases",
+    caption = "Source: Malawi Ministry of Health"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.y.left = element_text(color = "orange", size = 12),
+    axis.title.y.right = element_text(color = "red", size = 12),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold")
+  )
+
+
+
+```
+
+
+
