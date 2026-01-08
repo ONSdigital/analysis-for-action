@@ -1,34 +1,43 @@
 # Example tool README
 
-This is an example tool README file. It provides an overview of the tool, its purpose, and how to use it.
+This README file provides a generic Python README template using the example tool as an example.
 
 ## Overview
 
-The example tool is designed to demonstrate best practices for building tools within the Analysis for Action platform. It includes a set of Python scripts that can be used as a starting point for developing your own tools.
+The example tool is designed to provide an example of best practices for building tools within the Analysis for Action platform. In reality tools will vary in complexity and functionality, so this directory is only intended to provide an example of a simple structure as well as best practice code and documentation for tools within the platform.
 
 ## Installation
 
-To install the example tool, follow these steps:
+To install the [tool_name], follow these steps:
 
 1. Clone the repository:
-   ```bash
+   ```cmd
    git clone https://github.com/ONSdigital/analysis-for-action.git
    cd analysis-for-action
    ```
 
 2. Install the required dependencies:
-   ```bash
+   ```cmd
    pip install -r requirements.txt
+   ```
+
+3. Navigate to the tool's directory:
+   ```cmd
+   cd tools\_example_theme\_example_tool\python
    ```
 
 ## Usage
 
-To use the example tool, run the following command:
-1. Open a terminal and navigate to the tools directory.
-```bash
-cd tools/_example_theme/_example_tool/python
+To use the example tool, run the following command from the tool's directory:
+```cmd
+python tool.py --x 2 --y 3
 ```
-2. Run the following command:
-```bash
-python tool.py
-```
+
+Replace `2` and `3` with your desired numbers.
+
+## Data
+
+[Add any information about data used by the tool here, if applicable.]
+
+## Tests
+[Add instructions on how to run tests for the tool here.]
