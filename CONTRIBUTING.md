@@ -64,7 +64,16 @@ Templates for each can be found the below:
  - Instructions template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md](learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md)
 
 ##### Tools
+- Add tools to the correct folder, following the [repository structure](README.md#repository-structure).
+- Create a folder for the tool within the relevant theme and module.
+- Add Python code to the `python/` folder and R code to the `r/` folder.
+- If a tool has only been built in one language, the code can go directly into the module folder, for example `tools/theme1/module1/tool1/tool.py`.
+- Additional documentation should be added to the `docs/` folder as a `.md` markdown file.
+- You may need to create the folders yourself if they do not already exist.
+
 Code files and structure will vary for each tool. As a minimum ensure code follows the [coding standards](#coding-standards) and contains a README file explaining its purpose and how it can be used or adapted by the user.
+
+Example tools and templates can be found in the [tools/_example_theme/](tools/_example_theme/) directory. These examples are intended to provide an example of a simple structure as well as best practice code and documentation for tools within the platform.
 
 #### Where to add data
 Add data for learning resource code to the `learning_resources/data/` folder.
