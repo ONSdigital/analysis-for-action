@@ -1,6 +1,6 @@
 # Example tool README
 
-This README file provides a generic Python README template using the example tool as an example.
+This README file provides a generic template using the example tool as an example.
 
 ## Overview
 
@@ -40,4 +40,5 @@ Replace `2` and `3` with your desired numbers.
 [Add any information about data used by the tool here, if applicable.]
 
 ## Tests
-[Add instructions on how to run tests for the tool here.]
+
+[Add any information about how to run tests.]

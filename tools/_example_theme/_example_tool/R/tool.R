@@ -3,7 +3,6 @@
 
 library(roxygen2)
 
-
 #' Adds two numbers together.
 #'
 #' @param x First number (numeric)

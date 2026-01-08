@@ -1,3 +1,2 @@
-# Add tool specific requirements here
-# Example
-# numpy==1.24.2
+# Example requirements.txt
+# List only the dependencies needed for this tool

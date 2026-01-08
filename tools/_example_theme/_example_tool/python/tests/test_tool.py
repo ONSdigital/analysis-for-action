@@ -1,3 +1,1 @@
-"""
-Add minimal working tests for the core logic.
-"""
+# Add minimal working tests for core logic of the tool.

@@ -1,9 +1,9 @@
-Package: _example_tool
+Package: tool_name
 Type: Package
-Title: Example Tool for Analysis for Action
+Title: Tool name
 Version: 0.1.0
-Author: Your Name
-Maintainer: Analysis for Action <analysisforaction@ons.gov.uk>
-Description: This is an example tool for the Analysis for Action platform.
+Author: your_name
+Maintainer: Analysis for Action Team <analysisforaction@ons.gov.uk>
+Description: Add a brief description.
 License: MIT
-Imports: dplyr, ggplot2
+Imports: roxygen2
