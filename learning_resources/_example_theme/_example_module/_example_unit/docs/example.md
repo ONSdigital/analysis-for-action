@@ -5,13 +5,13 @@ This document provides instructions on how to run the code snippets provided for
 The code snippets for this unit can be found in the `python` and `r` folders within this unit's directory. Both folders contain the same set of example files, but in different programming languages. Choose the appropriate folder based on your preferred programming language.
 
 ## Contents
-> **Note for developers**: Where there are many examples, consider creating a file per chapter or topic, for example, the "Intro to RAP" unit could be split into;   `01_rap_vs_traditional_analytical_worflows`  
-`02_how_rap_overcomes_challenges`  
+> **Note for developers**: Where there are many examples, consider creating a file per chapter or topic, for example, the "Intro to RAP" unit could be split into;   `01_rap_vs_traditional_analytical_worflows`
+`02_how_rap_overcomes_challenges`
 In this case, use the below as a template for contents.
 
-- 01_example: [add a brief description of what this file contains]  
+- 01_example: [add a brief description of what this file contains]
 [Python](learning_resources/_example_theme/_example_module/_example_unit/python/01_example.ipynb), [R](learning_resources/_example_theme/_example_module/_example_unit/r/01_example.Rmd)
-- 02_example: [add a brief description of what this file contains]  
+- 02_example: [add a brief description of what this file contains]
 [Python](learning_resources/_example_theme/_example_module/_example_unit/python/02_example.ipynb), [R](learning_resources/_example_theme/_example_module/_example_unit/r/02_example.Rmd)
 
 ## Running Python Code Snippets

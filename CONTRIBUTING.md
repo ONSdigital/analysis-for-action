@@ -52,11 +52,11 @@ Create a new branch for your changes, include the unit name and description of t
 #### Where to add your code
 
 ##### Learning resources
-- Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure). 
+- Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure).
 - Python code should be added to the `python/` folder as an `.ipynb` notebook file.
 - R code should be to the `r/` folder as an `.Rmd` R markdown file.
 - Documentation should be added to the `docs/` folder as a `.md` markdown file.
-- You may need to create the folders yourself if they do not already exist. 
+- You may need to create the folders yourself if they do not already exist.
 
 Templates for each can be found the below:
  - Python notebook template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb](learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb)
