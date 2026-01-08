@@ -47,6 +47,18 @@ analysis-for-action/
 
 ## Getting Started
 
+### Fork the repository
+Forking means creating your own copy of this project on GitHub.
+- Go to the [GitHub page](https://github.com/ONSdigital/python_rap_demo) for this repository (if you are not there already) and click the "Fork" button in the top right.
+- After forking, go to your new repository (it will be at `https://github.com/<your-username>/analysis-for-action`).
+- Click the green "Code" button and copy the URL shown under "Clone".
+- Open a terminal (Command Prompt) and run:
+   ```cmd
+   git clone https://github.com/<your-username>/analysis-for-action.git
+   cd analysis-for-action
+   ```
+- **Tip:** To check you are in the project root, run `dir` and make sure you see files like `README.md` and folders like `src` and `data`.
+
 ### Python Setup
 
 1. Ensure you have Python 3.12+ installed
