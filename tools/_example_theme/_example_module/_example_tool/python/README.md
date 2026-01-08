@@ -16,15 +16,17 @@ To install the [tool_name], follow these steps:
    cd analysis-for-action
    ```
 
-2. Install the required dependencies:
+2. Navigate to the tool's directory:
+   ```cmd
+   cd tools\_example_theme\_example_tool\python
+   ```
+
+3. Install the required dependencies:
    ```cmd
    pip install -r requirements.txt
    ```
 
-3. Navigate to the tool's directory:
-   ```cmd
-   cd tools\_example_theme\_example_tool\python
-   ```
+> **Note:** Each tool in this repository has its own setup instructions or requirements.txt file to ensure dependencies are isolated and easy to manage. Only install dependencies for the tool you wish to use.
 
 ## Usage
 

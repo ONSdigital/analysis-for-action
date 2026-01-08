@@ -1,2 +1,0 @@
-# Example requirements.txt
-# List only the dependencies needed for this tool
