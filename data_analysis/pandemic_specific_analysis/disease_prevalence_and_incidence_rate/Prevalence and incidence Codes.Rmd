@@ -13,11 +13,13 @@ output: html_document
 install.packages("tidyverse") # for data management and wranging 
 install.packages("here") # for directory path way 
 install.packages("rio") # import and exporting data set
+install.packages("janitor") # for cleaning data set
 
 
 library(tidyverse)
 library(here)
 library(rio)
+library(janitor)
 
 
 ```
@@ -25,27 +27,20 @@ library(rio)
 
 
 
-
-## creating dummary data set
+## loading data set
 
 ```{r}
 
-# data prepation. 
-## create a data frame with two columns district and first_quarter_cases
+# loading cholera data set 
 
-# disrict names
-district <- c("Lilongwe", "Dedza", "Salima")
+cholera_data <- import(here("data", "cholera_data_2022.csv")) |> 
+  clean_names() |> 
+  mutate(date=as.Date(date, format="%Y-%m-%d"))
 
-# first quarter cases
-first_quarter_cases<- c(5673, 1863, 9011)
 
-# second quarter cases
-second_quarter_cases <- c(1653, 901, 653)
-
-# mid year population
-mid_year_population <- c(1805980, 784085, 808956)
-
-df1<- data.frame(district, first_quarter_cases, mid_year_population)
+# loading mid year population data set
+mw_population <- import(here("data", "mw_population.csv")) |> 
+  clean_names()
 
 
 ```
@@ -56,27 +51,34 @@ df1<- data.frame(district, first_quarter_cases, mid_year_population)
 ```{r}
 # Prevalence proportion
 
+# This code will show the calculation of prevalence proportion using Malawi cholera-2022
+
+# cleaning the district names in both data sets to have similar format
+
+cholera_data$district <- str_to_lower(cholera_data$district)
+
+mw_population$district <- str_to_lower(mw_population$district)
+
+
+# aggregating the cases for first quarter (January to March) 2022
+first_quarter <-cholera_data |> 
+  filter(date >= "2022-01-01" & date <= "2022-06-30") |> 
+  group_by(district) |> 
+  summarise(first_quarter_cases=sum(cases, na.rm = TRUE))
 
 
 # merging the two quarters data of cases columns
-
-df2 <- data.frame(district, first_quarter_cases, second_quarter_cases, mid_year_population)
-
-
-# calculate total cases for each district
-df3<- df2|>
-  mutate(total_cases=round(first_quarter_cases+second_quarter_cases))
+first_quarter<- merge(first_quarter, mw_population, by="district")
 
 
-# calculate cumulative prevalence proportion 
+# calculating prevalence proportion for first quarter for each district
 
-sum(df3$total_cases)/sum(df3$mid_year_population) * 100
+prev_district<- first_quarter |> 
+  mutate(prevalence=round((first_quarter_cases/population)*10000,2))
 
 
-# calculate prevalence proportion for each district
-
-df4<- df3|> 
-  mutate(prevalence=round(total_cases/mid_year_population*100, 2))
+# view the prevalence proportion for each district
+print(prev_district)
 
 
 ```
@@ -91,25 +93,25 @@ df4<- df3|>
 
 ```{r}
 
-(sum(df1$first_quarter_cases, na.rm = TRUE) / sum(df1$mid_year_population, na.rm = TRUE))*100
+blantyre_incidence<- cholera_data |> 
+  filter(district== "blantyre" ) |>
+  filter(date >= "2022-01-01" & date <= "2022-06-30") |>
+  group_by(district, epiweek) |>
+  summarise(first_quarter_cases=sum(cases, na.rm = TRUE))
+
+
+# merging with population data set
+blantyre_incidence <- merge(blantyre_incidence, mw_population, by="district") |> 
+  mutate(incidence_prop=round((first_quarter_cases/population)*100000,2)) |> 
+  select( district, epiweek, incidence_prop) 
+
+# viewing incidence proportion for Blantyre district per week
+blantyre_incidence
+  
 
 ```
 
 
-
-##Incidence Proportion for Lilongwe
-
-```{r}
-
-
-df1|>
-  filter(district== "Lilongwe" ) |> 
-  mutate(incidence_prop=round((first_quarter_cases/mid_year_population)*100,2)) |> 
-  select(incidence_prop) |> 
-  print()
-
-
-```
 
 ## Incidence Rate
 
@@ -132,6 +134,8 @@ print(Incidence_rate)
 
 ```{r}
 
+install.packages("epitools")  # installing the epitools package
+
 ## load the epitools package. 
 library(epitools) 
 
@@ -150,92 +154,7 @@ riskratio(df6$vaccine_state, df6$disease_outcome)
 
 
 # calculate the odds ratio 
-
 oddsratio(df6$vaccine_state, df6$disease_outcome)
-
-```
-
-# using real world data to plot dual axis plot
-
-
-
-# loading packages 
-```{r}
-library(rio)
-library(tidyverse)
-library(here)
-library(janitor)
-
-
-```
-
-
-# loading data set
-```{r}
-
-df1 <- import(here("data", "Daily_Cholera_Data.xlsx")) |> 
-  clean_names() |> 
-  select(date, district, cases, deaths)
-
-
-
-  
-
-```
-
-## data preparation.
-
-```{r}
-df2<- df1 |> 
-  mutate(epiweek=floor_date(date, unit = "weeks")) |> 
-  group_by(epiweek, cases, deaths) |> 
-  summarise(cases=sum(cases), 
-            deaths=sum(deaths)) |> 
-  # ungroup() |> 
-  filter(epiweek>="2022-01-01")
-
-
-```
-
-
-# ## Plotting dual axis plot
-
-
-```{r}
-
-
-# Scaling factor so deaths align with secondary axis max = 100
-scale_factor <- max(df2$cases, na.rm = TRUE) / 1
-
-
-
-df2 |>
-  ggplot(aes(x = epiweek)) +
-  # Cases as bars
-  geom_col(aes(y = cases), fill = "orange") +
-  # Deaths as line (scaled)
-  geom_line(aes(y = deaths* scale_factor), 
-            color = "red", size = 1) +
-  # Primary and secondary axes
-  scale_y_continuous(
-    name = "Cases",
-    sec.axis = sec_axis(~ . / scale_factor, 
-                        name = "Deaths")
-  ) +
-  labs(
-    x = "Epidemiological Week",
-    title = "Weekly Epi curve of cholera cases in Malawi March 2022 to July 2024", 
-    y= "Cases",
-    caption = "Source: Malawi Ministry of Health"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.title.y.left = element_text(color = "orange", size = 12),
-    axis.title.y.right = element_text(color = "red", size = 12),
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold")
-  )
-
-
 
 ```
 
