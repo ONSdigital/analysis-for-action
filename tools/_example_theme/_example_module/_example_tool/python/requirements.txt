@@ -1,2 +1,3 @@
-# Example requirements.txt
-# List only the dependencies needed for this tool
+# Add dependencies for the tool here.
+# Where possible include a version for the tool like below:
+# example-package==1.0.0
