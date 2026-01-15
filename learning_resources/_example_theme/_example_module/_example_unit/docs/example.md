@@ -37,4 +37,4 @@ If you encounter any issues running the code snippets, consider the following tr
 - Ensure you have followed the setup instructions in the [README.md](../../../README.md) file including `pip install -r requirements.txt`.
 - Run code from top to bottom to ensure all dependencies are met.
 - Restart the notebook kernel and clear all outputs (at the top of the notebook, select "Kernel" > "Restart & Clear Outputs").
-- For more detailed troubleshooting guidance, refer to the [troubleshooting document](LINK/TO/BE/ADDED).
+- For more detailed troubleshooting guidance, refer to the [troubleshooting document]([PLACEHOLDER])
