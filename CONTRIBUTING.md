@@ -54,26 +54,31 @@ Create a new branch for your changes, include the unit name and description of t
 ##### Learning resources
 - Add code and documentation to the correct folder, following the [repository structure](README.md#repository-structure).
 - Python code should be added to the `python/` folder as an `.ipynb` notebook file.
-- R code should be to the `r/` folder as an `.Rmd` R markdown file.
+- R code should be to the `R/` folder as an `.Rmd` R markdown file.
 - Documentation should be added to the `docs/` folder as a `.md` markdown file.
 - You may need to create the folders yourself if they do not already exist.
 
 Templates for each can be found the below:
  - Python notebook template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb](learning_resources\\_example_theme\\_example_module\\_example_unit\\python\\example.ipynb)
- - R markdown template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd](learning_resources\\_example_theme\\_example_module\\_example_unit\\r\\example.Rmd)
+ - R markdown template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\R\\example.Rmd](learning_resources\\_example_theme\\_example_module\\_example_unit\\R\\example.Rmd)
  - Instructions template - [learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md](learning_resources\\_example_theme\\_example_module\\_example_unit\\docs\\example.md)
+
+- .py and .R script files can be used when learning resources refer to existing tools that are not appropriate for the `tools/` folder, but these should be avoided where possible in favour of notebooks and R markdown files.
 
 ##### Tools
 - Add tools to the correct folder, following the [repository structure](README.md#repository-structure).
 - Create a folder for the tool within the relevant theme and module.
-- Add Python code to the `python/` folder and R code to the `r/` folder.
-- If a tool has only been built in one language, the code can go directly into the module folder, for example `tools/theme1/module1/tool1/tool.py`.
+- Add Python tool files and folders to the `python/` folder.
+- Add R tool files and folders to the `R/` folder.
+- If a tool has only been built in one language, the code can go directly into the module folder, for example `tools/theme1/module1/tool1/main.py`.
 - Additional documentation should be added to the `docs/` folder as a `.md` markdown file.
 - You may need to create the folders yourself if they do not already exist.
 
-Code files and structure will vary for each tool. As a minimum ensure code follows the [coding standards](#coding-standards) and contains a README file explaining its purpose and how it can be used or adapted by the user.
+- Code files and structure will vary for each tool, but example structures can be found in the [tools/_example_theme/](tools/_example_theme/) directory.
+- Instructions can also be found in the [developer instructions](tools/_example_theme/_example_module/_example_tool/docs/developer_instructions.md).
 
-Example tools and templates can be found in the [tools/_example_theme/](tools/_example_theme/) directory. These examples are intended to provide an example of a simple structure as well as best practice code and documentation for tools within the platform.
+These examples are intended to provide an example of a simple structure as well as best practice code and documentation for tools within the platform. They are not intended as a one size fits all solution, and you should adapt the structure as necessary to suit the needs of your specific tool.
+
 
 #### Where to add data
 Add data for learning resource code to the `learning_resources/data/` folder.
@@ -88,9 +93,11 @@ Add any dependencies to the relevant files:
 Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
 
 ### 4. **Pull Requests**
-
-- **Do not select `main` as the target branch.**
+#### Creating Pull Requests
+- Push your branch to the remote repository.
+- Navigate to the repository on GitHub and create a new Pull Request.
 - When you create a Pull Request (PR), always select the `dev` branch as the target for merging your changes.
+- **Do not select `main` as the target branch.**
 - Fill in details and submit the pull request.
 - Use clear, consistent Pull Request (PR) names to make collaboration easier. Follow this format:
 
@@ -99,13 +106,24 @@ Ensure your code has been peer reviewed and meets the project's [coding standard
 ```
 Example - `2.2.1. Intro to RAP Code snippets`
 - Clearly describe your changes and reference any relevant issues.
-- The code must be reviewed by at least one tester and a member of the UK analysis for action team before it is merged.
+- The code must be reviewed by at least one tester and a member of the UK Analysis for Action team before it is merged.
+
+#### Reviewing Pull Requests
+- Navigate to the Pull Request on GitHub. If a link is not provided the Pull Request can be found under the "Pull Requests" tab of the repository.
+- Read the description of the changes made.
+- Click on the "Files changed" tab to see the code changes and click "Review changes" to add your comments.
+- Where possible add comments to specific lines of code by hovering over the line and clicking the blue plus icon that appears.
+- For general comments that are not tied to a specific line of code, add them in the review box on the top right.
+- Follow the testing recommendations template for more information on what to consider when reviewing tools and code.
+- Ensure code follows the project's [coding standards](#coding-standards).
+- Add a summary of your review comments in the review box on the top right.
+- Select "Approve" if the code is good to merge, or "Request changes" if there are issues that need to be addressed.
 
 ## Coding standards
 All contributions should adhere to the following standards:
 
 ### Coding practice
-- Code follows the tidyverse style (for R) or the PEP8 style (for Python).
+- Code follows the [tidyverse](https://style.tidyverse.org/) style (for R) or the [PEP8](https://www.python.org/dev/peps/pep-0008/) style (for Python).
 - Function, variable, and dataframe names are clear and logical.
 - Code logic is clear and avoids unnecessary complexity.
 - Hardcoded values (like file paths or constants) have been removed so that the user can easily customise these themselves.
@@ -118,7 +136,7 @@ All contributions should adhere to the following standards:
 - Comments are up to date, so they do not confuse the user.
 - Code is not commented out to adjust which lines of code run.
 - All functions and classes are documented to describe what they do, what inputs they take and what they return.
-- R functions are documented using roxygen2 comments. Python functions are documented using docstrings.
+- R functions are documented using [roxygen2](https://roxygen2.r-lib.org/) comments. Python functions are documented using [docstrings](https://docs.python.org/3/tutorial/controlflow.html#defining-functions).
 
 ### Data management
 
