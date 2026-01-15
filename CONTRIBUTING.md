@@ -92,6 +92,29 @@ Add any dependencies to the relevant files:
 
 Ensure your code has been peer reviewed and meets the project's [coding standards](#coding-standards).
 
+### Linting and styling
+#### Python
+This repository uses pre commits for Python linting and styling. Install the pre commits by following the instructions in the [Set Up](#2-set-up) section of the contributing guidance. These checks will then run whenever you commit code.
+
+#### R
+R code quality can be checked using the `lintr` and `styler` packages. It is recommended to run these checks before committing your code to ensure it meets the project's coding standards.
+
+To do this, you can use the following commands in R:
+1. Install the packages (if not already installed):
+```R
+# Install lintr and styler if you haven't already
+install.packages("lintr")
+install.packages("styler")
+```
+2. Run `lintr` to check for linting issues:
+```R
+lintr::lint_dir("path/to/your/code")  # Replace with the path to your R code
+```
+3. Use `styler` to format your code:
+```R
+styler::style_dir("path/to/your/code")  # Replace with the path to your R code
+```
+
 ### 4. **Pull Requests**
 #### Creating Pull Requests
 - Push your branch to the remote repository.
