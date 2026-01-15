@@ -54,5 +54,11 @@ To add a new tool to the repository, follow these steps:
     - Data dictionaries
     - Design documents
 
+## README templates
+- The Python and R folders contain README.md templates that you can adapt for your specific tool.
+- Either use these examples as a template to fill with your own content or use them as a reference to create your own README.md file.
+
 ## Coding standards
 - Follow coding standards as outlined in the [coding standards](../../CONTRIBUTING.md#coding-standards) section of the repository.
+- Pre commit hooks are set up to help maintain code quality. Install pre commits by following the instructions in the [Set Up](../../CONTRIBUTING.md#2-set-up) section of the contributing guidance.
+- It is also recommended to use lintr and styler for R code quality checks.
