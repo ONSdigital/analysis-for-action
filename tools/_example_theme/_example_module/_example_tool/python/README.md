@@ -1,10 +1,18 @@
+---
+This README file provides a generic template using the example tool as an example.
+
+To use this template
+- Replace all square bracketed text (e.g., [tool_name], [unit_name]) with the relevant names for the tool, or descriptions.
+- Update the path in step 2 of the installation section ("cd tools\_example_theme\_example_tool\python") to point to the correct tool directory.
+---
+
 # Example tool README
 
-This README file provides a generic template using the example tool as an example.
+This tool relates to the [unit_name](link) unit on the Analysis for Action Platform.
 
 ## Overview
 
-The example tool is designed to provide an example of best practices for building tools within the Analysis for Action platform. In reality tools will vary in complexity and functionality, so this directory is only intended to provide an example of a simple structure as well as best practice code and documentation for tools within the platform.
+[Add a brief description of the tool, its purpose, and functionality here.]
 
 ## Installation
 
@@ -18,7 +26,7 @@ To install the [tool_name], follow these steps:
 
 2. Navigate to the tool's directory:
    ```cmd
-   cd tools\_example_theme\_example_tool\python
+   cd tools\_example_theme\_example_tool\python  # Update the path as necessary
    ```
 
 3. Install the required dependencies:
@@ -30,12 +38,7 @@ To install the [tool_name], follow these steps:
 
 ## Usage
 
-To use the example tool, run the following command from the tool's directory:
-```cmd
-python tool.py --x 2 --y 3
-```
-
-Replace `2` and `3` with your desired numbers.
+[Add instructions on how to use the tool here. Include instructions on how to run the tool and example commands or code snippets if applicable.]
 
 ## Data
 
