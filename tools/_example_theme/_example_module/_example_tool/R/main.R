@@ -16,5 +16,4 @@ example_add_numbers <- function(x, y) {
 }
 
 # Example usage
-# Uncomment the line below to run
-# print(example_add_numbers(2, 3))
+print(example_add_numbers(2, 3))
