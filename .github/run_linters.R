@@ -41,8 +41,13 @@ summarise_lintr_warnings <- function(lints) {
   return(warnings)
 }
 
-# Run lintr on all R scripts and main.R
-lints <- c(lintr::lint_dir("R"), lintr::lint("main.R"))
+# Find all R files in any 'r' or 'R' subdirectory recursively
+r_files <- list.files(path = ".", pattern = "\\.R$", recursive = TRUE, full.names = TRUE)
+r_files <- r_files[grepl("/(r|R)/", r_files)]
+cat("DEBUG: Found", length(r_files), "R files in r/R subdirectories.\n")
+
+# Run lintr on each R file found
+lints <- unlist(lapply(r_files, lintr::lint), recursive = FALSE)
 cat("DEBUG: lints length =", length(lints), "\n")
 # Filter only valid lint objects
 lints <- Filter(function(x) inherits(x, "lint"), lints)
