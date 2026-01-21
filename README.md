@@ -27,14 +27,13 @@ analysis-for-action/
 │   │           ├── docs/
 │   │           ├── python/
 │   │           └── r/
-├── tools/                    # Top-level folder containing all tools.
-│   ├── theme1/               # A specific theme (e.g., data_analysis, outputs_and_reporting).
-│   │   └── tool1/            # A specific tool (e.g. epidemic_curve_modelling_dashboard, digital_dashboards).
-│   │       ├── docs/         # Documentation for the specific tool.
-│   │       ├── python/       # Python code for the specific tool.
-│   │       │   └── tool.py
-│   │       └── r/            # R code for the specific tool.
-│   │           └── tool.R
+├── tools/                       # Top-level folder containing all tools.
+│   ├── theme1/                  # A specific theme (e.g., data_analysis, outputs_and_reporting).
+│   │   └── module1/             # A module within a theme (e.g., reproducible_analytical_pipelines, data_visualisation).
+│   │       └── tool1/           # A specific tool (e.g. epidemic_curve_modelling_dashboard, digital_dashboards).
+│   │           ├── docs/        # Documentation for the specific tool.
+│   │           ├── python/      # Python code for the specific tool.
+│   │           └── r/           # R code for the specific tool.
 ├── requirements.txt      # Python dependencies
 ├── setup.R               # R dependencies setup script
 ├── .pre-commit-config.yaml
