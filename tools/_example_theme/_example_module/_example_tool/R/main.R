@@ -12,7 +12,7 @@ library(roxygen2)
 #' example_add_numbers(2, 3)
 #' # [1] 5
 example_add_numbers <- function(x, y) {
-  return(x + y)
+  x + y
 }
 
 # Example usage
