@@ -9,7 +9,7 @@ This repository has been reviewed and edited with input from the original RAP de
 > Please note: This codebase is not functional and is provided for demonstration purposes only.
 
 ## Repository structure
-The repository contains the following key components:  
+The repository contains the following key components:
 - `old_code/`: Legacy code used in previous publications, included for reference. Referred to as "Original code" in the Analysis for Action learning resource.
 - `RAP/`: The main RAP structure, including configuration files and the primary analysis script. Referred to as "RAP" in the Analysis for Action learning resource.
     - `birth.char/`: An R package developed to encapsulate functions and data processing steps for the Birth Characteristics analysis.

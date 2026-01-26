@@ -32,17 +32,17 @@ datyrfull <- 2021
 # Drop the NA
 e <- e[!is.na(e$IMD_E),]
 
-# Add a total row 
+# Add a total row
 e <- e %>% adorn_totals("row", name = "Total")
 
 # Create table for Wales
-w <- plyr::count(ew, c('bth','IMD_W')) 
+w <- plyr::count(ew, c('bth','IMD_W'))
 w <- cast(w, IMD_W ~ bth, value = 'freq')
 
 # Drop the NA
 w <- w[!is.na(w$IMD_W),]
 
-# Add a total row 
+# Add a total row
 w <- w %>% adorn_totals("row", name = "Total")
 
 # Join England and Wales together

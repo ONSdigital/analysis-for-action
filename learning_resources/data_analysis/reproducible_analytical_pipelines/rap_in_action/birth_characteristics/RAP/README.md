@@ -1,4 +1,4 @@
-> An edited version of the original README is included below. It has been simplified and shortened to focus on key concepts.  
+> An edited version of the original README is included below. It has been simplified and shortened to focus on key concepts.
 **Please note: This codebase is not functional and is provided for demonstration purposes only.**
 
 # Birth characteristics RAP: (Work in progress)
@@ -12,9 +12,9 @@ Repository for producing the Birth characteristics and Births by parents’ char
 - [Desk notes](#desk-notes)
 
 ## Project description
-The releases Birth characteristics and Birth by parents’ characteristics  are annual live births in England and Wales by sex, birthweight, gestational age, ethnicity and month, maternities by place of birth and with multiple births, and stillbirths by age of parents and calendar quarter. 
+The releases Birth characteristics and Birth by parents’ characteristics  are annual live births in England and Wales by sex, birthweight, gestational age, ethnicity and month, maternities by place of birth and with multiple births, and stillbirths by age of parents and calendar quarter.
 
-Births Characteristics comprises a bulletin and 2 workbooks (birth characteristics and birth by parents' characteristics).  
+Births Characteristics comprises a bulletin and 2 workbooks (birth characteristics and birth by parents' characteristics).
 
 #### Existing publications
 - Birth Characteritics bulletin
@@ -38,7 +38,7 @@ You will need to have the `devtools` package installed. Clone this repository an
 
 ### Running the pipeline:
 
-To run the analysis, your working directory should be set to the `birth.characteristics` folder, where the cloned repository is stored. Firstly, **update** the variables in `config.R`, and then run `main.R`. 
+To run the analysis, your working directory should be set to the `birth.characteristics` folder, where the cloned repository is stored. Firstly, **update** the variables in `config.R`, and then run `main.R`.
 
 #### Required packages
 The following packages should be installed:
@@ -46,21 +46,21 @@ The following packages should be installed:
 *   `birth.char`
 *   `halefunctionlib`
 
-#### Config    
+#### Config
 
-General config parameters, stored in the `cfg` list object:    
-*   `year_full`: 4-digit year of data used.   
-*   `year`: Do not edit. Uses to `year_full` to produce 2 digit year of data.   
+General config parameters, stored in the `cfg` list object:
+*   `year_full`: 4-digit year of data used.
+*   `year`: Do not edit. Uses to `year_full` to produce 2 digit year of data.
 
-SQL import parameters, stored in the `sqldb` list object:    
-*   `server`: Name of server, as a character string.    
-*   `met_county_colname`: Column name for met county codes in NSPL data set, which varies in each version, as a character string.   
-*   `births_ew`: Births registrations database for England and Wales   
-*   `births_scot`: Births database for Scotland   
-*   `births_ni`: Births database for Northern Ireland   
-*   `births_notif`: Births notifications database.    
-*   `pops`: Populations database    
-*   `nspl`: National Statistics Postcode Lookup database    
+SQL import parameters, stored in the `sqldb` list object:
+*   `server`: Name of server, as a character string.
+*   `met_county_colname`: Column name for met county codes in NSPL data set, which varies in each version, as a character string.
+*   `births_ew`: Births registrations database for England and Wales
+*   `births_scot`: Births database for Scotland
+*   `births_ni`: Births database for Northern Ireland
+*   `births_notif`: Births notifications database.
+*   `pops`: Populations database
+*   `nspl`: National Statistics Postcode Lookup database
 
 <br>
 
@@ -76,7 +76,7 @@ SQL import parameters, stored in the `sqldb` list object:
 *  Use the standardised commit messages:
 
 
-    **feat** — A new feature  
+    **feat** — A new feature
 
     **fix** — A bug fix
 

@@ -7,7 +7,7 @@
 
 ###########################################################################################
 ####  DAU 'Childbearing for women born in different years, England and Wales' Release  ####
-####  V2.0 - August 2021 (updated 9.11.21) 
+####  V2.0 - August 2021 (updated 9.11.21)
 ##### V2.1 March 2023 (2021 data updates and tweaks, last updated 16.03.23)
 #################################################################
 ###########################################################################################
@@ -58,25 +58,25 @@ setwd (directory)
 ################################################################################
 
 sqlbths <- odbcDriverConnect('driver=driver;server=server;schema=schema;
-                             database=leo_births; trusted_connection=true') 
+                             database=leo_births; trusted_connection=true')
 
 LEO_births <- sqlQuery(sqlbths,"SELECT sourcetable, AGEBM, PREVCHL, BTHIMAR, SBIND, REGDETS, MULTBTH, MULTTYPE, PCDRM FROM dbo.Births_2018on" , stringsAsFactors=FALSE)
 
-births <- LEO_births %>% 
+births <- LEO_births %>%
   filter(sourcetable == 2022) %>%  # Year 2022 specified inline
-  filter(is.na(SBIND)) %>% 
+  filter(is.na(SBIND)) %>%
   mutate(SBIND = NULL)
 
 # Set values of PREVCHL = 99, to be missing values N/A
 births$PREVCHL[births$PREVCHL == 99] <- NA
 
-# Create new variable: mother's age at birth (AGEBM) to COMPLETED YEARS (M_AGE_COMPLETEYRS) 
+# Create new variable: mother's age at birth (AGEBM) to COMPLETED YEARS (M_AGE_COMPLETEYRS)
 #(i.e. completed years when child is born: rounded down)
 
 births <- births %>%
-  mutate(M_AGE_COMPLETEYRS = AGEBM) %>% 
+  mutate(M_AGE_COMPLETEYRS = AGEBM) %>%
   mutate(M_AGE_COMPLETEYRS = M_AGE_COMPLETEYRS/100)
-births$M_AGE_COMPLETEYRS <- round(births$M_AGE_COMPLETEYRS, digit = 0)  
+births$M_AGE_COMPLETEYRS <- round(births$M_AGE_COMPLETEYRS, digit = 0)
 
 # Create new variable: M_AGE_EXACT
 
@@ -89,7 +89,7 @@ births <- mutate(births, M_AGE_EXACT = M_AGE_COMPLETEYRS + 1)
 
 
 #########################################################################################################################################
-## [5] [OPTIONAL] OUTLIERS: Plot Age/PrevChildren to map outliers **OUTPUT 2** & code to identify particular outlier records if needed ## 
+## [5] [OPTIONAL] OUTLIERS: Plot Age/PrevChildren to map outliers **OUTPUT 2** & code to identify particular outlier records if needed ##
 #########################################################################################################################################
 
 # Plot Age of mother (completed years) against number of previous children
