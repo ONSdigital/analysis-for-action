@@ -29,6 +29,10 @@ datyrfull <- 2021
 ##                   ...Import and processing not shown...                      ##
 ##################################################################################
 
+# Create table for England
+e <- plyr::count(ew, c('bth','IMD_E'))
+e <- cast(e, IMD_E ~ bth, value = 'freq')
+
 # Drop the NA
 e <- e[!is.na(e$IMD_E),]
 
