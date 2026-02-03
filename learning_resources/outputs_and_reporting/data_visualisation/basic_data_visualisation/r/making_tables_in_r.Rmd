@@ -112,7 +112,7 @@ The raw data is too large to use in a demonstration table. You need to filter it
 
 vuln_for_select_countries_3y <- vuln %>%
 
-  filter(year %in% c(1997, 2002, 2007)) %>%
+  filter(year %in% c("1997", "2002", "2007")) %>%
 
   select(country, continent, year, vulnerable_pop) %>%
 
