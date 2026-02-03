@@ -227,6 +227,6 @@ vuln_exercise # Display the output
 
 vuln_exercise %>%
 
-  gtsave(filename = "r_table_exercise_solution.html", path = "D:/TEMP/")
+  gtsave(filename = "r_table_solution.html", path = "D:/TEMP/")
 ```
 
