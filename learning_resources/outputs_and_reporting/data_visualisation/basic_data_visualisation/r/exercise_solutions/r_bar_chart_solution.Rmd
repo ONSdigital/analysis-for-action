@@ -1,0 +1,166 @@
+---
+title: "Basic Data Visualisation, How to make bar charts in R: Exercise solution"
+output: html_document
+---
+
+---
+This block contains instructions on how to fill in this template.
+
+**Please delete this block when creating your own file.**
+
+This template should be used to create code snippet notebooks for each chapter
+in a learning resource. Follow the instructions below to complete the template:
+- Replace content in square brackets (e.g., [unit_name], [link], [chapter name])
+with the relevant information. For example the title block below could be changed
+from "[unit_name], [chapter_name] - Code snippets" to "Basic Data Visualisation,
+Creating Bar Charts - Code snippets".
+- In the setup section add any instructions for users to follow before running the
+code snippets, such as installing packages or downloading data files. Add any
+necessary import statements or setup code in the first code cell.
+- Code snippets should be grouped into sections according to the sections in the
+learning resource.
+- Each code snippet from the learning resource should be placed in its own code
+cell under the relevant section, with any necessary context provided in a
+markdown block above each code cell.
+- Follow [tidyverse](https://style.tidyverse.org/) style guide for R code
+formatting.
+- Whenever you need to reference a file in [learning_resources](http://_vscodecontentref_/1), use:
+```r
+file_path <- file.path(learning_resources_dir, "data", "filename.csv")
+```
+
+- Definitions:
+    - "Unit name" refers to the unit name, which is also the name of the folder
+    this python folder is in.
+    - "Chapter name" refers to the specific chapter that the code snippets are
+    in. Chapters are the highest level headings in the learning resource.
+    - "Section name" refers to subheadings within chapters that code snippets
+    are in.
+---
+
+# Basic Data Visualisation, How to make tables in R: Exercise solution
+
+The following code relates to the **Making tables in R** script in the
+**Basic Data Visualisation** learning resource on the [Analysis for Action]([PLACEHOLDER])
+platform.
+
+This is the code used to produce the exercise solution from the **Making tables in R** script. Compare your code and output against the code and output produced here to see how well you did. Note that your code and output do not need to match the solution exactly to be considered correct!
+
+Can you think of any other ways of making the table more accessible?
+
+The output should:
+
+* Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom for the years 1982, 1987, and 1992
+* Include a summary column showing the mean average size of vulnerable populations across these three years
+* Include a spanner heading above the 1982, 1987, and 1992 columns called ‘Vulnerable population by year’
+* Include a stubhead label heading above the countries column called 'Developer'
+*	Have commas to separate thousands
+* Be formatted so that:
+  * The spanner heading is a dark green with a HEX code of #324027 and the text is white
+  * The stubhead label heading is a dark green with a HEX code of #324027 and the text is white and bold
+  * The column labels are an earthy green with a HEX code of #48553F and the text is white
+
+## Troubleshooting
+
+If you encounter any issues running the code snippets, consider the following
+troubleshooting steps:
+- Ensure you have followed the setup instructions in the
+[README.md](../../../README.md) file including `install.packages()` for
+required packages.
+- Run code from top to bottom to ensure all dependencies are met.
+- Restart your R session and clear all outputs.
+- For more detailed troubleshooting guidance, refer to the
+[troubleshooting document]([PLACEHOLDER]).
+
+## Setup
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](../../../README.md) file,
+- **[add further instructions as needed]**,
+- run the code block below.
+
+```{r setup, message=FALSE}
+# This chunk should include:
+# * library() calls for required packages
+# * paths to data files
+# * any other setup required
+
+library(readr)
+library(here)
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(gt)
+
+# Use here::here() to construct paths, do not setwd()
+here::here()
+vuln <- read.csv(here::here("learning_resources", "data", "vulnerable.csv"))
+```
+
+## Preparing the dataframe
+
+```{r}
+# Prepare your data to make it suitable for a bar chart
+
+vuln_1997_partner_countries <- vuln %>%
+  
+  filter(year %in% ("1997")) %>%
+  
+  filter(country %in% c("Argentina", "Malawi", "Nepal", "United Kingdom")) %>%
+  
+  select(country, vulnerable_pop) 
+
+# Order the data by population from largest to smallest
+
+vuln_1997_partner_countries <- vuln_1997_partner_countries %>% 
+  dplyr::arrange(desc(vulnerable_pop))
+
+vuln_1997_partner_countries$country <- factor(
+  vuln_1997_partner_countries$country,
+  levels = vuln_1997_partner_countries$country
+)
+
+# Create the data for the focus chart, extra row added which has TRUE for the largest population and FALSE for the others
+
+vuln_focus <- vuln_1997_partner_countries %>%
+  mutate(highlight = vulnerable_pop == max(vulnerable_pop))
+
+# Create the plot and specify the data on the x and y axis and set the fill for the foucs chart
+vuln_bar <- ggplot(vuln_focus, aes(x = country, y = vulnerable_pop, fill = highlight)) +
+  # Set bar width
+  geom_bar(stat = "identity", 
+           width = 0.6) +
+  # Set the title and axis titles
+  labs(
+    title = "Vulnerable populations of Argentina, Malawi, Nepal and the United Kingdom in 1997", 
+    x = "Country", 
+    y = "Vulnerable Population") +
+  # Set the text colours, sizes and typeface
+  theme(
+    plot.title = element_text(colour = "#48553f", 
+                              size = 10, 
+                              face = "bold"),
+    axis.title.x = element_text(colour = "#48553f", 
+                                size = 12),
+    axis.title.y = element_text(colour = "#48553f", 
+                                size = 12),
+    # Set the panel colour and background colour
+    panel.background = element_rect(fill = "#f8f5f1"),
+    plot.background = element_rect(fill = "#f3f6f4"),
+    # Set the grid size and colour
+    panel.grid.minor = element_line(colour = "#000000", 
+                                    size = 0.2),
+    panel.grid.major = element_line(colour = "#000000", 
+                                    size = 0.2),
+    # Set the border colour and width
+    panel.border = element_rect(colour = "#000000", 
+                                linewidth = 1)
+  ) +
+  # Set the colours for the focus chart
+  scale_fill_manual(values = c("TRUE" = "#324029", "FALSE" = "#D4DDD6"),
+                    guide = "none")
+  
+
+vuln_bar
+```
+

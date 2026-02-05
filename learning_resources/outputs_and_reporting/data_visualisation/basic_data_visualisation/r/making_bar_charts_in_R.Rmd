@@ -1,0 +1,353 @@
+---
+title: "Basic Data Visualisation, How to make bar charts in R"
+output: html_document
+---
+
+---
+This block contains instructions on how to fill in this template.
+
+**Please delete this block when creating your own file.**
+
+This template should be used to create code snippet notebooks for each chapter
+in a learning resource. Follow the instructions below to complete the template:
+- Replace content in square brackets (e.g., [unit_name], [link], [chapter name])
+with the relevant information. For example the title block below could be changed
+from "[unit_name], [chapter_name] - Code snippets" to "Basic Data Visualisation,
+Creating Bar Charts - Code snippets".
+- In the setup section add any instructions for users to follow before running the
+code snippets, such as installing packages or downloading data files. Add any
+necessary import statements or setup code in the first code cell.
+- Code snippets should be grouped into sections according to the sections in the
+learning resource.
+- Each code snippet from the learning resource should be placed in its own code
+cell under the relevant section, with any necessary context provided in a
+markdown block above each code cell.
+- Follow [tidyverse](https://style.tidyverse.org/) style guide for R code
+formatting.
+- Whenever you need to reference a file in [learning_resources](http://_vscodecontentref_/1), use:
+```r
+file_path <- file.path(learning_resources_dir, "data", "filename.csv")
+```
+
+- Definitions:
+    - "Unit name" refers to the unit name, which is also the name of the folder
+    this python folder is in.
+    - "Chapter name" refers to the specific chapter that the code snippets are
+    in. Chapters are the highest level headings in the learning resource.
+    - "Section name" refers to subheadings within chapters that code snippets
+    are in.
+---
+
+## Basic Data Visualisation, How to make tables in R - Code examples
+
+The following code relates to the **How to make tables in R** section of the
+**Basic Data Visualisation** learning resource on the [Analysis for Action]([PLACEHOLDER])
+platform.
+
+Use this code to get to grips with the basics of making tables in R as per the best practice covered in the written guidance. You are welcome to copy and adapt the code to meet your needs, but make sure that any outputs also align with any style requirements for your organisation.
+
+The code applies each change separately and does not create any outputs.
+
+## Troubleshooting
+
+If you encounter any issues running the code snippets, consider the following
+troubleshooting steps:
+- Ensure you have followed the setup instructions in the
+[README.md](../../../README.md) file including `install.packages()` for
+required packages.
+- Run code from top to bottom to ensure all dependencies are met.
+- Restart your R session and clear all outputs.
+- For more detailed troubleshooting guidance, refer to the
+[troubleshooting document]([PLACEHOLDER]).
+
+## Setup
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](../../../README.md) file,
+- **[add further instructions as needed]**,
+- run the code block below.
+
+## Setup
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](../../../README.md) file, 
+- **[add further instructions as needed]**, - run the code block below.
+
+```{r setup, message=FALSE}
+# This chunk should include:
+# * library() calls for required packages
+# * paths to data files
+# * any other setup required
+
+library(readr)
+library(here)
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(ggplot2)
+
+# Use here::here() to construct paths, do not setwd()
+here::here()
+vuln <- read.csv(here::here("learning_resources", "data", "vulnerable.csv"))
+```
+
+## Introduction to ggplot2 
+
+The main package you will use to create a table in this file is ggplot2
+
+## Prepare your data
+
+This code uses the 'vulnerable' dataset.
+
+The raw data is too large to use in a demonstration table. You need to filter it to make a smaller dataframe first.
+
+```{r}
+# Prepare your data to make it suitable for a bar chart
+
+vuln_2007_top_6 <- vuln %>%
+  
+  filter(year %in% ("2007")) %>%
+  
+  select(country, vulnerable_pop) %>%
+
+  dplyr::top_n(n = 6)
+
+# To Display the data
+
+vuln_2007_top_6
+```
+
+## Make the base bar chart
+
+```{r}
+# Creating a gglot2 bar chart
+
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity")
+
+vuln_bar
+```
+
+## Make the chart horizontal
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop, orientation = country)) +
+  geom_bar(stat = "identity") +
+  coord_flip()
+
+vuln_bar
+```
+
+## Rename axes and add title
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Vulnerable populations of countries in 2007", x = "Country", y = "Vulnerable Population")
+  
+vuln_bar
+```
+
+## Change axes and title colour
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Vulnerable populations of countries in 2007", 
+       x = "Country", 
+       y = "Vulnerable Population") +
+  theme(
+    plot.title = element_text(color = "#48553f", size = 16, face = "bold"),
+    axis.title.x = element_text(color = "#f59342", size = 12),
+    axis.title.y = element_text(color = "#f59342", size = 12)
+  )
+
+  
+vuln_bar
+```
+
+## Set a maximum value for the y-axis
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  ylim(0, 300000000)
+
+vuln_bar
+```
+
+## Reorder columns
+
+```{r}
+vuln_2007_top_6_arranged <- vuln_2007_top_6 %>% 
+  dplyr::arrange(vulnerable_pop)
+
+# dplyr::arrange(desc(vulnerable_pop)) to reverse the order
+
+vuln_2007_top_6_arranged$country <- factor(
+  vuln_2007_top_6_arranged$country,
+  levels = vuln_2007_top_6_arranged$country
+)
+
+vuln_bar <- ggplot(vuln_2007_top_6_arranged, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") 
+
+vuln_bar
+```
+
+## Change bar width
+
+```{r}
+vuln_bar <- vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity",
+           width = 0.6)
+
+vuln_bar
+```
+
+## Change colours of bars
+
+```{r}
+vuln_bar <- vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity", fill = "#324028")
+
+vuln_bar
+```
+
+## Add labels to bars
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = vulnerable_pop), vjust = -0.5)  
+
+vuln_bar
+```
+
+## Change the colour of labels
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = vulnerable_pop), vjust = -0.5, colour = "#f59342")  
+
+vuln_bar
+```
+
+## Specify the number of axis break
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(breaks = c(0, 90000000, 180000000, 270000000))
+
+vuln_bar
+```
+
+## Change gridlines colours
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  theme(
+    panel.grid.minor = element_line(colour = "blue", size = 0.25, linetype = 1),
+    panel.grid.major = element_line(colour = "blue", size = 0.25, linetype = 1))
+
+vuln_bar
+```
+
+## Remove gridlines
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  theme(panel.grid = element_blank())
+
+vuln_bar
+```
+
+## Change bar colours
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity", fill = "#324028")
+
+vuln_bar
+```
+
+## Change bar colours (focus chart)
+
+```{r}
+vuln_focus <- vuln_2007_top_6 %>%
+  mutate(highlight = vulnerable_pop == max(vulnerable_pop))
+
+vuln_bar <- ggplot(vuln_focus, aes(x = country, y = vulnerable_pop, fill = highlight)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("TRUE" = "#48553f", "FALSE" = "#a6a6a6"),
+                    guide = "none")
+vuln_bar
+```
+
+## Change background colour
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  theme(
+    panel.background = element_rect(fill = "#f8f5f1"),
+    plot.background = element_rect(fill = "#f3f6f4"))
+
+vuln_bar
+```
+
+## Add panel border
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  theme(panel.border = element_rect(colour = "#000000", linewidth = 1))
+
+vuln_bar
+```
+
+## Exporting
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country ,y = vulnerable_pop)) +
+  geom_bar(stat = "identity")
+
+ggsave(
+  filename = "vuln_pop_2007.svg",
+  plot = vuln_bar,
+  path = "D:/Temp",
+  width = 7,
+  height = 5,
+  dpi = 300
+)
+```
+
+## Exercise 
+
+Use this exercise to test what you’ve learned about making bar charts. You can adapt much of the code covered in this section, but some basic data manipulation will also be required which has not been covered here.
+
+Create a bar chart in R. Use the vulnerable dataset as your input data.
+
+For an extra challenge, consider setting yourself an hour’s time limit to help simulate an emergency.
+
+The bar chart should:
+
+* Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom in the year 1997
+* Be formatted so that:
+  * The title of the bar chart is: Vulnerable populations of Argentina, Malawi, Nepal and the United Kingdom in 1997 (text size is 10, text is bold)
+  * The x-axis label is: Country (text size is 12)
+  * The y-axis label is: Vulnerable Population (text size is 12)
+  * The panel back ground is HEX code of #f8f5f1 
+  * The plot background is HEX code #f3f6f4   
+  * The title and axes titles are HEX code #48553f
+  * The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
+  * The width of the bars is 0.6
+  * The bars are ordered from largest to smallest
+  * The horizontal and vertical gridlines are both HEX code #000000 and size = 0.2
+  * The panel has a border, the colour is HEX code #000000 and linewidth = 1
+
+When you have finished making your bar chart, compare it against the relevant code and solution in the 'exercise_solutions' subfolder. If you have followed all the guidance correctly, this is approximately how your output should look.
