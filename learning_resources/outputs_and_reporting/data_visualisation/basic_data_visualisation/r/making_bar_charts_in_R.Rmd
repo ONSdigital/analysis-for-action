@@ -3,46 +3,24 @@ title: "Basic Data Visualisation, How to make bar charts in R"
 output: html_document
 ---
 
----
 This block contains instructions on how to fill in this template.
 
 **Please delete this block when creating your own file.**
 
-This template should be used to create code snippet notebooks for each chapter
-in a learning resource. Follow the instructions below to complete the template:
-- Replace content in square brackets (e.g., [unit_name], [link], [chapter name])
-with the relevant information. For example the title block below could be changed
-from "[unit_name], [chapter_name] - Code snippets" to "Basic Data Visualisation,
-Creating Bar Charts - Code snippets".
-- In the setup section add any instructions for users to follow before running the
-code snippets, such as installing packages or downloading data files. Add any
-necessary import statements or setup code in the first code cell.
-- Code snippets should be grouped into sections according to the sections in the
-learning resource.
-- Each code snippet from the learning resource should be placed in its own code
-cell under the relevant section, with any necessary context provided in a
-markdown block above each code cell.
-- Follow [tidyverse](https://style.tidyverse.org/) style guide for R code
-formatting.
-- Whenever you need to reference a file in [learning_resources](http://_vscodecontentref_/1), use:
-```r
+This template should be used to create code snippet notebooks for each chapter in a learning resource. Follow the instructions below to complete the template: - Replace content in square brackets (e.g., [unit_name], [link], [chapter name]) with the relevant information. For example the title block below could be changed from "[unit_name], [chapter_name] - Code snippets" to "Basic Data Visualisation, Creating Bar Charts - Code snippets". - In the setup section add any instructions for users to follow before running the code snippets, such as installing packages or downloading data files. Add any necessary import statements or setup code in the first code cell. - Code snippets should be grouped into sections according to the sections in the learning resource. - Each code snippet from the learning resource should be placed in its own code cell under the relevant section, with any necessary context provided in a markdown block above each code cell. - Follow [tidyverse](https://style.tidyverse.org/) style guide for R code formatting. - Whenever you need to reference a file in [learning_resources](http://_vscodecontentref_/1), use:
+
+``` r
 file_path <- file.path(learning_resources_dir, "data", "filename.csv")
 ```
 
-- Definitions:
-    - "Unit name" refers to the unit name, which is also the name of the folder
-    this python folder is in.
-    - "Chapter name" refers to the specific chapter that the code snippets are
-    in. Chapters are the highest level headings in the learning resource.
-    - "Section name" refers to subheadings within chapters that code snippets
-    are in.
----
+-   Definitions:
+    -   "Unit name" refers to the unit name, which is also the name of the folder this python folder is in.
+    -   "Chapter name" refers to the specific chapter that the code snippets are in. Chapters are the highest level headings in the learning resource.
+    -   "Section name" refers to subheadings within chapters that code snippets are in. ---
 
 ## Basic Data Visualisation, How to make tables in R - Code examples
 
-The following code relates to the **How to make tables in R** section of the
-**Basic Data Visualisation** learning resource on the [Analysis for Action]([PLACEHOLDER])
-platform.
+The following code relates to the **How to make tables in R** section of the **Basic Data Visualisation** learning resource on the [Analysis for Action](%5BPLACEHOLDER%5D) platform.
 
 Use this code to get to grips with the basics of making tables in R as per the best practice covered in the written guidance. You are welcome to copy and adapt the code to meet your needs, but make sure that any outputs also align with any style requirements for your organisation.
 
@@ -50,28 +28,15 @@ The code applies each change separately and does not create any outputs.
 
 ## Troubleshooting
 
-If you encounter any issues running the code snippets, consider the following
-troubleshooting steps:
-- Ensure you have followed the setup instructions in the
-[README.md](../../../README.md) file including `install.packages()` for
-required packages.
-- Run code from top to bottom to ensure all dependencies are met.
-- Restart your R session and clear all outputs.
-- For more detailed troubleshooting guidance, refer to the
-[troubleshooting document]([PLACEHOLDER]).
+If you encounter any issues running the code snippets, consider the following troubleshooting steps: - Ensure you have followed the setup instructions in the [README.md](../../../README.md) file including `install.packages()` for required packages. - Run code from top to bottom to ensure all dependencies are met. - Restart your R session and clear all outputs. - For more detailed troubleshooting guidance, refer to the [troubleshooting document](%5BPLACEHOLDER%5D).
 
 ## Setup
 
-Before running the code snippets, ensure you have:
-- followed the setup instructions in the [README.md](../../../README.md) file,
-- **[add further instructions as needed]**,
-- run the code block below.
+Before running the code snippets, ensure you have: - followed the setup instructions in the [README.md](../../../README.md) file, - **[add further instructions as needed]**, - run the code block below.
 
 ## Setup
 
-Before running the code snippets, ensure you have:
-- followed the setup instructions in the [README.md](../../../README.md) file, 
-- **[add further instructions as needed]**, - run the code block below.
+Before running the code snippets, ensure you have: - followed the setup instructions in the [README.md](../../../README.md) file, - **[add further instructions as needed]**, - run the code block below.
 
 ```{r setup, message=FALSE}
 # This chunk should include:
@@ -91,7 +56,7 @@ here::here()
 vuln <- read.csv(here::here("learning_resources", "data", "vulnerable.csv"))
 ```
 
-## Introduction to ggplot2 
+## Introduction to ggplot2
 
 The main package you will use to create a table in this file is ggplot2
 
@@ -326,7 +291,7 @@ ggsave(
 )
 ```
 
-## Exercise 
+## Exercise
 
 Use this exercise to test what you’ve learned about making bar charts. You can adapt much of the code covered in this section, but some basic data manipulation will also be required which has not been covered here.
 
@@ -336,18 +301,86 @@ For an extra challenge, consider setting yourself an hour’s time limit to help
 
 The bar chart should:
 
-* Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom in the year 1997
-* Be formatted so that:
-  * The title of the bar chart is: Vulnerable populations of Argentina, Malawi, Nepal and the United Kingdom in 1997 (text size is 10, text is bold)
-  * The x-axis label is: Country (text size is 12)
-  * The y-axis label is: Vulnerable Population (text size is 12)
-  * The panel back ground is HEX code of #f8f5f1 
-  * The plot background is HEX code #f3f6f4   
-  * The title and axes titles are HEX code #48553f
-  * The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
-  * The width of the bars is 0.6
-  * The bars are ordered from largest to smallest
-  * The horizontal and vertical gridlines are both HEX code #000000 and size = 0.2
-  * The panel has a border, the colour is HEX code #000000 and linewidth = 1
+-   Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom in the year 1997
+-   Be formatted so that:
+    -   The title of the bar chart is: Vulnerable populations of Argentina, Malawi, Nepal and the United Kingdom in 1997 (text size is 10, text is bold)
+    -   The x-axis label is: Country (text size is 12)
+    -   The y-axis label is: Vulnerable Population (text size is 12)
+    -   The panel back ground is HEX code of #f8f5f1
+    -   The plot background is HEX code #f3f6f4\
+    -   The title and axes titles are HEX code #48553f
+    -   The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
+    -   The width of the bars is 0.6
+    -   The bars are ordered from largest to smallest
+    -   The horizontal and vertical gridlines are both HEX code #000000 and size = 0.2
+    -   The panel has a border, the colour is HEX code #000000 and linewidth = 1
 
 When you have finished making your bar chart, compare it against the relevant code and solution in the 'exercise_solutions' subfolder. If you have followed all the guidance correctly, this is approximately how your output should look.
+
+## Extras
+
+## Clustered Bar Chart
+
+```{r}
+# Prepare your data to make it suitable for a bar chart
+
+vuln_2007_top_6 <- vuln %>%
+  
+  filter(year %in% c(2002,2007)) %>%
+  
+  mutate(year = as.factor(year)) %>%
+  
+  select(country, year, vulnerable_pop) %>%
+  
+  group_by(year) %>%
+  
+  slice_max(order_by = vulnerable_pop, n = 6) %>%
+
+  ungroup()
+
+# To Display the data
+
+vuln_2007_top_6
+```
+
+```{r}
+vuln_cluster <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop, fill = year)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  theme_minimal() +
+  labs(
+    title = "Top 6 countries by Vulnerable Population (2002 and 2007)",
+    x = "Country",
+    y = "Vulnerable Population"
+  )
+
+vuln_cluster
+```
+
+## Stacked bar chart
+
+```{r}
+# Prepare your data to make it suitable for a bar chart
+
+vuln_2007_top_6 <- vuln %>%
+  
+  filter(year %in% c(1997,2002,2007)) %>%
+  
+  mutate(year = as.factor(year)) %>%
+  
+  select(country, year, vulnerable_pop) %>%
+  
+  group_by(year) %>%
+  
+  slice_max(order_by = vulnerable_pop, n = 6) %>%
+
+  ungroup()
+
+# To Display the data
+
+vuln_2007_top_6
+```
+
+```{r}
+ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop, fill = year)) +
+  geom_bar(stat = "identity")
+```
