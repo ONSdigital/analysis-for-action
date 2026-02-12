@@ -1,0 +1,47 @@
+---
+title: "error_example"
+output: html_document
+date: "2026-02-12"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Error messages
+
+Here is an example of a function producing error messages if a required column is not present
+
+```{r}
+
+#' Error if required columns not present
+#'
+#' @description Stops the execution of the function and returns an error
+#' message stating which of the required columns are missing.
+#'
+#' @param data Dataframe to check.
+#' @param required_cols Vector of strings of the required columns.
+#'
+#' @return Error message stating which of the required columns are missing
+#' @export
+check_columns_present <- function(data, required_cols) {
+  if (!all(required_cols %in% colnames(data))) {
+    missing_cols <- required_cols[!required_cols %in% colnames(data)]
+    stop(
+      "Missing required columns: ",
+      paste(missing_cols, collapse = ", "),
+      "."
+    )
+  }}
+```
+
+Example error message:
+
+`Error in check_columns_present(., c("week", "week_ending", "year", "country", :
+  Missing required columns: week_ending, country, region, agegrp_5yr, sex, place_of_death.`
+
+
+
+ 
+
+
