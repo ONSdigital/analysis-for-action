@@ -38,13 +38,13 @@ file_path <- file.path(learning_resources_dir, "data", "filename.csv")
     are in.
 ---
 
-# Basic Data Visualisation, How to make tables in R: Exercise solution
+# Basic Data Visualisation, How to make bar charts in R: Exercise solution
 
-The following code relates to the **Making tables in R** script in the
+The following code relates to the **Making bar charts in R** script in the
 **Basic Data Visualisation** learning resource on the [Analysis for Action]([PLACEHOLDER])
 platform.
 
-This is the code used to produce the exercise solution from the **Making tables in R** script. Compare your code and output against the code and output produced here to see how well you did. Note that your code and output do not need to match the solution exactly to be considered correct!
+This is the code used to produce the exercise solution from the **Making bar charts in R** script. Compare your code and output against the code and output produced here to see how well you did. Note that your code and output do not need to match the solution exactly to be considered correct!
 
 Can you think of any other ways of making the table more accessible?
 
@@ -91,6 +91,9 @@ library(dplyr)
 library(tidyr)
 library(janitor)
 library(gt)
+library(ggplot2)
+library(svglite)
+library(scales)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
@@ -122,45 +125,48 @@ vuln_1997_partner_countries$country <- factor(
 
 # Create the data for the focus chart, extra row added which has TRUE for the largest population and FALSE for the others
 
-vuln_focus <- vuln_1997_partner_countries %>%
+vuln_focus_1997 <- vuln_1997_partner_countries %>%
   mutate(highlight = vulnerable_pop == max(vulnerable_pop))
 
 # Create the plot and specify the data on the x and y axis and set the fill for the foucs chart
-vuln_bar <- ggplot(vuln_focus, aes(x = country, y = vulnerable_pop, fill = highlight)) +
+vuln_bar <- ggplot(vuln_focus_1997, aes(x = country, y = vulnerable_pop, fill = highlight)) +
   # Set bar width
   geom_bar(stat = "identity", 
            width = 0.6) +
+  # Add number suffixes
+  scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M")) +
   # Set the title and axis titles
   labs(
-    title = "Vulnerable populations of Argentina, Malawi, Nepal and the United Kingdom in 1997", 
     x = "Country", 
-    y = "Vulnerable Population") +
-  # Set the text colours, sizes and typeface
+    y = "Vulnerable Population (Millions") +
+  # Set the text sizes
   theme(
-    plot.title = element_text(colour = "#48553f", 
-                              size = 10, 
-                              face = "bold"),
-    axis.title.x = element_text(colour = "#48553f", 
-                                size = 12),
-    axis.title.y = element_text(colour = "#48553f", 
-                                size = 12),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
     # Set the panel colour and background colour
-    panel.background = element_rect(fill = "#f8f5f1"),
+    panel.background = element_rect(fill = "#ffffff"),
     plot.background = element_rect(fill = "#f3f6f4"),
     # Set the grid size and colour
-    panel.grid.minor = element_line(colour = "#000000", 
+    panel.grid.minor = element_line(colour = "#444443", 
                                     size = 0.2),
-    panel.grid.major = element_line(colour = "#000000", 
+    panel.grid.major = element_line(colour = "#444443", 
                                     size = 0.2),
-    # Set the border colour and width
-    panel.border = element_rect(colour = "#000000", 
-                                linewidth = 1)
   ) +
   # Set the colours for the focus chart
   scale_fill_manual(values = c("TRUE" = "#324029", "FALSE" = "#D4DDD6"),
                     guide = "none")
   
 
-vuln_bar
+ggsave(
+  # Set the file name
+  filename = "vuln_pop_partner_countries.svg",
+  # Select the plot to save
+  plot = vuln_bar,
+  # Set the save path
+  path = "D:/Temp",
+  # Set aspect ratio of plot, an aspect ratio of 16:9 will fill 1920x1080 displays
+  width = 16,
+  height = 9
+)
 ```
 
