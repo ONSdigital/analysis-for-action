@@ -280,6 +280,15 @@ vuln_bar_billions <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop
 vuln_bar_billions
 ```
 
+## Show figures in full
+
+```{r}
+vuln_bar_figures_in_full <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  scale_y_continuous(labels = scales::label_number(accuracy = 1))
+vuln_bar_figures_in_full
+```
+
 ## Exporting
 
 ```{r}
