@@ -128,7 +128,7 @@ vuln_1997_partner_countries$country <- factor(
 vuln_focus_1997 <- vuln_1997_partner_countries %>%
   mutate(highlight = vulnerable_pop == max(vulnerable_pop))
 
-# Create the plot and specify the data on the x and y axis and set the fill for the foucs chart
+# Create the plot and specify the data on the x and y axis and set the fill for the focus chart
 vuln_bar <- ggplot(vuln_focus_1997, aes(x = country, y = vulnerable_pop, fill = highlight)) +
   # Set bar width
   geom_bar(stat = "identity", 
@@ -144,13 +144,13 @@ vuln_bar <- ggplot(vuln_focus_1997, aes(x = country, y = vulnerable_pop, fill = 
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12),
     # Set the panel colour and background colour
-    panel.background = element_rect(fill = "#ffffff"),
-    plot.background = element_rect(fill = "#f3f6f4"),
+    panel.background = element_rect(fill = "#FFFFFF"),
+    plot.background = element_rect(fill = "#F3F6F4"),
     # Set the grid size and colour
-    panel.grid.minor = element_line(colour = "#444443", 
-                                    size = 0.2),
-    panel.grid.major = element_line(colour = "#444443", 
-                                    size = 0.2),
+    panel.grid.minor = element_line(colour = "#D9D9D9", 
+                                    size = 0.5),
+    panel.grid.major = element_line(colour = "#D9D9D9", 
+                                    size = 0.5),
   ) +
   # Set the colours for the focus chart
   scale_fill_manual(values = c("TRUE" = "#324029", "FALSE" = "#D4DDD6"),

@@ -22,7 +22,7 @@ file_path <- file.path(learning_resources_dir, "data", "filename.csv")
 
 The following code relates to the **How to make bar charts in R** section of the **Basic Data Visualisation** learning resource on the [Analysis for Action](%5BPLACEHOLDER%5D) platform.
 
-Use this code to get to grips with the basics of making tables in R as per the best practice covered in the written guidance. You are welcome to copy and adapt the code to meet your needs, but make sure that any outputs also align with any style requirements for your organisation.
+Use this code to get to grips with the basics of making bar charts in R as per the best practice covered in the written guidance. You are welcome to copy and adapt the code to meet your needs, but make sure that any outputs also align with any style requirements for your organisation.
 
 The code applies each change separately and does not create any outputs.
 
@@ -56,7 +56,7 @@ vuln <- read.csv(here::here("learning_resources", "data", "vulnerable.csv"))
 
 ## Introduction to ggplot2
 
-The main package you will use to create a table in this file is ggplot2.
+The main package you will use to create a bar chart in this file is ggplot2.
 The package works using layers, creating the base chart and then adding layers to change titles, colours and more.
 
 ## Prepare your data
@@ -85,9 +85,11 @@ vuln_2007_top_6
 
 ```{r}
 # Creating a gglot2 bar chart
-
+# Used vuln_2007_top_6 dataframe, country displayed on the x-axis vulnerable_pop displayed the on y-axis
 vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar
 ```
@@ -98,7 +100,9 @@ vuln_bar
 vuln_bar_horizontal <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
   # Flip the chart so that the bars are horizontal
-  coord_flip()
+  coord_flip() +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_horizontal
 ```
@@ -109,7 +113,9 @@ vuln_bar_horizontal
 vuln_bar_titles <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
   # Add axis titles
-  labs(x = "Country", y = "Vulnerable Population")
+  labs(x = "Country", y = "Vulnerable Population") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
   
 vuln_bar_titles
 ```
@@ -120,7 +126,9 @@ vuln_bar_titles
 vuln_bar_y_axis_changed <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
   # Set a limit for the y-axis
-  ylim(0, 400000000)
+  ylim(0, 400000000) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_y_axis_changed
 ```
@@ -139,9 +147,11 @@ vuln_2007_top_6_arranged$country <- factor(
   levels = vuln_2007_top_6_arranged$country
 )
 
-# Create the bar chart using the arrngede data
+# Create the bar chart using the arranged data
 vuln_bar_arranged <- ggplot(vuln_2007_top_6_arranged, aes(x = country, y = vulnerable_pop)) +
-  geom_bar(stat = "identity") 
+  geom_bar(stat = "identity") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_arranged
 ```
@@ -152,7 +162,9 @@ vuln_bar_arranged
 vuln_bar_change_width <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity",
            # Change the bar width
-           width = 0.6)
+           width = 0.6) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_change_width
 ```
@@ -161,7 +173,10 @@ vuln_bar_change_width
 
 ```{r}
 vuln_bar_change_bar_colour <- vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
-  geom_bar(stat = "identity", fill = "#324027")
+  # Change all bars to the same colour
+  geom_bar(stat = "identity", fill = "#324027") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_change_bar_colour
 ```
@@ -178,7 +193,10 @@ vuln_bar_focus_chart <- ggplot(vuln_focus, aes(x = country, y = vulnerable_pop, 
   geom_bar(stat = "identity") +
   # Change the bar colours based off the whether highlight is TRUE or FALSE
   scale_fill_manual(values = c("TRUE" = "#1e2a16", "FALSE" = "#959595"),
-                    guide = "none")
+                    guide = "none") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
+
 vuln_bar_focus_chart
 ```
 
@@ -192,7 +210,9 @@ vuln_bar_add_labels <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_p
             # Adjust the position of the label
             vjust = -0.25,
             # Adjust the text size of the label
-            size = 4)  
+            size = 4) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))
 
 vuln_bar_add_labels
 ```
@@ -205,8 +225,10 @@ vuln_bar_custom_axis_breaks <- ggplot(vuln_2007_top_6, aes(x = country, y = vuln
   # Custom axis breaks are used, y-axis is breaks are every 50000000 people
   scale_y_continuous(breaks = c(0, 50000000, 100000000, 150000000, 200000000, 250000000, 300000000, 350000000),
   # The function expansion is used to increase the vertical height of the plot by 40% to show the extra axis breaks
-  expand = expansion(mult = c(0, 0.4)))
-                                
+  expand = expansion(mult = c(0, 0.4)),
+  # label_number used to remove scientific notation
+  labels = label_number(scale = 1))
+                              
 vuln_bar_custom_axis_breaks 
 ```
 
@@ -222,16 +244,17 @@ vuln_bar_change_background_and_gridlines<- ggplot(vuln_2007_top_6, aes(x = count
     panel.background = element_rect(fill = "#ffffff"),
     # Change the background colour of the plot (the outside area containing the axis titles)
     plot.background = element_rect(fill = "#f4f6f5"),
-    # Changed size of axis titles and axis text.x = element_text(size = 12),
+    # Changed size of axis titles and axis text
+    axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12),
     axis.text.x = element_text(size = 8),
     axis.text.y = element_text(size = 8),
     # Change the colour and size of the minor gridlines
-    panel.grid.minor = element_line(colour = "#444443", size = 0.5, linetype = 1),
+    panel.grid.minor = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1),
     # Change the colour and size of the major gridlines
-    panel.grid.major = element_line(colour = "#444443", size = 0.5, linetype = 1))
-    # Note that line types after linetype = 1 are different versions of dotted and dashed gridlines
-  
+    panel.grid.major = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1)) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))    
 
 vuln_bar_change_background_and_gridlines
 ```
@@ -242,9 +265,25 @@ vuln_bar_change_background_and_gridlines
 vuln_bar_no_gridlines <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
   # Remove gridlines
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank()) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
 
 vuln_bar_no_gridlines
+```
+
+# Remove vertical gridlines
+
+```{r}
+vuln_bar_no_vertical_gridlines <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  # Remove gridlines
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
+
+vuln_bar_no_vertical_gridlines
 ```
 
 # Add number suffixes (Thousands)
@@ -252,7 +291,9 @@ vuln_bar_no_gridlines
 ```{r}
 vuln_bar_thousands <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
+  # Divide the axis breaks by 1000 and add the suffix k
   scale_y_continuous(labels = label_number(scale = 1e-3, suffix = "k")) +
+  # Change the y-axis label
   labs(y = "Vulnerable Population (Thousands)")
 
 vuln_bar_thousands
@@ -263,7 +304,9 @@ vuln_bar_thousands
 ```{r}
 vuln_bar_millions <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
+  # Divide the axis breaks by 1000000 and add the suffix M
   scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M")) +
+  # Change the y-axis label
   labs(y = "Vulnerable Population (Millions)")
 
 vuln_bar_millions
@@ -274,7 +317,9 @@ vuln_bar_millions
 ```{r}
 vuln_bar_billions <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
+  # Divide the axis breaks by 1000000000 and add the suffix B
   scale_y_continuous(labels = label_number(scale = 1e-9, suffix = "B")) +
+  # Change the y-axis label
   labs(y = "Vulnerable Population (Billions)")
 
 vuln_bar_billions
@@ -285,7 +330,9 @@ vuln_bar_billions
 ```{r}
 vuln_bar_figures_in_full <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
-  scale_y_continuous(labels = scales::label_number(accuracy = 1))
+  # Show axis breaks in full
+  scale_y_continuous(labels = label_number(scale = 1))
+
 vuln_bar_figures_in_full
 ```
 
@@ -293,7 +340,9 @@ vuln_bar_figures_in_full
 
 ```{r}
 vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country ,y = vulnerable_pop)) +
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
 
 ggsave(
   # Set the file name
@@ -323,13 +372,13 @@ The bar chart should:
     -   The x-axis label is: Country 
     -   The y-axis label is: Vulnerable Population (Millions) 
     -   The text size of the axis titles is 12
-    -   The panel back ground is HEX code #ffffff
-    -   The plot background is HEX code #f3f6f4
+    -   The panel back ground is HEX code #FFFFFF
+    -   The plot background is HEX code #F3F6F4
     -   The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
     -   The width of the bars is 0.6
     -   The bars are ordered from largest to smallest
-    -   The horizontal and vertical gridlines are both HEX code #444443 and size = 0.2
-    -   The y-axis uses millions suffix (for example an axis break with a value of
+    -   The horizontal and vertical gridlines are both HEX code #D9D9D9 and size = 0.5
+    -   The y-axis uses millions suffix (for example an axis break with a value of     
         6000000 would show as 6M)
     -   The chart is exported as an .svg file with the file name:
         vuln_pop_partner_countries 
@@ -346,15 +395,15 @@ When you have finished making your bar chart, compare it against the relevant co
 # Prepare your data to make it suitable for a bar chart
 
 vuln_2002_and_2007_top_6 <- vuln %>%
-  
+  # Filter the data to just the years 2002 and 2007
   filter(year %in% c(2002,2007)) %>%
   
   mutate(year = as.factor(year)) %>%
-  
+  # Select just the country, year and vulnerable_pop columns
   select(country, year, vulnerable_pop) %>%
-  
+  # Group the data by year
   group_by(year) %>%
-  
+  # Select only the rows with the 6 highest vulnerable_pop value for each year
   slice_max(order_by = vulnerable_pop, n = 6) %>%
 
   ungroup()
@@ -366,13 +415,14 @@ vuln_2002_and_2007_top_6
 
 ```{r}
 vuln_cluster <- ggplot(vuln_2002_and_2007_top_6, aes(x = country, y = vulnerable_pop, fill = year)) +
+  # position = "dodge" sets the chart to a clustered bar chart
   geom_bar(stat = "identity", position = "dodge") +
-  theme_minimal() +
-  labs(
-    title = "Top 6 countries by Vulnerable Population (2002 and 2007)",
-    x = "Country",
-    y = "Vulnerable Population"
-  )
+  # Change the colours of bars
+  scale_fill_manual(
+    values = c("2002" = "#48553F", "2007" = "#F59342")
+  ) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
 
 vuln_cluster
 ```
@@ -380,18 +430,18 @@ vuln_cluster
 ## Stacked bar chart
 
 ```{r}
-# Prepare your data to make it suitable for a bar chart
+# Prepare your data to make it suitable for a stacked bar chart
 
 vuln_1997_2002_2007_top_6 <- vuln %>%
-  
+  # Filter the data to just the years 1997, 2002 and 2007
   filter(year %in% c(1997,2002,2007)) %>%
   
   mutate(year = as.factor(year)) %>%
-  
+  # Select just the country, year and vulnerable_pop columns
   select(country, year, vulnerable_pop) %>%
-  
+  # Group the data by year
   group_by(year) %>%
-  
+  # Select only the rows with the 6 highest vulnerable_pop value for each year
   slice_max(order_by = vulnerable_pop, n = 6) %>%
 
   ungroup()
@@ -403,7 +453,111 @@ vuln_1997_2002_2007_top_6
 
 ```{r}
 vuln_stacked_bar <- ggplot(vuln_1997_2002_2007_top_6, aes(x = country, y = vulnerable_pop, fill = year)) +
-  geom_bar(stat = "identity")
+  geom_bar(stat = "identity") +
+  # Change the colours of bars
+  scale_fill_manual(
+    values = c("1997" = "#3EA27F", "2002" = "#752111", "2007" = "#618DD3")
+  ) +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
 
 vuln_stacked_bar
 ```
+
+## 100% Stacked bar chart
+
+```{r}
+# Prepare your data to make it suitable for a 100% stacked bar chart
+
+vuln_1997_2002_2007_percent <- vuln %>%
+  # Filter the data to just the years 1997, 2002 and 2007
+  filter(year %in% c(1997,2002,2007)) %>%
+# Countries selected to show a more clear difference with bars, with the previous countries all bars were very similar  
+  filter(country %in% c("Afghanistan", "Canada", "Iraq", "Peru", "Romania")) %>%
+  # Group the data by year
+  group_by(year) %>%
+  # Create a percent column which contains each countrys vulnerable population as a percentage of a total vulnerable population of the 5 countries for that year
+  # Create a vuln_totals column which contains the total vulnerable population of the 5 countries for each year
+  mutate(
+    percent = vulnerable_pop / sum(vulnerable_pop),
+    vuln_totals = sum(vulnerable_pop)) %>%
+
+  ungroup() %>%
+  
+  mutate(year = as.factor(year)) %>%
+  # Select just the country, year, vulnerable_pop, percent and vuln_totals columns
+  select(country, year, vulnerable_pop, percent, vuln_totals)
+
+# Create seperate table for year totals to make labels with
+
+year_totals <- vuln_1997_2002_2007_percent %>%
+  
+  distinct(year, vuln_totals)
+
+# To Display the data
+
+vuln_1997_2002_2007_percent
+
+year_totals
+```
+
+```{r fig.width=16, fig.height=6}
+vuln_stacked_bar_percent <- ggplot(vuln_1997_2002_2007_percent, aes(x = year, y = vulnerable_pop, fill = country)) +
+  geom_col(position = "fill") +
+  # Add the percentages of the total population inside the bars
+  geom_text(
+    aes(label = percent(percent, accuracy = 0.01)),
+    position = position_fill(vjust = 0.5),
+    color = "#FFFFFF",
+    size = 4
+  ) +
+  # Create labels at the end of bars showing the total population for each year
+  geom_text(
+    data = year_totals,
+    aes(x = year, y = 1.04, label = comma(vuln_totals)),
+    inherit.aes = FALSE,
+    size = 4,
+    fontface = "bold"
+  ) +
+  coord_flip() +
+  # Change the colours of bars
+  scale_fill_manual(
+    values = c("Afghanistan" = "#1E2A16",
+               "Canada" = "#D17E38",
+               "Iraq" = "#444443",
+               "Peru" = "#3EA27F",
+               "Romania" = "#752111")
+  ) +
+  scale_y_continuous(labels = percent_format(accuracy = 1)) +
+  # Create labels above the populations
+  annotate(
+  "text",
+  x = factor("2007", levels = levels(vuln_1997_2002_2007_percent$year)),
+  y = 1.08,
+  label = "Total vulnerable population 2007:",
+  fontface = "bold",
+  hjust = 0.6,
+  vjust = -2,
+  size = 2.2) +
+  annotate(
+  "text",
+  x = factor("2002", levels = levels(vuln_1997_2002_2007_percent$year)),
+  y = 1.08,
+  label = "Total vulnerable population 2002:",
+  fontface = "bold",
+  hjust = 0.6,
+  vjust = -2,
+  size = 2.2) +
+    annotate(
+  "text",
+  x = factor("1997", levels = levels(vuln_1997_2002_2007_percent$year)),
+  y = 1.08,
+  label = "Total vulnerable population 1997:",
+  fontface = "bold",
+  hjust = 0.6,
+  vjust = -2,
+  size = 2.2)
+  
+vuln_stacked_bar_percent
+```
+
