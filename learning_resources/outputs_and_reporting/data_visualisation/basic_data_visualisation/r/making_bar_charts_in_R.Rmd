@@ -277,7 +277,7 @@ vuln_bar_no_gridlines
 ```{r}
 vuln_bar_no_vertical_gridlines <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   geom_bar(stat = "identity") +
-  # Remove gridlines
+  # Remove vertical gridlines
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank()) +
   # label_number used to remove scientific notation
@@ -372,12 +372,12 @@ The bar chart should:
     -   The x-axis label is: Country 
     -   The y-axis label is: Vulnerable Population (Millions) 
     -   The text size of the axis titles is 12
-    -   The panel back ground is HEX code #FFFFFF
-    -   The plot background is HEX code #F3F6F4
+    -   The panel background and plot background is HEX code #FFFFFF
     -   The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
     -   The width of the bars is 0.6
     -   The bars are ordered from largest to smallest
-    -   The horizontal and vertical gridlines are both HEX code #D9D9D9 and size = 0.5
+    -   The horizontal gridlines are HEX code #D9D9D9 and size = 0.5
+    -   There are no vertical gridlines
     -   The y-axis uses millions suffix (for example an axis break with a value of     
         6000000 would show as 6M)
     -   The chart is exported as an .svg file with the file name:
@@ -389,6 +389,7 @@ When you have finished making your bar chart, compare it against the relevant co
 
 ## Extras
 
+Making clustered, stacked and 100% stacked bar charts are is similar to creating regular bar charts, they tend to require either small changes to the data or changes to the ggplot layers
 ## Clustered Bar Chart
 
 ```{r}
