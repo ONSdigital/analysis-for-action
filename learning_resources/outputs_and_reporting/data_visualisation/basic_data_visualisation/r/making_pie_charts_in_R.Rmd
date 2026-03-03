@@ -45,6 +45,7 @@ library(dplyr)
 library(tidyr)
 library(janitor)
 library(ggplot2)
+library(svglite)
 
 
 # Use here::here() to construct paths, do not setwd()

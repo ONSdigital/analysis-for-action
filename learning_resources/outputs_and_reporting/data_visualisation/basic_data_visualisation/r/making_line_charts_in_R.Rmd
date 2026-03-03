@@ -46,7 +46,7 @@ library(tidyr)
 library(janitor)
 library(ggplot2)
 library(scales)
-library(ggbreak)
+library(svglite)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
