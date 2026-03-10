@@ -25,13 +25,14 @@ To provide practical examples of calculating mortality rates using synthetic dat
 [Additional: Age-Specific Mortality Rate by Region (England Only)]  
 [3. Age-Standardised Mortality Rate (ASMR)](#age-standardised-mortality-rate-asmr)  
 [4. Infant Mortality Rate](#infant-mortality-rate)  
-[5. Perinatal Mortality Rate](#perinatal-mortality-rate)  
-[6. Years of Life Lost (YLL)](#years-of-life-lost-yll)  
-[7. Years of Working Life Lost (YWLL)](#years-of-working-life-lost-ywll)  
-[8. Mean Age at Death](#mean-age-at-death)  
+[5. Perinatal Mortality Rate](#perinatal-mortality-rate)   
+[6. Maternal Mortality Rate](#maternal-mortality-rate)  
+[7. Years of Life Lost (YLL)](#years-of-life-lost-yll)    
+[8. Years of Working Life Lost (YWLL)](#years-of-working-life-lost-ywll)  
+[9. Mean Age at Death](#mean-age-at-death)  
 [Additional: Mean Age at Death by Region]  
-[9. Crude Rate of YLL](#crude-rate-of-yll)  
-[10. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL)](#potential-years-of-life-lost-pyll-and-standardised-pyll-syll)  
+[10. Crude Rate of YLL](#crude-rate-of-yll)  
+[11. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL)](#potential-years-of-life-lost-pyll-and-standardised-pyll-syll)  
 [Additional: Registration Delays]  
 [Additional: Registration Delays by Certification Type] 
 
@@ -472,7 +473,49 @@ pmr <- ((total_stillbirths + total_perinatal_deaths) / total_births) * 1000
 cat("Perinatal Mortality Rate (PMR) for England and Wales (per 1,000 total births):", round(pmr, 2), "\n")
 ```
 
-## 6. Years of Life Lost (YLL) due to Accidents {#years-of-life-lost-yll}
+## 6. Maternal Mortality Rate {#maternal-mortality-rate}
+
+Calculated as maternal deaths per 100,000 live births
+
+```{r maternal_mortality_rate, echo=TRUE, message=FALSE, warning=FALSE}
+
+# Step 1: Identify maternal deaths from ICD-10 codes (O00–O99, excluding O96/O97; include A34) among females
+# Definition aligns with WHO: deaths during pregnancy, childbirth, or within 42 days of pregnancy end
+# from causes related to or aggravated by the pregnancy or its management (excluding incidental/accidental causes).
+# FIC10UND is the underlying cause code on the death certificate.
+# SEX == 2 indicates female.
+maternal_deaths <- deaths %>%
+  mutate(FIC10UND = toupper(trimws(FIC10UND))) %>%
+  filter(
+    SEX == 2,
+    !is.na(FIC10UND) &
+      (
+        grepl("^A34", FIC10UND) |                                # A34: Obstetrical tetanus
+        (grepl("^O\\d{2}", FIC10UND) &                           # O00–O99: Pregnancy, childbirth, puerperium
+         !grepl("^O96", FIC10UND) & !grepl("^O97", FIC10UND))    # exclude late/sequelae for ≤42-day definition
+      )
+  )
+
+# Step 2: Count maternal deaths
+total_maternal_deaths <- nrow(maternal_deaths)
+
+# Step 3: Identify and count live births (denominator)
+# SBIND == 1 indicates stillbirth; SBIND is NULL for live births.
+live_births <- births %>%
+  filter(is.na(SBIND))
+
+total_live_births <- nrow(live_births)
+
+# Step 4: Calculate Maternal Mortality Rate (MMR)
+# MMR = (maternal deaths / live births) × 100,000
+mmr <- if (total_live_births > 0) (total_maternal_deaths / total_live_births) * 100000 else NA_real_
+
+# Step 5: Display the MMR result
+cat("Maternal Mortality Rate (MMR) for England and Wales (per 100,000 live births):", round(mmr, 2), "\n")
+
+```
+
+## 7. Years of Life Lost (YLL) due to Accidents {#years-of-life-lost-yll}
 
 Based on ICD-10 codes V01–X59 and ages 1–74
 
@@ -521,7 +564,7 @@ cat("Number of deaths due to accidents (ages 1–74):", n_accident_deaths, "\n")
 cat("Total Years of Life Lost (YLL) due to accidents:", round(total_accident_yll, 1), "years\n")
 cat("Average YLL per accident death:", round(average_accident_yll, 1), "years\n")
 ```
-## 7. Years of Working Life Lost (YWLL) {#years-of-working-life-lost-ywll}
+## 8. Years of Working Life Lost (YWLL) {#years-of-working-life-lost-ywll}
 
 Based on deaths registered in 2024 (REGYR)  
 Using working-age definition from 2012 onwards: ages 16–64
@@ -567,7 +610,7 @@ cat("Total Years of Working Life Lost (YWLL):", round(total_ywll, 1), "years\n")
 cat("Average YWLL per death:", round(average_ywll, 1), "years\n")
 ```
 
-## 8. Mean Age at Death {#mean-age-at-death}
+## 9. Mean Age at Death {#mean-age-at-death}
 
 ```{r mean_age_at_death, echo=TRUE, message=FALSE, warning=FALSE}
 
@@ -596,7 +639,7 @@ mean_age_by_region <- deaths %>%
 # This prints the mean age at death for each region
 print(mean_age_by_region)
 ```
-## 9. Crude Rate of Years of Life Lost (YLL) due to Accidents {#crude-rate-of-yll}
+## 10. Crude Rate of Years of Life Lost (YLL) due to Accidents {#crude-rate-of-yll}
 
 Based on ICD-10 codes V01–X59 and ages 1–74  
 Expressed per 100,000 population
@@ -633,7 +676,7 @@ crude_yll_rate <- (total_yll / mid_year_pop_2024) * 100000
 cat("**Crude YLL rate due to accidents per 100,000 population (2024):**", round(crude_yll_rate, 1), "\n")
 ```
 
-## 10. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL) {#potential-years-of-life-lost-pyll-and-standardised-pyll-syll}
+## 11. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL) {#potential-years-of-life-lost-pyll-and-standardised-pyll-syll}
 
 PYLL measures premature mortality by weighting deaths at younger ages more heavily  
 SYLL adjusts PYLL using the 2013 European Standard Population (ESP)  

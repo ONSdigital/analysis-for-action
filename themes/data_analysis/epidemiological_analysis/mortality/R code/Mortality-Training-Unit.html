@@ -386,14 +386,15 @@ Mortality Rate (ASMR)</a><br />
 <a href="#infant-mortality-rate">4. Infant Mortality Rate</a><br />
 <a href="#perinatal-mortality-rate">5. Perinatal Mortality
 Rate</a><br />
-<a href="#years-of-life-lost-yll">6. Years of Life Lost (YLL)</a><br />
-<a href="#years-of-working-life-lost-ywll">7. Years of Working Life Lost
+<a href="#maternal-mortality-rate">6. Maternal Mortality Rate</a><br />
+<a href="#years-of-life-lost-yll">7. Years of Life Lost (YLL)</a><br />
+<a href="#years-of-working-life-lost-ywll">8. Years of Working Life Lost
 (YWLL)</a><br />
-<a href="#mean-age-at-death">8. Mean Age at Death</a><br />
+<a href="#mean-age-at-death">9. Mean Age at Death</a><br />
 <a href="#additional-mean-age-at-death-by-region">Additional: Mean Age
 at Death by Region</a><br />
-<a href="#crude-rate-of-yll">9. Crude Rate of YLL</a><br />
-<a href="#potential-years-of-life-lost-pyll-and-standardised-pyll-syll">10.
+<a href="#crude-rate-of-yll">10. Crude Rate of YLL</a><br />
+<a href="#potential-years-of-life-lost-pyll-and-standardised-pyll-syll">11.
 Potential Years of Life Lost (PYLL) and Standardised PYLL
 (SYLL)</a><br />
 <a href="#additional-registration-delays">Additional: Registration
@@ -472,10 +473,6 @@ library(readr)    # For reading CSV files</code></pre>
   stop(&quot;Death registration dataset not found. Please check your file path.&quot;)
 }
 deaths &lt;- read_csv(&quot;../Data/synthetic_death_registration_dataset.csv&quot;)</code></pre>
-<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details,
-## e.g.:
-##   dat &lt;- vroom(...)
-##   problems(dat)</code></pre>
 <pre><code>## Rows: 153198 Columns: 80
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -552,10 +549,10 @@ births &lt;- read_csv(&quot;../Data/synthetic_birth_notifications_dataset.csv&qu
 } else {
   warning(&quot;Birth notifications data dictionary not found.&quot;)
 }</code></pre>
-<pre><code>## Rows: 78 Columns: 5
+<pre><code>## Rows: 78 Columns: 6
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## chr (5): Source, Variable, Description, Format, Values
+## chr (6): Source, Variable, Description, Format, Values, Type
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
@@ -3156,6 +3153,9 @@ Definition
 <th style="text-align:left;">
 Values
 </th>
+<th style="text-align:left;">
+Type
+</th>
 </tr>
 </thead>
 <tbody>
@@ -3172,6 +3172,9 @@ Deceased Usual Residence Concatenated Address
 <td style="text-align:left;">
 Deceased Address
 </td>
+<td style="text-align:left;">
+Character
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3185,6 +3188,9 @@ Informant Concatenated Address
 </td>
 <td style="text-align:left;">
 Informant Address
+</td>
+<td style="text-align:left;">
+Character
 </td>
 </tr>
 <tr>
@@ -3200,6 +3206,9 @@ Calculated Deceased Age
 <td style="text-align:left;">
 0 - 120
 </td>
+<td style="text-align:left;">
+Numeric
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3213,6 +3222,9 @@ Partner Age
 </td>
 <td style="text-align:left;">
 16-120
+</td>
+<td style="text-align:left;">
+Numeric
 </td>
 </tr>
 <tr>
@@ -3228,6 +3240,9 @@ Calculated Deceased Age Unit
 <td style="text-align:left;">
 1= years
 </td>
+<td style="text-align:left;">
+Numeric
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3241,6 +3256,9 @@ Calculated Deceased Age Unit
 </td>
 <td style="text-align:left;">
 2= months
+</td>
+<td style="text-align:left;">
+Numeric
 </td>
 </tr>
 </tbody>
@@ -3271,6 +3289,9 @@ Format
 <th style="text-align:left;">
 Values
 </th>
+<th style="text-align:left;">
+Type
+</th>
 </tr>
 </thead>
 <tbody>
@@ -3290,6 +3311,9 @@ Age of mother at birth derived from DOBM and DOB
 <td style="text-align:left;">
 In years
 </td>
+<td style="text-align:left;">
+Numeric
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3306,6 +3330,9 @@ Grouped mothers age derived from AGBM
 </td>
 <td style="text-align:left;">
 In years
+</td>
+<td style="text-align:left;">
+Numeric
 </td>
 </tr>
 <tr>
@@ -3324,6 +3351,9 @@ Grouped mothers age derived from AGBM
 <td style="text-align:left;">
 In years
 </td>
+<td style="text-align:left;">
+Numeric
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3340,6 +3370,9 @@ Grouped mothers age derived from AGBM
 </td>
 <td style="text-align:left;">
 In years
+</td>
+<td style="text-align:left;">
+Numeric
 </td>
 </tr>
 <tr>
@@ -3358,6 +3391,9 @@ Grouped mothers age derived from AGBM
 <td style="text-align:left;">
 In years
 </td>
+<td style="text-align:left;">
+Numeric
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -3374,6 +3410,9 @@ Grouped mothers age derived from AGBM
 </td>
 <td style="text-align:left;">
 In years
+</td>
+<td style="text-align:left;">
+Numeric
 </td>
 </tr>
 </tbody>
@@ -3842,8 +3881,46 @@ pmr &lt;- ((total_stillbirths + total_perinatal_deaths) / total_births) * 1000
 cat(&quot;Perinatal Mortality Rate (PMR) for England and Wales (per 1,000 total births):&quot;, round(pmr, 2), &quot;\n&quot;)</code></pre>
 <pre><code>## Perinatal Mortality Rate (PMR) for England and Wales (per 1,000 total births): 6.65</code></pre>
 </div>
+<div id="maternal-mortality-rate" class="section level2">
+<h2>6. Maternal Mortality Rate</h2>
+<p>Calculated as maternal deaths per 100,000 live births</p>
+<pre class="r"><code># Step 1: Identify maternal deaths from ICD-10 codes (O00–O99, excluding O96/O97; include A34) among females
+# Definition aligns with WHO: deaths during pregnancy, childbirth, or within 42 days of pregnancy end
+# from causes related to or aggravated by the pregnancy or its management (excluding incidental/accidental causes).
+# FIC10UND is the underlying cause code on the death certificate.
+# SEX == 2 indicates female.
+maternal_deaths &lt;- deaths %&gt;%
+  mutate(FIC10UND = toupper(trimws(FIC10UND))) %&gt;%
+  filter(
+    SEX == 2,
+    !is.na(FIC10UND) &amp;
+      (
+        grepl(&quot;^A34&quot;, FIC10UND) |                                # A34: Obstetrical tetanus
+        (grepl(&quot;^O\\d{2}&quot;, FIC10UND) &amp;                           # O00–O99: Pregnancy, childbirth, puerperium
+         !grepl(&quot;^O96&quot;, FIC10UND) &amp; !grepl(&quot;^O97&quot;, FIC10UND))    # exclude late/sequelae for ≤42-day definition
+      )
+  )
+
+# Step 2: Count maternal deaths
+total_maternal_deaths &lt;- nrow(maternal_deaths)
+
+# Step 3: Identify and count live births (denominator)
+# SBIND == 1 indicates stillbirth; SBIND is NULL for live births.
+live_births &lt;- births %&gt;%
+  filter(is.na(SBIND))
+
+total_live_births &lt;- nrow(live_births)
+
+# Step 4: Calculate Maternal Mortality Rate (MMR)
+# MMR = (maternal deaths / live births) × 100,000
+mmr &lt;- if (total_live_births &gt; 0) (total_maternal_deaths / total_live_births) * 100000 else NA_real_
+
+# Step 5: Display the MMR result
+cat(&quot;Maternal Mortality Rate (MMR) for England and Wales (per 100,000 live births):&quot;, round(mmr, 2), &quot;\n&quot;)</code></pre>
+<pre><code>## Maternal Mortality Rate (MMR) for England and Wales (per 100,000 live births): 46.67</code></pre>
+</div>
 <div id="years-of-life-lost-yll" class="section level2">
-<h2>6. Years of Life Lost (YLL) due to Accidents</h2>
+<h2>7. Years of Life Lost (YLL) due to Accidents</h2>
 <p>Based on ICD-10 codes V01–X59 and ages 1–74</p>
 <pre class="r"><code># Load stringr for string manipulation functions
 library(stringr)
@@ -3892,7 +3969,7 @@ cat(&quot;Number of deaths due to accidents (ages 1–74):&quot;, n_accident_dea
 <pre><code>## Average YLL per accident death: 16.7 years</code></pre>
 </div>
 <div id="years-of-working-life-lost-ywll" class="section level2">
-<h2>7. Years of Working Life Lost (YWLL)</h2>
+<h2>8. Years of Working Life Lost (YWLL)</h2>
 <p>Based on deaths registered in 2024 (REGYR)<br />
 Using working-age definition from 2012 onwards: ages 16–64</p>
 <pre class="r"><code># Step 1: Define the working-age range for YWLL calculations
@@ -3937,7 +4014,7 @@ cat(&quot;Number of deaths in working age range (16–64):&quot;, n_working_age_
 <pre><code>## Average YWLL per death: 12 years</code></pre>
 </div>
 <div id="mean-age-at-death" class="section level2">
-<h2>8. Mean Age at Death</h2>
+<h2>9. Mean Age at Death</h2>
 <pre class="r"><code># Step 1: Calculate the mean age at death
 # We use AGEINYRS, which represents age in completed years
 # The mean is calculated across all death records
@@ -3976,7 +4053,7 @@ print(mean_age_by_region)</code></pre>
 ## 10 Yorkshire and The Humber            72.5</code></pre>
 </div>
 <div id="crude-rate-of-yll" class="section level2">
-<h2>9. Crude Rate of Years of Life Lost (YLL) due to Accidents</h2>
+<h2>10. Crude Rate of Years of Life Lost (YLL) due to Accidents</h2>
 <p>Based on ICD-10 codes V01–X59 and ages 1–74<br />
 Expressed per 100,000 population</p>
 <pre class="r"><code># Step 1: Define ICD-10 codes for accidental deaths
@@ -4011,7 +4088,7 @@ cat(&quot;**Crude YLL rate due to accidents per 100,000 population (2024):**&quo
 <pre><code>## **Crude YLL rate due to accidents per 100,000 population (2024):** 18.1</code></pre>
 </div>
 <div id="potential-years-of-life-lost-pyll-and-standardised-pyll-syll" class="section level2">
-<h2>10. Potential Years of Life Lost (PYLL) and Standardised PYLL
+<h2>11. Potential Years of Life Lost (PYLL) and Standardised PYLL
 (SYLL)</h2>
 <p>PYLL measures premature mortality by weighting deaths at younger ages
 more heavily<br />

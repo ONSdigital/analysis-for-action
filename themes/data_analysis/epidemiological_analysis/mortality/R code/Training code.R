@@ -1,15 +1,15 @@
 # Office for National Statistics (ONS)
 # Mortality Analysis Training Package
 # Unit: Key Concepts – Mortality Rates in R
-# Date: August 2025
+# Date: December 2025
 
 # Unit: Key Concepts – Mortality Rates in R ----
 
 ## Overview: ----
-# This script is part of the ONS mortality analysis training package.
+# This script is part of the Analysis for Action mortality analysis training package.
 # It supports the "Key Concepts" unit and demonstrates how to calculate
 # a range of mortality rates using R. These methods are used in official
-# statistics and public health reporting, and align with ONS guidance.
+# statistics and public health reporting, and align with UK ONS guidance.
 
 ## Purpose: ----
 # To provide practical examples of calculating mortality rates using
@@ -21,11 +21,12 @@
 # 3. Age-Standardised Mortality Rate (ASMR)
 # 4. Infant Mortality Rate
 # 5. Perinatal Mortality Rate
-# 6. Years of Life Lost (YLL)
-# 7. Years of Working Life Lost (YWLL)
-# 8. Mean Age at Death
-# 9. Crude Rate of YLL
-# 10. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL)
+# 6. Maternal Mortality Rate
+# 7. Years of Life Lost (YLL)
+# 8. Years of Working Life Lost (YWLL)
+# 9. Mean Age at Death
+# 10. Crude Rate of YLL
+# 11. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL)
 
 ## Unit: Life Expectancy Methods & Modelling Expected Deaths and Excess Mortality  
 # Modelling Expected Deaths and Excess Mortality   
@@ -427,7 +428,7 @@ perinatal_deaths <- deaths %>%
 total_perinatal_deaths <- nrow(perinatal_deaths)
 
 # Step 3: Identify and count stillbirths
-# SBINDZ == 1 indicates a stillbirth; SBINDZ is NULL for live births
+# SBIND == 1 indicates a stillbirth; SBINDZ is NULL for live births
 stillbirths <- births %>%
   filter(SBIND == 1)
 
@@ -444,8 +445,47 @@ pmr <- ((total_stillbirths + total_perinatal_deaths) / total_births) * 1000
 # Step 6: Display the PMR result
 cat("Perinatal Mortality Rate (PMR) for England and Wales (per 1,000 total births):", round(pmr, 2), "\n")
 
+# 6. Maternal Mortality Rate ----
+# Calculated as maternal deaths per 100,000 live births
 
-# 6. Years of Life Lost (YLL) due to Accidents ----
+# Definition aligns with WHO: deaths during pregnancy, childbirth, or within 42 days of pregnancy end
+# from causes related to or aggravated by the pregnancy or its management (excluding incidental/accidental causes).
+# We identify maternal deaths using ICD-10 codes: O00–O99 (excluding O96/O97 for late/sequelae under the classic ≤42-day definition) and A34.
+
+# Step 1: Identify maternal deaths from ICD-10 codes (O00–O99, excluding O96/O97; include A34) among females
+# FIC10UND is the underlying cause code on the death certificate.
+# SEX == 2 indicates female.
+maternal_deaths <- deaths %>%
+  mutate(FIC10UND = toupper(trimws(FIC10UND))) %>%
+  filter(
+    SEX == 2,
+    !is.na(FIC10UND) &
+      (
+        grepl("^A34", FIC10UND) |                                # A34: Obstetrical tetanus
+          (grepl("^O\\d{2}", FIC10UND) &                           # O00–O99: Pregnancy, childbirth, puerperium
+             !grepl("^O96", FIC10UND) & !grepl("^O97", FIC10UND))    # exclude late/sequelae for ≤42-day definition
+      )
+  )
+
+# Step 2: Count maternal deaths
+total_maternal_deaths <- nrow(maternal_deaths)
+
+# Step 3: Identify and count live births (denominator)
+# SBIND == 1 indicates stillbirth; SBIND is NULL for live births.
+live_births <- births %>%
+  filter(is.na(SBIND))
+
+total_live_births <- nrow(live_births)
+
+# Step 4: Calculate Maternal Mortality Rate (MMR)
+# MMR = (maternal deaths / live births) × 100,000
+mmr <- if (total_live_births > 0) (total_maternal_deaths / total_live_births) * 100000 else NA_real_
+
+# Step 5: Display the MMR result
+cat("Maternal Mortality Rate (MMR) for England and Wales (per 100,000 live births):", round(mmr, 2), "\n")
+
+
+# 7. Years of Life Lost (YLL) due to Accidents ----
 # Based on ICD-10 codes V01–X59 and ages 1–74
 
 # Load stringr for string manipulation functions
@@ -492,7 +532,7 @@ cat("Total Years of Life Lost (YLL) due to accidents:", round(total_accident_yll
 cat("Average YLL per accident death:", round(average_accident_yll, 1), "years\n")
 
 
-# 7. Years of Working Life Lost (YWLL) ----
+# 8. Years of Working Life Lost (YWLL) ----
 # Based on deaths registered in 2024 (REGYR)
 # Using working-age definition from 2012 onwards: ages 16–64
 
@@ -535,7 +575,7 @@ cat("Total Years of Working Life Lost (YWLL):", round(total_ywll, 1), "years\n")
 cat("Average YWLL per death:", round(average_ywll, 1), "years\n")
 
 
-# 8. Mean Age at Death ----
+# 9. Mean Age at Death ----
 
 # Step 1: Calculate the mean age at death
 # We use AGEINYRS, which represents age in completed years
@@ -562,7 +602,7 @@ mean_age_by_region <- deaths %>%
 print(mean_age_by_region)
 
 
-# 9. Crude Rate of Years of Life Lost (YLL) due to Accidents----
+# 10. Crude Rate of Years of Life Lost (YLL) due to Accidents----
 # Based on ICD-10 codes V01–X59 and ages 1–74
 # Expressed per 100,000 population
 
@@ -602,7 +642,7 @@ crude_yll_rate <- (total_yll / mid_year_pop_2024) * 100000
 cat("Crude YLL rate due to accidents per 100,000 population (2024):", round(crude_yll_rate, 1), "\n")
 
 
-# 10. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL) ----
+# 11. Potential Years of Life Lost (PYLL) and Standardised PYLL (SYLL) ----
 # PYLL measures premature mortality by weighting deaths at younger ages more heavily
 # SYLL adjusts PYLL using the 2013 European Standard Population (ESP)
 # Dataset includes deaths registered in 2024 only
@@ -739,7 +779,7 @@ certtype_lookup <- tibble::tibble(
 # This ensures the analysis is limited to a single registration year.
 deaths_2024 <- deaths %>%
   filter(lubridate::year(DOR) == 2024)
- 
+
 # Step 5: Calculate summary statistics grouped by CERTTYPE
 delay_by_certtype <- deaths_2024 %>%
   group_by(CERTTYPE) %>%
@@ -755,6 +795,7 @@ delay_by_certtype <- deaths_2024 %>%
 
 # Step 6: Display results as a tibble
 print(delay_by_certtype)
+
 
 # Unit: Life Expectancy Methods & Modelling Expected Deaths and Excess Mortality ----
 
