@@ -1,0 +1,79 @@
+Source,Variable,Description,Format,Values,Type
+Birth notifications,AGEBM,Age of mother at birth derived from DOBM and DOB,00-99,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,<20,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,20-24,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,25-29,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,30-34,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,35-39,In years,Numeric
+Birth notifications,AGEBM_GRP,Grouped mothers age derived from AGBM,40+,In years,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,<1500,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,1500-1999,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,2000-2499,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,2500-2999,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,3000 - 3499,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,3500 - 3999,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,4000-4499,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,4500-4999,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,5000+,In grams,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,SB N/W,Stillbirth not weighed,Numeric
+Birth notifications,BTHWGT_GRP,Birth weight group - derived from BTHWGT,N/S,Not stated,Numeric
+Birth notifications,BTHWGT,Birthweight in grams,0000-9997,Birth weight in grams,Numeric
+Birth notifications,BTHWGT,Birthweight in grams,0,Not weighed/stated,Numeric
+Birth notifications,BTHWGT,Birthweight in grams,9998,Stillbirth not weighed,Numeric
+Birth notifications,BTHWGT,Birthweight in grams,9999,Not stated,Numeric
+Birth notifications,CHORG,Child health organisation code,,,Character
+Birth notifications,CONFORD,Number of births in this confinement,01-Sep,,Character
+Birth notifications,CONFNUM,Birth order,01-Sep,,Character
+Birth notifications,DELTIME,Time of delivery,HH:MM,Time of birth in hours and minites,Time
+Birth notifications,DELTYPE,Type of delivery establishment,0,NHS hospital-midwife ward,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,1,Domestic address,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,2,NHS hospital-consultant ward,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,3,NHS hospital-GMP ward,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,4,"NHS hospital-1,2&3",Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,5,Private hospital,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,6,Other hospital/institution,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,7,NHS hospital_ward no delivery facilities,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,8,None of the above,Numeric
+Birth notifications,DELTYPE,Type of delivery establishment,9,Not known,Numeric
+Birth notifications,DOBM,Date of birth of mother,DD/MM/YYYY,,Character
+Birth notifications,DOB,Date of birth of baby,DD/MM/YYYY,,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,< 24,Less than 24 weeks,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,22-41,Gestation in weeks,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,28-31,Gestation in weeks,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,32-36,Gestation in weeks,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,37+,37+ weeks gestation,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,N/S,Not stated,Character
+Birth notifications,GEST_GRP,Gestational age grouped - derived from GEST10,incon,Incostistent brirthweight/gestation,Character
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,21,less than 22 weeks<1000g,Numeric
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,22-41,Gestation in weeks,Numeric
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,42,42 weeks or more gestation,Numeric
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,98,< 22 weeks > 1000g,Numeric
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,99,No bthwgtz stated,Numeric
+Birth notifications,GEST10,Gestation in weeks - all births - 21 to 42 weeks only - derived from GESTZ and BTHWGT,100,No gestz stated,Numeric
+Birth notifications,GEST,Gestation in weeks - notification,WW,Length of gestation in weeks,Numeric
+Birth notifications,MNHSNO,Mothers NHS Number,Number,Mothers NHS Number * not available for 2006,Character
+Birth notifications,MULTBTH,Derived from Confnum,1,Multiple birth,Integer
+Birth notifications,MULTBTH,Derived from Confnum,null,Singleton birth,Integer
+Birth notifications,NHSNO,Baby's NHS number from notification,Number,,Character
+Birth notifications,ORGCODE,Place of birth organisation code,XXXXX,Code for DELPLAZ,Character
+Birth notifications,PCDRB,Postcode place of residence,Postcode,,Character
+Birth notifications,SBIND,Still birth indicator derived from LSBTH,1,Stillborn,Numeric
+Birth notifications,SBIND,Still birth indicator derived from LSBTH,null,Liveborn,Numeric
+Birth notifications,SEQU_NUM,Sequence number assigned to notification (also to registration record when the birth is registered),,,Numeric
+Birth notifications,SEX,Sex,1,Male,Numeric
+Birth notifications,SEX,Sex,2,Female,Numeric
+Birth notifications,SGA,Small for gestational age,0,No,Character
+Birth notifications,SGA,Small for gestational age,1,Yes,Character
+Birth notifications,SGA,Small for gestational age,N/S,Birthweight or gestation not stated,Character
+Birth notifications,SUSCONA,Suspected congenital anomaly indicator,Suspected congenital anomaly indicator,Y,Character
+Birth notifications,SUSCONA,Suspected congenital anomaly indicator,Suspected congenital anomaly indicator,N,Character
+Birth notifications,SUSCONA,Suspected congenital anomaly indicator,Suspected congenital anomaly indicator,U,Character
+Birth notifications,SUSCONA,Suspected congenital anomaly indicator,Suspected congenital anomaly indicator,null,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,Extermely Pre-Term,Births < 28 weeks,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,Very Pre-term,Births between 28 and 31 weeks gestation,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,Moderately Pre-term,Births between 32 and 36 weeks gestation,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,Term,Births between 37 and 41 weeks gestation,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,Post term,Births at 42 weeks or more gestation,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,N/S,Not stated,Character
+Birth notifications,TERM,Term of pregnancy- derived from GEST,null,Not available,Character
+Birth notifications,YEAR,Year of birth - derived from date of birth,YYYY,Year of birth of baby,Numeric

@@ -1,0 +1,1171 @@
+"year","geography","age_group","sex","population"
+2015,"England","0-29","male",9337930
+2016,"England","0-29","male",9375282
+2017,"England","0-29","male",9412633
+2018,"England","0-29","male",9449985
+2019,"England","0-29","male",9487337
+2020,"England","0-29","male",9524689
+2021,"England","0-29","male",9562040
+2022,"England","0-29","male",9599392
+2023,"England","0-29","male",9636744
+2024,"England","0-29","male",9674095
+2015,"Wales","0-29","male",491470
+2016,"Wales","0-29","male",493436
+2017,"Wales","0-29","male",495402
+2018,"Wales","0-29","male",497368
+2019,"Wales","0-29","male",499334
+2020,"Wales","0-29","male",501299
+2021,"Wales","0-29","male",503265
+2022,"Wales","0-29","male",505231
+2023,"Wales","0-29","male",507197
+2024,"Wales","0-29","male",509163
+2015,"England","30-44","male",4943610
+2016,"England","30-44","male",4963384
+2017,"England","30-44","male",4983159
+2018,"England","30-44","male",5002933
+2019,"England","30-44","male",5022708
+2020,"England","30-44","male",5042482
+2021,"England","30-44","male",5062257
+2022,"England","30-44","male",5082031
+2023,"England","30-44","male",5101806
+2024,"England","30-44","male",5121580
+2015,"Wales","30-44","male",260190
+2016,"Wales","30-44","male",261231
+2017,"Wales","30-44","male",262272
+2018,"Wales","30-44","male",263312
+2019,"Wales","30-44","male",264353
+2020,"Wales","30-44","male",265394
+2021,"Wales","30-44","male",266435
+2022,"Wales","30-44","male",267475
+2023,"Wales","30-44","male",268516
+2024,"Wales","30-44","male",269557
+2015,"England","45-49","male",1647870
+2016,"England","45-49","male",1654461
+2017,"England","45-49","male",1661053
+2018,"England","45-49","male",1667644
+2019,"England","45-49","male",1674236
+2020,"England","45-49","male",1680827
+2021,"England","45-49","male",1687419
+2022,"England","45-49","male",1694010
+2023,"England","45-49","male",1700602
+2024,"England","45-49","male",1707193
+2015,"Wales","45-49","male",86730
+2016,"Wales","45-49","male",87077
+2017,"Wales","45-49","male",87424
+2018,"Wales","45-49","male",87771
+2019,"Wales","45-49","male",88118
+2020,"Wales","45-49","male",88465
+2021,"Wales","45-49","male",88812
+2022,"Wales","45-49","male",89158
+2023,"Wales","45-49","male",89505
+2024,"Wales","45-49","male",89852
+2015,"England","50-54","male",1647870
+2016,"England","50-54","male",1654461
+2017,"England","50-54","male",1661053
+2018,"England","50-54","male",1667644
+2019,"England","50-54","male",1674236
+2020,"England","50-54","male",1680827
+2021,"England","50-54","male",1687419
+2022,"England","50-54","male",1694010
+2023,"England","50-54","male",1700602
+2024,"England","50-54","male",1707193
+2015,"Wales","50-54","male",86730
+2016,"Wales","50-54","male",87077
+2017,"Wales","50-54","male",87424
+2018,"Wales","50-54","male",87771
+2019,"Wales","50-54","male",88118
+2020,"Wales","50-54","male",88465
+2021,"Wales","50-54","male",88812
+2022,"Wales","50-54","male",89158
+2023,"Wales","50-54","male",89505
+2024,"Wales","50-54","male",89852
+2015,"England","55-59","male",1647870
+2016,"England","55-59","male",1654461
+2017,"England","55-59","male",1661053
+2018,"England","55-59","male",1667644
+2019,"England","55-59","male",1674236
+2020,"England","55-59","male",1680827
+2021,"England","55-59","male",1687419
+2022,"England","55-59","male",1694010
+2023,"England","55-59","male",1700602
+2024,"England","55-59","male",1707193
+2015,"Wales","55-59","male",86730
+2016,"Wales","55-59","male",87077
+2017,"Wales","55-59","male",87424
+2018,"Wales","55-59","male",87771
+2019,"Wales","55-59","male",88118
+2020,"Wales","55-59","male",88465
+2021,"Wales","55-59","male",88812
+2022,"Wales","55-59","male",89158
+2023,"Wales","55-59","male",89505
+2024,"Wales","55-59","male",89852
+2015,"England","60-64","male",1647870
+2016,"England","60-64","male",1654461
+2017,"England","60-64","male",1661053
+2018,"England","60-64","male",1667644
+2019,"England","60-64","male",1674236
+2020,"England","60-64","male",1680827
+2021,"England","60-64","male",1687419
+2022,"England","60-64","male",1694010
+2023,"England","60-64","male",1700602
+2024,"England","60-64","male",1707193
+2015,"Wales","60-64","male",86730
+2016,"Wales","60-64","male",87077
+2017,"Wales","60-64","male",87424
+2018,"Wales","60-64","male",87771
+2019,"Wales","60-64","male",88118
+2020,"Wales","60-64","male",88465
+2021,"Wales","60-64","male",88812
+2022,"Wales","60-64","male",89158
+2023,"Wales","60-64","male",89505
+2024,"Wales","60-64","male",89852
+2015,"England","65-69","male",1373225
+2016,"England","65-69","male",1378718
+2017,"England","65-69","male",1384211
+2018,"England","65-69","male",1389704
+2019,"England","65-69","male",1395197
+2020,"England","65-69","male",1400690
+2021,"England","65-69","male",1406182
+2022,"England","65-69","male",1411675
+2023,"England","65-69","male",1417168
+2024,"England","65-69","male",1422661
+2015,"Wales","65-69","male",72275
+2016,"Wales","65-69","male",72564
+2017,"Wales","65-69","male",72853
+2018,"Wales","65-69","male",73142
+2019,"Wales","65-69","male",73431
+2020,"Wales","65-69","male",73720
+2021,"Wales","65-69","male",74010
+2022,"Wales","65-69","male",74299
+2023,"Wales","65-69","male",74588
+2024,"Wales","65-69","male",74877
+2015,"England","70-74","male",1373225
+2016,"England","70-74","male",1378718
+2017,"England","70-74","male",1384211
+2018,"England","70-74","male",1389704
+2019,"England","70-74","male",1395197
+2020,"England","70-74","male",1400690
+2021,"England","70-74","male",1406182
+2022,"England","70-74","male",1411675
+2023,"England","70-74","male",1417168
+2024,"England","70-74","male",1422661
+2015,"Wales","70-74","male",72275
+2016,"Wales","70-74","male",72564
+2017,"Wales","70-74","male",72853
+2018,"Wales","70-74","male",73142
+2019,"Wales","70-74","male",73431
+2020,"Wales","70-74","male",73720
+2021,"Wales","70-74","male",74010
+2022,"Wales","70-74","male",74299
+2023,"Wales","70-74","male",74588
+2024,"Wales","70-74","male",74877
+2015,"England","75-79","male",1098580
+2016,"England","75-79","male",1102974
+2017,"England","75-79","male",1107369
+2018,"England","75-79","male",1111763
+2019,"England","75-79","male",1116157
+2020,"England","75-79","male",1120552
+2021,"England","75-79","male",1124946
+2022,"England","75-79","male",1129340
+2023,"England","75-79","male",1133735
+2024,"England","75-79","male",1138129
+2015,"Wales","75-79","male",57820
+2016,"Wales","75-79","male",58051
+2017,"Wales","75-79","male",58283
+2018,"Wales","75-79","male",58514
+2019,"Wales","75-79","male",58745
+2020,"Wales","75-79","male",58976
+2021,"Wales","75-79","male",59208
+2022,"Wales","75-79","male",59439
+2023,"Wales","75-79","male",59670
+2024,"Wales","75-79","male",59902
+2015,"England","80-84","male",823935
+2016,"England","80-84","male",827231
+2017,"England","80-84","male",830526
+2018,"England","80-84","male",833822
+2019,"England","80-84","male",837118
+2020,"England","80-84","male",840414
+2021,"England","80-84","male",843709
+2022,"England","80-84","male",847005
+2023,"England","80-84","male",850301
+2024,"England","80-84","male",853597
+2015,"Wales","80-84","male",43365
+2016,"Wales","80-84","male",43538
+2017,"Wales","80-84","male",43712
+2018,"Wales","80-84","male",43885
+2019,"Wales","80-84","male",44059
+2020,"Wales","80-84","male",44232
+2021,"Wales","80-84","male",44406
+2022,"Wales","80-84","male",44579
+2023,"Wales","80-84","male",44753
+2024,"Wales","80-84","male",44926
+2015,"England","85-89","male",411968
+2016,"England","85-89","male",413615
+2017,"England","85-89","male",415263
+2018,"England","85-89","male",416911
+2019,"England","85-89","male",418559
+2020,"England","85-89","male",420207
+2021,"England","85-89","male",421855
+2022,"England","85-89","male",423503
+2023,"England","85-89","male",425150
+2024,"England","85-89","male",426798
+2015,"Wales","85-89","male",21682
+2016,"Wales","85-89","male",21769
+2017,"Wales","85-89","male",21856
+2018,"Wales","85-89","male",21943
+2019,"Wales","85-89","male",22029
+2020,"Wales","85-89","male",22116
+2021,"Wales","85-89","male",22203
+2022,"Wales","85-89","male",22290
+2023,"Wales","85-89","male",22376
+2024,"Wales","85-89","male",22463
+2015,"England","90+","male",274645
+2016,"England","90+","male",275744
+2017,"England","90+","male",276842
+2018,"England","90+","male",277941
+2019,"England","90+","male",279039
+2020,"England","90+","male",280138
+2021,"England","90+","male",281236
+2022,"England","90+","male",282335
+2023,"England","90+","male",283434
+2024,"England","90+","male",284532
+2015,"Wales","90+","male",14455
+2016,"Wales","90+","male",14513
+2017,"Wales","90+","male",14571
+2018,"Wales","90+","male",14628
+2019,"Wales","90+","male",14686
+2020,"Wales","90+","male",14744
+2021,"Wales","90+","male",14802
+2022,"Wales","90+","male",14860
+2023,"Wales","90+","male",14918
+2024,"Wales","90+","male",14975
+2015,"England","0-29","female",9719070
+2016,"England","0-29","female",9757946
+2017,"England","0-29","female",9796823
+2018,"England","0-29","female",9835699
+2019,"England","0-29","female",9874575
+2020,"England","0-29","female",9913451
+2021,"England","0-29","female",9952328
+2022,"England","0-29","female",9991204
+2023,"England","0-29","female",10030080
+2024,"England","0-29","female",10068957
+2015,"Wales","0-29","female",511530
+2016,"Wales","0-29","female",513576
+2017,"Wales","0-29","female",515622
+2018,"Wales","0-29","female",517668
+2019,"Wales","0-29","female",519714
+2020,"Wales","0-29","female",521761
+2021,"Wales","0-29","female",523807
+2022,"Wales","0-29","female",525853
+2023,"Wales","0-29","female",527899
+2024,"Wales","0-29","female",529945
+2015,"England","30-44","female",5145390
+2016,"England","30-44","female",5165972
+2017,"England","30-44","female",5186553
+2018,"England","30-44","female",5207135
+2019,"England","30-44","female",5227716
+2020,"England","30-44","female",5248298
+2021,"England","30-44","female",5268879
+2022,"England","30-44","female",5289461
+2023,"England","30-44","female",5310042
+2024,"England","30-44","female",5330624
+2015,"Wales","30-44","female",270810
+2016,"Wales","30-44","female",271893
+2017,"Wales","30-44","female",272976
+2018,"Wales","30-44","female",274060
+2019,"Wales","30-44","female",275143
+2020,"Wales","30-44","female",276226
+2021,"Wales","30-44","female",277309
+2022,"Wales","30-44","female",278393
+2023,"Wales","30-44","female",279476
+2024,"Wales","30-44","female",280559
+2015,"England","45-49","female",1715130
+2016,"England","45-49","female",1721991
+2017,"England","45-49","female",1728851
+2018,"England","45-49","female",1735712
+2019,"England","45-49","female",1742572
+2020,"England","45-49","female",1749433
+2021,"England","45-49","female",1756293
+2022,"England","45-49","female",1763154
+2023,"England","45-49","female",1770014
+2024,"England","45-49","female",1776875
+2015,"Wales","45-49","female",90270
+2016,"Wales","45-49","female",90631
+2017,"Wales","45-49","female",90992
+2018,"Wales","45-49","female",91353
+2019,"Wales","45-49","female",91714
+2020,"Wales","45-49","female",92075
+2021,"Wales","45-49","female",92436
+2022,"Wales","45-49","female",92798
+2023,"Wales","45-49","female",93159
+2024,"Wales","45-49","female",93520
+2015,"England","50-54","female",1715130
+2016,"England","50-54","female",1721991
+2017,"England","50-54","female",1728851
+2018,"England","50-54","female",1735712
+2019,"England","50-54","female",1742572
+2020,"England","50-54","female",1749433
+2021,"England","50-54","female",1756293
+2022,"England","50-54","female",1763154
+2023,"England","50-54","female",1770014
+2024,"England","50-54","female",1776875
+2015,"Wales","50-54","female",90270
+2016,"Wales","50-54","female",90631
+2017,"Wales","50-54","female",90992
+2018,"Wales","50-54","female",91353
+2019,"Wales","50-54","female",91714
+2020,"Wales","50-54","female",92075
+2021,"Wales","50-54","female",92436
+2022,"Wales","50-54","female",92798
+2023,"Wales","50-54","female",93159
+2024,"Wales","50-54","female",93520
+2015,"England","55-59","female",1715130
+2016,"England","55-59","female",1721991
+2017,"England","55-59","female",1728851
+2018,"England","55-59","female",1735712
+2019,"England","55-59","female",1742572
+2020,"England","55-59","female",1749433
+2021,"England","55-59","female",1756293
+2022,"England","55-59","female",1763154
+2023,"England","55-59","female",1770014
+2024,"England","55-59","female",1776875
+2015,"Wales","55-59","female",90270
+2016,"Wales","55-59","female",90631
+2017,"Wales","55-59","female",90992
+2018,"Wales","55-59","female",91353
+2019,"Wales","55-59","female",91714
+2020,"Wales","55-59","female",92075
+2021,"Wales","55-59","female",92436
+2022,"Wales","55-59","female",92798
+2023,"Wales","55-59","female",93159
+2024,"Wales","55-59","female",93520
+2015,"England","60-64","female",1715130
+2016,"England","60-64","female",1721991
+2017,"England","60-64","female",1728851
+2018,"England","60-64","female",1735712
+2019,"England","60-64","female",1742572
+2020,"England","60-64","female",1749433
+2021,"England","60-64","female",1756293
+2022,"England","60-64","female",1763154
+2023,"England","60-64","female",1770014
+2024,"England","60-64","female",1776875
+2015,"Wales","60-64","female",90270
+2016,"Wales","60-64","female",90631
+2017,"Wales","60-64","female",90992
+2018,"Wales","60-64","female",91353
+2019,"Wales","60-64","female",91714
+2020,"Wales","60-64","female",92075
+2021,"Wales","60-64","female",92436
+2022,"Wales","60-64","female",92798
+2023,"Wales","60-64","female",93159
+2024,"Wales","60-64","female",93520
+2015,"England","65-69","female",1429275
+2016,"England","65-69","female",1434992
+2017,"England","65-69","female",1440709
+2018,"England","65-69","female",1446426
+2019,"England","65-69","female",1452143
+2020,"England","65-69","female",1457860
+2021,"England","65-69","female",1463578
+2022,"England","65-69","female",1469295
+2023,"England","65-69","female",1475012
+2024,"England","65-69","female",1480729
+2015,"Wales","65-69","female",75225
+2016,"Wales","65-69","female",75526
+2017,"Wales","65-69","female",75827
+2018,"Wales","65-69","female",76128
+2019,"Wales","65-69","female",76429
+2020,"Wales","65-69","female",76730
+2021,"Wales","65-69","female",77030
+2022,"Wales","65-69","female",77331
+2023,"Wales","65-69","female",77632
+2024,"Wales","65-69","female",77933
+2015,"England","70-74","female",1429275
+2016,"England","70-74","female",1434992
+2017,"England","70-74","female",1440709
+2018,"England","70-74","female",1446426
+2019,"England","70-74","female",1452143
+2020,"England","70-74","female",1457860
+2021,"England","70-74","female",1463578
+2022,"England","70-74","female",1469295
+2023,"England","70-74","female",1475012
+2024,"England","70-74","female",1480729
+2015,"Wales","70-74","female",75225
+2016,"Wales","70-74","female",75526
+2017,"Wales","70-74","female",75827
+2018,"Wales","70-74","female",76128
+2019,"Wales","70-74","female",76429
+2020,"Wales","70-74","female",76730
+2021,"Wales","70-74","female",77030
+2022,"Wales","70-74","female",77331
+2023,"Wales","70-74","female",77632
+2024,"Wales","70-74","female",77933
+2015,"England","75-79","female",1143420
+2016,"England","75-79","female",1147994
+2017,"England","75-79","female",1152567
+2018,"England","75-79","female",1157141
+2019,"England","75-79","female",1161715
+2020,"England","75-79","female",1166288
+2021,"England","75-79","female",1170862
+2022,"England","75-79","female",1175436
+2023,"England","75-79","female",1180009
+2024,"England","75-79","female",1184583
+2015,"Wales","75-79","female",60180
+2016,"Wales","75-79","female",60421
+2017,"Wales","75-79","female",60661
+2018,"Wales","75-79","female",60902
+2019,"Wales","75-79","female",61143
+2020,"Wales","75-79","female",61384
+2021,"Wales","75-79","female",61624
+2022,"Wales","75-79","female",61865
+2023,"Wales","75-79","female",62106
+2024,"Wales","75-79","female",62346
+2015,"England","80-84","female",857565
+2016,"England","80-84","female",860995
+2017,"England","80-84","female",864426
+2018,"England","80-84","female",867856
+2019,"England","80-84","female",871286
+2020,"England","80-84","female",874716
+2021,"England","80-84","female",878147
+2022,"England","80-84","female",881577
+2023,"England","80-84","female",885007
+2024,"England","80-84","female",888437
+2015,"Wales","80-84","female",45135
+2016,"Wales","80-84","female",45316
+2017,"Wales","80-84","female",45496
+2018,"Wales","80-84","female",45677
+2019,"Wales","80-84","female",45857
+2020,"Wales","80-84","female",46038
+2021,"Wales","80-84","female",46218
+2022,"Wales","80-84","female",46399
+2023,"Wales","80-84","female",46579
+2024,"Wales","80-84","female",46760
+2015,"England","85-89","female",428782
+2016,"England","85-89","female",430498
+2017,"England","85-89","female",432213
+2018,"England","85-89","female",433928
+2019,"England","85-89","female",435643
+2020,"England","85-89","female",437358
+2021,"England","85-89","female",439073
+2022,"England","85-89","female",440788
+2023,"England","85-89","female",442504
+2024,"England","85-89","female",444219
+2015,"Wales","85-89","female",22568
+2016,"Wales","85-89","female",22658
+2017,"Wales","85-89","female",22748
+2018,"Wales","85-89","female",22838
+2019,"Wales","85-89","female",22929
+2020,"Wales","85-89","female",23019
+2021,"Wales","85-89","female",23109
+2022,"Wales","85-89","female",23199
+2023,"Wales","85-89","female",23290
+2024,"Wales","85-89","female",23380
+2015,"England","90+","female",285855
+2016,"England","90+","female",286998
+2017,"England","90+","female",288142
+2018,"England","90+","female",289285
+2019,"England","90+","female",290429
+2020,"England","90+","female",291572
+2021,"England","90+","female",292716
+2022,"England","90+","female",293859
+2023,"England","90+","female",295002
+2024,"England","90+","female",296146
+2015,"Wales","90+","female",15045
+2016,"Wales","90+","female",15105
+2017,"Wales","90+","female",15165
+2018,"Wales","90+","female",15226
+2019,"Wales","90+","female",15286
+2020,"Wales","90+","female",15346
+2021,"Wales","90+","female",15406
+2022,"Wales","90+","female",15466
+2023,"Wales","90+","female",15526
+2024,"Wales","90+","female",15587
+2015,"England","All ages","female",27299152
+2015,"England","All ages","male",26228598
+2015,"Wales","All ages","female",1436798
+2015,"Wales","All ages","male",1380452
+2016,"England","All ages","female",27408351
+2016,"England","All ages","male",26333510
+2016,"Wales","All ages","female",1442545
+2016,"Wales","All ages","male",1385974
+2017,"England","All ages","female",27517546
+2017,"England","All ages","male",26438426
+2017,"Wales","All ages","female",1448290
+2017,"Wales","All ages","male",1391498
+2018,"England","All ages","female",27626744
+2018,"England","All ages","male",26543339
+2018,"Wales","All ages","female",1454039
+2018,"Wales","All ages","male",1397018
+2019,"England","All ages","female",27735938
+2019,"England","All ages","male",26648256
+2019,"Wales","All ages","female",1459786
+2019,"Wales","All ages","male",1402540
+2020,"England","All ages","female",27845135
+2020,"England","All ages","male",26753170
+2020,"Wales","All ages","female",1465534
+2020,"Wales","All ages","male",1408061
+2021,"England","All ages","female",27954333
+2021,"England","All ages","male",26858083
+2021,"Wales","All ages","female",1471277
+2021,"Wales","All ages","male",1413587
+2022,"England","All ages","female",28063531
+2022,"England","All ages","male",26962996
+2022,"Wales","All ages","female",1477029
+2022,"Wales","All ages","male",1419104
+2023,"England","All ages","female",28172724
+2023,"England","All ages","male",27067914
+2023,"Wales","All ages","female",1482776
+2023,"Wales","All ages","male",1424626
+2024,"England","All ages","female",28281924
+2024,"England","All ages","male",27172825
+2024,"Wales","All ages","female",1488523
+2024,"Wales","All ages","male",1430148
+2015,"England","0-29","people",19057000
+2015,"England","30-44","people",10089000
+2015,"England","45-49","people",3363000
+2015,"England","50-54","people",3363000
+2015,"England","55-59","people",3363000
+2015,"England","60-64","people",3363000
+2015,"England","65-69","people",2802500
+2015,"England","70-74","people",2802500
+2015,"England","75-79","people",2242000
+2015,"England","80-84","people",1681500
+2015,"England","85-89","people",840750
+2015,"England","90+","people",560500
+2015,"England","All ages","people",53527750
+2015,"Wales","0-29","people",1003000
+2015,"Wales","30-44","people",531000
+2015,"Wales","45-49","people",177000
+2015,"Wales","50-54","people",177000
+2015,"Wales","55-59","people",177000
+2015,"Wales","60-64","people",177000
+2015,"Wales","65-69","people",147500
+2015,"Wales","70-74","people",147500
+2015,"Wales","75-79","people",118000
+2015,"Wales","80-84","people",88500
+2015,"Wales","85-89","people",44250
+2015,"Wales","90+","people",29500
+2015,"Wales","All ages","people",2817250
+2016,"England","0-29","people",19133228
+2016,"England","30-44","people",10129356
+2016,"England","45-49","people",3376452
+2016,"England","50-54","people",3376452
+2016,"England","55-59","people",3376452
+2016,"England","60-64","people",3376452
+2016,"England","65-69","people",2813710
+2016,"England","70-74","people",2813710
+2016,"England","75-79","people",2250968
+2016,"England","80-84","people",1688226
+2016,"England","85-89","people",844113
+2016,"England","90+","people",562742
+2016,"England","All ages","people",53741861
+2016,"Wales","0-29","people",1007012
+2016,"Wales","30-44","people",533124
+2016,"Wales","45-49","people",177708
+2016,"Wales","50-54","people",177708
+2016,"Wales","55-59","people",177708
+2016,"Wales","60-64","people",177708
+2016,"Wales","65-69","people",148090
+2016,"Wales","70-74","people",148090
+2016,"Wales","75-79","people",118472
+2016,"Wales","80-84","people",88854
+2016,"Wales","85-89","people",44427
+2016,"Wales","90+","people",29618
+2016,"Wales","All ages","people",2828519
+2017,"England","0-29","people",19209456
+2017,"England","30-44","people",10169712
+2017,"England","45-49","people",3389904
+2017,"England","50-54","people",3389904
+2017,"England","55-59","people",3389904
+2017,"England","60-64","people",3389904
+2017,"England","65-69","people",2824920
+2017,"England","70-74","people",2824920
+2017,"England","75-79","people",2259936
+2017,"England","80-84","people",1694952
+2017,"England","85-89","people",847476
+2017,"England","90+","people",564984
+2017,"England","All ages","people",53955972
+2017,"Wales","0-29","people",1011024
+2017,"Wales","30-44","people",535248
+2017,"Wales","45-49","people",178416
+2017,"Wales","50-54","people",178416
+2017,"Wales","55-59","people",178416
+2017,"Wales","60-64","people",178416
+2017,"Wales","65-69","people",148680
+2017,"Wales","70-74","people",148680
+2017,"Wales","75-79","people",118944
+2017,"Wales","80-84","people",89208
+2017,"Wales","85-89","people",44604
+2017,"Wales","90+","people",29736
+2017,"Wales","All ages","people",2839788
+2018,"England","0-29","people",19285684
+2018,"England","30-44","people",10210068
+2018,"England","45-49","people",3403356
+2018,"England","50-54","people",3403356
+2018,"England","55-59","people",3403356
+2018,"England","60-64","people",3403356
+2018,"England","65-69","people",2836130
+2018,"England","70-74","people",2836130
+2018,"England","75-79","people",2268904
+2018,"England","80-84","people",1701678
+2018,"England","85-89","people",850839
+2018,"England","90+","people",567226
+2018,"England","All ages","people",54170083
+2018,"Wales","0-29","people",1015036
+2018,"Wales","30-44","people",537372
+2018,"Wales","45-49","people",179124
+2018,"Wales","50-54","people",179124
+2018,"Wales","55-59","people",179124
+2018,"Wales","60-64","people",179124
+2018,"Wales","65-69","people",149270
+2018,"Wales","70-74","people",149270
+2018,"Wales","75-79","people",119416
+2018,"Wales","80-84","people",89562
+2018,"Wales","85-89","people",44781
+2018,"Wales","90+","people",29854
+2018,"Wales","All ages","people",2851057
+2019,"England","0-29","people",19361912
+2019,"England","30-44","people",10250424
+2019,"England","45-49","people",3416808
+2019,"England","50-54","people",3416808
+2019,"England","55-59","people",3416808
+2019,"England","60-64","people",3416808
+2019,"England","65-69","people",2847340
+2019,"England","70-74","people",2847340
+2019,"England","75-79","people",2277872
+2019,"England","80-84","people",1708404
+2019,"England","85-89","people",854202
+2019,"England","90+","people",569468
+2019,"England","All ages","people",54384194
+2019,"Wales","0-29","people",1019048
+2019,"Wales","30-44","people",539496
+2019,"Wales","45-49","people",179832
+2019,"Wales","50-54","people",179832
+2019,"Wales","55-59","people",179832
+2019,"Wales","60-64","people",179832
+2019,"Wales","65-69","people",149860
+2019,"Wales","70-74","people",149860
+2019,"Wales","75-79","people",119888
+2019,"Wales","80-84","people",89916
+2019,"Wales","85-89","people",44958
+2019,"Wales","90+","people",29972
+2019,"Wales","All ages","people",2862326
+2020,"England","0-29","people",19438140
+2020,"England","30-44","people",10290780
+2020,"England","45-49","people",3430260
+2020,"England","50-54","people",3430260
+2020,"England","55-59","people",3430260
+2020,"England","60-64","people",3430260
+2020,"England","65-69","people",2858550
+2020,"England","70-74","people",2858550
+2020,"England","75-79","people",2286840
+2020,"England","80-84","people",1715130
+2020,"England","85-89","people",857565
+2020,"England","90+","people",571710
+2020,"England","All ages","people",54598305
+2020,"Wales","0-29","people",1023060
+2020,"Wales","30-44","people",541620
+2020,"Wales","45-49","people",180540
+2020,"Wales","50-54","people",180540
+2020,"Wales","55-59","people",180540
+2020,"Wales","60-64","people",180540
+2020,"Wales","65-69","people",150450
+2020,"Wales","70-74","people",150450
+2020,"Wales","75-79","people",120360
+2020,"Wales","80-84","people",90270
+2020,"Wales","85-89","people",45135
+2020,"Wales","90+","people",30090
+2020,"Wales","All ages","people",2873595
+2021,"England","0-29","people",19514368
+2021,"England","30-44","people",10331136
+2021,"England","45-49","people",3443712
+2021,"England","50-54","people",3443712
+2021,"England","55-59","people",3443712
+2021,"England","60-64","people",3443712
+2021,"England","65-69","people",2869760
+2021,"England","70-74","people",2869760
+2021,"England","75-79","people",2295808
+2021,"England","80-84","people",1721856
+2021,"England","85-89","people",860928
+2021,"England","90+","people",573952
+2021,"England","All ages","people",54812416
+2021,"Wales","0-29","people",1027072
+2021,"Wales","30-44","people",543744
+2021,"Wales","45-49","people",181248
+2021,"Wales","50-54","people",181248
+2021,"Wales","55-59","people",181248
+2021,"Wales","60-64","people",181248
+2021,"Wales","65-69","people",151040
+2021,"Wales","70-74","people",151040
+2021,"Wales","75-79","people",120832
+2021,"Wales","80-84","people",90624
+2021,"Wales","85-89","people",45312
+2021,"Wales","90+","people",30208
+2021,"Wales","All ages","people",2884864
+2022,"England","0-29","people",19590596
+2022,"England","30-44","people",10371492
+2022,"England","45-49","people",3457164
+2022,"England","50-54","people",3457164
+2022,"England","55-59","people",3457164
+2022,"England","60-64","people",3457164
+2022,"England","65-69","people",2880970
+2022,"England","70-74","people",2880970
+2022,"England","75-79","people",2304776
+2022,"England","80-84","people",1728582
+2022,"England","85-89","people",864291
+2022,"England","90+","people",576194
+2022,"England","All ages","people",55026527
+2022,"Wales","0-29","people",1031084
+2022,"Wales","30-44","people",545868
+2022,"Wales","45-49","people",181956
+2022,"Wales","50-54","people",181956
+2022,"Wales","55-59","people",181956
+2022,"Wales","60-64","people",181956
+2022,"Wales","65-69","people",151630
+2022,"Wales","70-74","people",151630
+2022,"Wales","75-79","people",121304
+2022,"Wales","80-84","people",90978
+2022,"Wales","85-89","people",45489
+2022,"Wales","90+","people",30326
+2022,"Wales","All ages","people",2896133
+2023,"England","0-29","people",19666824
+2023,"England","30-44","people",10411848
+2023,"England","45-49","people",3470616
+2023,"England","50-54","people",3470616
+2023,"England","55-59","people",3470616
+2023,"England","60-64","people",3470616
+2023,"England","65-69","people",2892180
+2023,"England","70-74","people",2892180
+2023,"England","75-79","people",2313744
+2023,"England","80-84","people",1735308
+2023,"England","85-89","people",867654
+2023,"England","90+","people",578436
+2023,"England","All ages","people",55240638
+2023,"Wales","0-29","people",1035096
+2023,"Wales","30-44","people",547992
+2023,"Wales","45-49","people",182664
+2023,"Wales","50-54","people",182664
+2023,"Wales","55-59","people",182664
+2023,"Wales","60-64","people",182664
+2023,"Wales","65-69","people",152220
+2023,"Wales","70-74","people",152220
+2023,"Wales","75-79","people",121776
+2023,"Wales","80-84","people",91332
+2023,"Wales","85-89","people",45666
+2023,"Wales","90+","people",30444
+2023,"Wales","All ages","people",2907402
+2024,"England","0-29","people",19743052
+2024,"England","30-44","people",10452204
+2024,"England","45-49","people",3484068
+2024,"England","50-54","people",3484068
+2024,"England","55-59","people",3484068
+2024,"England","60-64","people",3484068
+2024,"England","65-69","people",2903390
+2024,"England","70-74","people",2903390
+2024,"England","75-79","people",2322712
+2024,"England","80-84","people",1742034
+2024,"England","85-89","people",871017
+2024,"England","90+","people",580678
+2024,"England","All ages","people",55454749
+2024,"Wales","0-29","people",1039108
+2024,"Wales","30-44","people",550116
+2024,"Wales","45-49","people",183372
+2024,"Wales","50-54","people",183372
+2024,"Wales","55-59","people",183372
+2024,"Wales","60-64","people",183372
+2024,"Wales","65-69","people",152810
+2024,"Wales","70-74","people",152810
+2024,"Wales","75-79","people",122248
+2024,"Wales","80-84","people",91686
+2024,"Wales","85-89","people",45843
+2024,"Wales","90+","people",30562
+2024,"Wales","All ages","people",2918671
+2015,"England and Wales","0-29","female",10230600
+2015,"England and Wales","0-29","male",9829400
+2015,"England and Wales","0-29","people",20060000
+2015,"England and Wales","30-44","female",5416200
+2015,"England and Wales","30-44","male",5203800
+2015,"England and Wales","30-44","people",10620000
+2015,"England and Wales","45-49","female",1805400
+2015,"England and Wales","45-49","male",1734600
+2015,"England and Wales","45-49","people",3540000
+2015,"England and Wales","50-54","female",1805400
+2015,"England and Wales","50-54","male",1734600
+2015,"England and Wales","50-54","people",3540000
+2015,"England and Wales","55-59","female",1805400
+2015,"England and Wales","55-59","male",1734600
+2015,"England and Wales","55-59","people",3540000
+2015,"England and Wales","60-64","female",1805400
+2015,"England and Wales","60-64","male",1734600
+2015,"England and Wales","60-64","people",3540000
+2015,"England and Wales","65-69","female",1504500
+2015,"England and Wales","65-69","male",1445500
+2015,"England and Wales","65-69","people",2950000
+2015,"England and Wales","70-74","female",1504500
+2015,"England and Wales","70-74","male",1445500
+2015,"England and Wales","70-74","people",2950000
+2015,"England and Wales","75-79","female",1203600
+2015,"England and Wales","75-79","male",1156400
+2015,"England and Wales","75-79","people",2360000
+2015,"England and Wales","80-84","female",902700
+2015,"England and Wales","80-84","male",867300
+2015,"England and Wales","80-84","people",1770000
+2015,"England and Wales","85-89","female",451350
+2015,"England and Wales","85-89","male",433650
+2015,"England and Wales","85-89","people",885000
+2015,"England and Wales","90+","female",300900
+2015,"England and Wales","90+","male",289100
+2015,"England and Wales","90+","people",590000
+2015,"England and Wales","All ages","female",28735950
+2015,"England and Wales","All ages","male",27609050
+2015,"England and Wales","All ages","people",56345000
+2016,"England and Wales","0-29","female",10271522
+2016,"England and Wales","0-29","male",9868718
+2016,"England and Wales","0-29","people",20140240
+2016,"England and Wales","30-44","female",5437865
+2016,"England and Wales","30-44","male",5224615
+2016,"England and Wales","30-44","people",10662480
+2016,"England and Wales","45-49","female",1812622
+2016,"England and Wales","45-49","male",1741538
+2016,"England and Wales","45-49","people",3554160
+2016,"England and Wales","50-54","female",1812622
+2016,"England and Wales","50-54","male",1741538
+2016,"England and Wales","50-54","people",3554160
+2016,"England and Wales","55-59","female",1812622
+2016,"England and Wales","55-59","male",1741538
+2016,"England and Wales","55-59","people",3554160
+2016,"England and Wales","60-64","female",1812622
+2016,"England and Wales","60-64","male",1741538
+2016,"England and Wales","60-64","people",3554160
+2016,"England and Wales","65-69","female",1510518
+2016,"England and Wales","65-69","male",1451282
+2016,"England and Wales","65-69","people",2961800
+2016,"England and Wales","70-74","female",1510518
+2016,"England and Wales","70-74","male",1451282
+2016,"England and Wales","70-74","people",2961800
+2016,"England and Wales","75-79","female",1208415
+2016,"England and Wales","75-79","male",1161025
+2016,"England and Wales","75-79","people",2369440
+2016,"England and Wales","80-84","female",906311
+2016,"England and Wales","80-84","male",870769
+2016,"England and Wales","80-84","people",1777080
+2016,"England and Wales","85-89","female",453156
+2016,"England and Wales","85-89","male",435384
+2016,"England and Wales","85-89","people",888540
+2016,"England and Wales","90+","female",302103
+2016,"England and Wales","90+","male",290257
+2016,"England and Wales","90+","people",592360
+2016,"England and Wales","All ages","female",28850896
+2016,"England and Wales","All ages","male",27719484
+2016,"England and Wales","All ages","people",56570380
+2017,"England and Wales","0-29","female",10312445
+2017,"England and Wales","0-29","male",9908035
+2017,"England and Wales","0-29","people",20220480
+2017,"England and Wales","30-44","female",5459529
+2017,"England and Wales","30-44","male",5245431
+2017,"England and Wales","30-44","people",10704960
+2017,"England and Wales","45-49","female",1819843
+2017,"England and Wales","45-49","male",1748477
+2017,"England and Wales","45-49","people",3568320
+2017,"England and Wales","50-54","female",1819843
+2017,"England and Wales","50-54","male",1748477
+2017,"England and Wales","50-54","people",3568320
+2017,"England and Wales","55-59","female",1819843
+2017,"England and Wales","55-59","male",1748477
+2017,"England and Wales","55-59","people",3568320
+2017,"England and Wales","60-64","female",1819843
+2017,"England and Wales","60-64","male",1748477
+2017,"England and Wales","60-64","people",3568320
+2017,"England and Wales","65-69","female",1516536
+2017,"England and Wales","65-69","male",1457064
+2017,"England and Wales","65-69","people",2973600
+2017,"England and Wales","70-74","female",1516536
+2017,"England and Wales","70-74","male",1457064
+2017,"England and Wales","70-74","people",2973600
+2017,"England and Wales","75-79","female",1213228
+2017,"England and Wales","75-79","male",1165652
+2017,"England and Wales","75-79","people",2378880
+2017,"England and Wales","80-84","female",909922
+2017,"England and Wales","80-84","male",874238
+2017,"England and Wales","80-84","people",1784160
+2017,"England and Wales","85-89","female",454961
+2017,"England and Wales","85-89","male",437119
+2017,"England and Wales","85-89","people",892080
+2017,"England and Wales","90+","female",303307
+2017,"England and Wales","90+","male",291413
+2017,"England and Wales","90+","people",594720
+2017,"England and Wales","All ages","female",28965836
+2017,"England and Wales","All ages","male",27829924
+2017,"England and Wales","All ages","people",56795760
+2018,"England and Wales","0-29","female",10353367
+2018,"England and Wales","0-29","male",9947353
+2018,"England and Wales","0-29","people",20300720
+2018,"England and Wales","30-44","female",5481195
+2018,"England and Wales","30-44","male",5266245
+2018,"England and Wales","30-44","people",10747440
+2018,"England and Wales","45-49","female",1827065
+2018,"England and Wales","45-49","male",1755415
+2018,"England and Wales","45-49","people",3582480
+2018,"England and Wales","50-54","female",1827065
+2018,"England and Wales","50-54","male",1755415
+2018,"England and Wales","50-54","people",3582480
+2018,"England and Wales","55-59","female",1827065
+2018,"England and Wales","55-59","male",1755415
+2018,"England and Wales","55-59","people",3582480
+2018,"England and Wales","60-64","female",1827065
+2018,"England and Wales","60-64","male",1755415
+2018,"England and Wales","60-64","people",3582480
+2018,"England and Wales","65-69","female",1522554
+2018,"England and Wales","65-69","male",1462846
+2018,"England and Wales","65-69","people",2985400
+2018,"England and Wales","70-74","female",1522554
+2018,"England and Wales","70-74","male",1462846
+2018,"England and Wales","70-74","people",2985400
+2018,"England and Wales","75-79","female",1218043
+2018,"England and Wales","75-79","male",1170277
+2018,"England and Wales","75-79","people",2388320
+2018,"England and Wales","80-84","female",913533
+2018,"England and Wales","80-84","male",877707
+2018,"England and Wales","80-84","people",1791240
+2018,"England and Wales","85-89","female",456766
+2018,"England and Wales","85-89","male",438854
+2018,"England and Wales","85-89","people",895620
+2018,"England and Wales","90+","female",304511
+2018,"England and Wales","90+","male",292569
+2018,"England and Wales","90+","people",597080
+2018,"England and Wales","All ages","female",29080783
+2018,"England and Wales","All ages","male",27940357
+2018,"England and Wales","All ages","people",57021140
+2019,"England and Wales","0-29","female",10394289
+2019,"England and Wales","0-29","male",9986671
+2019,"England and Wales","0-29","people",20380960
+2019,"England and Wales","30-44","female",5502859
+2019,"England and Wales","30-44","male",5287061
+2019,"England and Wales","30-44","people",10789920
+2019,"England and Wales","45-49","female",1834286
+2019,"England and Wales","45-49","male",1762354
+2019,"England and Wales","45-49","people",3596640
+2019,"England and Wales","50-54","female",1834286
+2019,"England and Wales","50-54","male",1762354
+2019,"England and Wales","50-54","people",3596640
+2019,"England and Wales","55-59","female",1834286
+2019,"England and Wales","55-59","male",1762354
+2019,"England and Wales","55-59","people",3596640
+2019,"England and Wales","60-64","female",1834286
+2019,"England and Wales","60-64","male",1762354
+2019,"England and Wales","60-64","people",3596640
+2019,"England and Wales","65-69","female",1528572
+2019,"England and Wales","65-69","male",1468628
+2019,"England and Wales","65-69","people",2997200
+2019,"England and Wales","70-74","female",1528572
+2019,"England and Wales","70-74","male",1468628
+2019,"England and Wales","70-74","people",2997200
+2019,"England and Wales","75-79","female",1222858
+2019,"England and Wales","75-79","male",1174902
+2019,"England and Wales","75-79","people",2397760
+2019,"England and Wales","80-84","female",917143
+2019,"England and Wales","80-84","male",881177
+2019,"England and Wales","80-84","people",1798320
+2019,"England and Wales","85-89","female",458572
+2019,"England and Wales","85-89","male",440588
+2019,"England and Wales","85-89","people",899160
+2019,"England and Wales","90+","female",305715
+2019,"England and Wales","90+","male",293725
+2019,"England and Wales","90+","people",599440
+2019,"England and Wales","All ages","female",29195724
+2019,"England and Wales","All ages","male",28050796
+2019,"England and Wales","All ages","people",57246520
+2020,"England and Wales","0-29","female",10435212
+2020,"England and Wales","0-29","male",10025988
+2020,"England and Wales","0-29","people",20461200
+2020,"England and Wales","30-44","female",5524524
+2020,"England and Wales","30-44","male",5307876
+2020,"England and Wales","30-44","people",10832400
+2020,"England and Wales","45-49","female",1841508
+2020,"England and Wales","45-49","male",1769292
+2020,"England and Wales","45-49","people",3610800
+2020,"England and Wales","50-54","female",1841508
+2020,"England and Wales","50-54","male",1769292
+2020,"England and Wales","50-54","people",3610800
+2020,"England and Wales","55-59","female",1841508
+2020,"England and Wales","55-59","male",1769292
+2020,"England and Wales","55-59","people",3610800
+2020,"England and Wales","60-64","female",1841508
+2020,"England and Wales","60-64","male",1769292
+2020,"England and Wales","60-64","people",3610800
+2020,"England and Wales","65-69","female",1534590
+2020,"England and Wales","65-69","male",1474410
+2020,"England and Wales","65-69","people",3009000
+2020,"England and Wales","70-74","female",1534590
+2020,"England and Wales","70-74","male",1474410
+2020,"England and Wales","70-74","people",3009000
+2020,"England and Wales","75-79","female",1227672
+2020,"England and Wales","75-79","male",1179528
+2020,"England and Wales","75-79","people",2407200
+2020,"England and Wales","80-84","female",920754
+2020,"England and Wales","80-84","male",884646
+2020,"England and Wales","80-84","people",1805400
+2020,"England and Wales","85-89","female",460377
+2020,"England and Wales","85-89","male",442323
+2020,"England and Wales","85-89","people",902700
+2020,"England and Wales","90+","female",306918
+2020,"England and Wales","90+","male",294882
+2020,"England and Wales","90+","people",601800
+2020,"England and Wales","All ages","female",29310669
+2020,"England and Wales","All ages","male",28161231
+2020,"England and Wales","All ages","people",57471900
+2021,"England and Wales","0-29","female",10476135
+2021,"England and Wales","0-29","male",10065305
+2021,"England and Wales","0-29","people",20541440
+2021,"England and Wales","30-44","female",5546188
+2021,"England and Wales","30-44","male",5328692
+2021,"England and Wales","30-44","people",10874880
+2021,"England and Wales","45-49","female",1848729
+2021,"England and Wales","45-49","male",1776231
+2021,"England and Wales","45-49","people",3624960
+2021,"England and Wales","50-54","female",1848729
+2021,"England and Wales","50-54","male",1776231
+2021,"England and Wales","50-54","people",3624960
+2021,"England and Wales","55-59","female",1848729
+2021,"England and Wales","55-59","male",1776231
+2021,"England and Wales","55-59","people",3624960
+2021,"England and Wales","60-64","female",1848729
+2021,"England and Wales","60-64","male",1776231
+2021,"England and Wales","60-64","people",3624960
+2021,"England and Wales","65-69","female",1540608
+2021,"England and Wales","65-69","male",1480192
+2021,"England and Wales","65-69","people",3020800
+2021,"England and Wales","70-74","female",1540608
+2021,"England and Wales","70-74","male",1480192
+2021,"England and Wales","70-74","people",3020800
+2021,"England and Wales","75-79","female",1232486
+2021,"England and Wales","75-79","male",1184154
+2021,"England and Wales","75-79","people",2416640
+2021,"England and Wales","80-84","female",924365
+2021,"England and Wales","80-84","male",888115
+2021,"England and Wales","80-84","people",1812480
+2021,"England and Wales","85-89","female",462182
+2021,"England and Wales","85-89","male",444058
+2021,"England and Wales","85-89","people",906240
+2021,"England and Wales","90+","female",308122
+2021,"England and Wales","90+","male",296038
+2021,"England and Wales","90+","people",604160
+2021,"England and Wales","All ages","female",29425610
+2021,"England and Wales","All ages","male",28271670
+2021,"England and Wales","All ages","people",57697280
+2022,"England and Wales","0-29","female",10517057
+2022,"England and Wales","0-29","male",10104623
+2022,"England and Wales","0-29","people",20621680
+2022,"England and Wales","30-44","female",5567854
+2022,"England and Wales","30-44","male",5349506
+2022,"England and Wales","30-44","people",10917360
+2022,"England and Wales","45-49","female",1855952
+2022,"England and Wales","45-49","male",1783168
+2022,"England and Wales","45-49","people",3639120
+2022,"England and Wales","50-54","female",1855952
+2022,"England and Wales","50-54","male",1783168
+2022,"England and Wales","50-54","people",3639120
+2022,"England and Wales","55-59","female",1855952
+2022,"England and Wales","55-59","male",1783168
+2022,"England and Wales","55-59","people",3639120
+2022,"England and Wales","60-64","female",1855952
+2022,"England and Wales","60-64","male",1783168
+2022,"England and Wales","60-64","people",3639120
+2022,"England and Wales","65-69","female",1546626
+2022,"England and Wales","65-69","male",1485974
+2022,"England and Wales","65-69","people",3032600
+2022,"England and Wales","70-74","female",1546626
+2022,"England and Wales","70-74","male",1485974
+2022,"England and Wales","70-74","people",3032600
+2022,"England and Wales","75-79","female",1237301
+2022,"England and Wales","75-79","male",1188779
+2022,"England and Wales","75-79","people",2426080
+2022,"England and Wales","80-84","female",927976
+2022,"England and Wales","80-84","male",891584
+2022,"England and Wales","80-84","people",1819560
+2022,"England and Wales","85-89","female",463987
+2022,"England and Wales","85-89","male",445793
+2022,"England and Wales","85-89","people",909780
+2022,"England and Wales","90+","female",309325
+2022,"England and Wales","90+","male",297195
+2022,"England and Wales","90+","people",606520
+2022,"England and Wales","All ages","female",29540560
+2022,"England and Wales","All ages","male",28382100
+2022,"England and Wales","All ages","people",57922660
+2023,"England and Wales","0-29","female",10557979
+2023,"England and Wales","0-29","male",10143941
+2023,"England and Wales","0-29","people",20701920
+2023,"England and Wales","30-44","female",5589518
+2023,"England and Wales","30-44","male",5370322
+2023,"England and Wales","30-44","people",10959840
+2023,"England and Wales","45-49","female",1863173
+2023,"England and Wales","45-49","male",1790107
+2023,"England and Wales","45-49","people",3653280
+2023,"England and Wales","50-54","female",1863173
+2023,"England and Wales","50-54","male",1790107
+2023,"England and Wales","50-54","people",3653280
+2023,"England and Wales","55-59","female",1863173
+2023,"England and Wales","55-59","male",1790107
+2023,"England and Wales","55-59","people",3653280
+2023,"England and Wales","60-64","female",1863173
+2023,"England and Wales","60-64","male",1790107
+2023,"England and Wales","60-64","people",3653280
+2023,"England and Wales","65-69","female",1552644
+2023,"England and Wales","65-69","male",1491756
+2023,"England and Wales","65-69","people",3044400
+2023,"England and Wales","70-74","female",1552644
+2023,"England and Wales","70-74","male",1491756
+2023,"England and Wales","70-74","people",3044400
+2023,"England and Wales","75-79","female",1242115
+2023,"England and Wales","75-79","male",1193405
+2023,"England and Wales","75-79","people",2435520
+2023,"England and Wales","80-84","female",931586
+2023,"England and Wales","80-84","male",895054
+2023,"England and Wales","80-84","people",1826640
+2023,"England and Wales","85-89","female",465794
+2023,"England and Wales","85-89","male",447526
+2023,"England and Wales","85-89","people",913320
+2023,"England and Wales","90+","female",310528
+2023,"England and Wales","90+","male",298352
+2023,"England and Wales","90+","people",608880
+2023,"England and Wales","All ages","female",29655500
+2023,"England and Wales","All ages","male",28492540
+2023,"England and Wales","All ages","people",58148040
+2024,"England and Wales","0-29","female",10598902
+2024,"England and Wales","0-29","male",10183258
+2024,"England and Wales","0-29","people",20782160
+2024,"England and Wales","30-44","female",5611183
+2024,"England and Wales","30-44","male",5391137
+2024,"England and Wales","30-44","people",11002320
+2024,"England and Wales","45-49","female",1870395
+2024,"England and Wales","45-49","male",1797045
+2024,"England and Wales","45-49","people",3667440
+2024,"England and Wales","50-54","female",1870395
+2024,"England and Wales","50-54","male",1797045
+2024,"England and Wales","50-54","people",3667440
+2024,"England and Wales","55-59","female",1870395
+2024,"England and Wales","55-59","male",1797045
+2024,"England and Wales","55-59","people",3667440
+2024,"England and Wales","60-64","female",1870395
+2024,"England and Wales","60-64","male",1797045
+2024,"England and Wales","60-64","people",3667440
+2024,"England and Wales","65-69","female",1558662
+2024,"England and Wales","65-69","male",1497538
+2024,"England and Wales","65-69","people",3056200
+2024,"England and Wales","70-74","female",1558662
+2024,"England and Wales","70-74","male",1497538
+2024,"England and Wales","70-74","people",3056200
+2024,"England and Wales","75-79","female",1246929
+2024,"England and Wales","75-79","male",1198031
+2024,"England and Wales","75-79","people",2444960
+2024,"England and Wales","80-84","female",935197
+2024,"England and Wales","80-84","male",898523
+2024,"England and Wales","80-84","people",1833720
+2024,"England and Wales","85-89","female",467599
+2024,"England and Wales","85-89","male",449261
+2024,"England and Wales","85-89","people",916860
+2024,"England and Wales","90+","female",311733
+2024,"England and Wales","90+","male",299507
+2024,"England and Wales","90+","people",611240
+2024,"England and Wales","All ages","female",29770447
+2024,"England and Wales","All ages","male",28602973
+2024,"England and Wales","All ages","people",58373420
