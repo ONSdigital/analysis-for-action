@@ -147,7 +147,7 @@ vuln_pie_solution<- ggplot(vuln_partner_countries, aes(x = 1, y = vulnerable_pop
 vuln_pie_solution
 ```
 
-# Save as .svg
+# Exporting
 
 ```{r}
 ggsave(
@@ -158,10 +158,3 @@ ggsave(
   height = 9
 )
 ```
-
-# Save as .html (delete if it doesn't work)
-
-```{r}
-
-```
-

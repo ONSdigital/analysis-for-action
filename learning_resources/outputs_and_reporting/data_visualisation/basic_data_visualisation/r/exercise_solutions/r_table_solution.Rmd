@@ -91,6 +91,7 @@ library(dplyr)
 library(tidyr)
 library(janitor)
 library(gt)
+library(magick)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
@@ -219,7 +220,7 @@ vuln_exercise # Display the output
 
 ```
 
-## Export the table
+## Export the table as HTML
 
 ```{r}
 
@@ -228,5 +229,22 @@ vuln_exercise # Display the output
 vuln_exercise %>%
 
   gtsave(filename = "r_table_solution.html", path = "D:/TEMP/")
+```
+
+## Export the table as SVG
+
+```{r}
+
+# Save the table as SVG
+
+vuln_table %>%
+
+  gtsave(filename = "r_table_solution.png", path = "D:/TEMP/")
+
+vuln_pie_png <- image_read("D:/Temp/r_table_solution.png")
+
+vuln_table_svg <- image_convert(vuln_table_png, format = "svg")
+
+image_write(vuln_table_svg, "D:/Temp/r_table_solution.svg")
 ```
 
