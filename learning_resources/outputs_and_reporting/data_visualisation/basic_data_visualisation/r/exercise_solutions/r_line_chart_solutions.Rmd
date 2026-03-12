@@ -1,5 +1,5 @@
 ---
-title: "Basic Data Visualisation, How to make bar charts in R: Exercise solution"
+title: "Basic Data Visualisation, How to make line charts in R: Exercise solution"
 output: html_document
 ---
 
@@ -13,7 +13,7 @@ in a learning resource. Follow the instructions below to complete the template:
 - Replace content in square brackets (e.g., [unit_name], [link], [chapter name])
 with the relevant information. For example the title block below could be changed
 from "[unit_name], [chapter_name] - Code snippets" to "Basic Data Visualisation,
-Creating Bar Charts - Code snippets".
+Creating Line Charts - Code snippets".
 - In the setup section add any instructions for users to follow before running the
 code snippets, such as installing packages or downloading data files. Add any
 necessary import statements or setup code in the first code cell.
@@ -38,32 +38,28 @@ file_path <- file.path(learning_resources_dir, "data", "filename.csv")
     are in.
 ---
 
-# Basic Data Visualisation, How to make bar charts in R: Exercise solution
+# Basic Data Visualisation, How to make line charts in R: Exercise solution
 
-The following code relates to the **Making bar charts in R** script in the
+The following code relates to the **Making line charts in R** script in the
 **Basic Data Visualisation** learning resource on the [Analysis for Action]([PLACEHOLDER])
 platform.
 
-This is the code used to produce the exercise solution from the **Making bar charts in R** script. Compare your code and output against the code and output produced here to see how well you did. Note that your code and output do not need to match the solution exactly to be considered correct!
+This is the code used to produce the exercise solution from the **Making line charts in R** script. Compare your code and output against the code and output produced here to see how well you did. Note that your code and output do not need to match the solution exactly to be considered correct!
 
-Can you think of any other ways of making the bar chart more accessible?
+Can you think of any other ways of making the line chart more accessible?
 
-The bar chart should:
+The line chart should:
 
--   Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom in the year 1997
+- The size of the vulnerable populations of the 4 countries with the largest vulnerable populations in 2007 over the years from 1952 to 2007
 -   Be formatted so that:
-    -   The x-axis label is: Country 
-    -   The y-axis label is: Vulnerable Population (Millions) 
+    -   The x-axis label is: Year 
+    -   The y-axis label is: Vulnerable Population (Millions)
     -   The text size of the axis titles is 12
-    -   The panel background and plot background is HEX code #FFFFFF
-    -   The largest bar is HEX code #324028, the rest are HEX code #D4DDD6
-    -   The width of the bars is 0.6
-    -   The bars are ordered from largest to smallest
-    -   The horizontal gridlines are HEX code #D9D9D9 and size = 0.5
-    -   There are no vertical gridlines
     -   The y-axis uses millions suffix (for example an axis break with a value of 6000000 would show as 6M)
+    -   The panel background and plot background is HEX code #FFFFFF
+    -   The horizontal and vertical gridlines are HEX code #D9D9D9 and size = 0.5
     -   The chart is exported as an .svg file with the file name:
-        vuln_pop_partner_countries 
+        vuln_line_top_4
     -   The chart is saved to the D:/Temp folder
     -   The save charted has an aspect ratio of 16:9
 
@@ -101,84 +97,60 @@ library(gt)
 library(ggplot2)
 library(svglite)
 library(scales)
-library(plotly)
 library(htmlwidgets)
+library(plotly)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
 vuln <- read.csv(here::here("learning_resources", "data", "vulnerable.csv"))
 ```
 
-## Preparing the dataframe
+# Preparing the dataframe
 
 ```{r}
-# Prepare your data to make it suitable for a bar chart
+# Prepare your data to make it suitable for a line chart
+# Find the 4 countries with the largest vulnerable populations in 2007
+vuln_top_4_countries_2007 <- vuln %>%
+  filter(year %in% 2007) %>%
+  group_by(year) %>%
+  slice_max(order_by = vulnerable_pop, n = 4)
 
-vuln_1997_partner_countries <- vuln %>%
-  
-  filter(year %in% ("1997")) %>%
-  
-  filter(country %in% c("Argentina", "Malawi", "Nepal", "United Kingdom")) %>%
-  
-  select(country, vulnerable_pop) 
+# Filter the vuln dataframe to the 4 countries in the vuln_top_4_countries_2007 dataframe
+vuln_top_4 <- vuln %>%
+  filter(country %in% vuln_top_4_countries_2007$country)
 
-# Order the data by population from largest to smallest
-
-vuln_1997_partner_countries <- vuln_1997_partner_countries %>% 
-  dplyr::arrange(desc(vulnerable_pop))
-
-vuln_1997_partner_countries$country <- factor(
-  vuln_1997_partner_countries$country,
-  levels = vuln_1997_partner_countries$country
-)
-
-# Create the data for the focus chart, extra row added which has TRUE for the largest population and FALSE for the others
-
-vuln_focus_1997 <- vuln_1997_partner_countries %>%
-  mutate(highlight = vulnerable_pop == max(vulnerable_pop))
+vuln_top_4
 ```
 
-# Creating the plot
+# Creating the line chart
 
 ```{r}
-# Create the plot and specify the data on the x and y axis and set the fill for the focus chart
-vuln_bar <- ggplot(vuln_focus_1997, aes(x = country, y = vulnerable_pop, fill = highlight)) +
-  # Set bar width
-  geom_bar(stat = "identity", 
-           width = 0.6) +
-  # Add number suffixes
-  scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M")) +
-  # Set the title and axis titles
-  labs(
-    x = "Country", 
-    y = "Vulnerable Population (Millions") +
-  # Set the text sizes
+vuln_line_solution <- ggplot(vuln_top_4, aes(x = year, y = vulnerable_pop, colour = country)) + 
+  geom_line() +
+  labs(x = "Year", y = "Vulnerable Population (Millions)") +
   theme(
+    # Change the background colour of the panel (the inside box containing the bars) to white
+    panel.background = element_rect(fill = "#ffffff"),
+    # Change the background colour of the plot (the outside area containing the axis titles)
+    plot.background = element_rect(fill = "#ffffff"),
+    # Changed size of axis titles and axis text
     axis.title.x = element_text(size = 12),
-    axis.title.y = element_text(size = 12),
-    # Set the panel colour and background colour
-    panel.background = element_rect(fill = "#FFFFFF"),
-    plot.background = element_rect(fill = "#FFFFFF"),
-    # Set the grid size and colour
-    panel.grid.minor = element_line(colour = "#D9D9D9", 
-                                    size = 0.5),
-    panel.grid.major = element_line(colour = "#D9D9D9", 
-                                    size = 0.5),
-    panel.grid.major.x = element_blank(),
-          
-    panel.grid.minor.x = element_blank()
-  ) +
-  # Set the colours for the focus chart
-  scale_fill_manual(values = c("TRUE" = "#324027", "FALSE" = "#D4DDD6"),
-                    guide = "none")
+    axis.title.y = element_text(size = 12),  
+    # Change the colour and size of the minor gridlines
+    panel.grid.minor = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1),
+    # Change the colour and size of the major gridlines
+    panel.grid.major = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1)) +
+  scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M"))
+
+vuln_line_solution
 ```
 
 # Save as .html
 
 ```{r}
-vuln_bar_html <- ggplotly(vuln_bar)
+vuln_line_html <- ggplotly(vuln_line_solution)
 
-saveWidget(vuln_bar_html, file = "D:/Temp/vuln_pop_partner_countries.html")
+saveWidget(vuln_line_html, file = "D:/Temp/vuln_line_solution.html")
 ```
 
 # Save as .svg
@@ -186,9 +158,9 @@ saveWidget(vuln_bar_html, file = "D:/Temp/vuln_pop_partner_countries.html")
 ```{r}
 ggsave(
   # Set the file name
-  filename = "vuln_pop_partner_countries.svg",
+  filename = "vuln_line_solution.svg",
   # Select the plot to save
-  plot = vuln_bar,
+  plot = vuln_line_solution,
   # Set the save path
   path = "D:/Temp",
   # Set aspect ratio of plot, an aspect ratio of 16:9 will fill 1920x1080 displays

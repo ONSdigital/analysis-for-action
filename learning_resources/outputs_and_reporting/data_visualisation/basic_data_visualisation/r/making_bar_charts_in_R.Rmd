@@ -48,6 +48,8 @@ library(janitor)
 library(ggplot2)
 library(svglite)
 library(scales)
+library(plotly)
+library(htmlwidgets)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
@@ -336,7 +338,7 @@ vuln_bar_figures_in_full <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnera
 vuln_bar_figures_in_full
 ```
 
-## Exporting
+## Exporting (.svg file type)
 
 ```{r}
 vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country ,y = vulnerable_pop)) +
@@ -355,6 +357,19 @@ ggsave(
   width = 16,
   height = 9
 )
+```
+
+# Exporting (.html file format)
+
+```{r}
+vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country ,y = vulnerable_pop)) +
+  geom_bar(stat = "identity") +
+  # label_number used to remove scientific notation
+  scale_y_continuous(labels = label_number(scale = 1))  
+
+vuln_bar_html <- ggplotly(vuln_bar)
+
+saveWidget(vuln_bar_html, file = "D:/Temp/vuln_pop_partner_countries.html")
 ```
 
 ## Exercise
@@ -378,12 +393,11 @@ The bar chart should:
     -   The bars are ordered from largest to smallest
     -   The horizontal gridlines are HEX code #D9D9D9 and size = 0.5
     -   There are no vertical gridlines
-    -   The y-axis uses millions suffix (for example an axis break with a value of     
-        6000000 would show as 6M)
-    -   The chart is exported as an .svg file with the file name:
+    -   The y-axis uses millions suffix (for example an axis break with a value of 6000000 would show as 6M)
+    -   The chart can be exported as an .svg file or a .html file with the file name:
         vuln_pop_partner_countries 
     -   The chart is saved to the D:/Temp folder
-    -   The save charted has an aspect ratio of 16:9
+    -   The .svg chart has an aspect ratio of 16:9
 
 When you have finished making your bar chart, compare it against the relevant code and solution in the 'exercise_solutions' subfolder. If you have followed all the guidance correctly, this is approximately how your output should look.
 

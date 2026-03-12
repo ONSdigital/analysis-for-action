@@ -46,7 +46,9 @@ library(tidyr)
 library(janitor)
 library(ggplot2)
 library(svglite)
-
+library(plotly)
+library(htmlwidgets)
+library(scales)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
@@ -166,14 +168,14 @@ vuln_pie_percent<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = vulnerable
       x = 1.3,
       label = percent(percent, accuracy = 0.01)),
     position = position_stack(vjust = 0.5),
-    color = "#FFFFFF",
+    colour = "#FFFFFF",
     size = 3,
   )
 
 vuln_pie_percent
 ```
 
-# Exporting
+# Exporting (.svg file format)
 
 ```{r}
 vuln_pie_percent_big_text<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = vulnerable_pop, fill = country)) +
@@ -192,7 +194,7 @@ vuln_pie_percent_big_text<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = v
       x = 1.3,
       label = percent(percent, accuracy = 0.01)),
     position = position_stack(vjust = 0.5),
-    color = "#FFFFFF",
+    colour = "#FFFFFF",
     # For the saved version the text size can be larger as it is a larger plot
     size = 6,
   )
@@ -210,3 +212,55 @@ ggsave(
 )
 ```
 
+## Exporting (.html file format)
+
+```{r}
+vuln_pie_percent_big_text<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = vulnerable_pop, fill = country)) +
+  geom_col(colour = "#FFFFFF") +
+  coord_polar("y", start = 0, direction = -1) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        panel.grid = element_blank()
+) +
+  scale_fill_manual(
+    values = c("#1E2A16", "#D17E38", "#444443", "#3EA27F", "#752111", "#618DD3")
+) +
+  geom_text(
+    aes(
+      x = 1.3,
+      label = percent(percent, accuracy = 0.01)),
+    position = position_stack(vjust = 0.5),
+    colour = "#FFFFFF",
+    # For the saved version the text size can be larger as it is a larger plot
+    size = 6,
+  )
+
+vuln_pie_html <- ggplotly(vuln_pie_percent_big_text)
+
+saveWidget(vuln_pie_html, file = "D:/Temp/vuln_line.html", selfcontained = TRUE)
+```
+
+## Exercise
+
+Use this exercise to test what you’ve learned about making pie charts. You can adapt much of the code covered in this section, but some basic data manipulation will also be required which has not been covered here.
+
+Create a pie chart in R. Use the vulnerable dataset as your input data.
+
+For an extra challenge, consider setting yourself an hour’s time limit to help simulate an emergency.
+
+The pie chart should:
+
+-   Show the size of vulnerable populations in Argentina, Malawi, Nepal, and the United Kingdom in the year 2007
+-   Be formatted so that:
+    -   There are no axis labels
+    -   The countries are ordered so that the pie chart is ordered clockwise from largest to smallest, starting at 12 o'clock
+    -   The largest segment is HEX code #1E2A16
+    -   The second largest segment is HEX code #D17E38
+    -   The second largest segment is HEX code #444443
+    -   The second largest segment is HEX code #3EA27F
+    -   The percentage of the total vulnerable population is shown within the country's segment
+    -   The labels are HEX code #FFFFFF
+    -   The chart is exported as both an .svg file and a .html file (delete if it doesn't work) with the file name: vuln_pie_solution
+    -   The chart is saved to the D:/Temp folder
+    -   The saved .svg chart has an aspect ratio of 16:9
