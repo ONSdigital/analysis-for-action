@@ -1,0 +1,38 @@
+{
+  "(Select Country)": {
+    "name": "Global",
+    "levels": ["country", "Region", "District"],
+    "mapping": {}
+  },
+
+
+  "Argentina": {
+    "name": "Argentina",
+    "file_name": "Argentina.gpkg",
+    "levels": ["country", "level1", "level2", "level3"],
+    "mapping": {
+      "level1": {
+        "db_column": "level1",
+        "layer_name": "Province",
+        "spatial_id": "cpr",
+        "name_col": "nam"
+      },
+      "level2": {
+        "db_column": "level2",
+        "parent_col": "cpr",
+        "layer_name": "Department",
+        "spatial_id": "cde",
+        "name_col": "nam"
+      },
+      "level3": {
+        "db_column": "level3",
+        "parent_col": "cde",
+        "layer_name": "Fraction",
+        "spatial_id": "cod_indec",
+        "name_col": "cod_indec",
+        "code_length": 7
+      }
+    }
+  }
+
+}
