@@ -120,6 +120,12 @@ vuln_top_4 <- vuln %>%
   filter(country %in% vuln_top_4_countries_2007$country)
 
 vuln_top_4
+
+vuln_top_4_labels <- vuln_top_4_countries_2007 %>%
+  
+  group_by(country) %>%
+  
+  slice_max(year)
 ```
 
 # Creating the line chart
@@ -129,10 +135,6 @@ vuln_line_solution <- ggplot(vuln_top_4, aes(x = year, y = vulnerable_pop, colou
   geom_line() +
   labs(x = "Year", y = "Vulnerable Population (Millions)") +
   theme(
-    # Change the background colour of the panel (the inside box containing the bars) to white
-    panel.background = element_rect(fill = "#ffffff"),
-    # Change the background colour of the plot (the outside area containing the axis titles)
-    plot.background = element_rect(fill = "#ffffff"),
     # Changed size of axis titles and axis text
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12),  
@@ -140,7 +142,30 @@ vuln_line_solution <- ggplot(vuln_top_4, aes(x = year, y = vulnerable_pop, colou
     panel.grid.minor = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1),
     # Change the colour and size of the major gridlines
     panel.grid.major = element_line(colour = "#D9D9D9", size = 0.5, linetype = 1)) +
-  scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M"))
+  scale_y_continuous(labels = label_number(scale = 1e-6, suffix = "M")) +
+  # Change the colours of lines to differentiate between countries
+  scale_colour_manual(values = c("China" = "#1E2A16",
+                                 "India" = "#D17E38",
+                                 "Indonesia" = "#444443",
+                                 "United States" = "#3EA27F")
+                      ) +
+  # Remove legend set y-axis title to horizontal
+  theme(axis.title.y = element_text(angle = 0, 
+                                    hjust = 1, 
+                                    vjust = 1.03,
+                                    margin = margin(r = -150)
+                                    ),
+        plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
+  theme(legend.position = "none") +
+  # Add labels to lines
+  geom_text_repel(data = vuln_top_4_labels,
+                  aes(label = country),
+                  nudge_y = 500000,
+                  colour = "#000000",
+                  segment.colour = NA)
+
+# Note the y-axis title will not be in the correct position incorrect in Rstudio but the saved version will be correct
+# For the plot to look correct in Rstudio change vjust to 1.06
 
 vuln_line_solution
 ```
@@ -148,9 +173,9 @@ vuln_line_solution
 # Save as .html
 
 ```{r}
-vuln_line_html <- ggplotly(vuln_line_solution)
-
-saveWidget(vuln_line_html, file = "D:/Temp/vuln_line_solution.html")
+#vuln_line_html <- ggplotly(vuln_line_solution)
+#
+#saveWidget(vuln_line_html, file = "D:/Temp/vuln_line_solution.html")
 ```
 
 # Save as .svg
