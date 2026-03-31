@@ -64,45 +64,47 @@ The raw data is too large to use in a pie chart. You need to filter it to make a
 ```{r}
 # Prepare your data to make it suitable for a bar chart
 
-vuln_2007_top_6_pie <- vuln %>%
+vuln_2007 <- vuln %>%
   # Filter the data to just the year 2007
   filter(year %in% ("2007")) %>%
-  # Select just the country and vulnerable_pop columns
+  # Select countries with large differences in vulnerable population size
+  filter(country %in% c("Mauritius", "Denmark", "Canada", "Netherlands")) %>%
   select(country, vulnerable_pop) %>%
-  # Select only the rows with the 6 highest vulnerable_pop value
-  slice_max(order_by = vulnerable_pop, n = 6, with_ties = FALSE) %>%
-  arrange(desc(vulnerable_pop)) %>%
-  # Set factor levels so the pie stacks in the desired order
-  mutate(country = factor(country, levels = country))
-
+  # Arrange by vulnerable population size from largest to smallest
+  arrange(desc(vulnerable_pop))
 
 # To Display the data
 
-vuln_2007_top_6_pie
+vuln_2007
 ```
 
 ## Make the base pie chart
 
 ```{r}
-vuln_pie <- ggplot(vuln_2007_top_6_pie, aes(x = "", y = vulnerable_pop, fill = country)) +
+vuln_pie <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
   geom_col() +
-  # start sets the location of the start of the first segment, 0 = vertical
+  # start sets the location of the start of the first sector, 0 = vertical
   # direction sets the rotation on the pie chart, -1 = clockwise
-  coord_polar("y", start = 0, direction = -1)
+  coord_polar("y", start = 0, direction = -1) +
+  theme(panel.background = element_rect(fill = "#FFFFFF"))
 
 vuln_pie
 ```
 
-# Remove breaks around the edge
+# Remove breaks around the edge and axis titles
 
 ```{r}
-vuln_pie_clean <- ggplot(vuln_2007_top_6_pie, aes(x = "", y = vulnerable_pop, fill = country)) +
+vuln_pie_clean <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
   geom_col() +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
   coord_polar("y", start = 0, direction = -1) +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 )
 
 vuln_pie_clean
@@ -111,13 +113,18 @@ vuln_pie_clean
 # Add white border between sectors
 
 ```{r}
-vuln_pie_white_borders <- ggplot(vuln_2007_top_6_pie, aes(x = "", y = vulnerable_pop, fill = country)) +
+vuln_pie_white_borders <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
+  # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
   coord_polar("y", start = 0, direction = -1) +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 )
 
 vuln_pie_white_borders
@@ -126,16 +133,22 @@ vuln_pie_white_borders
 # Change sector colours to ensure high contrast
 
 ```{r}
-vuln_pie_colours <- ggplot(vuln_2007_top_6_pie, aes(x = "", y = vulnerable_pop, fill = country)) +
+vuln_pie_colours <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
+  # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
   coord_polar("y", start = 0, direction = -1) +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 ) +
+  # Change sector colours
   scale_fill_manual(
-    values = c("#1E2A16", "#D17E38", "#444443", "#3EA27F", "#752111", "#618DD3")
+    values = c("#D17E38", "#444443", "#3EA27F", "#752111")
 )
 
 vuln_pie_colours
@@ -145,32 +158,60 @@ vuln_pie_colours
 
 ```{r}
 # Adapt data to include percentages
-vuln_2007_top_6_pie_percent <- vuln_2007_top_6_pie %>%
-  mutate(percent = vulnerable_pop / sum(vulnerable_pop))
-
-vuln_2007_top_6_pie_percent
+vuln_2007_percent <- vuln_2007 %>%
+  select(country, vulnerable_pop) %>%
+  arrange(desc(vulnerable_pop)) %>%
+  # Calculate percentages of the vulnerable population
+  mutate(percent = vulnerable_pop / sum(vulnerable_pop),
+        country = factor(country, levels = country),
+        # Calculate the point around the pie that the label will sit
+        total = cumsum(percent),
+        midpoint = total - (percent / 2),
+        # Adjust labels to the left if label is at the left side of the pie to avoid label clipping
+        # Adjust labels to the right if label is at the right side of the pie to avoid label clipping
+        hjust = case_when(
+        midpoint > 0.125 & midpoint < 0.375 ~ 0.2,
+        midpoint > 0.625 & midpoint < 0.875 ~ 0.8,
+        TRUE ~ 0.5
+        )
+)
+vuln_2007_percent
 ```
 
 ```{r}
-vuln_pie_percent<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = vulnerable_pop, fill = country)) +
+vuln_pie_colours <- ggplot(vuln_2007_percent, aes(x = "", y = vulnerable_pop, fill = country)) +
+  # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
-  coord_polar("y", start = 0, direction = -1) +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
+  coord_polar("y", start = 0, direction = -1, clip = "off") +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 ) +
+  # Change sector colours
   scale_fill_manual(
-    values = c("#1E2A16", "#D17E38", "#444443", "#3EA27F", "#752111", "#618DD3")
+    values = c("#D17E38", "#444443", "#3EA27F", "#752111")
 ) +
+  # Create labels
   geom_text(
     aes(
-      x = 1.3,
-      label = percent(percent, accuracy = 0.01)),
+      # Set distance from the circumference of the circle that labels are written
+      x = 1.62,
+      # Write the content of the labels
+      label = paste(country,"[" ,percent(percent, accuracy = 0.01), "]")),
+    # Labels appear at the midpoint of each sector
     position = position_stack(vjust = 0.5),
-    colour = "#FFFFFF",
+    colour = "#000000",
     size = 3,
-  )
+    # Horizontally adjust labels using the hjust column in the dataframe
+    hjust = vuln_2007_percent$hjust
+  ) +
+  # Remove legend
+  theme(legend.position = "none")
 
 vuln_pie_percent
 ```
@@ -178,32 +219,46 @@ vuln_pie_percent
 # Exporting (.svg file format)
 
 ```{r}
-vuln_pie_percent_big_text<- ggplot(vuln_2007_top_6_pie_percent, aes(x = 1, y = vulnerable_pop, fill = country)) +
+vuln_pie_colours <- ggplot(vuln_2007_percent, aes(x = "", y = vulnerable_pop, fill = country)) +
+  # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
-  coord_polar("y", start = 0, direction = -1) +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
+  coord_polar("y", start = 0, direction = -1, clip = "off") +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 ) +
+  # Change sector colours
   scale_fill_manual(
-    values = c("#1E2A16", "#D17E38", "#444443", "#3EA27F", "#752111", "#618DD3")
+    values = c("#D17E38", "#444443", "#3EA27F", "#752111")
 ) +
+  # Create labels
   geom_text(
     aes(
-      x = 1.3,
-      label = percent(percent, accuracy = 0.01)),
+      # Set distance from the circumference of the circle that labels are written
+      x = 1.62,
+      # Write the content of the labels
+      label = paste(country,"[" ,percent(percent, accuracy = 0.01), "]")),
+    # Labels appear at the midpoint of each sector
     position = position_stack(vjust = 0.5),
-    colour = "#FFFFFF",
-    # For the saved version the text size can be larger as it is a larger plot
+    colour = "#000000",
+    # Larger text can be used for the saved version
     size = 6,
-  )
+    # Horizontally adjust labels using the hjust column in the dataframe
+    hjust = vuln_2007_percent$hjust
+  ) +
+  # Remove legend
+  theme(legend.position = "none")
 
 ggsave(
   # Set the file name
   filename = "vuln_pie.svg",
   # Select the plot to save
-  plot = vuln_pie_percent_big_text,
+  plot = vuln_pie_colours,
   # Set the save path
   path = "D:/Temp",
   # Set aspect ratio of plot, an aspect ratio of 16:9 will fill 1920x1080 displays
@@ -226,12 +281,13 @@ The pie chart should:
 -   Be formatted so that:
     -   There are no axis labels
     -   The countries are ordered so that the pie chart is ordered clockwise from largest to smallest, starting at 12 o'clock
-    -   The largest segment is HEX code #1E2A16
-    -   The second largest segment is HEX code #D17E38
-    -   The second largest segment is HEX code #444443
-    -   The second largest segment is HEX code #3EA27F
-    -   The percentage of the total vulnerable population is shown within the country's segment
-    -   The labels are HEX code #FFFFFF
+    -   The largest sector is HEX code #D17E38
+    -   The second largest sector is HEX code #444443
+    -   The third largest sector is HEX code #3EA27F
+    -   The smallest sector is HEX code #752111
+    -   The percentage of the total vulnerable population is shown at the edge of the country's sector
+    -   The labels are HEX code #000000
+    -   There is no legend
     -   The chart is exported as an .svg file with the file name: vuln_pie_solution
     -   The chart is saved to the D:/Temp folder
     -   The saved .svg chart has an aspect ratio of 16:9

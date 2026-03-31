@@ -114,8 +114,16 @@ vuln_partner_countries <- vuln %>%
   filter(year %in% "2007") %>%
   select(country, vulnerable_pop) %>%
   arrange(desc(vulnerable_pop)) %>%
-  mutate(percent = vulnerable_pop / sum(vulnerable_pop)) %>%
-  mutate(country = factor(country, levels = country)) 
+  mutate(percent = vulnerable_pop / sum(vulnerable_pop),
+        country = factor(country, levels = country), 
+        total = cumsum(percent),
+        midpoint = total - (percent / 2),
+        hjust = case_when(
+        midpoint > 0.125 & midpoint < 0.375 ~ 0,
+        midpoint > 0.625 & midpoint < 0.875 ~ 1,
+        TRUE ~ 0.5
+        )
+  )      
 
 vuln_partner_countries
 ```
@@ -123,26 +131,40 @@ vuln_partner_countries
 # Creating the pie chart
 
 ```{r}
-vuln_pie_solution<- ggplot(vuln_partner_countries, aes(x = 1, y = vulnerable_pop, fill = country)) +
+vuln_pie_solution <- ggplot(vuln_partner_countries, aes(x = "", y = vulnerable_pop, fill = country)) +
+  # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
-  coord_polar("y", start = 0, direction = -1) +
+  # start sets the location of the start of the first sector, 0 = vertical
+  # direction sets the rotation on the pie chart, -1 = clockwise
+  coord_polar("y", start = 0, direction = -1, clip = "off") +
+  # Remove breaks around the edge of the pie
   theme(axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank()
+        panel.grid = element_blank(),
+        panel.background = element_rect(fill = "#FFFFFF")
 ) +
+  # Change sector colours
   scale_fill_manual(
-    values = c("#1E2A16", "#D17E38", "#444443", "#3EA27F")
+    values = c("#D17E38", "#444443", "#3EA27F", "#752111")
 ) +
+  # Create labels
   geom_text(
     aes(
-      x = 1.2,
-      label = percent(percent, accuracy = 0.01)),
+      # Set distance from the circumference of the circle that labels are written
+      x = 1.6,
+      # Write the content of the labels
+      label = paste(country,"[" ,percent(percent, accuracy = 0.01), "]")),
+    # Labels appear at the midpoint of each sector
     position = position_stack(vjust = 0.5),
-    colour = "#FFFFFF",
-    # For the saved version the text size can be larger as it is a larger plot
+    colour = "#000000",
+    # Larger text size used for saved version, when displaying in Rstudio use size = 3
     size = 6,
-  )
+    # Horizontally adjust labels using the hjust column in the dataframe
+    hjust = vuln_partner_countries$hjust
+  ) +
+  # Remove legend
+  theme(legend.position = "none")
 
 vuln_pie_solution
 ```
