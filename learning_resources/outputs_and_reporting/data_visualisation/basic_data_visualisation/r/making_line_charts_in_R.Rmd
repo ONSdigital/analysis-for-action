@@ -107,8 +107,10 @@ vuln_line <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, colour = c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -137,8 +139,10 @@ vuln_line_titles <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, col
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -100)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -167,8 +171,10 @@ vuln_line <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, colour = c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -100)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -197,8 +203,10 @@ vuln_line_thousands <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, 
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -175)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -170)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -227,8 +235,10 @@ vuln_line_millions <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -160)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -150)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -270,8 +280,10 @@ vuln_line_billions <- ggplot(vuln_2_country, aes(x = year, y = vulnerable_pop, c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -150)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -297,8 +309,10 @@ vuln_line <- ggplot(vuln_focus, aes(x = year, y = vulnerable_pop,  group = count
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -326,8 +340,10 @@ vuln_line <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, colour = c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -375,8 +391,10 @@ vuln_line <- ggplot(vuln_4_country, aes(x = year, y = vulnerable_pop, colour = c
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -80)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
@@ -407,6 +425,9 @@ vuln_top_2
 
 vuln_axis_break <- ggplot(vuln_top_2, aes(x = year, y = vulnerable_pop, colour = country)) +
   geom_line() +
+  scale_colour_manual(values = c("China" = "#1E2A16",
+                                 "India" = "#D17E38"
+                                 )) +
   scale_y_continuous(limits = c(60000000,270000000),
                      breaks = seq(70000000,270000000, by = 40000000),
                      labels = label_number(scale = 1)
@@ -433,9 +454,17 @@ vuln_axis_break <- ggplot(vuln_top_2, aes(x = year, y = vulnerable_pop, colour =
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
-        plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
+        # Adjust plot margin
+        plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
+  theme(legend.position = "none") +
+  # Add labels to lines
+  geom_text_repel(data = vuln_2_country_labels,
+                  aes(label = country),
+                  nudge_y = 500000,
+                  colour = "#000000")
 
 vuln_axis_break
 ```
@@ -499,6 +528,9 @@ vuln_line <- ggplot(vuln_top_2_gap, aes(x = year, y = vulnerable_pop, colour = c
            size = 2.5) +
   # Remove legend set y-axis title to horizontal
   scale_y_continuous(labels = label_number(scale = 1e-9, suffix = "B")) +
+  scale_colour_manual(values = c("China" = "#1E2A16",
+                                 "India" = "#D17E38"
+                                 )) +
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
@@ -602,7 +634,9 @@ The line chart should:
     -   The y-axis label is: Vulnerable Population (Millions)
     -   The text size of the axis titles is 12
     -   The y-axis uses millions suffix (for example an axis break with a value of 6000000 would show as 6M)
-    -   The horizontal and vertical gridlines are HEX code #D9D9D9 and size = 0.5
+    -   The horizontal gridlines are HEX code #D9D9D9 and size = 0.5
+    -   The vertical gridlines are removed
+    -   The plot and panel backgrounds are HEX code #FFFFFF
     -   The line of the country with the largest population is HEX code #1E2A16
     -   The line of the country with the second largest population is HEX code #D17E38
     -   The line of the country with the third largest population is HEX code #444443

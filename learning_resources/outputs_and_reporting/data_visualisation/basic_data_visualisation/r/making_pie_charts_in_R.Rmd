@@ -86,28 +86,14 @@ vuln_pie <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
   # start sets the location of the start of the first sector, 0 = vertical
   # direction sets the rotation on the pie chart, -1 = clockwise
   coord_polar("y", start = 0, direction = -1) +
-  theme(panel.background = element_rect(fill = "#FFFFFF"))
-
-vuln_pie
-```
-
-# Remove breaks around the edge and axis titles
-
-```{r}
-vuln_pie_clean <- ggplot(vuln_2007, aes(x = "", y = vulnerable_pop, fill = country)) +
-  geom_col() +
-  # start sets the location of the start of the first sector, 0 = vertical
-  # direction sets the rotation on the pie chart, -1 = clockwise
-  coord_polar("y", start = 0, direction = -1) +
-  # Remove breaks around the edge of the pie
-  theme(axis.text = element_blank(),
+  theme(panel.background = element_rect(fill = "#FFFFFF"),
+# As pie charts are made by creating a stacked bar chart and turning it into a circle, axis breaks and axis titles that are created when creating a stacked bar chart appear around the edge of the pie chart, these need to be removed
+        axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.title = element_blank(),
-        panel.grid = element_blank(),
-        panel.background = element_rect(fill = "#FFFFFF")
-)
+        panel.grid = element_blank())
 
-vuln_pie_clean
+vuln_pie
 ```
 
 # Add white border between sectors
@@ -179,7 +165,7 @@ vuln_2007_percent
 ```
 
 ```{r}
-vuln_pie_colours <- ggplot(vuln_2007_percent, aes(x = "", y = vulnerable_pop, fill = country)) +
+vuln_pie_percentage <- ggplot(vuln_2007_percent, aes(x = "", y = vulnerable_pop, fill = country)) +
   # Add white border between sectors
   geom_col(colour = "#FFFFFF") +
   # start sets the location of the start of the first sector, 0 = vertical
@@ -213,7 +199,7 @@ vuln_pie_colours <- ggplot(vuln_2007_percent, aes(x = "", y = vulnerable_pop, fi
   # Remove legend
   theme(legend.position = "none")
 
-vuln_pie_percent
+vuln_pie_percentage
 ```
 
 # Exporting (.svg file format)
@@ -285,7 +271,7 @@ The pie chart should:
     -   The second largest sector is HEX code #444443
     -   The third largest sector is HEX code #3EA27F
     -   The smallest sector is HEX code #752111
-    -   The percentage of the total vulnerable population is shown at the edge of the country's sector
+    -   Include data labels containing each country's name and its percentage of the total vulnerable population
     -   The labels are HEX code #000000
     -   There is no legend
     -   The chart is exported as an .svg file with the file name: vuln_pie_solution

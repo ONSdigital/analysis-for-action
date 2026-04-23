@@ -96,8 +96,10 @@ vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 
@@ -117,8 +119,10 @@ vuln_bar_horizontal <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_p
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 50, r = 5, b = 5))
 
 vuln_bar_horizontal
@@ -137,8 +141,10 @@ vuln_bar_titles <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop))
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
   
 vuln_bar_titles
@@ -157,8 +163,10 @@ vuln_bar_y_axis_changed <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerab
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_y_axis_changed
@@ -187,8 +195,10 @@ vuln_bar_arranged <- ggplot(vuln_2007_top_6_arranged, aes(x = country, y = vulne
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_arranged
@@ -207,8 +217,10 @@ vuln_bar_change_width <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_change_width
@@ -226,8 +238,10 @@ vuln_bar_change_bar_colour <- vuln_bar <- ggplot(vuln_2007_top_6, aes(x = countr
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_change_bar_colour
@@ -252,8 +266,10 @@ vuln_bar_focus_chart <- ggplot(vuln_focus, aes(x = country, y = vulnerable_pop, 
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_focus_chart
@@ -276,8 +292,10 @@ vuln_bar_add_labels <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_p
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_add_labels
@@ -298,8 +316,10 @@ vuln_bar_custom_axis_breaks <- ggplot(vuln_2007_top_6, aes(x = country, y = vuln
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
                               
 vuln_bar_custom_axis_breaks 
@@ -316,7 +336,7 @@ vuln_bar_change_background_and_gridlines<- ggplot(vuln_2007_top_6, aes(x = count
     # Change the background colour of the panel (the inside box containing the bars) to white
     panel.background = element_rect(fill = "#ffffff"),
     # Change the background colour of the plot (the outside area containing the axis titles)
-    plot.background = element_rect(fill = "#f4f6f5"),
+    plot.background = element_rect(fill = "#ffffff"),
     # Changed size of axis titles and axis text
     axis.title.x = element_text(size = 12),
     axis.title.y = element_text(size = 12),
@@ -332,8 +352,10 @@ vuln_bar_change_background_and_gridlines<- ggplot(vuln_2007_top_6, aes(x = count
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_change_background_and_gridlines
@@ -352,8 +374,10 @@ vuln_bar_no_gridlines <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_no_gridlines
@@ -373,8 +397,10 @@ vuln_bar_no_vertical_gridlines <- ggplot(vuln_2007_top_6, aes(x = country, y = v
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_no_vertical_gridlines
@@ -393,8 +419,10 @@ vuln_bar_thousands <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_po
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -180)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -170)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_thousands
@@ -413,8 +441,10 @@ vuln_bar_millions <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -150)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_millions
@@ -433,29 +463,13 @@ vuln_bar_billions <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -150)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_billions
-```
-
-## Show figures in full
-
-```{r}
-vuln_bar_figures_in_full <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
-  geom_bar(stat = "identity") +
-  # Show axis breaks in full
-  scale_y_continuous(labels = label_number(scale = 1)) +
-  # Set y-axis title to horizontal
-  theme(axis.title.y = element_text(angle = 0, 
-                                    hjust = 1,
-                                    vjust = 1.06,
-                                    margin = margin(r = -80)
-                                    ),
-        plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
-
-vuln_bar_figures_in_full
 ```
 
 ## Exporting (.svg file type)
@@ -469,9 +483,11 @@ vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerable_pop)) +
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.03,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
-        plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) 
+        # Adjust plot margin
+        plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 ggsave(
   # Set the file name
@@ -497,13 +513,15 @@ vuln_bar <- ggplot(vuln_2007_top_6, aes(x = country ,y = vulnerable_pop)) +
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
-        plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) 
+        # Adjust plot margin
+        plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_bar_html <- ggplotly(vuln_bar)
 
-saveWidget(vuln_bar_html, file = "D:/Temp/vuln_pop_partner_countries.html")
+saveWidget(vuln_bar_html, file = "D:/Temp/vuln_pop_2007.html")
 ```
 
 ## Exercise
@@ -537,7 +555,8 @@ When you have finished making your bar chart, compare it against the relevant co
 
 ## Extras
 
-Making clustered, stacked and 100% stacked bar charts are is similar to creating regular bar charts, they tend to require either small changes to the data or changes to the ggplot layers
+Making clustered, stacked and 100% stacked bar charts are is similar to creating regular bar charts, they tend to require either small changes to the data or changes to the ggplot layers. The majority of the formatting options covered earlier in this markdown can be use when creating clustered or stack bar charts
+
 ## Clustered Bar Chart
 
 ```{r}
@@ -576,8 +595,10 @@ vuln_cluster <- ggplot(vuln_2002_and_2007_top_6, aes(x = country, y = vulnerable
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_cluster
@@ -620,8 +641,10 @@ vuln_stacked_bar <- ggplot(vuln_1997_2002_2007_top_6, aes(x = country, y = vulne
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.06,
-                                    margin = margin(r = -80)
+                                    # Adjust margin to move the title to the right
+                                    margin = margin(r = -70)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 
 vuln_stacked_bar
@@ -724,8 +747,10 @@ vuln_stacked_bar_percent <- ggplot(vuln_1997_2002_2007_percent, aes(x = year, y 
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1,
                                     vjust = 1.03,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -20)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
   
 vuln_stacked_bar_percent

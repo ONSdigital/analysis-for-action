@@ -169,14 +169,16 @@ vuln_bar <- ggplot(vuln_focus_1997, aes(x = country, y = vulnerable_pop, fill = 
     panel.grid.minor.x = element_blank()
   ) +
   # Set the colours for the focus chart
-  scale_fill_manual(values = c("TRUE" = "#324027", "FALSE" = "#D4DDD6"),
+  scale_fill_manual(values = c("TRUE" = "#324027", "FALSE" = "#949494"),
                     guide = "none") +
   # Set y-axis title to horizontal
   theme(axis.title.y = element_text(angle = 0, 
                                     hjust = 1, 
                                     vjust = 1.03,
+                                    # Adjust margin to move the title to the right
                                     margin = margin(r = -150)
                                     ),
+        # Adjust plot margin
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5))
 ```
 
