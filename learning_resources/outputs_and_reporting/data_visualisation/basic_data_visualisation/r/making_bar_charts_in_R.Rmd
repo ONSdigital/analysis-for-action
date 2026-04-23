@@ -620,8 +620,9 @@ vuln_all_years_top_6_ordered <- vuln_all_years_top_6 %>%
     country = fct_reorder(
       country,
       if_else(year == 2007, vulnerable_pop, NA_real_),
-      na.rm = TRUE
-  ))
+      na.rm = TRUE),
+      year = as.numeric(as.character(year))
+  )
 
 vuln_all_years_top_6_ordered
 ```
@@ -633,6 +634,7 @@ vuln_stacked_bar <- ggplot(vuln_all_years_top_6_ordered, aes(x = year, y = vulne
   scale_fill_manual(
     values = c("Pakistan" = "#1E2A1F", "Brazil" = "#D17E38", "Indonesia" = "#444443", "United States" = "#3EA27F", "India" = "#752111", "China" = "#618DD3")
   ) +
+  scale_x_continuous(breaks = vuln_all_years_top_6_ordered$year) +
   # label_number used to remove scientific notation
   scale_y_continuous(labels = label_number(scale = 1)) +
   # Set y-axis title to horizontal
