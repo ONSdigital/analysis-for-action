@@ -50,6 +50,7 @@ library(svglite)
 library(scales)
 library(plotly)
 library(htmlwidgets)
+library(forcats)
 
 # Use here::here() to construct paths, do not setwd()
 here::here()
@@ -172,7 +173,7 @@ vuln_bar_y_axis_changed <- ggplot(vuln_2007_top_6, aes(x = country, y = vulnerab
 vuln_bar_y_axis_changed
 ```
 
-## Reorder columns
+## Reorder bars
 
 ```{r}
 vuln_2007_top_6_arranged <- vuln_2007_top_6 %>% 
@@ -609,31 +610,28 @@ vuln_cluster
 ```{r}
 # Prepare your data to make it suitable for a stacked bar chart
 
-vuln_1997_2002_2007_top_6 <- vuln %>%
-  # Filter the data to just the years 1997, 2002 and 2007
-  filter(year %in% c(1997,2002,2007)) %>%
+vuln_all_years_top_6 <- vuln %>%
+  filter(country %in% c("Pakistan","Brazil","Indonesia","United States","India","China")) %>%
   
-  mutate(year = as.factor(year)) %>%
-  # Select just the country, year and vulnerable_pop columns
-  select(country, year, vulnerable_pop) %>%
-  # Group the data by year
-  group_by(year) %>%
-  # Select only the rows with the 6 highest vulnerable_pop value for each year
-  slice_max(order_by = vulnerable_pop, n = 6) %>%
+  select(country, year, vulnerable_pop)
 
-  ungroup()
+vuln_all_years_top_6_ordered <- vuln_all_years_top_6 %>%
+  mutate(
+    country = fct_reorder(
+      country,
+      if_else(year == 2007, vulnerable_pop, NA_real_),
+      na.rm = TRUE
+  ))
 
-# To Display the data
-
-vuln_1997_2002_2007_top_6
+vuln_all_years_top_6_ordered
 ```
 
 ```{r}
-vuln_stacked_bar <- ggplot(vuln_1997_2002_2007_top_6, aes(x = country, y = vulnerable_pop, fill = year)) +
+vuln_stacked_bar <- ggplot(vuln_all_years_top_6_ordered, aes(x = year, y = vulnerable_pop, fill = country)) +
   geom_bar(stat = "identity") +
   # Change the colours of bars
   scale_fill_manual(
-    values = c("1997" = "#3EA27F", "2002" = "#752111", "2007" = "#618DD3")
+    values = c("Pakistan" = "#1E2A1F", "Brazil" = "#D17E38", "Indonesia" = "#444443", "United States" = "#3EA27F", "India" = "#752111", "China" = "#618DD3")
   ) +
   # label_number used to remove scientific notation
   scale_y_continuous(labels = label_number(scale = 1)) +
