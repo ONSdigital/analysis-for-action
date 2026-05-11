@@ -89,7 +89,7 @@ future_forecast <- forecast(fit, h = 12)
 
 # Step7: view the forecasted values 
 summary(future_forecast)
-
+v
 # Step 8: Plot with ggplot2 theme
 autoplot(future_forecast) +
   ggtitle("Malawi 12-Month Forecast of Diarrhoea Cases in 2026") +
