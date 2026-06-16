@@ -49,6 +49,12 @@ This repository also uses `pre-commit` to manage git hooks. This ensures our cod
 #### Branching
 Create a new branch for your changes, include the unit name and description of the code where possible e.g. `intro_to_rap_code_snippets`, `outputs_and_reporting_contrast_checker`.
 
+>Note: Create a separate branch for each unit or tool. For example, if the Basic Data Visualisation unit includes both example code and a tool, create the following branches:
+>* basic_data_vis_example_code
+>* basic_data_vis_tool
+>
+>This approach helps reviewers clearly associate comments with the relevant component, making the review process more efficient.
+
 #### Where to add your code
 
 ##### Learning resources
