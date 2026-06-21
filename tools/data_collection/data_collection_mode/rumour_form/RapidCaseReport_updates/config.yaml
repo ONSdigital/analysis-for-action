@@ -1,0 +1,2 @@
+data_dir: "raw_data"
+b_path: "data/report_database.sqlite"
