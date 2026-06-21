@@ -1,0 +1,155 @@
+/* ==========================================
+   1. GLOBAL CONFIGURATION (The "Brain")
+   ========================================== */
+:root {
+  --nav-bg-color: #2d332a;
+  --hero-bg-color: #5b6d5b;
+  --accent-orange: #e67e22;
+  --text-white: #ffffff;
+  --text-gray: #b0b0b0;
+
+  --main-bg-color: #fdfdfb;
+  --panel-bg-color: #ffffff;
+  --border-light: #dee2e6;
+
+  --btn-green-bg: #434d3e;
+  --btn-green-hover: #353d31;
+  --link-blue: #2980b9;
+  --error-red: #dc3545;
+
+  --max-content-width: 100%;
+  --sidebar-fixed-width: 380px; 
+}
+
+/* ==========================================
+   2. GLOBAL BODY & TEXT STYLES
+   ========================================== */
+body {
+  background-color: var(--main-bg-color);
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ==========================================
+   3. HEADER ARCHITECTURE
+   ========================================== */
+.nav-bar { background-color: var(--nav-bg-color); height: 60px; display: flex; }
+.nav-content { width: 100%; padding: 0 40px; display: flex; align-items: center; }
+.header-logo-left { height: 40px; width: 220px; background-image: url('AnalysisforAction_white.png'); background-size: contain; background-repeat: no-repeat; }
+
+.hero-section {
+  background-color: var(--hero-bg-color);
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid var(--accent-orange); 
+}
+.hero-content { width: 100%; padding: 0 40px; color: var(--text-white); }
+.app-title { font-size: 5rem; font-weight: 300; margin: 0; }
+
+/* ==========================================
+   4. MAIN CONTENT & GRID OVERRIDES (The Gap Fix)
+   ========================================== */
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Keeps sidebar on the left */
+  padding: 20px 40px;
+}
+
+/* Force the sidebar-mainpanel container to use flex */
+.row {
+  display: flex !important;
+  flex-direction: row !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.col-sm-4 {
+  width: var(--sidebar-fixed-width) !important;
+  flex: 0 0 var(--sidebar-fixed-width) !important;
+  max-width: var(--sidebar-fixed-width) !important;
+  padding: 0 !important;
+}
+
+.col-sm-8 {
+  flex: 1 1 auto !important;
+  width: auto !important;
+  padding-left: 40px !important;
+}
+ 
+/* ==========================================
+   5. SIDEBAR & FILTER COMPONENTS
+   ========================================== */
+.well, .sidebar, .sidebarPanel {
+  background-color: #c2c2c2 !important;
+  border: 1px solid var(--border-light) !important;
+  border-radius: 8px;
+  padding: 20px !important;
+}
+
+.filter-box {
+  background-color: #fff;
+  border: 1px solid var(--border-light);
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  display: block;
+  width: 100% !important;
+}
+
+
+.filter-box label {
+  white-space: nowrap !important; /* Forces text into one line */
+  display: inline-block !important;
+  margin-left: 8px;
+  font-weight: 700 !important;
+}
+
+
+.filter-box .shiny-input-container {
+  width: 100% !important;
+  margin: 10px 0 !important;
+  display: block !important;
+}
+
+/* ==========================================
+   6. BUTTONS & ACTIONS (The Color Fix)
+   ========================================== */
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/* Specific targeting for your Run Query and Reset buttons */
+.btn-container .btn, 
+.btn-container .action-button, 
+.btn-container .shiny-download-link {
+  flex: 1;
+  height: 42px;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
+}
+
+/* Fix: Color for Run Query (using ID from your screenshot) */
+#main_module-filters_mod-run, .btn-block {
+  background-color: var(--btn-green-bg) !important;
+  color: white !important;
+  border: none !important;
+}
+
+/* Fix: Color for Reset Selections */
+#main_module-filters_mod-reset {
+  background-color: white !important;
+  color: #333 !important;
+  border: 1px solid var(--border-light) !important;
+}
