@@ -125,23 +125,27 @@ install.packages("epitools")  # installing the epitools package
 
 ## load the epitools package. 
 library(epitools) 
+library(dplyr)
 
 
 # create a data frame with two columns vaccine_state and disease_outcome
-df6 <- data.frame(
+vaccine_data <- data.frame(
  vaccine_state= sample(rep(c("Vaccinated", "Unvaccinated"), 20)),   
  disease_outcome= sample(rep(c("Positive", "Negative"), 20)) # 
-# print out the first 6 variables from the data set created will use the head() function  
+# print out the first 6 values from the data set created will use the head () function
 
 )
 
+# to print first 6 values
+head(vaccine_data)
+
 # calculating  the risk ratio, the following code line will be used 
-riskratio(df6$vaccine_state, df6$disease_outcome)
+riskratio(vaccine_data$vaccine_state, vaccine_data$disease_outcome)
 
 
 
 # calculate the odds ratio 
-oddsratio(df6$vaccine_state, df6$disease_outcome)
+oddsratio(vaccine_data$vaccine_state, vaccine_data$disease_outcome)
 
 ```
 
