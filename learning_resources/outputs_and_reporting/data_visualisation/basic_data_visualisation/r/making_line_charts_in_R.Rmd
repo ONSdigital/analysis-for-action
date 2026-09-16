@@ -412,7 +412,9 @@ vuln_axis_break <- ggplot(vuln_top_2, aes(x = year, y = vulnerable_pop, colour =
         plot.margin = margin(t = 20, l = 5, r = 5, b = 5)) +
   theme(legend.position = "none") +
   # Add labels to lines
-  geom_text_repel(data = vuln_2_country_labels,
+  geom_text_repel(data = vuln_top_2 %>%
+                    group_by(country) %>%
+                    filter(year == max(year)),
                   aes(label = country),
                   nudge_y = 500000,
                   colour = "#000000")
