@@ -19,6 +19,7 @@ pythonenv*
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+renv/
 
 # R build files
 .Rproj.user
