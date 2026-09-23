@@ -5,7 +5,8 @@ date: "2026-01-07"
 output: html_document
 ---
 
-The following code relates to the **Monitoring signals in syndromic surveillance** section of the
+The following code relates to the
+**Monitoring signals in syndromic surveillance** section of the
 **Syndromic Surveillance** learning resource on the [Analysis for Action](https://analysisforaction.org/learning-resources/data-collection/data-collection-mode/pandemic-and-epidemic-syndromic-monitoring-system/)
 platform.
 
@@ -14,9 +15,10 @@ resource.
 
 ## Troubleshooting
 
-For troubleshooting guidance, refer to the [troubleshooting document](../../../TROUBLESHOOTING.md).
+For troubleshooting guidance, refer to the
+[troubleshooting document](../../../TROUBLESHOOTING.md).
 
-## Malawi Diarrhoea Cases:  season ARIMA Forecast for 2026
+## Malawi Diarrhoea Cases: Seasonal ARIMA Forecast for 2026
 
 This code will introduce a user to an ARIMA model used in infectious disease
 modelling by forecasting diarrhoea cases among under five children in Malawi
