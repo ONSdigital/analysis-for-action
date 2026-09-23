@@ -56,7 +56,7 @@ library(zoo)
 
 ```{r load_data, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
 # Loading data from CSV file
-diarrhoea_df <- import(here::here(
+diarrhoea_df <- readr::read_csv(here::here(
   "learning_resources",
   "data",
   "Diarrhoea_u5_2023_2025_data.csv"
