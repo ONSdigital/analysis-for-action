@@ -1,13 +1,24 @@
 ---
-title: "Syndromic Surveillance"
+title: "Syndromic Surveillance, Monitoring signals in syndromic surveillance - Code example"
 author: "LIN"
 date: "2026-01-07"
 output: html_document
 ---
 
+The following code relates to the **Monitoring signals in syndromic surveillance** section of the
+**Syndromic Surveillance** learning resource on the [Analysis for Action](https://analysisforaction.org/learning-resources/data-collection/data-collection-mode/pandemic-and-epidemic-syndromic-monitoring-system/)
+platform.
+
+Use this document to explore and run the code snippets provided in the learning
+resource.
+
+## Troubleshooting
+
+For troubleshooting guidance, refer to the [troubleshooting document](../../../TROUBLESHOOTING.md).
+
 ## Malawi Diarrhoea Cases:  season ARIMA Forecast for 2026
 
-This code will introduce an user to ARIMA model used in infectious disease
+This code will introduce a user to an ARIMA model used in infectious disease
 modelling by forecasting diarrhoea cases among under five children in Malawi
 using ARIMA model considering seasonality.
 
@@ -32,8 +43,8 @@ install.packages("zoo")
 ```{r call_packages, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
 library(forecast) # for forecasting the cases
 library(tidyverse) # data management
-library(rio) # This package help with  importing data set in more format
-library(here) # This package help with file path and directory
+library(rio) # This package helps with importing data in multiple formats
+library(here) # This package helps with file paths and directories
 library(tseries) # for changing data frame object to time series object
 library(ggplot2)
 library(zoo)
@@ -42,7 +53,7 @@ library(zoo)
 #### Load data
 
 ```{r load_data, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
-# loading data from
+# Loading data from CSV file
 diarrhoea_df <- import(here::here(
   "learning_resources",
   "data",
@@ -116,7 +127,7 @@ adf_test <- adf.test(diarrhoea_ts)
 print(adf_test)
 # p > 0.05 => fail to reject null of non-stationarity (non-seasonal sense)
 
-# Differencing needed (auto.arima will do this internally, but useful to see)
+# Differencing needed (auto.arima will do this internally, but helpful to see)
 cat("Suggested non-seasonal differences (ndiffs):", ndiffs(diarrhoea_ts), "\n")
 cat("Suggested seasonal differences (nsdiffs):   ", nsdiffs(diarrhoea_ts), "\n")
 ```
@@ -225,7 +236,7 @@ output_path <- here::here(
   "learning_resources",
   "data_collection",
   "data_collection_mode",
-  "syndromic surveillance",
+  "syndromic_surveillance",
   "outputs"
 )
 write.csv(
