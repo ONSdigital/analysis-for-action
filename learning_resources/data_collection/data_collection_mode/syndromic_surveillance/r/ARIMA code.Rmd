@@ -18,7 +18,6 @@ knitr::opts_chunk$set(echo = TRUE)
 #### Install packages
 
 ```{r install_packages, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
-
 install.packages("rio")
 install.packages("tidyverse")
 install.packages("forecast")
@@ -43,14 +42,16 @@ library(zoo)
 #### Load data
 
 ```{r load_data, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
-
 # loading data from
-
-diarrhoea_df<- import(here::here("learning_resources", "data", "Diarrhoea_u5_2023_2025_data.csv")) |>
-  dplyr::mutate(year=as.Date(year, format="%Y-%B-%M")) # change the column of year to date format
+diarrhoea_df <- import(here::here(
+  "learning_resources",
+  "data",
+  "Diarrhoea_u5_2023_2025_data.csv"
+)) |>
+  # change the column of year to date format
+  dplyr::mutate(year = as.Date(year, format = "%Y-%B-%M"))
 
 # change the list to data.frame object
-
 diarrhoea_df <- as.data.frame(diarrhoea_df)
 ```
 
@@ -80,7 +81,6 @@ autoplot(diarrhoea_ts) +
 ### Step 2: Handle missing values
 
 ```{r handle_missing_values}
-
 if (anyNA(diarrhoea_ts)) {
   message("Missing values detected — interpolating.")
   diarrhoea_ts <- na.interp(diarrhoea_ts)
@@ -131,7 +131,10 @@ n_test <- 6
 train_end <- time(diarrhoea_ts)[length(diarrhoea_ts) - n_test]
 
 train <- window(diarrhoea_ts, end = train_end)
-test  <- window(diarrhoea_ts, start = time(diarrhoea_ts)[length(diarrhoea_ts) - n_test + 1])
+test <- window(
+  diarrhoea_ts,
+  start = time(diarrhoea_ts)[length(diarrhoea_ts) - n_test + 1]
+)
 
 fit_train <- auto.arima(
   train,
@@ -182,7 +185,7 @@ checkresiduals(fit)
 ### Step 8: Forecast next 12 periods
 
 ```{r forecast_next_twelve_periods}
-future_forecast <- forecast(fit, h = 12)# h is the length in time.
+future_forecast <- forecast(fit, h = 12) # h is the length in time.
 summary(future_forecast)
 ```
 
@@ -192,11 +195,15 @@ summary(future_forecast)
 # Confirm this title matches your actual forecast window: 12 months
 # beyond your LAST observed data point, not necessarily calendar year 2026.
 last_obs_time <- time(diarrhoea_ts)[length(diarrhoea_ts)]
-last_obs_label <- paste0(floor(last_obs_time), "-", cycle(diarrhoea_ts)[length(diarrhoea_ts)])
+last_obs_label <- paste0(
+  floor(last_obs_time), "-", cycle(diarrhoea_ts)[length(diarrhoea_ts)]
+)
 
 autoplot(future_forecast) +
-  ggtitle(paste0("Malawi 12-Month Forecast of Diarrhoea Cases\n",
-                  "(from ", last_obs_label, " onward)")) +
+  ggtitle(paste0(
+    "Malawi 12-Month Forecast of Diarrhoea Cases\n",
+    "(from ", last_obs_label, " onward)"
+  )) +
   xlab("Time") + ylab("Number of Cases") +
   theme_minimal()
 ```
@@ -214,6 +221,16 @@ forecast_df <- data.frame(
 )
 
 # saving the predicted values
-output_path <- here::here("learning_resources", "data_collection", "data_collection_mode", "syndromic surveillance", "outputs")
-write.csv(forecast_df, here::here(output_path, "diarrhoea_forecast_2026.csv"), row.names = FALSE)
+output_path <- here::here(
+  "learning_resources",
+  "data_collection",
+  "data_collection_mode",
+  "syndromic surveillance",
+  "outputs"
+)
+write.csv(
+  forecast_df,
+  here::here(output_path, "diarrhoea_forecast_2026.csv"),
+  row.names = FALSE
+)
 ```
