@@ -1,5 +1,5 @@
 ---
-title: "Syndromic Surveillance, Monitoring signals in syndromic surveillance - Code example"
+title: "Syndromic Surveillance, ARIMA - Code example"
 author: "LIN"
 date: "2026-01-07"
 output: html_document
