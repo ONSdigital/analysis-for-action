@@ -10,9 +10,6 @@ The following code relates to the
 **Syndromic Surveillance** learning resource on the [Analysis for Action](https://analysisforaction.org/learning-resources/data-collection/data-collection-mode/pandemic-and-epidemic-syndromic-monitoring-system/)
 platform.
 
-Use this document to explore and run the code snippets provided in the learning
-resource.
-
 ## Troubleshooting
 
 For troubleshooting guidance, refer to the
