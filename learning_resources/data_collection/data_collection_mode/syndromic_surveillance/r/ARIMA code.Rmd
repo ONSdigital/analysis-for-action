@@ -122,13 +122,17 @@ print(outlier_check)
 If a COVID-era disruption period is confirmed (e.g. 2020-04 to 2020-12
 had reporting gaps or reporting-system distortion rather than true
 incidence change), consider ONE of the following before proceeding:
+<br>
 **Option A** — trim the disrupted period out entirely:
 `diarrhoea_ts <- window(diarrhoea_ts, start = c(2021, 1))`
+<br>
 **Option B** — replace flagged outlier points with interpolated values:
 `diarrhoea_ts[outlier_check$index] <- outlier_check$replacements`
+<br>
 Decide based on visual inspection of the plot above and your knowledge
 of what happened to reporting in that period. Document whichever choice
-you make, since it materially affects the seasonal pattern learned below.
+you make, since it materially affects the seasonal pattern lerned below.
+In this example it is assumed that no action is needed.
 
 ### Step 4: Check stationarity — non-seasonal AND seasonal
 
@@ -181,6 +185,13 @@ Review the RMSE / MAPE above. If MAPE is very high (e.g. >30-40%),
 treat the final forecast with caution and say so in your report —
 especially given the series likely has fewer than 8 full seasonal
 cycles, which limits how reliably SARIMA can estimate seasonality.
+
+This example fits SARIMA directly to the observed counts for
+simplicity. In a real analysis, if the variability appears to
+increase as the counts get larger, you should consider a
+variance-stabilising transformation (such as Box-Cox) before
+model fitting. That additional step is not demonstrated in this
+introductory example.
 
 ### Step 6: Fit final model on the FULL series
 
@@ -252,7 +263,7 @@ output_path <- here::here(
 )
 write.csv(
   forecast_df,
-  here::here(output_path, "diarrhoea_forecast_2026.csv"),
+  here::here(output_path, "diarrhoea_forecast_2026_r.csv"),
   row.names = FALSE
 )
 ```
