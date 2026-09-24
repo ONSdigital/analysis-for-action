@@ -21,7 +21,6 @@ pyvenv.cfg
 pip-selfcheck.json
 renv/
 **/__pycache__/
-*.py[cod]
 
 # R build files
 .Rproj.user
