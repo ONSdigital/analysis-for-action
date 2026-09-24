@@ -1,5 +1,5 @@
 ---
-title: "Syndromic Surveillance, ARIMA - Code example"
+title: "Syndromic Surveillance, Autoregressive Integrated Moving Average (ARIMA) - Code example"
 author: "LIN"
 date: "2026-01-07"
 output: html_document
@@ -15,11 +15,12 @@ platform.
 For troubleshooting guidance, refer to the
 [troubleshooting document](../../../TROUBLESHOOTING.md).
 
-## Malawi Diarrhoea Cases: Seasonal ARIMA Forecast for 2026
+## Malawi Diarrhoea Cases: Seasonal Autoregressive Integrated Moving Average (SARIMA) Forecast for 2026
 
-This code will introduce a user to an ARIMA model used in infectious disease
-modelling by forecasting diarrhoea cases among under five children in Malawi
-using ARIMA model considering seasonality.
+This code will introduce a user to an Autoregressive Integrated Moving Average
+(ARIMA) model used in infectious disease modelling by forecasting diarrhoea
+cases among under five children in Malawi using a Seasonal Autoregressive
+Integrated Moving Average (SARIMA) model.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -139,7 +140,7 @@ In this example it is assumed that no action is needed.
 ### Step 4: Check stationarity — non-seasonal AND seasonal
 
 ```{r stationarity}
-# ADF test: checks for a non-seasonal unit root only.
+# Augmented Dickey-Fuller (ADF) test: checks for a non-seasonal unit root only.
 adf_test <- adf.test(diarrhoea_ts)
 print(adf_test)
 # p > 0.05 => fail to reject null of non-stationarity (non-seasonal sense)
@@ -183,7 +184,8 @@ autoplot(fc_test) +
   theme_minimal()
 ```
 
-Review the RMSE / MAPE above. If MAPE is very high (e.g. >30-40%),
+Review the root mean squared error (RMSE) / mean absolute percentage error
+(MAPE) above. If MAPE is very high (e.g. >30-40%),
 treat the final forecast with caution and say so in your report —
 especially given the series likely has fewer than 8 full seasonal
 cycles, which limits how reliably SARIMA can estimate seasonality.
@@ -213,9 +215,10 @@ summary(fit)
 
 ```{r step_seven}
 checkresiduals(fit)
-# Check the printed Ljung-Box p-value: want p > 0.05, indicating residuals
-# are consistent with white noise (no leftover structure the model missed).
 ```
+For the Ljung-Box test, a p-value greater than 0.05 suggests the residuals
+are consistent with white noise, meaning there is no strong evidence of
+leftover autocorrelation.
 
 ### Step 8: Forecast next 12 periods
 
