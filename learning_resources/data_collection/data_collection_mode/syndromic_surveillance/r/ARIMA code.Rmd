@@ -91,8 +91,13 @@ head(diarrhoea_df)
 ### Step 1: Convert to time series
 
 ```{r convert_to_time_series}
-# Adjust start = c(year, month) to match your actual first observation
-diarrhoea_ts <- ts(diarrhoea_df$cases, start = c(2020, 1), frequency = 12)
+# Build the time series from the first observed month in the parsed data.
+ts_start <- c(
+  as.integer(format(min(diarrhoea_df$date), "%Y")),
+  as.integer(format(min(diarrhoea_df$date), "%m"))
+)
+
+diarrhoea_ts <- ts(diarrhoea_df$cases, start = ts_start, frequency = 12)
 
 autoplot(diarrhoea_ts) +
   ggtitle("Malawi Diarrhoea Cases: Full Observed Series") +
@@ -248,7 +253,7 @@ autoplot(future_forecast) +
 
 ```{r export}
 forecast_df <- data.frame(
-  date       = as.Date(time(future_forecast$mean)),
+  date       = as.Date(as.yearmon(time(future_forecast$mean))),
   forecast   = as.numeric(future_forecast$mean),
   lower_80   = as.numeric(future_forecast$lower[, 1]),
   upper_80   = as.numeric(future_forecast$upper[, 1]),
