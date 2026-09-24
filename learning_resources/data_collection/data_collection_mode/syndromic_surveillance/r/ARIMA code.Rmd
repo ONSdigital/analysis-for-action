@@ -233,11 +233,14 @@ last_obs_label <- paste0(
 )
 
 autoplot(future_forecast) +
+  autolayer(diarrhoea_ts, series = "Observed") +
+  autolayer(future_forecast$mean, series = "Forecast") +
   ggtitle(paste0(
     "Malawi 12-Month Forecast of Diarrhoea Cases\n",
     "(from ", last_obs_label, " onward)"
   )) +
   xlab("Time") + ylab("Number of Cases") +
+  labs(colour = "Series") +
   theme_minimal()
 ```
 
