@@ -151,9 +151,9 @@ cat("Suggested seasonal differences (nsdiffs):   ", nsdiffs(diarrhoea_ts), "\n")
 ### Step 5: Out-of-sample validation (train/test split)
 
 ```{r out_of_sample_validation}
-# Hold out the most recent 6 months as a test set to check forecast accuracy
+# Hold out the most recent 12 months as a test set to check forecast accuracy
 # before trusting the final 12-month-ahead projection.
-n_test <- 6
+n_test <- 12
 train_end <- time(diarrhoea_ts)[length(diarrhoea_ts) - n_test]
 
 train <- window(diarrhoea_ts, end = train_end)
