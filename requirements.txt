@@ -1,3 +1,4 @@
+ipykernel
 kaleido==1.1.0
 nbformat
 plotly
@@ -7,3 +8,8 @@ pre-commit
 detect-secrets
 bandit
 pyyaml
+matplotlib
+numpy
+pmdarima
+scikit-learn
+statsmodels

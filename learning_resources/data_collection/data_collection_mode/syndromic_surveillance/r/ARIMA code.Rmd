@@ -1,0 +1,277 @@
+---
+title: "Syndromic Surveillance, Autoregressive Integrated Moving Average (ARIMA) - Code example"
+author: "LIN"
+date: "2026-01-07"
+output: html_document
+---
+
+The following code relates to the
+**Monitoring signals in syndromic surveillance** section of the
+**Syndromic Surveillance** learning resource on the [Analysis for Action](https://analysisforaction.org/learning-resources/data-collection/data-collection-mode/pandemic-and-epidemic-syndromic-monitoring-system/)
+platform.
+
+## Troubleshooting
+
+For troubleshooting guidance, refer to the
+[troubleshooting document](../../../TROUBLESHOOTING.md).
+
+## Malawi Diarrhoea Cases: Seasonal Autoregressive Integrated Moving Average (SARIMA) Forecast for 2026
+
+This code will introduce a user to an Autoregressive Integrated Moving Average
+(ARIMA) model used in infectious disease modelling by forecasting diarrhoea
+cases among under five children in Malawi using a Seasonal Autoregressive
+Integrated Moving Average (SARIMA) model.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Install packages
+
+```{r install_packages, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
+install.packages("rio")
+install.packages("tidyverse")
+install.packages("forecast")
+install.packages("here")
+install.packages("tseries")
+install.packages("ggplot2")
+install.packages("zoo")
+```
+
+#### Calling packages to be used in the session using the library() function
+
+```{r call_packages, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
+library(forecast) # for forecasting the cases
+library(tidyverse) # data management
+library(readr)
+library(rio) # This package helps with importing data in multiple formats
+library(here) # This package helps with file paths and directories
+library(tseries) # for changing data frame object to time series object
+library(ggplot2)
+library(zoo)
+```
+
+#### Load data
+
+```{r load_data, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
+# Loading data from CSV file
+diarrhoea_df <- readr::read_csv(here::here(
+  "learning_resources",
+  "data",
+  "Diarrhoea_u5_2023_2025_data.csv"
+), col_types = readr::cols(
+  date = readr::col_date(format = "%d/%m/%Y"),
+  cases = readr::col_double()
+)) |>
+  dplyr::arrange(date)
+
+# change the list to data.frame object
+diarrhoea_df <- as.data.frame(diarrhoea_df)
+
+cat("Rows loaded:", nrow(diarrhoea_df), "\n")
+cat("Date range:", min(diarrhoea_df$date), "to", max(diarrhoea_df$date), "\n")
+cat("Missing case values:", sum(is.na(diarrhoea_df$cases)), "\n")
+
+head(diarrhoea_df)
+```
+
+### Workflow:
+1. Prepare time series
+2. Handle missing values
+3. Inspect for structural breaks (e.g. COVID-era reporting disruption)
+4. Check stationarity (non-seasonal AND seasonal)
+5. Validate model on a held-out test set (train/test split)
+6. Fit final SARIMA model on full data
+7. Diagnostic checks on residuals
+8. Forecast 12 months ahead
+9. Plot and export results
+
+### Step 1: Convert to time series
+
+```{r convert_to_time_series}
+# Build the time series from the first observed month in the parsed data.
+ts_start <- c(
+  as.integer(format(min(diarrhoea_df$date), "%Y")),
+  as.integer(format(min(diarrhoea_df$date), "%m"))
+)
+
+diarrhoea_ts <- ts(diarrhoea_df$cases, start = ts_start, frequency = 12)
+
+autoplot(diarrhoea_ts) +
+  ggtitle("Malawi Diarrhoea Cases: Full Observed Series") +
+  xlab("Time") + ylab("Number of Cases") +
+  theme_minimal()
+```
+
+### Step 2: Handle missing values
+
+```{r handle_missing_values}
+if (anyNA(diarrhoea_ts)) {
+  message("Missing values detected — interpolating.")
+  diarrhoea_ts <- na.interp(diarrhoea_ts)
+}
+```
+
+
+### Step 3: Check for structural breaks / outliers (e.g. COVID-era disruption)
+
+```{r breaks_and_outliers}
+# tsoutliers() flags points that deviate sharply from the modelled series.
+# Inspect these manually before deciding whether to adjust or trim.
+outlier_check <- tsoutliers(diarrhoea_ts)
+print(outlier_check)
+```
+
+If a COVID-era disruption period is confirmed (e.g. 2020-04 to 2020-12
+had reporting gaps or reporting-system distortion rather than true
+incidence change), consider ONE of the following before proceeding:
+<br>
+**Option A** — trim the disrupted period out entirely:
+`diarrhoea_ts <- window(diarrhoea_ts, start = c(2021, 1))`
+<br>
+**Option B** — replace flagged outlier points with interpolated values:
+`diarrhoea_ts[outlier_check$index] <- outlier_check$replacements`
+<br>
+Decide based on visual inspection of the plot above and your knowledge
+of what happened to reporting in that period. Document whichever choice
+you make, since it materially affects the seasonal pattern lerned below.
+In this example it is assumed that no action is needed.
+
+### Step 4: Check stationarity — non-seasonal AND seasonal
+
+```{r stationarity}
+# Augmented Dickey-Fuller (ADF) test: checks for a non-seasonal unit root only.
+adf_test <- adf.test(diarrhoea_ts)
+print(adf_test)
+# p > 0.05 => fail to reject null of non-stationarity (non-seasonal sense)
+
+# Differencing needed (auto.arima will do this internally, but helpful to see)
+cat("Suggested non-seasonal differences (ndiffs):", ndiffs(diarrhoea_ts), "\n")
+cat("Suggested seasonal differences (nsdiffs):   ", nsdiffs(diarrhoea_ts), "\n")
+```
+
+
+### Step 5: Out-of-sample validation (train/test split)
+
+```{r out_of_sample_validation}
+# Hold out the most recent 12 months as a test set to check forecast accuracy
+# before trusting the final 12-month-ahead projection.
+n_test <- 12
+train_end <- time(diarrhoea_ts)[length(diarrhoea_ts) - n_test]
+
+train <- window(diarrhoea_ts, end = train_end)
+test <- window(
+  diarrhoea_ts,
+  start = time(diarrhoea_ts)[length(diarrhoea_ts) - n_test + 1]
+)
+
+fit_train <- auto.arima(
+  train,
+  stepwise = FALSE,
+  approximation = FALSE,
+  seasonal = TRUE
+)
+
+fc_test <- forecast(fit_train, h = n_test)
+
+cat("\n--- Out-of-sample accuracy (last", n_test, "months held out) ---\n")
+print(accuracy(fc_test, test))
+
+autoplot(fc_test) +
+  autolayer(test, series = "Actual") +
+  ggtitle("Validation: Forecast vs Actual (Held-Out Period)") +
+  xlab("Time") + ylab("Number of Cases") +
+  theme_minimal()
+```
+
+Review the root mean squared error (RMSE) / mean absolute percentage error
+(MAPE) above. If MAPE is very high (e.g. >30-40%),
+treat the final forecast with caution and say so in your report —
+especially given the series likely has fewer than 8 full seasonal
+cycles, which limits how reliably SARIMA can estimate seasonality.
+
+This example fits SARIMA directly to the observed counts for
+simplicity. In a real analysis, if the variability appears to
+increase as the counts get larger, you should consider a
+variance-stabilising transformation (such as Box-Cox) before
+model fitting. That additional step is not demonstrated in this
+introductory example.
+
+### Step 6: Fit final model on the FULL series
+
+```{r fit_final_model, results = 'hide', warning = FALSE, message = FALSE, fig.show = 'hide'}
+fit <- auto.arima(
+  diarrhoea_ts,
+  stepwise = FALSE,
+  approximation = FALSE,
+  seasonal = TRUE,
+  trace = TRUE
+)
+
+summary(fit)
+```
+
+### Step 7: Diagnostic checks
+
+```{r step_seven}
+checkresiduals(fit)
+```
+For the Ljung-Box test, a p-value greater than 0.05 suggests the residuals
+are consistent with white noise, meaning there is no strong evidence of
+leftover autocorrelation.
+
+### Step 8: Forecast next 12 periods
+
+```{r forecast_next_twelve_periods}
+future_forecast <- forecast(fit, h = 12) # h is the length in time.
+summary(future_forecast)
+```
+
+### Step 9: Plot final forecast
+
+```{r plot}
+# Confirm this title matches your actual forecast window: 12 months
+# beyond your LAST observed data point, not necessarily calendar year 2026.
+last_obs_time <- time(diarrhoea_ts)[length(diarrhoea_ts)]
+last_obs_label <- paste0(
+  floor(last_obs_time), "-", cycle(diarrhoea_ts)[length(diarrhoea_ts)]
+)
+
+autoplot(future_forecast) +
+  autolayer(diarrhoea_ts, series = "Observed") +
+  autolayer(future_forecast$mean, series = "Forecast") +
+  ggtitle(paste0(
+    "Malawi 12-Month Forecast of Diarrhoea Cases\n",
+    "(from ", last_obs_label, " onward)"
+  )) +
+  xlab("Time") + ylab("Number of Cases") +
+  labs(colour = "Series") +
+  theme_minimal()
+```
+
+### Optional: export forecast table for the report
+
+```{r export}
+forecast_df <- data.frame(
+  date       = as.Date(as.yearmon(time(future_forecast$mean))),
+  forecast   = as.numeric(future_forecast$mean),
+  lower_80   = as.numeric(future_forecast$lower[, 1]),
+  upper_80   = as.numeric(future_forecast$upper[, 1]),
+  lower_95   = as.numeric(future_forecast$lower[, 2]),
+  upper_95   = as.numeric(future_forecast$upper[, 2])
+)
+
+# saving the predicted values
+output_path <- here::here(
+  "learning_resources",
+  "data_collection",
+  "data_collection_mode",
+  "syndromic_surveillance",
+  "outputs"
+)
+write.csv(
+  forecast_df,
+  here::here(output_path, "diarrhoea_forecast_2026_r.csv"),
+  row.names = FALSE
+)
+```
