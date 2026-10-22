@@ -60,6 +60,7 @@ The pie chart should:
     -   The second largest segment is HEX code #3EA27F
     -   The percentage of the total vulnerable population is shown within the country's segment
     -   The labels are HEX code #FFFFFF
+    -   There are white borders between sectors
     -   The chart is exported as both an .svg file and a .html file (delete if it doesn't work) with the file name: vuln_pie_solution
     -   The chart is saved to the D:/Temp folder
     -   The saved .svg chart has an aspect ratio of 16:9

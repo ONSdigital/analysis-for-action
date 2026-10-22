@@ -298,7 +298,8 @@ The pie chart should:
     -   The third largest sector is HEX code #3EA27F
     -   The smallest sector is HEX code #752111
     -   Include data labels containing each country's name and its percentage of the total vulnerable population
-    -   The labels are HEX code #000000
+    -   The labels are HEX code #FFFFFF
+    -   There are white borders between sectors
     -   There is no legend
     -   The chart is exported with the file name: vuln_pie_solution
     -   The chart is saved to the exercise_outputs folder

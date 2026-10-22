@@ -616,7 +616,7 @@ The line chart should:
     -   The plot has confidence intervals
     -   The chart is exported as an .svg file with the file name:
         vuln_line_solution
-    -   The chart is saved to the D:/Temp folder
+    -   The chart is saved to the D:/exercise_outputs folder
     -   The saved chart has an aspect ratio of 16:9
 
     
