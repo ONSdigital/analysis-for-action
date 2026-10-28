@@ -1,0 +1,471 @@
+---
+title: "Editing and Imputation"
+output: html_document
+---
+
+# Introduction
+## Preparation and editing - code examples
+
+The following code relates to the **Methods of reviewing data** section of the
+**Editing and Imputation** learning resource on the [Analysis for Action]([PLACEHOLDER])
+platform.
+
+This course does not cover the theory of any of the methods specified. The theory of these methods are covered in the Introduction to Editing and Imputation learning resource. Additionally, this course provides an introduction to using editing and imputation methods in R. It does not teach the best method to use and when, as this is very dependent upon the dataset you are using. Instead, it only shows how different methods can be used in R.
+
+
+## Troubleshooting
+
+If you encounter any issues running the code snippets, consider the following
+troubleshooting steps:
+- Ensure you have followed the setup instructions in the
+[README.md](../../../README.md) file including `install.packages()` for
+required packages.
+- Run code from top to bottom to ensure all dependencies are met.
+- Restart your R session and clear all outputs.
+- For more detailed troubleshooting guidance, refer to the
+[troubleshooting document]([PLACEHOLDER]).
+
+# Packages and data
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](README.md) file,
+- install the required packages
+- run the code block below.
+
+
+```{r setup, message=FALSE}
+# Load in the following packages
+
+library(tidyverse)
+library(editrules)
+library(deducorrect)
+library(VIM)
+library(mice)
+library(lattice)
+library(lme4)
+library(igraph)
+library(here)
+
+# Use here::here() to construct paths, do not setwd()
+#** Discuss with Alex setting up here()
+
+# Load in data
+# assign to the name survey_data
+# TO BE CHANGED WHEN CODE FINALISED
+survey_data <- read.csv("Data/unclean_data.csv")
+
+# Use here::here() to construct paths, do not setwd()
+#here::here()
+#survey_data <- read_csv(here::here("data","1.csv"))
+
+```
+
+The first sections of this code will look at the pandemic_survey_data.csv file and conduct data editing and cleaning. The latter sections will use pandemic_survey_clean.csv to demonstrate model and donor based imputation methods.
+
+## Understanding the data
+
+First take a look at the structure of the data set and the first 10 observations.
+
+```{r}
+# Use dplyr::glimpse() function to look at the structure of the data set
+
+dplyr::glimpse(survey_data)
+
+
+# Look at first 10 observations of survey_data data set 
+
+head(survey_data, n = 10)
+```
+
+The survey_data contains the fictional questionnaire data from a respiratory pandemic questionnaire. The data set contains 841 observations and 10 variables.
+
+# Reviewing and editing the data 
+
+Reviewing data and editing it aims to improve the quality and accuracy of data. Here, the following aspects of editing data are covered:
+
+- Data entry
+- Automatic editing
+- Error localisation
+
+## Data entry
+
+This stage involves quality assurance of micro data to identify and resolve obvious, known issues such as duplicate records, incorrect formatting, identifying missing values and looking for invalid values.
+
+
+## Identifying missing values
+
+```{r}
+# Look at all the unique values by each variable 
+
+sapply(survey_data, function(x) unique(x))
+
+```
+
+As you can see, there are some invalid values in the data set and also places where there are typos. For example, the variables 'general_health' and 'vaccination_status' have '*' and '-' values. In R, only NA is represented as a missing value, so these values need to be addressed. 
+
+``` {r}
+# Assign all missing values to NA
+
+survey_data <- survey_data |>
+  mutate(across(where(is.character),  ~ replace(.x, trimws(.x) %in% c("*", "", "-", "NA"), NA)))
+
+# Preserve the original data
+original_survey_data <- survey_data
+
+# Remove leading and trailing spaces and reduce repeated internal spaces to a single space.
+survey_data <- survey_data |>
+  mutate(across(where(is.character), ~ na_if(str_squish(.x), "")))
+
+```
+
+Now, look at the unique values of the vaccination_status and general_health variables to double-check the results.
+
+```{r}
+unique(survey_data$vaccination_status)
+unique(survey_data$general_health)
+```
+
+## Standardising variables
+
+As you can see above, the vaccination_status and general_health variables include variations of the same answer. Here, it is important to standardise the variables so that the values are presented consistently across the dataset. This will reduce issues later in the analysis caused by formatting or spelling inconsistencies.
+```{r}
+# Standaridising age variable
+
+survey_data_standardised <- survey_data |>
+  mutate(
+    # Correct where a number written entirely as text
+    age = case_when(
+      str_to_lower(as.character(age)) == "twenty nine" ~ "29",
+      TRUE ~ as.character(age)
+    ),
+    
+    # Extract the numeric part of entries such as "45 years"
+    age = parse_number(age),
+    
+    # Set invalid ages to missing
+    age = if_else(age >= 18 & age <= 80, age, NA_real_),
+    
+    # Store age as an integer
+    age = as.integer(age)
+  )
+
+# Standarising sex variable
+survey_data_standardised <- survey_data_standardised |>
+  mutate(
+    sex = str_squish(sex),
+    sex = str_to_lower(sex),
+    
+    sex = case_when(
+      sex %in% c("female", "f") ~ "Female",
+      sex %in% c("male", "m")   ~ "Male",
+      TRUE                      ~ NA_character_
+    )
+  )
+
+# Standarising vaccination_status variable
+survey_data_standardised <- survey_data_standardised |>
+  mutate(
+    vaccination_status = str_squish(vaccination_status),
+    vaccination_status = str_to_lower(vaccination_status),
+    
+    vaccination_status = case_when(
+      vaccination_status %in%
+        c("0", "0 dose", "0 doses", "none") ~ "0 doses",
+      
+      vaccination_status %in%
+        c("1", "1 dose", "1 doses") ~ "1 dose",
+      
+      vaccination_status %in%
+        c("2", "2 dose", "2 doses") ~ "2 doses",
+      
+      vaccination_status %in%
+        c("3", "3 dose", "3 doses", "3+ doses", "three doses") ~ "3+ doses",
+      
+      TRUE ~ NA_character_
+    )
+  )
+
+# Standarising general_health variable
+survey_data_standardised <- survey_data_standardised |>
+  mutate(
+    general_health = str_squish(general_health),
+    general_health = str_to_lower(general_health),
+    
+    general_health = case_when(
+      general_health == "very good" ~ "Very good",
+      general_health == "good"      ~ "Good",
+      general_health == "fair"      ~ "Fair",
+      general_health == "bad"       ~ "Bad",
+      general_health == "very bad"  ~ "Very bad",
+      TRUE                          ~ NA_character_
+    ),
+  )
+```
+
+```{r}
+# Double check the results
+
+sapply(survey_data_standardised, function(x) unique(x))
+```
+## Find and remove any duplicates
+
+```{r}
+# Show the repeat entries
+
+survey_data_standardised[duplicated(survey_data_standardised),]
+
+# Keep only distinct data entries
+
+survey_data_unique <- distinct(survey_data_standardised)
+```
+Here, there is one duplicate entry in the data, which has now been removed. The decision to keep or remove duplicate rows depends on the data set you are using. As this data set contains unique IDs for individuals, it is clear to see that a row has been duplicated and therefore it can be removed. However, there may be cases when you choose to keep the duplicated rows when there are not unique IDs, because it could be possible for two or more individuals to have all the same information across all variables. This requires discussion within your team and further research.
+
+
+# Missing values and missingness pattern
+
+You can use the md.pattern() function in the mice package to calculate the frequencies of the missing data patterns as shown below:
+
+```{r}
+
+# Understand the missing value pattern
+
+mice::md.pattern(survey_data_unique, plot = FALSE)
+
+```
+The output can be understood as follows: 1 and 0 under each variable represent their presence and missing state respectively. The numbers before the first variable (699,48,37,2,31,2,3,17,1) represent the number of rows. For example, 699 samples are complete, there are 48 samples where general_health is missing and all other values are present. Similarly, there are 37 samples where hours_worked_away_from_home_last_week is missing and all other values are present. Also, there are 2 samples where general_health and hours_worked_away_from_home_last_week are missing but all others are present. 
+
+The bottom row provides the number of missing entries per variable and the total number of missing cells. In this case, only 4 columns have missing values i.e. 18 missing values in age, 36 missing values in vaccination_status, 43 in hours_worked_away_from_home_last_week and 52 missing values in general_health column.
+
+## Visualising missing values
+
+A perhaps more helpful visual representation can be obtained using the VIM package as follows:
+
+```{r}
+
+# Understand the missing value pattern
+
+mice::md.pattern(survey_data, plot = FALSE)
+
+
+# Plot the missing values
+# col is a vector giving the colours to be used for observed and missing
+# numbers give the proportion or frequencies of the different combinations 
+# sortVars variables should be sorted by the number of missing values
+# labels on the x-axis
+# cex.axis is the character expansion factor to be used for the axis annotation
+# gap is a numeric value giving the distance between the two plots in margin lines
+# ylab are the labels on the y-axis
+
+
+VIM::aggr(survey_data_unique, col = mice::mdc(1:2),  numbers = TRUE, sortVars = TRUE, 
+          labels=names(data), cex.axis = 0.7, gap = 1, oma = c(8,5,3,3),
+          ylab=c("Proportion of missingness","Missingness Pattern"))
+
+```
+
+The pink colour shows the missing values while the blue shows the present values. The plot helps us understanding that  83% of the samples are not missing any information, 5.7% of samples are missing the hours_worked_away_from_home_last_week value while other values are present, 0.12% of samples are missing the hours_worked_away_from_home_last_week and age values while other values are present, and the remaining ones show other missing patterns.
+
+You can also find all rows which have missing values as shown below:
+
+```{r}
+# complete case returns a logical vector indicating which cases are complete, i.e., have no missing values
+# instead, use ! which acts as a negator so it will return a logical vector where cases are not complete
+# select all columns by leaving space after the comma
+
+missing_values <- survey_data_unique[!complete.cases(survey_data_unique), ]
+
+
+# First six rows with missing value
+
+head(x = missing_values)
+```
+
+As you can see, this approach provides all the rows with the missing value e.g. the first person has a missing general_health value. These values can be impute using the information provided in the imputation code.
+
+
+# Automatic editing
+
+In a real-life data set, there are simple errors that need to be treated automatically. 
+For example, a persons age cannot be negative and an under-aged person cannot have a drivers license. Such knowledge can be expressed as rules or constraints. 
+In data editing literature these rules are referred to as edit rules or edits, in short. The editrules package can be used to define rules on categorical, numerical or mixed-type data sets which each record must obey. 
+Automatic editing can be an easy way to improve data quality, but you must be confident that your assumptions are correct, otherwise your automatic corrections could introduce more error.
+
+Now for demonstration purpose, some restrictions will be applied on the on age column in the survey_data using the editrules package.
+
+```{r}
+# Age --------
+
+# Set the rule where age should be non-negative and less than and equal to 40 only
+
+edit_rules <- editrules::editset(c("age >=0", "age <= 70"))
+
+# Display the results
+
+edit_rules
+
+```
+
+The survey_data can be checked against these rules with the violatedEdits() function.
+```{r}
+
+# Check if the rules are violated 
+
+violate_edits <- editrules::violatedEdits(edit_rules, dat = survey_data)
+
+# Display first six rows
+
+violate_edits[1:6,]
+```
+
+The first column shows the records (rows), the second column num1 (age >=0) shows that all values are FALSE meaning that the rule of age being positive has not been violated (age column has positive values for the first 6 records). 
+The second column num2 (age <= 70) shows that the sixth record violates the rule because the logical value is TRUE suggesting that the age of the sixth person is greater than 70. This can be checked:
+
+```{r}
+# Filter the 6th person in the data set
+
+survey_data[6,]
+```
+Indeed, they are 80. 
+
+In the next example, some restrictions are set on the 'hours_worked_away_from_home_last_week' column. Since there are only 168 hours in a week, there should be no values greater than this in this column. This value should also be non-negative, therefore this restriction will be set too.
+
+```{r}
+
+# Vaccination status --------
+
+# Set the rule where vaccination status should be non-negative and less than and equal to 3
+
+edit_rules <- editrules::editset(c("hours_worked_away_from_home_last_week >=0", "hours_worked_away_from_home_last_week <= 168"))
+
+# Check if the rules are violated 
+# the function returns a matrix
+
+edits_violated <- editrules::violatedEdits(edit_rules, dat = survey_data)
+
+# Display the first 6 rows
+
+edits_violated[1:6,]
+
+```
+The function violatedEdits() returns a matrix edits_violated. However, to check all rows where the rules have been violated, you have to convert the edits_violated to a data frame and filter the rows where the edit rules have been violated.
+
+
+```{r}
+# Convert the variable to a data frame
+
+violated_data <- data.frame(edits_violated)
+
+# Filter the rows where either of the edit rules have been violated
+# once you create a data frame you can see the column names by using $ sign
+
+violated_data %>% 
+  dplyr::filter(num1 == TRUE | num2 == TRUE)
+
+```
+
+The second column num2 (hours_worked_away_from_home_last_week <= 168) shows that record numbers 4 and 119 violate the rule because the logical value is TRUE suggesting that the hours_worked_away_from_home_last_week of both people is greater than 168.
+This can be double checked.
+
+```{r}
+# Filter the 5th and 821st person in the data set
+
+survey_data[c(4,119),]
+```
+
+As you can see the value is 280 (instead of 28) for person number 4 and 420 (instead of 42) for person 119. 
+Here, the assumption will be made that the person made a typing error where the value should be 28 and 42 respectively. 
+The package deducorrect can be used here, as this package fixes inconsistent observations by altering invalid values in the record based on information from valid values.
+
+```{r}
+# Specify the rule and the correction 
+
+correction_rules <- deducorrect::correctionRules(expression(if(!is.na(hours_worked_away_from_home_last_week) &&
+    hours_worked_away_from_home_last_week > 168) {
+      hours_worked_away_from_home_last_week <- hours_worked_away_from_home_last_week/10
+}))
+
+# Apply simple replacement rules to a data.frame
+
+correction <- deducorrect::correctWithRules(rules = correction_rules, dat = survey_data, strict = TRUE)
+
+# list of alterations
+
+correction$corrections
+```
+
+As you can see the previous values of 280 and 420 have been corrected to 28 and 42 respectively. Now, look at the altered data.
+
+```{r}
+# list with altered data
+
+correction$corrected
+```
+
+The altered data has the correct hours_worked_away_from_home_last_week values now.
+
+## Exercise
+
+1. Set a restriction on the days_unable_usual_activities_28d column in survey_data, where the column should have non-negative values and less than and equal to 28.
+
+2. Using survey_data, check if the rules have been violated and assign it to variable violate.
+
+3. Convert violate to a dataframe using data.frame() function.
+
+4. Filter the rows where either of the edit rules have been violated.
+
+5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_usual_activities_28d is greater than 100, divide it by 10).
+
+```{r}
+
+# Set the rule where capital_gain should be non-negative and less than and equal to 100000
+
+E <- editrules::editset(c("days_unable_usual_activities_28d >=0", "days_unable_usual_activities_28d <= 28"))
+
+# Display the results
+
+E
+
+
+# Check if the rules are violated 
+
+violate <- editrules::violatedEdits(E, dat = survey_data)
+
+# Display first 6 rows
+
+violate[1:6,]
+
+
+# Convert violate to a dataframe 
+
+violate_data <- data.frame(violate)
+
+# Filter the rows where either of the edit rules have been violated
+# Once you create a data frame you can see the column names by using $ sign
+
+violate_data %>% 
+dplyr::filter(num1 == TRUE | num2 == TRUE)
+```
+```{r}
+# select records 145 and 376 record from the survey_data and the days_unable_usual_activities_28d column
+
+survey_data[c(145,376),9]
+```
+```{r}
+# Specify the rule and the correction 
+# Since the restriction is that days_unable_usual_activities_28d should be non-negative and less than and equal to 28
+# specify the rule that wherever days_unable_usual_activities_28d gain is greater than 100, divide it by 10
+
+corr_rules <- deducorrect::correctionRules(expression(if(days_unable_usual_activities_28d > 28) {
+      days_unable_usual_activities_28d <- days_unable_usual_activities_28d/10
+}))
+
+# Apply simple replacement rules to a data.frame.
+
+corr <- deducorrect::correctWithRules(rules = corr_rules, dat = survey_data)
+
+# list of alterations
+
+corr$corrections
+
+```
+

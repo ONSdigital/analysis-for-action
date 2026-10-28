@@ -1,0 +1,572 @@
+---
+title: "Imputation code"
+output: html_document
+---
+
+# Introduction
+
+The following code relates to the **Imputation** section of the
+**Editing and Imputation** learning resource on the [Analysis for Action]([PLACEHOLDER])
+platform.
+
+This course does not cover the theory of any of the methods specified. The theory of these methods are covered in the Introduction to Editing and Imputation learning resource. Additionally, this course provides an introduction to using editing and imputation methods in R. It does not teach the best method to use and when, as this is very dependent upon the dataset you are using. Instead, it only shows how different methods can be used in R.
+
+## Troubleshooting
+
+If you encounter any issues running the code snippets, consider the following
+troubleshooting steps:
+- Ensure you have followed the setup instructions in the
+[README.md](../../../README.md) file including `install.packages()` for
+required packages.
+- Run code from top to bottom to ensure all dependencies are met.
+- Restart your R session and clear all outputs.
+- For more detailed troubleshooting guidance, refer to the
+[troubleshooting document]([PLACEHOLDER]).
+
+# Packages and data
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](README.md) file,
+- install the required packages
+- run the code block below.
+
+```{r setup, message=FALSE}
+# Load in the following packages
+
+library(tidyverse)
+library(VIM)
+library(mice)
+library(here)
+
+# Use here::here() to construct paths, do not setwd()
+#** Discuss with Alex setting up here()
+
+# Load in data
+# assign to the name survey_data
+# TO BE CHANGED WHEN CODE FINALISED
+
+clean_survey_data <- read.csv("Data/unclean_data.csv")
+
+```
+
+# Model-based imputation
+
+Model-based imputation is the approximation of missing values using assumptions about the distribution of the data, 
+which includes mean and median imputation. Or using assumptions about the relationship between variables or units, 
+which includes ratio and regression imputation.
+
+This code will cover one of the most common model-based imputation methods  - mean imputation. 
+
+## Mean imputation
+
+In this section, the `mice` package will be use to impute the missing values in the `clean_survey_data`. 
+Mice stand for Multivariate Imputation via Chained Equations and it is one of the commonly used packages by R users. 
+While the MICE package is able to perform multiple imputation, here we only want to use single imputation, therefore m will be set to 1.
+
+MICE assumes that the missing data are Missing at Random (MAR), which means that the probability that a value is missing depends only on the observed value and can be predicted using them. 
+It imputes data on a variable by variable basis by specifying an imputation model per variable.
+
+```{r}
+# Create a flag before imputation
+age_imputed <- ifelse(is.na(clean_survey_data$age), TRUE, FALSE)
+
+# Perform mean imputation using MICE
+# method used is "mean" and m = 1 means single imputation
+# maxit is a scalar giving the number of iterations (default is 5)
+mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
+```
+
+The mice package imputes the missing values in all variables. However in this case, “mean” imputation can only be used for numerical data, therefore the package has only imputed numerical variables, in this case 'age' and 'hours_worked_away_from_home_last_week'.
+
+You can use other imputation methods by running the methods(mice) command which gives a list of the available imputation methods. 
+
+Next, look at the missing value and their corresponding imputed values:
+
+```{r}
+# Selecting the rows in the age column which have imputed values
+mean_impute$imp$age
+```
+
+As you can see 18 missing values in the age column have been imputed, with the mean being 49.3 (1dp).
+
+Now using the complete() function, the missing values will be replaced with the imputed values in the data set.
+
+```{r}
+# Store imputed data using complete() function
+mean_data <- mice::complete(mean_impute) 
+
+# Add the imputation flags
+mean_data$age_imputed <- age_imputed
+```
+
+Now, compare the summary statistics of the age column in both data sets.
+
+```{r}
+# Summary statistics of age for original data
+
+summary(clean_survey_data$age)
+```
+
+```{r}
+# Summary statistics of age for imputed data
+
+summary(mean_data$age)
+```
+Comparing the original and imputed data shows that the median age is lower in the imputed data than the original data, but all other values have stayed the same.
+
+
+### Exercise
+
+1. Using mice() function, impute the missing values in the clean_survey_data data.
+
+2. Store the imputed data using the complete() function.
+
+3. Look at the difference in the standard deviation of the hours_worked_away_from_home_last_week column in imputed data and original data.
+
+Impute the missing values for `hours_worked_away_from_home_last_week` using mean imputation. 
+
+```{r}
+
+# Create a flag before imputation
+hours_worked_away_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_from_home_last_week), TRUE, FALSE)
+
+# Perform mean imputation using MICE
+mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
+
+# Store imputed data using complete() function
+mean__data <- mice::complete(mean_impute) 
+
+# Add the imputation flags
+mean__data$hours_worked_away_flag <- hours_worked_away_flag
+
+
+# Standard deviation of hours_worked_away_from_home_last_week for original data 
+
+sd(clean_survey_data$hours_worked_away_from_home_last_week, na.rm = TRUE)
+
+# Standard deviation of hours_worked_away_from_home_last_week for imputed data 
+
+sd(mean_data$hours_worked_away_from_home_last_week, na.rm = TRUE)
+```
+The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.53 (2dp). This is expected since mean imputation reduces the variance of the imputed variables because the imputation method adds more observations which are the mean - and so this reduces the average deviation from the mean for the data.
+	
+
+## Regression imputation
+
+This section will focus on applying a regression imputation to the data. As covered before there are two types of regression imputation.
+
+Deterministic: this method assumes that the imputed values appear close to the regression line.
+
+Stochastic: it is an improvement to the previous method by aiming to preserve the variability of data by adding an error (residual) factor to the predicted value.
+
+In this section, regression imputation will be performed on the hours_worked_away_from_home_last_week. As all the missing record are for employed individuals, the code will first filter by employment status. The aim for this regression is to impute for genuine item non-response among people that the question applies to, rather than trying to impute working hours for someone who does not work.
+
+```{r}
+# Select employed respondents only
+employed_data <- clean_survey_data |>
+  dplyr::filter(employment_status == "Employed")
+
+# Deterministic regression imputation
+# method used is "norm.predict"
+# m = 1 means single imputation
+
+deter_reg_impute <- mice::mice(employed_data, method = "norm.predict", m = 1) 
+```
+
+The variables that have been imputed are age and hours_worked_away_from_home_last_week
+
+```{r}
+# Store data
+
+deter_reg_data <- mice::complete(deter_reg_impute) 
+```
+
+Nearly the same code can be used for stochastic regression imputation. You only have to change the method from method = "norm.predict" to method = "norm.nob" as shown below:
+
+```{r}
+
+# Stochastic regression imputation
+# method used is "norm.nob"
+# m = 1 means single imputation
+
+sto_reg_impute <- mice::mice(employed_data, method = "norm.nob", m = 1)
+```
+
+```{r}
+# Store data
+
+sto_reg_data <- mice::complete(sto_reg_impute) 
+```
+
+
+Now, you can compare graphically check how well the missing data imputations worked:
+
+```{r}
+# Graphical comparison of deterministic and stochastic regression imputation
+# Both plots in one graphic
+
+par(mfrow = c(1, 2)) 
+
+# Deterministic regression imputation plot
+# Plot of observed values
+
+plot(employed_data$age[!is.na(employed_data$hours_worked_away_from_home_last_week)],
+     deter_reg_data$hours_worked_away_from_home_last_week[!is.na(employed_data$hours_worked_away_from_home_last_week)],
+     main = "Deterministic Regression",
+     xlab = "Age", ylab = "Hours worked away from home last week")
+
+# Plot of imputed values         
+
+points(employed_data$age[is.na(employed_data$hours_worked_away_from_home_last_week)],
+         deter_reg_data$hours_worked_away_from_home_last_week[is.na(employed_data$hours_worked_away_from_home_last_week)],
+        col = "red")
+
+# Regression slope
+
+abline(lm(hours_worked_away_from_home_last_week ~ age, deter_reg_data), col = "#1b98e0", lwd = 1.5) 
+
+
+# Stochastic regression imputation
+# Plot of observed values
+
+plot(employed_data$age[!is.na(employed_data$hours_worked_away_from_home_last_week)], 
+     sto_reg_data$hours_worked_away_from_home_last_week[!is.na(employed_data$hours_worked_away_from_home_last_week)],
+     main = "Stochastic Regression",
+     xlab = "Age", ylab = "Hours worked away from home last week")
+
+# Plot of imputed values
+
+points(employed_data$age[is.na(employed_data$hours_worked_away_from_home_last_week)],
+       sto_reg_data$hours_worked_away_from_home_last_week[is.na(employed_data$hours_worked_away_from_home_last_week)],     
+       col = "red")
+
+# Regression slope
+
+abline(lm(hours_worked_away_from_home_last_week ~ age, sto_reg_data), col = "#1b98e0", lwd = 1.5) 
+```
+In these graphs, the black points are observed values, whereas the imputed values are represented by red points. The graph visualises the main drawback of deterministic regression imputation, which is that the imputed values (red bubbles) are very close to the regression slope (blue line).
+
+In contrast, for stochastic regression, the distribution of imputed values is similar compared to the observed values and much more realistic. The idea of adding randomly selected residuals in this approach is what forms the basis of more advanced imputation techniques. However as covered in the main Editing and Imputation learning resource, there are some disadvantages of using stochastic regression. For example, stochastic imputation can sometimes generate values outside the valid range of the variable. Imputed values should therefore be checked against appropriate validation rules.
+
+Remember: as covered in the Introduction to editing and imputation course, stochastic regression may impute different values each time.
+
+
+# Donor-based imputation
+
+This section will focus on using donor-based imputation, where missing values for a one unit (the recipient) are replaced with observed values from another unit (the donor). The builds upon the theory for each type of donor-based imputation that is covered in the Introduction to Editing and Imputation.
+
+## Random hot deck
+
+In random hot deck imputation, imputation classes (also known as donor pools or adjustment cells) are formed based on matching variables. For each recipient unit `i` in a given imputation class, the potential donors are units within that same class but with the target variable `y` observed. Of these potential donors, one is selected at random typically through equal-probability sampling and used to impute the recipient. To conduct the hot deck imputation, the code below will use a small part of the `clean_survey_data`, using only 10 rows in order to make the section easier to understand. Later, the full data set will be used when covering hierarchical hot deck imputation.
+
+```{r}
+# Create a shorter data with 10 rows and all columns
+
+shorter_data <- clean_survey_data[1:10,]
+
+# Display the results
+
+shorter_data
+
+```
+
+
+Here, this example will make the imputation classes by age groups. This is only an example due to the small dataset size, however real world imputation classes can use multiple domain variables to create imputation classes, for example age group AND sex AND general health. 
+
+The code will impute the missing value in the vaccination_status variable for person number 7 (the recipient) using the matching variable age_group.
+
+```{r}
+
+# Define age_group variable
+shorter_data <- shorter_data |>
+  mutate(age_group = case_when(
+      age >= 18 & age <= 34 ~ "18-34",
+      age >= 35 & age <= 49 ~ "35-49",
+      age >= 50 & age <= 64 ~ "50-64",
+      age >= 65 & age <= 79 ~ "65-79",
+      age >= 80             ~ "80+",
+      TRUE                  ~ NA_character_
+    )
+  )
+
+
+# Using hotdeck function in VIM package to carry out random hot deck imputation
+# variable equal to the variable you want to impute
+# domain_var is the variable for building domains and impute within these domains
+
+VIM::hotdeck(data = shorter_data, variable = "vaccination_status", domain_var = "age_group" )
+
+```
+
+So the value for vaccination can be  “1 dose” or "2 doses” since the donors are the second, fifth and eight person (because they are in the age group 50-64). Since this is a random hot deck imputation that means the donor is randomly selected so the imputed value can be either value.
+
+Also, there is a new column vaccination_status_imp which returns a boolean value TRUE if the missing value in the vaccination_status variable has been imputed and FALSE otherwise.
+
+
+### Exercise
+
+Carry out random hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variable sex. Remember shorter data contains the first 10 observations from the clean_survey_data set.
+
+```{r}
+
+# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
+# Sex as domain variable
+VIM::hotdeck(data = shorter_data, variable = "general_health", domain_var = "sex" )
+```
+
+Here the potential imputed values could be 'Fair, 'Good' or 'Very Good'. 
+
+
+
+## Sequential hot deck
+
+In sequential hot deck imputation, the data set is not explicitly split into groups. Instead, the records are a set in order and each missing value is imputed by the last observed value from a record with the same matching variables.
+
+In other words, the recipient is imputed using a donor that has the last unit y observed, belongs to the same imputation class and comes before the recipient in the data file.  In this sequential hot deck example, age group will be used again as the matching variable. However, here ord_var will also be used to specify which variable(s) the data will be sorted by, ahead of sequential hot-deck imputation.
+
+
+```{r}
+# Using hotdeck function in VIM package to carry out sequential hot deck imputation
+# variable is the column that you want to impute
+# domain_var is the matching variable
+# ord_var is the variable for sorting the data set before imputation
+
+print(VIM::hotdeck(data = shorter_data, variable = "vaccination_status", domain_var =  "age_group", 
+             ord_var = "general_health"))
+
+```
+This time, the imputed value for the `vaccination_status` variable is "1 dose" because when the data is ordered by `general_health` variable, the structure of the data looks like this:
+
+```{r}
+# Arranging the general_health column in the ascending order
+
+shorter_data |>
+  dplyr::arrange(general_health)
+```
+
+As you can see, when the data is ordered by the `general_health` variable, the structure of the data changes where the recipient is the eight person and the donor is the seventh person, who is within the same age_group.
+
+### Exercise
+
+Carry out sequential hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variables age_group while ordering the ethnic_group column. Remember shorter data contains the first 10 observations from the clean_survey_data data set.
+
+```{r}
+
+shorter_data
+```
+
+```{r}
+
+# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
+# Sex as domain variable
+VIM::hotdeck(data = shorter_data, variable = "general_health", 
+             domain_var = "age_group",
+             ord_var = "employment_status")
+```
+
+```{r}
+# Arranging ethnic_group column in ascending order 
+
+shorter_data %>% 
+  dplyr::arrange(employment_status)
+```
+
+Therefore, the donor is P0002 and the imputed value is "Good".
+
+
+## K Nearest Neighbours (KNN)
+
+Nearest neighbour donor imputation removes the restriction that the donor and the recipient have identical values for all matching variables. Instead, the matching variables are used to define a distance function between the recipient and a potential donor.
+
+An extension of this concept is k-nearest neighbours imputation which is based on a variation of the Gower Distance for numerical, categorical, ordered and semi-continuous variables. To compute the Gower distance between two items you compare each element and compute a term. If the element is numeric, the term is the absolute value of the difference divided by the range. If the element is non-numeric the term is 1 if the elements are different or the term is 0 if the elements are the same. The Gower distance is the average of the terms. Each individual term will be between 0.0 and 1.0 inclusive, therefore the Gower distance will always be between 0.0 and 1.0 where a distance of 0.0 means the two items are the same and a distance of 1.0 means the two items are as far apart as possible, relative to the source data set.
+
+```{r}
+# Using KNN function in VIM package 
+# k is the number of nearest neighbour donors used (k = 1 is Nearest Neighbour imputation)
+# dist_var takes the variables to be used for distance calculation
+# Here, variables have been chosen randomly but in a real method you would choose variables based upon relationships within your dataset
+
+knn_imputation <- VIM::kNN(data = clean_survey_data, variable = "general_health", k = 4 ,  
+                          dist_var = c("sex","employment_status", "days_unable_usual_activities_28d"))
+
+# Display results
+
+head(x = knn_imputation)
+```
+
+The imputed value for general_health is chosen randomly using 4 closest donors.
+This is a very simple example of imputing using K Nearest Neighbours. Below, more detail is given on how custom functions may be created in order to conduct this and other imputation methods. 
+
+### Excercise 
+
+Impute the missing value in the hours_worked_away_from_home_last_week variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_from_home_last_week values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Tehn use the 5 closest donors for kNN, and use days_unable_usual_activities_28d, sex and employment_status as distance variables.
+
+```{r}
+
+# Select employed respondents only
+employed_data <- clean_survey_data |>
+  dplyr::filter(employment_status == "Employed")
+
+# Using KNN function in VIM package 
+# k is the number of nearest neighbour donors used
+
+knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_from_home_last_week", k = 5,
+                                dist_var = c("days_unable_usual_activities_28d", "sex", "employment_status"))
+
+
+# Display results
+
+knn_imputation_cont %>% 
+   dplyr::select("hours_worked_away_from_home_last_week", everything()) %>%  
+   head()
+
+```
+The imputed value in the hours_worked_away_from_home_last_week column is chosen randomly using 5 closest donors.
+
+
+# Further exploration: How imputation methods can be implemented in code
+
+The code examples so far have used established software packages to carry out commonly used imputation methods. Often when implementing imputation methods, statistical offices tailor and develop their own functions to meet the specific requirements of their data. The benefits of writing custom functions are that they can provide greater control over which values are imputed and how, allow specific rules and assumptions to be incorporated, and make the individual steps in the imputation process more transparent.
+
+The following examples demonstrate how some of the methods introduced above could be implemented using custom functions. These examples are intended to help you understand what is happening behind the scenes when an imputation method is applied. In a real world scenario, these functions can be tailored more specifically based upon the dataset and specific imputation requirements.
+
+## Mean imputation
+
+```{r}
+#**add roxygen**
+
+mean_impute <- function(df, variables) {
+  
+  for (variable in variables) {
+    
+    # Convert to numeric
+    df[[variable]] <- as.numeric(df[[variable]])
+    
+    # Create an imputation flag
+    df[[paste0(variable, "_imputed")]] <- is.na(df[[variable]])
+    
+    # Calculate the mean of observed values
+    mean_value <- mean(df[[variable]], na.rm = TRUE)
+    
+    # Replace missing values with the mean
+    df[[variable]][is.na(df[[variable]])] <- mean_value
+  }
+  
+  return(df)
+  
+}
+
+```
+
+Now this function can be used to find the mean for variables in the dataset.
+
+```{r}
+
+# Use the function to find the mean for age and days_unable_usual_activities_28d
+
+mean_data_custom <- meanimpute(clean_survey_data, c("age", "hours_worked_away_from_home_last_week"))
+
+```
+
+
+## kNN imputation
+
+```{r}
+
+#**add roxygen**
+knn_impute <- function(
+  df,
+  variables_to_impute,
+  distance_variables,
+  k = 5
+) {
+  
+  
+  # Check that all specified variables exist
+  required_variables <- unique(
+    c(variables_to_impute, distance_variables)
+  )
+  
+  missing_variables <- setdiff(required_variables, names(df))
+  
+  if (length(missing_variables) > 0) {
+    stop(
+      "These variables were not found in the data: ",
+      paste(missing_variables, collapse = ", ")
+    )
+  }
+  
+  # Loop through variables being imputed
+  for (variable in variables_to_impute) {
+    
+    # Create imputation flag: TRUE = imputed, FALSE = observed
+    df[[paste0(variable, "_imputed")]] <- 
+      is.na(df[[variable]])
+  }
+
+  # Select variables needed for KNN
+  knn_variables <- unique(
+    c(variables_to_impute, distance_variables)
+  )
+  
+  knn_data <- df[knn_variables]
+  
+  # Carry out KNN imputation
+  imputed_values <- VIM::kNN(
+    knn_data,
+    variable = variables_to_impute,
+    dist_var = distance_variables,
+    k = k,
+    imp_var = FALSE
+  )
+  
+  # Copy the imputed variables back into the full dataset
+  df[variables_to_impute] <- 
+    imputed_values[variables_to_impute]
+  
+  # Return the completed dataset
+  return(df)
+}
+
+```
+
+
+Now using this function, impute hours_worked_away_from_home_last_week using age and sex. As hours_worked_away_from_home_last_week is only missing for employed individuals, the code subsets by this first. 
+
+```{r}
+
+knn_data_custom <- clean_survey_data
+
+# Keep only employed people
+employed_df <- clean_survey_data[clean_survey_data$employment_status == "Employed", ]
+  
+# Run knn imputatiom
+
+knn_employed_impute <- knn_impute(
+  df = employed_df,
+  variables_to_impute = c(
+    "hours_worked_away_from_home_last_week"
+  ),
+  distance_variables = c(
+    "employment_status",
+    "age",
+    "sex"
+  ),
+  k = 5
+)
+
+# Create the imputation flag in the main dataset
+knn_data_custom$hours_worked_away_from_home_last_week_imputed <- FALSE
+
+# Identify employed rows
+employed_rows <- knn_data_custom$employment_status == "Employed"
+
+# Copy the imputed values back into the main dataset
+knn_data_custom$hours_worked_away_from_home_last_week[employed_rows] <-
+  knn_employed_impute$hours_worked_away_from_home_last_week
+
+# Copy the imputation flag back into the main dataset
+knn_data_custom$hours_worked_away_from_home_last_week_imputed[employed_rows] <-
+  knn_employed_impute$hours_worked_away_from_home_last_week_imputed
+
+```

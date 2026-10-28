@@ -1,0 +1,11 @@
+﻿variable,label,type,permitted_values_or_range,role_and_relationships
+person_id,Synthetic person identifier,Text,P0001-P0841; unique and non-missing,Identifier only; exclude from imputation models
+age,"Age at survey, years",Integer,18-96,"Predicts employment, general health, vaccination and health impact"
+sex,Sex,Categorical,Female; Male,Potential donor/class variable; modest predictor in models
+ethnic_group,Broad ethnic group,Categorical,"White; Asian or Asian British; Black, Black British, Caribbean or African; Mixed or multiple ethnic groups; Other ethnic group",Potential donor/class variable; use cautiously and assess bias
+region,Region of usual residence,Categorical,North East; North West; Yorkshire and The Humber; East Midlands; West Midlands; East of England; London; South East; South West,Useful for hot-deck classes and geographic variation
+employment_status,Current economic activity,Categorical,Employed; Unemployed; Student; Retired; Economically inactive,Strongly related to age and somewhat to health
+general_health,Self-rated general health,Ordinal categorical,Very good; Good; Fair; Bad; Very bad,Predicts symptom burden and activity limitation; related to age/employment
+vaccination_status,Fictional-pandemic vaccine doses,Ordinal categorical,0 doses; 1 dose; 2 doses; 3+ doses,Related to age/health and inversely related to symptom burden
+respiratory_symptom_days_28d,Days with respiratory symptoms in previous 28 days,Integer count,0-28,Key numeric outcome; predicts activity-limited days
+days_unable_usual_activities_28d,Days unable to undertake usual activities in previous 28 days,Integer count,0-28 and must not exceed respiratory symptom days,"Strongly related to symptom days, general health and age; suitable for ratio/regression/PMM"
