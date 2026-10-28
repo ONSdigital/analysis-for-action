@@ -11,17 +11,17 @@ The folder contains the following key components:
 
 ├── Data/
 │   ├── Unclean_dataset.csv
-│   └── Cleaned_dataset.csv
+│   ├── Cleaned_dataset.csv
 │   └── Data_dictionary.csv
 │
 ├── R/
 │   ├── Preparation_and_editing_code.Rmd
-│   └── Imputation_code.Rmd
+│   ├── Imputation_code.Rmd
 │   └── R_exercise_solutions.Rmd
 │
 └── Python/
-    ├── Preparation_and_editing_code.ipynb **To be developed**
-    └── Imputation_code.ipynb **To be developed**
+    ├── Preparation_and_editing_code.ipynb  **To be developed**
+    └── Imputation_code.ipynb               **To be developed**
     
 ## R Packages
 
