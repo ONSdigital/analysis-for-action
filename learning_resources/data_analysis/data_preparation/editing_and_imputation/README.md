@@ -9,6 +9,7 @@ Please note: This code is provided for demonstration and learning purposes only.
 ## Folder structure
 The folder contains the following key components:
 
+```text
 ├── Data/
 │   ├── Unclean_dataset.csv
 │   ├── Cleaned_dataset.csv
@@ -20,8 +21,9 @@ The folder contains the following key components:
 │   └── R_exercise_solutions.Rmd
 │
 └── Python/
-    ├── Preparation_and_editing_code.ipynb  **To be developed**
-    └── Imputation_code.ipynb               **To be developed**
+    ├── Preparation_and_editing_code.ipynb  [To be developed]
+    └── Imputation_code.ipynb               [To be developed]
+```
     
 ## R Packages
 
