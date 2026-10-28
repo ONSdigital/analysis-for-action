@@ -119,33 +119,10 @@ Comparing the original and imputed data shows that the median age is lower in th
 
 3. Look at the difference in the standard deviation of the hours_worked_away_7d column in imputed data and original data.
 
-Impute the missing values for `hours_worked_away_7d` using mean imputation. 
+4. Impute the missing values for `hours_worked_away_7d` using mean imputation. 
 
-```{r}
+Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
-# Create a flag before imputation
-hours_worked_away_7d_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_7d), TRUE, FALSE)
-
-# Perform mean imputation using MICE
-mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
-
-# Store imputed data using complete() function
-mean__data <- mice::complete(mean_impute) 
-
-# Add the imputation flags
-mean__data$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
-
-
-# Standard deviation of hours_worked_away_7d for original data 
-
-sd(clean_survey_data$hours_worked_away_7d, na.rm = TRUE)
-
-# Standard deviation of hours_worked_away_7d for imputed data 
-
-sd(mean_data$hours_worked_away_7d, na.rm = TRUE)
-```
-The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.53 (2dp). This is expected since mean imputation reduces the variance of the imputed variables because the imputation method adds more observations which are the mean - and so this reduces the average deviation from the mean for the data.
-	
 
 ## Regression imputation
 
@@ -348,16 +325,9 @@ Also, there is a new column vaccination_status_imp which returns a boolean value
 
 ### Exercise
 
-Carry out random hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variable sex. Remember shorter data contains the first 10 observations from the clean_survey_data set.
+1. Carry out random hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variable sex. Remember shorter data contains the first 10 observations from the clean_survey_data set.
 
-```{r}
-
-# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
-# Sex as domain variable
-VIM::hotdeck(data = shorter_data, variable = "general_health", domain_var = "sex" )
-```
-
-Here the potential imputed values could be 'Fair, 'Good' or 'Very Good'. 
+Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
 
 
@@ -393,29 +363,7 @@ As you can see, when the data is ordered by the `general_health` variable, the s
 
 Carry out sequential hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variables age_group while ordering the ethnic_group column. Remember shorter data contains the first 10 observations from the clean_survey_data data set.
 
-```{r}
-
-shorter_data
-```
-
-```{r}
-
-# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
-# Sex as domain variable
-VIM::hotdeck(data = shorter_data, variable = "general_health", 
-             domain_var = "age_group",
-             ord_var = "employment_status")
-```
-
-```{r}
-# Arranging ethnic_group column in ascending order 
-
-shorter_data %>% 
-  dplyr::arrange(employment_status)
-```
-
-Therefore, the donor is P0002 and the imputed value is "Good".
-
+Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
 ## K Nearest Neighbours (KNN)
 
@@ -440,31 +388,11 @@ head(x = knn_imputation)
 The imputed value for general_health is chosen randomly using 4 closest donors.
 This is a very simple example of imputing using K Nearest Neighbours. Below, more detail is given on how custom functions may be created in order to conduct this and other imputation methods. 
 
-### Excercise 
+### Exercise 
 
-Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Tehn use the 5 closest donors for kNN, and use days_unable_28d, sex and employment_status as distance variables.
+Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Then use the 5 closest donors for kNN, and use days_unable_28d, sex and employment_status as distance variables.
 
-```{r}
-
-# Select employed respondents only
-employed_data <- clean_survey_data |>
-  dplyr::filter(employment_status == "Employed")
-
-# Using KNN function in VIM package 
-# k is the number of nearest neighbour donors used
-
-knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_7d", k = 5,
-                                dist_var = c("days_unable_28d", "sex", "employment_status"))
-
-
-# Display results
-
-knn_imputation_cont %>% 
-   dplyr::select("hours_worked_away_7d", everything()) %>%  
-   head()
-
-```
-The imputed value in the hours_worked_away_7d column is chosen randomly using 5 closest donors.
+Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
 
 # Further exploration: How imputation methods can be implemented in code

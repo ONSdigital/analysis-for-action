@@ -408,57 +408,6 @@ The altered data has the correct hours_worked_away_7d values now.
 
 5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_28d is greater than 100, divide it by 10).
 
-```{r}
+Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
-# Set the rule where capital_gain should be non-negative and less than and equal to 100000
-
-E <- editrules::editset(c("days_unable_28d >=0", "days_unable_28d <= 28"))
-
-# Display the results
-
-E
-
-
-# Check if the rules are violated 
-
-violate <- editrules::violatedEdits(E, dat = survey_data)
-
-# Display first 6 rows
-
-violate[1:6,]
-
-
-# Convert violate to a dataframe 
-
-violate_data <- data.frame(violate)
-
-# Filter the rows where either of the edit rules have been violated
-# Once you create a data frame you can see the column names by using $ sign
-
-violate_data %>% 
-dplyr::filter(num1 == TRUE | num2 == TRUE)
-```
-```{r}
-# select records 145 and 376 record from the survey_data and the days_unable_28d column
-
-survey_data[c(145,376),9]
-```
-```{r}
-# Specify the rule and the correction 
-# Since the restriction is that days_unable_28d should be non-negative and less than and equal to 28
-# specify the rule that wherever days_unable_28d gain is greater than 100, divide it by 10
-
-corr_rules <- deducorrect::correctionRules(expression(if(days_unable_28d > 28) {
-      days_unable_28d <- days_unable_28d/10
-}))
-
-# Apply simple replacement rules to a data.frame.
-
-corr <- deducorrect::correctWithRules(rules = corr_rules, dat = survey_data)
-
-# list of alterations
-
-corr$corrections
-
-```
 

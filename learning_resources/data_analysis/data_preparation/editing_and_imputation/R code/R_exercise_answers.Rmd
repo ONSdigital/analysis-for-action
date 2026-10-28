@@ -1,0 +1,237 @@
+---
+title: "R_exercise_answers"
+output: html_document
+date: "2026-10-28"
+---
+
+# Exercise solutions
+
+The following code relates to the exercises within the Preparation_and_editing_code.Rmd and Imputation_code.Rmd, within the Analysis for Action GitHub repository. Provided here are the solutions to the exercises.
+
+## Troubleshooting
+
+If you encounter any issues running the code snippets, consider the following
+troubleshooting steps:
+- Ensure you have followed the setup instructions in the
+[README.md](../../../README.md) file including `install.packages()` for
+required packages.
+- Run code from top to bottom to ensure all dependencies are met.
+- Restart your R session and clear all outputs.
+- For more detailed troubleshooting guidance, refer to the
+[troubleshooting document]([PLACEHOLDER]).
+
+# Packages and data
+
+Before running the code snippets, ensure you have:
+- followed the setup instructions in the [README.md](README.md) file,
+- install the required packages
+- run the code block below.
+
+
+```{r setup, message=FALSE}
+# Load in the following packages
+
+library(tidyverse)
+library(editrules)
+library(deducorrect)
+library(VIM)
+library(mice)
+library(lattice)
+library(lme4)
+library(igraph)
+library(here)
+
+# Load in data
+# Use here::here() to construct paths, do not setwd()
+here::here()
+survey_data <- read_csv(here::here("Data","unclean_data.csv"))
+clean_survey_data <- read_csv(here::here("Data","cleaned_data.csv"))
+```
+
+# Preparing and editing code
+## Automatic editing exercise
+
+1. Set a restriction on the days_unable_28d column in survey_data, where the column should have non-negative values and less than and equal to 28.
+
+2. Using survey_data, check if the rules have been violated and assign it to variable violate.
+
+3. Convert violate to a dataframe using data.frame() function.
+
+4. Filter the rows where either of the edit rules have been violated.
+
+5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_28d is greater than 100, divide it by 10).
+
+```{r}
+
+# Set the rule where days_unable_28d should be non-negative and less than and equal to 28
+
+E <- editrules::editset(c("days_unable_28d >=0", "days_unable_28d <= 28"))
+
+# Display the results
+
+E
+
+
+# Check if the rules are violated 
+
+violate <- editrules::violatedEdits(E, dat = survey_data)
+
+# Display first 6 rows
+
+violate[1:6,]
+
+
+# Convert violate to a dataframe 
+
+violate_data <- data.frame(violate)
+
+# Filter the rows where either of the edit rules have been violated
+# Once you create a data frame you can see the column names by using $ sign
+
+violate_data %>% 
+dplyr::filter(num1 == TRUE | num2 == TRUE)
+```
+```{r}
+# select records 145 and 376 record from the survey_data and the days_unable_28d column
+
+survey_data[c(145,376),9]
+```
+```{r}
+# Specify the rule and the correction 
+# Since the restriction is that days_unable_28d should be non-negative and less than and equal to 28
+# specify the rule that wherever days_unable_28d gain is greater than 28, divide it by 10
+
+corr_rules <- deducorrect::correctionRules(expression(if(days_unable_28d > 28) {
+      days_unable_28d <- days_unable_28d/10
+}))
+
+# Apply simple replacement rules to a data.frame.
+
+corr <- deducorrect::correctWithRules(rules = corr_rules, dat = survey_data)
+
+# list of alterations
+
+corr$corrections
+
+```
+
+# Imputation 
+
+## Mean imputation exercise
+
+1. Using mice() function, impute the missing values in the clean_survey_data data.
+
+2. Store the imputed data using the complete() function.
+
+3. Look at the difference in the standard deviation of the hours_worked_away_7d column in imputed data and original data.
+
+4. Impute the missing values for `hours_worked_away_7d` using mean imputation. 
+
+```{r}
+
+# Create a flag before imputation
+hours_worked_away_7d_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_7d), TRUE, FALSE)
+
+# Perform mean imputation using MICE
+mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
+
+# Store imputed data using complete() function
+mean__data <- mice::complete(mean_impute) 
+
+# Add the imputation flags
+mean__data$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
+
+
+# Standard deviation of hours_worked_away_7d for original data 
+
+sd(clean_survey_data$hours_worked_away_7d, na.rm = TRUE)
+
+# Standard deviation of hours_worked_away_7d for imputed data 
+
+sd(mean_data$hours_worked_away_7d, na.rm = TRUE)
+```
+The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.53 (2dp). This is expected since mean imputation reduces the variance of the imputed variables because the imputation method adds more observations which are the mean - and so this reduces the average deviation from the mean for the data.
+
+
+## Random hot deck imputation exercise
+
+1. Carry out random hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variable sex. Remember shorter data contains the first 10 observations from the clean_survey_data set.
+
+```{r}
+# Create a shorter data with 10 rows and all columns
+
+shorter_data <- clean_survey_data[1:10,]
+
+# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
+# Sex as domain variable
+VIM::hotdeck(data = shorter_data, variable = "general_health", domain_var = "sex" )
+```
+
+Here the potential imputed values could be 'Fair, 'Good' or 'Very Good'. 
+
+## Sequential hot deck exercise
+
+1. Carry out sequential hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variables age_group while ordering the ethnic_group column. Remember shorter data contains the first 10 observations from the clean_survey_data data set.
+
+```{r}
+
+# Create a shorter data with 10 rows and all columns
+
+shorter_data <- clean_survey_data[1:10,]
+
+# Define age_group variable
+shorter_data <- shorter_data |>
+  mutate(age_group = case_when(
+      age >= 18 & age <= 34 ~ "18-34",
+      age >= 35 & age <= 49 ~ "35-49",
+      age >= 50 & age <= 64 ~ "50-64",
+      age >= 65 & age <= 79 ~ "65-79",
+      age >= 80             ~ "80+",
+      TRUE                  ~ NA_character_
+    )
+  )
+```
+
+```{r}
+
+# Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
+# Sex as domain variable
+VIM::hotdeck(data = shorter_data, variable = "general_health", 
+             domain_var = "age_group",
+             ord_var = "employment_status")
+```
+
+```{r}
+# Arranging ethnic_group column in ascending order 
+
+shorter_data %>% 
+  dplyr::arrange(employment_status)
+```
+
+Therefore, the donor is P0002 and the imputed value is "Good".
+
+## KNN Exercise 
+
+1. Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Then use the 5 closest donors for kNN, and use days_unable_28d, sex and employment_status as distance variables.
+
+```{r}
+
+# Select employed respondents only
+employed_data <- clean_survey_data |>
+  dplyr::filter(employment_status == "Employed")
+
+# Using KNN function in VIM package 
+# k is the number of nearest neighbour donors used
+
+knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_7d", k = 5,
+                                dist_var = c("days_unable_28d", "sex", "employment_status"))
+
+
+# Display results
+
+knn_imputation_cont %>% 
+   dplyr::select("hours_worked_away_7d", everything()) %>%  
+   head()
+
+```
+The imputed value in the hours_worked_away_7d column is chosen randomly using 5 closest donors.
