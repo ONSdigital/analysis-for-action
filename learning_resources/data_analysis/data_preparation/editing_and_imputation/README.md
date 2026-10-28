@@ -10,16 +10,18 @@ Please note: This codebase is not functional production code and is provided for
 The repository contains the following key components:
 
 ├── Data/
-│   ├── Unclean_dataset
-│   └── Cleaned_dataset
+│   ├── Unclean_dataset.csv
+│   └── Cleaned_dataset.csv
+│   └── Data_dictionary.csv
 │
 ├── R/
-│   ├── Preparation_and_editing.Rmd
-│   └── Imputation.Rmd
+│   ├── Preparation_and_editing_code.Rmd
+│   └── Imputation_code.Rmd
+│   └── R_exercise_solutions.Rmd
 │
 └── Python/
-    ├── Preparation_and_editing.ipynb **To be developed**
-    └── Imputation.ipynb **To be developed**
+    ├── Preparation_and_editing_code.ipynb **To be developed**
+    └── Imputation_code.ipynb **To be developed**
     
     
 ## R Packages
@@ -34,7 +36,7 @@ The following packages should be installed for the Rmd code:
 * `lattice`
 * `lme4`
 * `igraph`
-* `here"
+* `here`
 
 
 
