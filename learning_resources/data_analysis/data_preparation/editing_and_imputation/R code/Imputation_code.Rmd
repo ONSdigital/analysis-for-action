@@ -38,14 +38,10 @@ library(VIM)
 library(mice)
 library(here)
 
-# Use here::here() to construct paths, do not setwd()
-#** Discuss with Alex setting up here()
-
 # Load in data
-# assign to the name survey_data
-# TO BE CHANGED WHEN CODE FINALISED
-
-clean_survey_data <- read.csv("Data/unclean_data.csv")
+# Use here::here() to construct paths, do not setwd()
+here::here()
+clean_survey_data <- read_csv(here::here("Data","cleaned_data.csv"))
 
 ```
 
@@ -76,7 +72,7 @@ age_imputed <- ifelse(is.na(clean_survey_data$age), TRUE, FALSE)
 mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
 ```
 
-The mice package imputes the missing values in all variables. However in this case, “mean” imputation can only be used for numerical data, therefore the package has only imputed numerical variables, in this case 'age' and 'hours_worked_away_from_home_last_week'.
+The mice package imputes the missing values in all variables. However in this case, “mean” imputation can only be used for numerical data, therefore the package has only imputed numerical variables, in this case 'age' and 'hours_worked_away_7d'.
 
 You can use other imputation methods by running the methods(mice) command which gives a list of the available imputation methods. 
 
@@ -121,14 +117,14 @@ Comparing the original and imputed data shows that the median age is lower in th
 
 2. Store the imputed data using the complete() function.
 
-3. Look at the difference in the standard deviation of the hours_worked_away_from_home_last_week column in imputed data and original data.
+3. Look at the difference in the standard deviation of the hours_worked_away_7d column in imputed data and original data.
 
-Impute the missing values for `hours_worked_away_from_home_last_week` using mean imputation. 
+Impute the missing values for `hours_worked_away_7d` using mean imputation. 
 
 ```{r}
 
 # Create a flag before imputation
-hours_worked_away_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_from_home_last_week), TRUE, FALSE)
+hours_worked_away_7d_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_7d), TRUE, FALSE)
 
 # Perform mean imputation using MICE
 mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
@@ -137,16 +133,16 @@ mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
 mean__data <- mice::complete(mean_impute) 
 
 # Add the imputation flags
-mean__data$hours_worked_away_flag <- hours_worked_away_flag
+mean__data$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
 
 
-# Standard deviation of hours_worked_away_from_home_last_week for original data 
+# Standard deviation of hours_worked_away_7d for original data 
 
-sd(clean_survey_data$hours_worked_away_from_home_last_week, na.rm = TRUE)
+sd(clean_survey_data$hours_worked_away_7d, na.rm = TRUE)
 
-# Standard deviation of hours_worked_away_from_home_last_week for imputed data 
+# Standard deviation of hours_worked_away_7d for imputed data 
 
-sd(mean_data$hours_worked_away_from_home_last_week, na.rm = TRUE)
+sd(mean_data$hours_worked_away_7d, na.rm = TRUE)
 ```
 The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.53 (2dp). This is expected since mean imputation reduces the variance of the imputed variables because the imputation method adds more observations which are the mean - and so this reduces the average deviation from the mean for the data.
 	
@@ -159,12 +155,23 @@ Deterministic: this method assumes that the imputed values appear close to the r
 
 Stochastic: it is an improvement to the previous method by aiming to preserve the variability of data by adding an error (residual) factor to the predicted value.
 
-In this section, regression imputation will be performed on the hours_worked_away_from_home_last_week. As all the missing record are for employed individuals, the code will first filter by employment status. The aim for this regression is to impute for genuine item non-response among people that the question applies to, rather than trying to impute working hours for someone who does not work.
+In this section, regression imputation will be performed on the hours_worked_away_7d. As all the missing record are for employed individuals, the code will first filter by employment status. The aim for this regression is to impute for genuine item non-response among people that the question applies to, rather than trying to impute working hours for someone who does not work.
+
+## Determinstic imputation
+
+Before carrying out imputation, check that variables have been assigned an appropriate data type. For example, categorical variables that you want to used in the model, such as sex and region, should be stored as factors in R. While numerical variables such as age and number of days should be stored as numeric or integer variables. The variable type can affect how an imputation method treats the data.
 
 ```{r}
 # Select employed respondents only
 employed_data <- clean_survey_data |>
   dplyr::filter(employment_status == "Employed")
+
+# Change categorical variables to factors
+employed_data$sex <- as.factor(employed_data$sex)
+employed_data$region <- as.factor(employed_data$region)
+
+# Create a flag before imputation
+hours_worked_away_7d_flag <- ifelse(is.na(employed_data$hours_worked_away_7d), TRUE, FALSE)
 
 # Deterministic regression imputation
 # method used is "norm.predict"
@@ -173,15 +180,51 @@ employed_data <- clean_survey_data |>
 deter_reg_impute <- mice::mice(employed_data, method = "norm.predict", m = 1) 
 ```
 
-The variables that have been imputed are age and hours_worked_away_from_home_last_week
+The variables that have been imputed are age and hours_worked_away_7d
+
 
 ```{r}
 # Store data
+deter_reg_data <- mice::complete(deter_reg_impute)
 
-deter_reg_data <- mice::complete(deter_reg_impute) 
+# Add the imputation flags
+deter_reg_data$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
 ```
 
-Nearly the same code can be used for stochastic regression imputation. You only have to change the method from method = "norm.predict" to method = "norm.nob" as shown below:
+### Note on predictor variables
+As the code has not specifically stated any predictor variables, mice creates a predictor matrix and uses the variables available to predict the target variable(s), excluding the variable from predicting itself. The predictor matrix controls this: 1 means a variable is used as a predictor and 0 means it is not.
+
+```{r}
+
+# See what variables are being used as predictors
+deter_reg_impute$predictorMatrix
+```
+For example, here you can see that mice is using age, sex, region and days_unable_28d to impute hours_worked_away_7d. 
+You can explicitly modify this matrix to specify which variables should be used as predictors.
+
+```{r}
+pred <- mice::make.predictorMatrix(employed_data)
+
+# Don't use any predictors initially
+pred[,] <- 0
+
+# Use age and sex to predict hours worked
+pred[
+  "hours_worked_away_7d",
+  c("age", "sex")
+] <- 1
+
+
+deter_reg_impute_age_sex <- mice::mice(employed_data, method = "norm.predict", predictorMatrix = pred, m = 1)
+
+# Check what variables are being used as predictors
+deter_reg_impute_age_sex$predictorMatrix
+```
+
+However, mice may remove some predictors if they are not suitable for the imputation model, for example if they contain no variation or are highly related to another predictor. You can check the predictor matrix after running mice to see which predictors were used.
+
+## Stochastic imputation
+Similar code can be used for stochastic regression imputation. You only have to change the method from method = "norm.predict" to method = "norm.nob" as shown below:
 
 ```{r}
 
@@ -210,39 +253,39 @@ par(mfrow = c(1, 2))
 # Deterministic regression imputation plot
 # Plot of observed values
 
-plot(employed_data$age[!is.na(employed_data$hours_worked_away_from_home_last_week)],
-     deter_reg_data$hours_worked_away_from_home_last_week[!is.na(employed_data$hours_worked_away_from_home_last_week)],
+plot(employed_data$age[!is.na(employed_data$hours_worked_away_7d)],
+     deter_reg_data$hours_worked_away_7d[!is.na(employed_data$hours_worked_away_7d)],
      main = "Deterministic Regression",
      xlab = "Age", ylab = "Hours worked away from home last week")
 
 # Plot of imputed values         
 
-points(employed_data$age[is.na(employed_data$hours_worked_away_from_home_last_week)],
-         deter_reg_data$hours_worked_away_from_home_last_week[is.na(employed_data$hours_worked_away_from_home_last_week)],
+points(employed_data$age[is.na(employed_data$hours_worked_away_7d)],
+         deter_reg_data$hours_worked_away_7d[is.na(employed_data$hours_worked_away_7d)],
         col = "red")
 
 # Regression slope
 
-abline(lm(hours_worked_away_from_home_last_week ~ age, deter_reg_data), col = "#1b98e0", lwd = 1.5) 
+abline(lm(hours_worked_away_7d ~ age, deter_reg_data), col = "#1b98e0", lwd = 1.5) 
 
 
 # Stochastic regression imputation
 # Plot of observed values
 
-plot(employed_data$age[!is.na(employed_data$hours_worked_away_from_home_last_week)], 
-     sto_reg_data$hours_worked_away_from_home_last_week[!is.na(employed_data$hours_worked_away_from_home_last_week)],
+plot(employed_data$age[!is.na(employed_data$hours_worked_away_7d)], 
+     sto_reg_data$hours_worked_away_7d[!is.na(employed_data$hours_worked_away_7d)],
      main = "Stochastic Regression",
      xlab = "Age", ylab = "Hours worked away from home last week")
 
 # Plot of imputed values
 
-points(employed_data$age[is.na(employed_data$hours_worked_away_from_home_last_week)],
-       sto_reg_data$hours_worked_away_from_home_last_week[is.na(employed_data$hours_worked_away_from_home_last_week)],     
+points(employed_data$age[is.na(employed_data$hours_worked_away_7d)],
+       sto_reg_data$hours_worked_away_7d[is.na(employed_data$hours_worked_away_7d)],     
        col = "red")
 
 # Regression slope
 
-abline(lm(hours_worked_away_from_home_last_week ~ age, sto_reg_data), col = "#1b98e0", lwd = 1.5) 
+abline(lm(hours_worked_away_7d ~ age, sto_reg_data), col = "#1b98e0", lwd = 1.5) 
 ```
 In these graphs, the black points are observed values, whereas the imputed values are represented by red points. The graph visualises the main drawback of deterministic regression imputation, which is that the imputed values (red bubbles) are very close to the regression slope (blue line).
 
@@ -387,7 +430,7 @@ An extension of this concept is k-nearest neighbours imputation which is based o
 # Here, variables have been chosen randomly but in a real method you would choose variables based upon relationships within your dataset
 
 knn_imputation <- VIM::kNN(data = clean_survey_data, variable = "general_health", k = 4 ,  
-                          dist_var = c("sex","employment_status", "days_unable_usual_activities_28d"))
+                          dist_var = c("sex","employment_status", "days_unable_28d"))
 
 # Display results
 
@@ -399,7 +442,7 @@ This is a very simple example of imputing using K Nearest Neighbours. Below, mor
 
 ### Excercise 
 
-Impute the missing value in the hours_worked_away_from_home_last_week variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_from_home_last_week values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Tehn use the 5 closest donors for kNN, and use days_unable_usual_activities_28d, sex and employment_status as distance variables.
+Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Tehn use the 5 closest donors for kNN, and use days_unable_28d, sex and employment_status as distance variables.
 
 ```{r}
 
@@ -410,18 +453,18 @@ employed_data <- clean_survey_data |>
 # Using KNN function in VIM package 
 # k is the number of nearest neighbour donors used
 
-knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_from_home_last_week", k = 5,
-                                dist_var = c("days_unable_usual_activities_28d", "sex", "employment_status"))
+knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_7d", k = 5,
+                                dist_var = c("days_unable_28d", "sex", "employment_status"))
 
 
 # Display results
 
 knn_imputation_cont %>% 
-   dplyr::select("hours_worked_away_from_home_last_week", everything()) %>%  
+   dplyr::select("hours_worked_away_7d", everything()) %>%  
    head()
 
 ```
-The imputed value in the hours_worked_away_from_home_last_week column is chosen randomly using 5 closest donors.
+The imputed value in the hours_worked_away_7d column is chosen randomly using 5 closest donors.
 
 
 # Further exploration: How imputation methods can be implemented in code
@@ -462,11 +505,104 @@ Now this function can be used to find the mean for variables in the dataset.
 
 ```{r}
 
-# Use the function to find the mean for age and days_unable_usual_activities_28d
+# Use the function to find the mean for age and days_unable_28d
 
-mean_data_custom <- meanimpute(clean_survey_data, c("age", "hours_worked_away_from_home_last_week"))
+mean_data_custom <- mean_impute(clean_survey_data, c("age", "hours_worked_away_7d"))
 
 ```
+
+
+## Regression imputation
+
+```{r}
+reg_impute <- function(
+  df,
+  variable_to_impute,
+  predictor_variables,
+  stochastic = FALSE
+) {
+  
+  # Create imputation flag
+  flag_name <- paste0(variable_to_impute, "_imputed")
+  df[[flag_name]] <- is.na(df[[variable_to_impute]])
+  
+  # Create regression formula
+  formula <- as.formula(
+    paste(
+      variable_to_impute,
+      "~",
+      paste(predictor_variables, collapse = " + ")
+    )
+  )
+  
+  # Fit linear regression model using observed values
+  model <- lm(
+    formula,
+    data = df
+  )
+  
+  # Identify rows that need imputing
+  missing_rows <- is.na(df[[variable_to_impute]])
+  
+  # Predict values for the missing cases
+  predicted_values <- predict(
+    model,
+    newdata = df[missing_rows, ]
+  )
+  
+  # If stochastic imputation is selected
+  if (stochastic) {
+    
+    # Get residuals from the regression model
+    residuals <- residuals(model)
+    
+    # Add a randomly selected residual to each prediction
+    predicted_values <- predicted_values +
+      sample(
+        residuals,
+        size = length(predicted_values),
+        replace = TRUE
+      )
+  }
+    
+  # Prevent negative imputed values
+  predicted_values[predicted_values < 0] <- 0
+  
+  # Replace missing values with predicted values
+  df[[variable_to_impute]][missing_rows] <- predicted_values
+  
+  # Return completed dataset
+  return(df)
+}
+```
+
+```{r}
+
+
+# Run deterministic imputation on employed_df
+deter_reg_data_custom <- reg_impute(
+  df = employed_data,
+  variable_to_impute = "hours_worked_away_7d",
+  predictor_variables = c(
+    "age",
+    "sex"
+  )
+)
+
+# Run stochastic imputation on employed_df
+sto_reg_data_custom <- reg_impute(
+  df = employed_data,
+  variable_to_impute = "hours_worked_away_7d",
+  predictor_variables = c(
+    "age",
+    "sex"
+  ),
+  stochastic = TRUE
+)
+
+```
+
+
 
 
 ## kNN imputation
@@ -531,7 +667,7 @@ knn_impute <- function(
 ```
 
 
-Now using this function, impute hours_worked_away_from_home_last_week using age and sex. As hours_worked_away_from_home_last_week is only missing for employed individuals, the code subsets by this first. 
+Now using this function, impute hours_worked_away_7d using age and sex. As hours_worked_away_7d is only missing for employed individuals, the code subsets by this first. 
 
 ```{r}
 
@@ -545,7 +681,7 @@ employed_df <- clean_survey_data[clean_survey_data$employment_status == "Employe
 knn_employed_impute <- knn_impute(
   df = employed_df,
   variables_to_impute = c(
-    "hours_worked_away_from_home_last_week"
+    "hours_worked_away_7d"
   ),
   distance_variables = c(
     "employment_status",
@@ -556,17 +692,17 @@ knn_employed_impute <- knn_impute(
 )
 
 # Create the imputation flag in the main dataset
-knn_data_custom$hours_worked_away_from_home_last_week_imputed <- FALSE
+knn_data_custom$hours_worked_away_7d_imputed <- FALSE
 
 # Identify employed rows
 employed_rows <- knn_data_custom$employment_status == "Employed"
 
 # Copy the imputed values back into the main dataset
-knn_data_custom$hours_worked_away_from_home_last_week[employed_rows] <-
-  knn_employed_impute$hours_worked_away_from_home_last_week
+knn_data_custom$hours_worked_away_7d[employed_rows] <-
+  knn_employed_impute$hours_worked_away_7d
 
 # Copy the imputation flag back into the main dataset
-knn_data_custom$hours_worked_away_from_home_last_week_imputed[employed_rows] <-
-  knn_employed_impute$hours_worked_away_from_home_last_week_imputed
+knn_data_custom$hours_worked_away_7d_imputed[employed_rows] <-
+  knn_employed_impute$hours_worked_away_7d_imputed
 
 ```

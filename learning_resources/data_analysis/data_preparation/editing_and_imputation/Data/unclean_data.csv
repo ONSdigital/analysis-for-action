@@ -1,4 +1,4 @@
-﻿person_id,age,sex,ethnic_group,region,employment_status,general_health,vaccination_status,days_unable_usual_activities_28d,hours_worked_away_from_home_last_week
+﻿person_id,age,sex,ethnic_group,region,employment_status,general_health,vaccination_status,days_unable_28d,hours_worked_away_7d
 P0001,66,Male,White,West Midlands,Retired,Fair,2 doses,0,0
 P0002,52,Male,"Black, Black British, Caribbean or African",West Midlands,Employed,Good,2 doses,0,0
 P0003,68,Female,White,North West,Retired,Good,2 doses,2,0

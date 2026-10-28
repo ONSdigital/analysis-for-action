@@ -46,17 +46,10 @@ library(lme4)
 library(igraph)
 library(here)
 
-# Use here::here() to construct paths, do not setwd()
-#** Discuss with Alex setting up here()
-
 # Load in data
-# assign to the name survey_data
-# TO BE CHANGED WHEN CODE FINALISED
-survey_data <- read.csv("Data/unclean_data.csv")
-
 # Use here::here() to construct paths, do not setwd()
-#here::here()
-#survey_data <- read_csv(here::here("data","1.csv"))
+here::here()
+survey_data <- read_csv(here::here("Data","unclean_data.csv"))
 
 ```
 
@@ -232,9 +225,9 @@ You can use the md.pattern() function in the mice package to calculate the frequ
 mice::md.pattern(survey_data_unique, plot = FALSE)
 
 ```
-The output can be understood as follows: 1 and 0 under each variable represent their presence and missing state respectively. The numbers before the first variable (699,48,37,2,31,2,3,17,1) represent the number of rows. For example, 699 samples are complete, there are 48 samples where general_health is missing and all other values are present. Similarly, there are 37 samples where hours_worked_away_from_home_last_week is missing and all other values are present. Also, there are 2 samples where general_health and hours_worked_away_from_home_last_week are missing but all others are present. 
+The output can be understood as follows: 1 and 0 under each variable represent their presence and missing state respectively. The numbers before the first variable (699,48,37,2,31,2,3,17,1) represent the number of rows. For example, 699 samples are complete, there are 48 samples where general_health is missing and all other values are present. Similarly, there are 37 samples where hours_worked_away_7d is missing and all other values are present. Also, there are 2 samples where general_health and hours_worked_away_7d are missing but all others are present. 
 
-The bottom row provides the number of missing entries per variable and the total number of missing cells. In this case, only 4 columns have missing values i.e. 18 missing values in age, 36 missing values in vaccination_status, 43 in hours_worked_away_from_home_last_week and 52 missing values in general_health column.
+The bottom row provides the number of missing entries per variable and the total number of missing cells. In this case, only 4 columns have missing values i.e. 18 missing values in age, 36 missing values in vaccination_status, 43 in hours_worked_away_7d and 52 missing values in general_health column.
 
 ## Visualising missing values
 
@@ -263,7 +256,7 @@ VIM::aggr(survey_data_unique, col = mice::mdc(1:2),  numbers = TRUE, sortVars = 
 
 ```
 
-The pink colour shows the missing values while the blue shows the present values. The plot helps us understanding that  83% of the samples are not missing any information, 5.7% of samples are missing the hours_worked_away_from_home_last_week value while other values are present, 0.12% of samples are missing the hours_worked_away_from_home_last_week and age values while other values are present, and the remaining ones show other missing patterns.
+The pink colour shows the missing values while the blue shows the present values. The plot helps us understanding that  83% of the samples are not missing any information, 5.7% of samples are missing the hours_worked_away_7d value while other values are present, 0.12% of samples are missing the hours_worked_away_7d and age values while other values are present, and the remaining ones show other missing patterns.
 
 You can also find all rows which have missing values as shown below:
 
@@ -327,7 +320,7 @@ survey_data[6,]
 ```
 Indeed, they are 80. 
 
-In the next example, some restrictions are set on the 'hours_worked_away_from_home_last_week' column. Since there are only 168 hours in a week, there should be no values greater than this in this column. This value should also be non-negative, therefore this restriction will be set too.
+In the next example, some restrictions are set on the 'hours_worked_away_7d' column. Since there are only 168 hours in a week, there should be no values greater than this in this column. This value should also be non-negative, therefore this restriction will be set too.
 
 ```{r}
 
@@ -335,7 +328,7 @@ In the next example, some restrictions are set on the 'hours_worked_away_from_ho
 
 # Set the rule where vaccination status should be non-negative and less than and equal to 3
 
-edit_rules <- editrules::editset(c("hours_worked_away_from_home_last_week >=0", "hours_worked_away_from_home_last_week <= 168"))
+edit_rules <- editrules::editset(c("hours_worked_away_7d >=0", "hours_worked_away_7d <= 168"))
 
 # Check if the rules are violated 
 # the function returns a matrix
@@ -363,7 +356,7 @@ violated_data %>%
 
 ```
 
-The second column num2 (hours_worked_away_from_home_last_week <= 168) shows that record numbers 4 and 119 violate the rule because the logical value is TRUE suggesting that the hours_worked_away_from_home_last_week of both people is greater than 168.
+The second column num2 (hours_worked_away_7d <= 168) shows that record numbers 4 and 119 violate the rule because the logical value is TRUE suggesting that the hours_worked_away_7d of both people is greater than 168.
 This can be double checked.
 
 ```{r}
@@ -379,9 +372,9 @@ The package deducorrect can be used here, as this package fixes inconsistent obs
 ```{r}
 # Specify the rule and the correction 
 
-correction_rules <- deducorrect::correctionRules(expression(if(!is.na(hours_worked_away_from_home_last_week) &&
-    hours_worked_away_from_home_last_week > 168) {
-      hours_worked_away_from_home_last_week <- hours_worked_away_from_home_last_week/10
+correction_rules <- deducorrect::correctionRules(expression(if(!is.na(hours_worked_away_7d) &&
+    hours_worked_away_7d > 168) {
+      hours_worked_away_7d <- hours_worked_away_7d/10
 }))
 
 # Apply simple replacement rules to a data.frame
@@ -401,11 +394,11 @@ As you can see the previous values of 280 and 420 have been corrected to 28 and 
 correction$corrected
 ```
 
-The altered data has the correct hours_worked_away_from_home_last_week values now.
+The altered data has the correct hours_worked_away_7d values now.
 
 ## Exercise
 
-1. Set a restriction on the days_unable_usual_activities_28d column in survey_data, where the column should have non-negative values and less than and equal to 28.
+1. Set a restriction on the days_unable_28d column in survey_data, where the column should have non-negative values and less than and equal to 28.
 
 2. Using survey_data, check if the rules have been violated and assign it to variable violate.
 
@@ -413,13 +406,13 @@ The altered data has the correct hours_worked_away_from_home_last_week values no
 
 4. Filter the rows where either of the edit rules have been violated.
 
-5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_usual_activities_28d is greater than 100, divide it by 10).
+5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_28d is greater than 100, divide it by 10).
 
 ```{r}
 
 # Set the rule where capital_gain should be non-negative and less than and equal to 100000
 
-E <- editrules::editset(c("days_unable_usual_activities_28d >=0", "days_unable_usual_activities_28d <= 28"))
+E <- editrules::editset(c("days_unable_28d >=0", "days_unable_28d <= 28"))
 
 # Display the results
 
@@ -446,17 +439,17 @@ violate_data %>%
 dplyr::filter(num1 == TRUE | num2 == TRUE)
 ```
 ```{r}
-# select records 145 and 376 record from the survey_data and the days_unable_usual_activities_28d column
+# select records 145 and 376 record from the survey_data and the days_unable_28d column
 
 survey_data[c(145,376),9]
 ```
 ```{r}
 # Specify the rule and the correction 
-# Since the restriction is that days_unable_usual_activities_28d should be non-negative and less than and equal to 28
-# specify the rule that wherever days_unable_usual_activities_28d gain is greater than 100, divide it by 10
+# Since the restriction is that days_unable_28d should be non-negative and less than and equal to 28
+# specify the rule that wherever days_unable_28d gain is greater than 100, divide it by 10
 
-corr_rules <- deducorrect::correctionRules(expression(if(days_unable_usual_activities_28d > 28) {
-      days_unable_usual_activities_28d <- days_unable_usual_activities_28d/10
+corr_rules <- deducorrect::correctionRules(expression(if(days_unable_28d > 28) {
+      days_unable_28d <- days_unable_28d/10
 }))
 
 # Apply simple replacement rules to a data.frame.
