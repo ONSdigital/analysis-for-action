@@ -476,7 +476,25 @@ The following examples demonstrate how some of the methods introduced above coul
 ## Mean imputation
 
 ```{r}
-#**add roxygen**
+
+#' Mean Imputation
+#'
+#' Performs mean imputation on one or more numeric variables.
+#' An imputation flag is also created to identify imputed values.
+#'
+#' @param df A data frame containing the variables to be imputed.
+#' @param variables A character vector containing the names of the
+#'   variables to impute.
+#'
+#' @return A data frame containing the imputed values and an imputation
+#'   flag. 
+#'
+#' @examples
+#' mean_data <- mean_impute(
+#'   df = clean_survey_data,
+#'   variables = c("age", "days_unable_28d")
+#' )
+#'
 
 mean_impute <- function(df, variables) {
   
@@ -515,6 +533,27 @@ mean_data_custom <- mean_impute(clean_survey_data, c("age", "hours_worked_away_7
 ## Regression imputation
 
 ```{r}
+
+#' Regression Imputation
+#'
+#' Imputes missing values using deterministic or stochastic linear regression
+#' and creates an imputation flag.
+#'
+#' @param df A data frame containing the variables.
+#' @param variable_to_impute Name of the numeric variable to impute.
+#' @param predictor_variables Character vector of predictor variable names.
+#' @param stochastic If TRUE, adds a randomly sampled residual to each prediction.
+#'
+#' @return A data frame containing the imputed values and imputation flag.
+#'
+#' @examples
+#' reg_data <- reg_impute(
+#'   df = employed_data,
+#'   variable_to_impute = "hours_worked_away_7d",
+#'   predictor_variables = c("age", "sex"),
+#'   stochastic = FALSE
+#' )
+#'
 reg_impute <- function(
   df,
   variable_to_impute,
@@ -576,10 +615,12 @@ reg_impute <- function(
 }
 ```
 
+
+Now this function can be used to impute for missing variables in the dataset. Below, `hours_worked_away_7d` will be imputed using `age` and `sex` as predictor variables.
 ```{r}
 
 
-# Run deterministic imputation on employed_df
+# Run deterministic imputation on employed_data
 deter_reg_data_custom <- reg_impute(
   df = employed_data,
   variable_to_impute = "hours_worked_away_7d",
@@ -589,7 +630,7 @@ deter_reg_data_custom <- reg_impute(
   )
 )
 
-# Run stochastic imputation on employed_df
+# Run stochastic imputation on employed_data
 sto_reg_data_custom <- reg_impute(
   df = employed_data,
   variable_to_impute = "hours_worked_away_7d",
@@ -605,11 +646,31 @@ sto_reg_data_custom <- reg_impute(
 
 
 
-## kNN imputation
+## KNN imputation
 
 ```{r}
 
-#**add roxygen**
+#' K-Nearest Neighbour Imputation
+#'
+#' Imputes missing values using K-nearest neighbour (KNN) imputation
+#' and creates an imputation flag.
+#'
+#' @param df A data frame containing the variables.
+#' @param variables_to_impute Character vector of variable names to impute.
+#' @param distance_variables Character vector of variables used to find similar records.
+#' @param k Number of nearest neighbours to use. Default is 5.
+#'
+#' @return A data frame containing the imputed values and imputation flags.
+#'
+#' @examples
+#' knn_data <- knn_impute(
+#'   df = employed_data,
+#'   variables_to_impute = "hours_worked_away_7d",
+#'   distance_variables = c("age", "sex"),
+#'   k = 5
+#' )
+#'
+
 knn_impute <- function(
   df,
   variables_to_impute,
@@ -674,12 +735,12 @@ Now using this function, impute hours_worked_away_7d using age and sex. As hours
 knn_data_custom <- clean_survey_data
 
 # Keep only employed people
-employed_df <- clean_survey_data[clean_survey_data$employment_status == "Employed", ]
+employed_data <- clean_survey_data[clean_survey_data$employment_status == "Employed", ]
   
 # Run knn imputatiom
 
 knn_employed_impute <- knn_impute(
-  df = employed_df,
+  df = employed_data,
   variables_to_impute = c(
     "hours_worked_away_7d"
   ),
