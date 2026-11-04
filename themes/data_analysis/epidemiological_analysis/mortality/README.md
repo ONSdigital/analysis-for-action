@@ -12,6 +12,7 @@ Contains the Python version of the training script. This has already been run an
 
 
  3. **Data**
+    
 **Used for calculating mortality rates:**
 
 * synthetic_death_registration_dataset.csv - Contains 153,198 synthetic death records for England and Wales, including neonatal deaths. 
