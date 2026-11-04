@@ -2,10 +2,11 @@
 ## On git repo
 
 1. **Python Code**
+   
 Contains the Python version of the training script. This has already been run and includes all outputs.
 
 
-2. **R Code**
+3. **R Code**
 * Training code.R - Contains all the training code for learners. This includes links so users can click on a topic and jump straight to it.
 * Mortality Training Unit.Rmd - The R Markdown version of the training code.
 * Mortality-Training-Unit.html - The fully rendered HTML version, showing all outputs including charts. This version is especially useful if users want to link directly from the Word document to a specific section in the code.
@@ -31,8 +32,9 @@ Contains the Python version of the training script. This has already been run an
  
 
 4. **Outputs**
+   
 Contains the outputs generated from running the R code for the excess deaths and life tables sections.
 
-5. **Additional**
+6. **Additional**
 
 * Mortality rates inc. Dobson method for 95% CIs New.xlsx - An Excel tool that calculates a range of mortality rates and 95% confidence intervals using the Dobson method. This allows users to produce key rates outside of R or Python. This also includes examples on each table. [This file can also be found on Google Drive]
