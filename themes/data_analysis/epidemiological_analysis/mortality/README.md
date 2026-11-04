@@ -9,8 +9,7 @@ Contains the Python version of the training script. This has already been run an
 * Training code.R - Contains all the training code for learners. This includes links so users can click on a topic and jump straight to it.
 * Mortality Training Unit.Rmd - The R Markdown version of the training code.
 * Mortality-Training-Unit.html - The fully rendered HTML version, showing all outputs including charts. This version is especially useful if users want to link directly from the Word document to a specific section in the code.
- 
- ## On Google Drive
+
 
  3. **Data**
 **Used for calculating mortality rates:**
