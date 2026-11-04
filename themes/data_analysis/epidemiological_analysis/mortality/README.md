@@ -37,4 +37,4 @@ Contains the outputs generated from running the R code for the excess deaths and
 
 6. **Additional**
 
-* Mortality rates inc. Dobson method for 95% CIs New.xlsx - An Excel tool that calculates a range of mortality rates and 95% confidence intervals using the Dobson method. This allows users to produce key rates outside of R or Python. This also includes examples on each table. This can be found on the Analysis for Action platform within [Mortality Analysis] (https://analysisforaction.org/learning-resources/data-analysis/epidemiological-analysis/mortality-analysis/#overview).
+* Mortality rates inc. Dobson method for 95% CIs New.xlsx - An Excel tool that calculates a range of mortality rates and 95% confidence intervals using the Dobson method. This allows users to produce key rates outside of R or Python. This also includes examples on each table. This can be found on the Analysis for Action platform within [Mortality Analysis](https://analysisforaction.org/learning-resources/data-analysis/epidemiological-analysis/mortality-analysis/#overview).
