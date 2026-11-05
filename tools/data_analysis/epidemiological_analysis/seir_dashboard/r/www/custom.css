@@ -8,6 +8,10 @@
      earthy green #48553F.
    - Background tints: green-grey #F4F6F5, earthy #F8F5F1.
    - Accent (sparingly): orange #F59342.
+   - Typeface: Open Sans (SIL Open Font Licence 1.1), packaged in
+     www/fonts/ so the app does not depend on an external font
+     service.
+   - No text smaller than 0.875rem (14 px).
    - No changes to application logic or module structure.
 
    AfA colour reference:
@@ -20,14 +24,38 @@
    ============================================================ */
 
 
+/* --- Typeface: Open Sans (variable font, weights 300–800) --- */
+@font-face {
+  font-family: "Open Sans";
+  src: url("fonts/OpenSans-Variable.ttf") format("truetype");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Root size ---------------------------------------------
+   Shiny's default Bootstrap 3 sets the root font size to 10px,
+   which made every rem-based size (1rem, 0.875rem, ...) render
+   about 37% smaller than intended. Setting 16px makes rem mean
+   what the stylesheets say. */
+html {
+  font-size: 16px;
+}
+
 /* --- Reset bslib/flatly body defaults --- */
 body {
+  font-family: "Open Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: #1E2A16;
   background-color: #F4F6F5;
   margin: 0;
   padding: 0;
+}
+
+/* Form controls inherit the typeface */
+input, select, textarea, button, .btn, .selectize-input {
+  font-family: inherit;
 }
 
 /* Remove default fluidPage padding so navbar sits flush */
@@ -44,6 +72,235 @@ h2, h3, h4, h5, h6 {
 p {
   font-size: 1rem;
   color: #48553F;
+}
+
+/* Bootstrap's <small> and form labels: keep above the minimum */
+small, .small {
+  font-size: 0.875rem;
+}
+
+label, .control-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #1E2A16;
+}
+
+.irs--shiny .irs-min, .irs--shiny .irs-max,
+.irs--shiny .irs-from, .irs--shiny .irs-to,
+.irs--shiny .irs-single, .irs--shiny .irs-grid-text {
+  font-size: 0.875rem;
+}
+
+/* Keyboard focus must always be visible */
+a:focus-visible, button:focus-visible, .btn:focus-visible,
+input:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 3px solid #D17E38;
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   Navbar — shared by the entry screen and the menu module
+   ============================================================ */
+.afa-navbar {
+  background-color: #1E2A16;
+  border-bottom: 1px solid #0F150B;
+  padding: 0 1rem;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.afa-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.afa-navbar-logo {
+  display: block;
+  width: auto;
+}
+
+.afa-navbar-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #F4F6F5;
+}
+
+.afa-navbar-meta {
+  font-size: 0.875rem;
+  color: rgba(244, 246, 245, 0.8);
+  font-style: italic;
+}
+
+.afa-navbar-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Navigation buttons (override the generic .btn rules below) */
+.btn.afa-nav-btn {
+  font-size: 0.875rem !important;
+  padding: 4px 12px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+  border: 1px solid rgba(244, 246, 245, 0.45) !important;
+  color: #F4F6F5 !important;
+}
+
+.btn.afa-nav-btn:hover {
+  background: rgba(244, 246, 245, 0.12) !important;
+}
+
+.btn.afa-nav-btn--active {
+  border-color: #F59342 !important;
+  color: #F59342 !important;
+}
+
+
+/* ============================================================
+   Help text, notes and panels
+   ============================================================ */
+.afa-help-text {
+  font-size: 0.875rem;
+  color: #48553F;
+  line-height: 1.45;
+}
+
+.afa-panel {
+  background: #FFFFFF;
+  border: 0.5px solid #D0D4CE;
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.afa-panel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #48553F;
+  padding-bottom: 8px;
+  border-bottom: 0.5px solid #D0D4CE;
+  margin-bottom: 10px;
+}
+
+.afa-settings-toggle {
+  width: 100%;
+  background: transparent;
+  border: 0.5px solid #A8B09F;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.9375rem;
+  color: #48553F;
+  cursor: pointer;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.afa-settings-toggle:hover {
+  background: #EAF0E8;
+}
+
+
+/* ============================================================
+   Simple View — KPI cards
+   ============================================================ */
+.afa-kpi-card {
+  flex: 1;
+  min-width: 240px;
+  max-width: 360px;
+  background: #FFFFFF;
+  border: 0.5px solid #D0D4CE;
+  border-radius: 14px;
+  padding: 28px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.afa-kpi-title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #1E2A16;
+  margin: 10px 0 4px;
+}
+
+.afa-kpi-subtitle {
+  font-size: 0.875rem;
+  color: #48553F;
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+/* Explanation shown under N/A */
+.afa-unavailable-note {
+  font-size: 0.875rem;
+  color: #752111;
+  background: #F9EDEA;
+  border: 0.5px solid #E8B8AD;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 10px 0 0;
+  line-height: 1.4;
+}
+
+/* Threshold feedback */
+.afa-threshold-note {
+  width: 100%;
+  margin-top: 14px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border-left: 4px solid #A8B09F;
+  background: #F4F6F5;
+  text-align: left;
+}
+
+.afa-threshold-note p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.afa-threshold-headline {
+  font-weight: 600;
+  color: #1E2A16 !important;
+}
+
+.afa-threshold-values {
+  color: #48553F !important;
+}
+
+.afa-threshold-controlled { border-left-color: #3EA27F; }
+.afa-threshold-warning    { border-left-color: #D17E38; background: #FDF3E9; }
+.afa-threshold-critical   { border-left-color: #752111; background: #F9EDEA; }
+.afa-threshold-unknown    { border-left-color: #48553F; }
+
+/* Expandable explanation (<details>) */
+.afa-help {
+  width: 100%;
+  margin-top: 14px;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.afa-help summary {
+  cursor: pointer;
+  color: #324027;
+  font-weight: 600;
+  padding: 2px 0;
+}
+
+.afa-help p {
+  font-size: 0.875rem;
+  color: #48553F;
+  margin: 6px 0 0;
+  line-height: 1.45;
 }
 
 
@@ -176,6 +433,12 @@ select.form-select option {
   color:            #324027 !important;
 }
 
+/* Disabled buttons (view buttons before a dataset is loaded) */
+.btn[disabled], .btn.disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
 
 /* ============================================================
    Alerts — AfA palette
@@ -199,12 +462,32 @@ select.form-select option {
   color:            #752111 !important;
 }
 
+/* Shiny notifications: readable size, error messages in AfA red */
+#shiny-notification-panel {
+  font-size: 0.9375rem;
+}
+
+.shiny-notification {
+  opacity: 1;
+}
+
+.shiny-notification-error {
+  background-color: #F9EDEA;
+  border: 1px solid #E8B8AD;
+  color: #752111;
+}
+
+.shiny-notification-error ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+
 
 /* ============================================================
-   Sidebar wells — AfA earthy tint
+   Sidebar wells — white panels on the tinted sidebar
    ============================================================ */
 .well {
-  background-color: #F8F5F1 !important;
+  background-color: #FFFFFF !important;
   border: 0.5px solid #D0D4CE !important;
   border-radius: 8px !important;
   padding: 12px !important;
@@ -251,7 +534,7 @@ body .tabbable ul.nav.nav-tabs {
 body ul.nav.nav-tabs > li > a,
 body ul.nav.nav-tabs .nav-item > .nav-link,
 body ul.nav.nav-tabs a.nav-link {
-  font-size: 0.9rem !important;
+  font-size: 0.9375rem !important;
   font-weight: 500 !important;
   color: #48553F !important;
   background-color: transparent !important;
@@ -294,7 +577,7 @@ body ul.nav.nav-tabs a.nav-link:not(.active):hover {
    Table — AfA dark green header
    ============================================================ */
 table.table {
-  font-size: 0.88rem;
+  font-size: 0.875rem;
 }
 
 table.table thead th {
@@ -337,4 +620,22 @@ input[type="radio"]:checked {
    ============================================================ */
 .fade-transition {
   transition: opacity 0.4s ease-in-out;
+}
+
+
+/* ============================================================
+   Footer — "Funded by Wellcome" (approved artwork, unaltered)
+   Minimum logo height on screen is 80 px; clear space around the
+   logo is at least two "w" widths of the logotype.
+   ============================================================ */
+.afa-footer {
+  padding: 16px 1rem 16px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.afa-footer-logo {
+  height: 80px;   /* Wellcome minimum on screen */
+  width: auto;
+  display: block;
 }

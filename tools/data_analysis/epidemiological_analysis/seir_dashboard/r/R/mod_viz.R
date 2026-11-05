@@ -13,13 +13,21 @@
 #     Dark stone   #444443  – Infected
 #     Sea green    #3EA27F  – Recovered
 #   Accent / alert:
-#     Orange       #F59342  – Cumulative Deaths, Demand line
+#     Orange       #D17E38  – Cumulative Deaths, Demand line
 #     Dark green   #324027  – Cumulative Cases, Capacity line
 #   Ribbon fill (excess demand alert):
 #     Earthy warm  #F0D9C8  – translucent warning fill
 #
+# Accessibility: every series also has its own line type
+# (solid / dashed / dotted / dot-dash), so the curves can be told
+# apart without relying on colour alone.
+#
 # Author: Cristian Paez
 # Created: 2025-11-07
+# Updated: 2026-10 — Testing recommendation (round 1):
+#   * Distinct line types per series (colour-independent).
+#   * Larger plot text (axis text 12 pt, titles 14 pt, legend
+#     12 pt, plot title 18 pt).
 # ============================================================
 
 # ------------------------------------------------------------
@@ -53,13 +61,13 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
     afa_theme <- function() {
       theme_minimal() +
         theme(
-          plot.title         = element_text(hjust = 0.5, face = "bold",
-                                            size = 16, colour = "#1E2A16"),
-          axis.title         = element_text(size = 12, colour = "#48553F"),
-          axis.text          = element_text(size = 10, colour = "#48553F"),
+          plot.title         = element_blank(),
+          axis.title         = element_text(size = 14, colour = "#48553F"),
+          axis.text          = element_text(size = 12, colour = "#48553F"),
           legend.position    = "bottom",
           legend.title       = element_blank(),
-          legend.text        = element_text(size = 10, colour = "#48553F"),
+          legend.text        = element_text(size = 12, colour = "#48553F"),
+          legend.key.width   = grid::unit(2, "lines"),
           panel.background   = element_rect(fill = "#F8F5F1", colour = NA),
           plot.background    = element_rect(fill = "#F8F5F1", colour = NA),
           # Major vertical grid lines — orient the X axis
@@ -69,42 +77,45 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
           # Horizontal grid lines — keep for Y axis readability
           panel.grid.major.y = element_line(colour = "#D0D4CE", linewidth = 0.35),
           panel.grid.minor.y = element_blank(),
-          strip.text         = element_text(size = 12, face = "bold",
+          strip.text         = element_text(size = 14, face = "bold",
                                             colour = "#1E2A16")
         )
+    }
+
+    # Placeholder plot used when there is nothing to draw
+    no_data_plot <- function() {
+      ggplot() +
+        annotate("text", x = 0.5, y = 0.5,
+                 label = "No data available", size = 8,
+                 colour = "#48553F") +
+        theme_void()
     }
 
     # --------------------------------------------------------
     # --- SEIR compartment curves plot ---
     # --------------------------------------------------------
-    output$seir_plot <- renderPlot({
+    output$seir_plot <- renderPlot(alt = "Line chart of the number of susceptible, exposed, infected and recovered people over the simulation period. Each compartment has its own colour and line type.", {
       plot_data <- model_data()
 
       if (is.null(plot_data) || nrow(plot_data) == 0) {
-        cat("VIZ_MODULE: model_data() is NULL or empty for seir_plot.\n")
-        return(
-          ggplot() +
-            annotate("text", x = 0.5, y = 0.5,
-                     label = "No data available", size = 8,
-                     colour = "#48553F") +
-            theme_void()
-        )
+        return(no_data_plot())
       }
-      req(plot_data)
 
       # Categorical colours follow AfA data visualisation order:
-      # near black → burnt orange → dark stone → sea green
+      # near black → burnt orange → dark stone → sea green.
+      # Line types make every series distinguishable without colour.
       # linewidth replaces the deprecated size aesthetic (ggplot2 >= 3.4.0)
       ggplot(plot_data, aes(x = date)) +
-        geom_line(aes(y = S, colour = "Susceptible"), linewidth = 1) +
-        geom_line(aes(y = E, colour = "Exposed"),     linewidth = 1) +
-        geom_line(aes(y = I, colour = "Infected"),    linewidth = 1) +
-        geom_line(aes(y = R, colour = "Recovered"),   linewidth = 1) +
+        geom_line(aes(y = S, colour = "Susceptible", linetype = "Susceptible"), linewidth = 1.1) +
+        geom_line(aes(y = E, colour = "Exposed",     linetype = "Exposed"),     linewidth = 1.1) +
+        geom_line(aes(y = I, colour = "Infected",    linetype = "Infected"),    linewidth = 1.1) +
+        geom_line(aes(y = R, colour = "Recovered",   linetype = "Recovered"),   linewidth = 1.1) +
         labs(
-          title  = "Population Dynamics (SEIR)",
-          x      = "Date",
-          y      = "Number of Individuals",
-          colour = "Compartment"
+          title    = NULL,
+          x        = "Date",
+          y        = "Number of individuals",
+          colour   = NULL,
+          linetype = NULL   # same (empty) title -> one merged legend
         ) +
         scale_y_continuous(labels = scales::comma) +
         scale_colour_manual(
@@ -115,45 +126,55 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
             "Recovered"   = "#3EA27F"
           )
         ) +
+        scale_linetype_manual(
+          values = c(
+            "Susceptible" = "solid",
+            "Exposed"     = "dashed",
+            "Infected"    = "dotted",
+            "Recovered"   = "dotdash"
+          )
+        ) +
         afa_theme()
     })
 
     # --------------------------------------------------------
     # --- Cumulative cases and deaths plot ---
     # --------------------------------------------------------
-    output$cases_deaths_plot <- renderPlot({
+    output$cases_deaths_plot <- renderPlot(alt = "Line chart of simulated cumulative cases (solid line) and cumulative deaths (dashed line) over the simulation period.", {
       plot_data <- model_data()
 
       if (is.null(plot_data) || nrow(plot_data) == 0) {
-        return(
-          ggplot() +
-            annotate("text", x = 0.5, y = 0.5,
-                     label = "No data available", size = 8,
-                     colour = "#48553F") +
-            theme_void()
-        )
+        return(no_data_plot())
       }
-      req(plot_data)
 
-      # Cases: dark green (primary AfA colour)
-      # Deaths: orange accent (AfA standard accent)
+      # Cases: dark green (primary AfA colour), solid
+      # Deaths: orange accent (AfA standard accent), dashed
       # linewidth replaces the deprecated size aesthetic (ggplot2 >= 3.4.0)
       ggplot(plot_data, aes(x = date)) +
-        geom_line(aes(y = Cumulative_Cases,  colour = "Cumulative Cases"),
-                  linewidth = 1) +
-        geom_line(aes(y = Cumulative_Deaths, colour = "Cumulative Deaths"),
-                  linewidth = 1) +
+        geom_line(aes(y = Cumulative_Cases,
+                      colour = "Cumulative Cases", linetype = "Cumulative Cases"),
+                  linewidth = 1.1) +
+        geom_line(aes(y = Cumulative_Deaths,
+                      colour = "Cumulative Deaths", linetype = "Cumulative Deaths"),
+                  linewidth = 1.1) +
         labs(
-          title  = "Simulated Cumulative Cases and Deaths",
-          x      = "Date",
-          y      = "Cumulative Number",
-          colour = "Metric"
+          title    = NULL,
+          x        = "Date",
+          y        = "Cumulative number",
+          colour   = NULL,
+          linetype = NULL   # same (empty) title -> one merged legend
         ) +
         scale_y_continuous(labels = scales::comma) +
         scale_colour_manual(
           values = c(
             "Cumulative Cases"  = "#324027",
-            "Cumulative Deaths" = "#F59342"
+            "Cumulative Deaths" = "#D17E38"
+          )
+        ) +
+        scale_linetype_manual(
+          values = c(
+            "Cumulative Cases"  = "solid",
+            "Cumulative Deaths" = "dashed"
           )
         ) +
         afa_theme()
@@ -162,24 +183,19 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
     # --------------------------------------------------------
     # --- Critical resource pressure plot ---
     # --------------------------------------------------------
-    output$resource_pressure_plot <- renderPlot({
-      cat("VIZ_MODULE: resource_pressure_plot rendering.\n")
+    output$resource_pressure_plot <- renderPlot(alt = "Line charts of simulated ICU and ventilator demand (solid line) against capacity (dashed line). Shaded areas mark periods when demand exceeds capacity.", {
       plot_data_raw <- model_data()
 
       current_icu_capacity            <- icu_capacity_input()
       current_ventilator_availability <- ventilator_availability_input()
 
       if (is.null(plot_data_raw) || nrow(plot_data_raw) == 0) {
-        cat("VIZ_MODULE: model_data() is NULL or empty for resource plot.\n")
-        return(
-          ggplot() +
-            annotate("text", x = 0.5, y = 0.5,
-                     label = "No data available", size = 8,
-                     colour = "#48553F") +
-            theme_void()
-        )
+        return(no_data_plot())
       }
-      req(plot_data_raw)
+
+      # An empty capacity field must not break the plot
+      req(is_valid_number(current_icu_capacity),
+          is_valid_number(current_ventilator_availability))
 
       # Prepare demand dataset
       demand_plot_data <- plot_data_raw %>%
@@ -235,15 +251,15 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
         ) %>%
         filter(Demand > Capacity)
 
-      # Demand line: orange accent — signals alert state
-      # Capacity line: dark green — stable reference threshold
+      # Demand line: orange accent, solid — signals alert state
+      # Capacity line: dark green, dashed — stable reference threshold
       # Ribbon fill: earthy warm tint — excess demand warning zone
       # linewidth replaces deprecated size aesthetic (ggplot2 >= 3.4.0)
       ggplot(combined_plot_data,
              aes(x = date, y = Value,
                  colour   = Metric_Label,
                  linetype = Metric_Label)) +
-        geom_line(linewidth = 1) +
+        geom_line(linewidth = 1.1) +
         geom_ribbon(
           data        = ribbon_data,
           aes(ymin = Capacity, ymax = Demand,
@@ -253,17 +269,17 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
         ) +
         facet_wrap(~Resource_Category, scales = "free_y", ncol = 1) +
         labs(
-          title    = "Critical Resource Demand and Capacity",
+          title    = NULL,
           x        = "Date",
-          y        = "Number of Units",
-          colour   = "Metric Type",
-          linetype = "Metric Type",
-          fill     = "Alert"
+          y        = "Number of units",
+          colour   = NULL,
+          linetype = NULL,
+          fill     = NULL
         ) +
         scale_y_continuous(labels = scales::comma) +
         scale_colour_manual(
           values = c(
-            "Demand"   = "#F59342",
+            "Demand"   = "#D17E38",
             "Capacity" = "#324027"
           )
         ) +
@@ -275,7 +291,7 @@ viz_plot_server <- function(id, model_data, icu_capacity_input,
         ) +
         scale_fill_manual(
           values = c("Demand Exceeded" = "#F0D9C8"),
-          name   = "Alert"
+          name   = NULL
         ) +
         afa_theme()
     })

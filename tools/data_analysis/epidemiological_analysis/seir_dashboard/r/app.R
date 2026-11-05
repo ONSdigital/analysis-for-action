@@ -22,12 +22,20 @@
 #   The Simple View does NOT use viz_plot_server() — it renders
 #   KPI cards via renderUI inside mod_server_simple().
 #   State is fully isolated: mod_server_simple() maintains its
-#   own reactiveValues always initialised from global.R defaults.
+#   own reactiveValues, initialised from the dataset snapshot
+#   (dataset_params) or from the global.R defaults.
 #   Internal sub-modules use "simple_data" and "simple_seir"
 #   namespace ids to avoid collision with "data_sim"/"seir_model"
 #   used by the Advanced View.
 #
 # Simplified View implemented: 2026-03-19
+# Updated: 2026-10 — Testing recommendation (round 1):
+#   * mod_entry_server() is now called with NAMED arguments.
+#     Previously dataset_params was passed in the position of
+#     the unused `trigger_sim` argument, so it was never set
+#     inside the module: parameters of an uploaded CSV were
+#     never published and the Advanced / Simple views ignored
+#     them.
 # ============================================================
 
 library(shiny)
@@ -39,9 +47,22 @@ library(shinyjs)
 ui <- fluidPage(
   useShinyjs(),
   tags$head(
+    tags$title("SEIR Dashboard — Analysis for Action"),
+    tags$script("document.documentElement.lang = 'en';"),
     tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
   ),
-  uiOutput("main_ui")
+  uiOutput("main_ui"),
+  # Funding acknowledgement (Wellcome "Funded by" guidance: bottom
+  # left, linked to wellcome.org). Approved artwork, unmodified,
+  # 80 px high (the minimum) (minimum on screen is 80 px).
+  tags$footer(
+    class = "afa-footer",
+    tags$a(
+      href = "https://wellcome.org", target = "_blank", rel = "noopener",
+      tags$img(src = "img/wellcome-funded-by-dark.png",
+               alt = "Funded by Wellcome", class = "afa-footer-logo")
+    )
+  )
 )
 
 # ============================================================
@@ -57,9 +78,10 @@ server <- function(input, output, session) {
   dataset_loaded   <- reactiveVal(NULL)
 
   # Stores calibrated parameters from the loaded dataset.
-  # NULL for mock; named list with $parametros, $recursos,
-  # $poblacion for user CSV sources. Passed to both
-  # views so both initialise from the same dataset snapshot.
+  # For mock: list with NULL $parametros (global defaults are
+  # restored). For a user CSV: named list with $parametros,
+  # $recursos, $poblacion. Passed to both views so both
+  # initialise from the same dataset snapshot.
   dataset_params   <- reactiveVal(NULL)
 
   # --------------------------------------------------------
@@ -83,10 +105,30 @@ server <- function(input, output, session) {
   })
 
   # --------------------------------------------------------
-  # Entry and menu servers — always active
+  # Error notifications that stay on screen until the input is
+  # fixed (invalid dates / population) belong to ONE view. Clear
+  # them when the user changes view so they do not follow the
+  # user to a screen where they no longer apply.
   # --------------------------------------------------------
-  mod_entry_server("entry", screen, dataset_selector,
-                   dataset_loaded, dataset_params)
+  observeEvent(screen(), {
+    for (nid in c("viz_simple-period_error", "viz_simple-simple_seir-simulation_error",
+                  "viz_advanced-scope_error", "viz_advanced-ifr_error",
+                  "viz_advanced-seir_model-simulation_error")) {
+      removeNotification(nid)
+    }
+  }, ignoreInit = TRUE)
+
+  # --------------------------------------------------------
+  # Entry and menu servers — always active
+  # NAMED arguments: do not rely on position (see header).
+  # --------------------------------------------------------
+  mod_entry_server(
+    id               = "entry",
+    screen           = screen,
+    dataset_selector = dataset_selector,
+    dataset_loaded   = dataset_loaded,
+    dataset_params   = dataset_params
+  )
   mod_menu_server("menu", screen, dataset_selector)
 
   # --------------------------------------------------------
@@ -107,8 +149,8 @@ server <- function(input, output, session) {
     advanced_initialised(TRUE)
 
     out <- mod_server("viz_advanced",
-                       reactive({ dataset_selector() }),
-                       dataset_params)
+                      reactive({ dataset_selector() }),
+                      dataset_params)
 
     viz_plot_server(
       id                            = "viz_advanced",

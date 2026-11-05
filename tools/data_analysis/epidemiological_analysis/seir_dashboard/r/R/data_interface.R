@@ -7,6 +7,14 @@
 # Ensures schema compatibility for SEIR models.
 # Author: Cristian Paez
 # Created: 2025-11-07
+# Updated: 2026-10 — Testing recommendation (round 1):
+#   * CSV_PARAM_RANGES added: ONE table of accepted ranges used
+#     both to validate an uploaded CSV and to show the "Range"
+#     column in the upload pop-up. The ranges match the limits of
+#     the Advanced View controls, so an uploaded value can no
+#     longer be silently clamped by a slider.
+#   * validate_user_csv() rejects values outside those ranges
+#     with a message naming the parameter and the accepted range.
 # ============================================================
 
 # --- Dependencies ---
@@ -20,6 +28,107 @@ CACHE_DIR <- file.path(DATA_DIR, "cache")
 if (!dir.exists(CACHE_DIR)) dir.create(CACHE_DIR, recursive = TRUE)
 
 # ============================================================
+# CSV_PARAM_RANGES
+# ------------------------------------------------------------
+# Accepted range (inclusive) for every parameter of the user
+# CSV, expressed in the units used IN THE CSV (rates and IFR as
+# proportions, not percentages). The limits of the epidemiological
+# and resource parameters are the ones of the Advanced View
+# sliders (see mod_ui.R); population follows the Simulation scope
+# control. The simulation always starts with 10,000 infectious
+# people, hence a population of at least 10,001.
+#
+# NOTE: these ranges are working limits, to be confirmed against
+# the case study / expert guidance (see Testing recommendation).
+# Changing a limit here changes validation and the pop-up table.
+# ============================================================
+CSV_PARAM_RANGES <- data.frame(
+  parameter = c("r0", "incubation_period", "infectious_period", "ifr",
+                "icu_capacity", "ventilator_availability",
+                "healthcare_staff", "icu_admission_rate",
+                "ventilator_usage_rate", "population"),
+  min       = c(0.5,  1,  1, 0.0001,
+                0,         0,
+                0,        0.001,
+                0.001,    10001),
+  max       = c(5,    14, 21, 0.05,
+                1000000,   1000000,
+                10000000, 0.30,
+                0.10,     10000000000),
+  stringsAsFactors = FALSE
+)
+
+# ------------------------------------------------------------
+# Function: format_csv_range()
+# Description:
+#   Human-readable range text for a parameter, e.g. "0.5 – 5".
+# ------------------------------------------------------------
+format_csv_range <- function(parameter) {
+  r <- CSV_PARAM_RANGES[CSV_PARAM_RANGES$parameter == parameter, ]
+  if (nrow(r) != 1L) return("")
+  fmt <- function(x) format(x, big.mark = ",", scientific = FALSE, trim = TRUE)
+  paste0(fmt(r$min), " – ", fmt(r$max))
+}
+
+# ------------------------------------------------------------
+# Function: resolve_calibrated_params()
+# Description:
+#   Defined here (R/) and not in R/utils/ because it needs the
+#   default constants of R/global.R, which R/utils/ cannot see.
+#   Turns the dataset_params() snapshot ($parametros, $recursos,
+#   $poblacion) into a flat named list expressed in the units
+#   the views use internally (IFR and the two rates as
+#   percentages in [0, 100]). Used by BOTH the Advanced and the
+#   Simple view so they can never disagree about units.
+#   When the snapshot has no calibrated parameters (mock
+#   dataset) the global defaults are returned, so loading the
+#   mock dataset after a CSV restores the defaults.
+# Parameters:
+#   dp – list with $parametros, $recursos, $poblacion (or NULL).
+# Returns:
+#   Named list: r0_value, incubation_period, infectious_period,
+#   ifr_value (%), icu_capacity, ventilator_availability,
+#   healthcare_staff, icu_admission_rate (%),
+#   ventilator_usage_rate (%), population.
+# ------------------------------------------------------------
+resolve_calibrated_params <- function(dp) {
+
+  population <- if (!is.null(dp) && !is.null(dp$poblacion)) {
+    dp$poblacion
+  } else {
+    POPULATION_ARGENTINA
+  }
+
+  if (is.null(dp) || is.null(dp$parametros)) {
+    return(list(
+      r0_value                = INITIAL_R0,
+      incubation_period       = INITIAL_INCUBATION_PERIOD,
+      infectious_period       = INITIAL_INFECTIOUS_PERIOD,
+      ifr_value               = INITIAL_IFR * 100,
+      icu_capacity            = INITIAL_ICU_CAPACITY,
+      ventilator_availability = INITIAL_VENTILATOR_AVAILABILITY,
+      healthcare_staff        = INITIAL_HEALTHCARE_STAFF,
+      icu_admission_rate      = INITIAL_ICU_RATE * 100,
+      ventilator_usage_rate   = INITIAL_VENTILATOR_RATE * 100,
+      population              = population
+    ))
+  }
+
+  list(
+    r0_value                = dp$parametros$R0,
+    incubation_period       = dp$parametros$incubation_period,
+    infectious_period       = dp$parametros$infectious_period,
+    ifr_value               = normalise_ifr_to_pct(dp$parametros$IFR),
+    icu_capacity            = dp$recursos$INITIAL_ICU_CAPACITY,
+    ventilator_availability = dp$recursos$INITIAL_VENTILATOR_AVAILABILITY,
+    healthcare_staff        = dp$recursos$INITIAL_HEALTHCARE_STAFF,
+    icu_admission_rate      = dp$recursos$INITIAL_ICU_RATE * 100,
+    ventilator_usage_rate   = dp$recursos$INITIAL_VENTILATOR_RATE * 100,
+    population              = population
+  )
+}
+
+# ============================================================
 # Function: build_dataset()
 # ------------------------------------------------------------
 # Description:
@@ -31,8 +140,8 @@ if (!dir.exists(CACHE_DIR)) dir.create(CACHE_DIR, recursive = TRUE)
 #
 #   Design note: dates are NOT stored in the dataset.
 #   Simulation dates are parameters of the run, controlled
-#   by the user via dateInput() in the Advanced View and
-#   initialised from global.R (START_DATE, END_DATE).
+#   by the user via dateInput() in the Advanced and Simple
+#   Views and initialised from global.R (START_DATE, END_DATE).
 #
 # Parameters:
 #   population – numeric; total population (N in the SEIR).
@@ -190,6 +299,10 @@ validate_schema <- function(data) {
 #     healthcare_staff, icu_admission_rate,
 #     ventilator_usage_rate, population
 #
+#   Every value must lie inside its range in CSV_PARAM_RANGES.
+#   Otherwise the upload is rejected with a message that lists
+#   each offending parameter and its accepted range.
+#
 # Parameters:
 #   path – character; path to the uploaded CSV file.
 # Returns:
@@ -216,14 +329,9 @@ validate_user_csv <- function(path) {
   }
 
   # Build named vector for easy lookup
-  params <- setNames(as.numeric(raw$value), raw$parameter)
+  params <- setNames(suppressWarnings(as.numeric(raw$value)), raw$parameter)
 
-  required_params <- c(
-    "r0", "incubation_period", "infectious_period", "ifr",
-    "icu_capacity", "ventilator_availability",
-    "healthcare_staff", "icu_admission_rate",
-    "ventilator_usage_rate", "population"
-  )
+  required_params <- CSV_PARAM_RANGES$parameter
 
   missing_params <- setdiff(required_params, names(params))
   if (length(missing_params) > 0) {
@@ -239,6 +347,27 @@ validate_user_csv <- function(path) {
       "Non-numeric or missing values in CSV for:",
       paste(na_params, collapse = ", ")
     ))
+  }
+
+  # --- Range check ---------------------------------------------
+  out_of_range <- character(0)
+  for (i in seq_len(nrow(CSV_PARAM_RANGES))) {
+    nm <- CSV_PARAM_RANGES$parameter[i]
+    v  <- params[[nm]]
+    if (!is.finite(v) || v < CSV_PARAM_RANGES$min[i] || v > CSV_PARAM_RANGES$max[i]) {
+      out_of_range <- c(out_of_range, sprintf(
+        "%s = %s (accepted range: %s)",
+        nm,
+        format(v, scientific = FALSE, trim = TRUE),
+        format_csv_range(nm)))
+    }
+  }
+  if (length(out_of_range) > 0) {
+    stop(paste0(
+      "Value(s) outside the accepted range — ",
+      paste(out_of_range, collapse = "; "),
+      ". Rates and the IFR are proportions (e.g. 0.01 for 1%)."
+    ), call. = FALSE)
   }
 
   log_message("INFO", "User CSV validated successfully",

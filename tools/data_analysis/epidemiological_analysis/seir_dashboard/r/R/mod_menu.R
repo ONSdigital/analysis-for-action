@@ -4,7 +4,7 @@
 # Description: Top navigation menu module. Renders an Analysis for
 #   Action–branded dark green navbar that persists across all non-entry views.
 #   Provides:
-#     - Brand name.
+#     - Brand name (and logo, when www/img/afa-logo-white.png exists).
 #     - Active dataset indicator (italic, muted).
 #     - Three view buttons: Home, Simple, Advanced.
 #   Simple and Advanced buttons use uiOutput so the server can
@@ -14,7 +14,27 @@
 # Created: 2025-11-07
 # Updated: 2026-03-19 — Simple View button enabled;
 #   dynamic active-state highlight added for both view buttons.
+# Updated: 2026-10 — Testing recommendation (round 1):
+#   Same navbar as the entry screen (class "afa-navbar" in
+#   custom.css: darker green, logo hook, larger title). The
+#   active view is marked with the AfA orange and aria-current.
+#   No text smaller than 0.875rem.
 # ============================================================
+
+
+# ------------------------------------------------------------
+# Function: nav_button_ui()
+# Description:
+#   One navigation button. The active one gets the orange
+#   accent (class "afa-nav-btn--active", styles in custom.css).
+# ------------------------------------------------------------
+nav_button_ui <- function(input_id, label, active = FALSE) {
+  actionButton(
+    input_id, label,
+    class = paste("afa-nav-btn", if (active) "afa-nav-btn--active"),
+    `aria-current` = if (active) "page" else NULL
+  )
+}
 
 
 # ------------------------------------------------------------
@@ -32,48 +52,27 @@ mod_menu_ui <- function(id) {
 
   tagList(
     tags$nav(
-      style = paste(
-        "background-color:#324027;",
-        "border-bottom:1px solid #1E2A16;",
-        "padding:0 1rem;",
-        "height:52px;",
-        "display:flex;",
-        "align-items:center;",
-        "justify-content:space-between;"
-      ),
+      class = "afa-navbar",
 
-      # Left: brand name
+      # Left: logo + brand name
       tags$span(
-        style = "font-size:14px; font-weight:500; color:#F4F6F5;",
-        "SEIR Dashboard"
+        class = "afa-navbar-brand",
+        afa_logo_ui(),
+        tags$span(class = "afa-navbar-title", "SEIR Dashboard")
       ),
 
       # Centre: active dataset indicator
       tags$span(
-        textOutput(ns("active_dataset"), inline = TRUE),
-        style = paste(
-          "font-size:11px;",
-          "color:rgba(244,246,245,0.55);",
-          "font-style:italic;"
-        )
+        class = "afa-navbar-meta",
+        textOutput(ns("active_dataset"), inline = TRUE)
       ),
 
       # Right: navigation buttons
       tags$div(
-        style = "display:flex; gap:6px; align-items:center;",
+        class = "afa-navbar-actions",
 
         # Home — static, no active-state needed
-        actionButton(
-          ns("btn_home"), "Home",
-          style = paste(
-            "font-size:11px;",
-            "padding:4px 12px;",
-            "border-radius:5px;",
-            "background:transparent;",
-            "border:0.5px solid rgba(244,246,245,0.3);",
-            "color:#F4F6F5;"
-          )
-        ),
+        actionButton(ns("btn_home"), "Home", class = "afa-nav-btn"),
 
         # Simple — dynamic active-state via uiOutput
         uiOutput(ns("btn_simple_ui"), inline = TRUE),
@@ -120,47 +119,17 @@ mod_menu_server <- function(id, screen, dataset_selector) {
     # --- End of reactive block ---
 
     # --------------------------------------------------------
-    # Dynamic Simple button
-    # Orange accent border when active, muted otherwise.
+    # Dynamic Simple / Advanced buttons
+    # Orange accent when active, muted otherwise.
     # --------------------------------------------------------
     output$btn_simple_ui <- renderUI({
-      is_active  <- isTRUE(screen() == "simple")
-      border_col <- if (is_active) "#F59342" else "rgba(244,246,245,0.3)"
-      text_col   <- if (is_active) "#F59342" else "#F4F6F5"
-
-      actionButton(
-        session$ns("btn_simple"), "Simple",
-        style = paste0(
-          "font-size:11px;",
-          "padding:4px 12px;",
-          "border-radius:5px;",
-          "background:transparent;",
-          "border:0.5px solid ", border_col, ";",
-          "color:", text_col, ";"
-        )
-      )
+      nav_button_ui(session$ns("btn_simple"), "Simple",
+                    active = isTRUE(screen() == "simple"))
     })
 
-    # --------------------------------------------------------
-    # Dynamic Advanced button
-    # Orange accent border when active, muted otherwise.
-    # --------------------------------------------------------
     output$btn_advanced_ui <- renderUI({
-      is_active  <- isTRUE(screen() == "advanced")
-      border_col <- if (is_active) "#F59342" else "rgba(244,246,245,0.3)"
-      text_col   <- if (is_active) "#F59342" else "#F4F6F5"
-
-      actionButton(
-        session$ns("btn_advanced"), "Advanced",
-        style = paste0(
-          "font-size:11px;",
-          "padding:4px 12px;",
-          "border-radius:5px;",
-          "background:transparent;",
-          "border:0.5px solid ", border_col, ";",
-          "color:", text_col, ";"
-        )
-      )
+      nav_button_ui(session$ns("btn_advanced"), "Advanced",
+                    active = isTRUE(screen() == "advanced"))
     })
 
     # --- Reactive block: Home button ---

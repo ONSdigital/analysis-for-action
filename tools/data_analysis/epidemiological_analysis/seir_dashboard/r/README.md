@@ -4,7 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-shinyapps.io-324027?style=flat-square)](https://cpaez.shinyapps.io/afa-dashboard-arg/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-[![R](https://img.shields.io/badge/R-%3E%3D%204.4-276DC3?style=flat-square)](https://www.r-project.org/)
+[![R](https://img.shields.io/badge/R-%3E%3D%204.3-276DC3?style=flat-square)](https://www.r-project.org/)
 
 ---
 
@@ -25,7 +25,7 @@ enabling interactive scenario exploration, resource planning, and educational us
 ## Features
 
 - **Interactive SEIR simulation** — adjust R₀, incubation period, infectious period, and IFR in real time
-- **Public policy modelling** — simulate four intervention strategies: no intervention, phased mitigation, intermittent, and ICU-triggered
+- **Public policy modelling** — simulate two intervention modes: no intervention, and static mitigation (a fixed reduction of the reproduction number, scaled by the compliance level)
 - **Healthcare resource pressure analysis** — compare simulated ICU and ventilator demand against configurable capacity thresholds
 - **Simplified View** — decision-maker interface with three KPI alarm cards (Epidemic Trajectory, ICU Pressure, Cumulative Impact) using a geometric colour-coded alarm system
 - **Advanced View** — full parameter control for technical users, including simulation scope (population, start date, end date)
@@ -150,6 +150,6 @@ rsconnect::deployApp(
 
 ---
 
-**Maintainer:** Cristian Paez  
-**Project:** Analysis for Action (Argentina Unit)  
-**Date:** June 2026
+**Maintainer:** Cristian Paez
+**Project:** Analysis for Action (Argentina Unit)
+**Date:** October 2026

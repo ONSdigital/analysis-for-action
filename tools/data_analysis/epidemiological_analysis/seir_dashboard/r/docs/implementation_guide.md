@@ -47,7 +47,7 @@ Source code is available at:
 
 ### 2.1 Development environment
 
-- R >= 4.4.0 (tested on R 4.4.0, 2024-04-24 ucrt)
+- R >= 4.3 (as declared in `DESCRIPTION`; tested on R 4.4.0, 2024-04-24 ucrt)
 - RStudio (recommended) or any R-compatible IDE
 - Git
 
@@ -82,7 +82,7 @@ install.packages(c(
 - Web server: shinyapps.io (current deployment) or self-hosted Shiny Server
 - No database management system is required. Datasets are stored as `.rds` files in the
   `data/` directory.
-  
+
 ---
 
 ## 3. Repository Structure
@@ -121,8 +121,15 @@ afa-dashboard-arg/
 ├── docs/
 │   └── implementation_guide.md  # This document
 │
+├── tests/
+│   └── manual/                  # Manual test suite (testthat); see section 4.5
+│       ├── run_tests.R
+│       └── test_cases.R
+│
 └── www/
-    └── custom.css               # Visual overrides — AfA brand palette
+    ├── custom.css               # Visual overrides — AfA brand palette
+    ├── fonts/                   # Open Sans (SIL Open Font Licence 1.1)
+    └── img/                     # AfA and Funded by Wellcome logos
 ```
 
 ---
@@ -165,6 +172,22 @@ The application will open in the default browser at `http://127.0.0.1:PORT`.
 
 ---
 
+### 4.5 Running the manual tests
+
+A manual test suite built with `testthat` is provided in `tests/manual/`. It covers IFR
+normalisation, CSV validation (including the accepted ranges), simulation input validation,
+the handling of missing indicator values, the policy modes, and the Simple and Advanced
+server modules. Run it from the project root in the R console:
+
+```r
+source("tests/manual/run_tests.R")
+```
+
+All tests should report "Test passed". The suite does not start the full application and
+does not replace an end-to-end check in the browser.
+
+---
+
 ## 5. Configuration
 
 All global constants are defined in `R/global.R`. Modifying this file is the single point
@@ -183,9 +206,9 @@ of change for default simulation parameters.
 
 | Constant | Default | Source | Description |
 |----------|---------|--------|-------------|
-| `INITIAL_ICU_RATE` | 0.136 | IECS | Proportion of infected requiring ICU |
+| `INITIAL_ICU_RATE` | 0.136 | Published research | Proportion of infected requiring ICU |
 | `INITIAL_VENTILATOR_RATE` | 0.02 | International studies | Proportion requiring ventilation |
-| `INITIAL_HOSPITAL_STAY_DAYS` | 10 days | IECS / CDC | Average hospital stay |
+| `INITIAL_HOSPITAL_STAY_DAYS` | 10 days | Published research / CDC | Average hospital stay |
 | `INITIAL_ICU_CAPACITY` | 6,000 | SATI | Available ICU beds |
 | `INITIAL_VENTILATOR_AVAILABILITY` | 2,000 | SATI | Available ventilators |
 | `INITIAL_HEALTHCARE_STAFF` | 10,000 | CONICET | Staff in critical care |
@@ -201,7 +224,9 @@ of change for default simulation parameters.
 > **Note on simulation dates:** `START_DATE` and `END_DATE` are computed at app startup,
 > not hardcoded. This ensures the default simulation window is always relative to the current
 > date. Users can override both dates via the `dateInput()` controls in the Advanced View
-> Simulation Scope panel. The `dateInput()` widget was chosen over separate numeric fields
+> Simulation Scope panel and in the Simple View Scenario parameters panel (the Simple View
+> requires a period of at least 14 days). Empty or invalid dates and populations are rejected
+> with a message by `validate_simulation_inputs()` instead of running the simulation. The `dateInput()` widget was chosen over separate numeric fields
 > because it renders a native calendar picker — the most intuitive interaction for non-technical
 > users (design decision documented in `mod_ui.R`).
 
@@ -263,14 +288,17 @@ When a dataset is loaded, `mod_entry_server()` populates a `dataset_params` reac
 reactive is passed to both `mod_server()` (Advanced View) and `mod_server_simple()`
 (Simplified View), which initialise their isolated parameter stores from the same snapshot.
 After initialisation, each view evolves independently — changes in one never affect the other.
+`mod_entry_server()` must be called with named arguments (see `app.R`); the parameters are
+converted to the units used by the views once, in `resolve_calibrated_params()`
+(`data_interface.R`).
 
 ### 6.3 Utility modules
 
 | Module | Responsibility |
 |--------|---------------|
 | `utils_logging.R` | Structured log lines with timestamp, level, and module context |
-| `utils_validation.R` | Parameter range checks and compartment consistency validation |
-| `utils_helpers.R` | `clamp()`, `percent_to_prop()`, `safe_ode()` and other numeric helpers |
+| `utils_validation.R` | Parameter range checks, compartment consistency validation and `validate_simulation_inputs()` (population and dates) |
+| `utils_helpers.R` | `clamp()`, `percent_to_prop()`, `normalise_ifr_to_pct()`, `safe_ode()` and other numeric helpers |
 | `utils_dependencies.R` | Automatic package detection, installation, and loading at startup |
 
 ---
@@ -308,8 +336,9 @@ Where:
 
 ### 7.3 Effective R₀ under policy
 
-When a public health intervention is active, the effective reproduction number is reduced
-proportionally to the compliance level:
+The dashboard implements two policy modes: "No intervention" and "Static mitigation". Under
+"No intervention" the reproduction number is not reduced. Under "Static mitigation" the effective
+reproduction number is reduced proportionally to the compliance level:
 
 ```
 R₀_eff = R₀ · (1 − 0.5 · c)
@@ -321,14 +350,22 @@ R₀ is reduced by 50%. The effective value is clamped to a minimum of 0.5.
 ### 7.4 Healthcare resource demand
 
 ```
-ICU_Daily_Demand_t    = I_t · r_ICU
-Vent_Daily_Demand_t   = I_t · r_vent
+ICU_Daily_Demand_t    = NewInfections_t · r_ICU
+Vent_Daily_Demand_t   = NewInfections_t · r_vent
 ICU_Occupancy_Sim_t   = Σ ICU_Daily_Demand_k  (k = t−h+1 to t)
 Vent_Usage_Sim_t      = Σ Vent_Daily_Demand_k (k = t−h+1 to t)
 ```
 
 Where `h = INITIAL_HOSPITAL_STAY_DAYS` (default: 10 days).
 
+> **Methodological note:** daily demand is derived from new infections (`Daily_New_Infections`,
+> that is `σ · E`), not from the infectious compartment `I`, so that each person is counted once,
+> at the point of infection. Using `I` would count the same person on every day they remain
+> infectious. Occupancy is the sum of daily demand over the length of stay `h`. The result depends
+> on `r_ICU` and `r_vent`, which each user supplies in the CSV (or sets with the controls), and on
+> `h`, a constant in `global.R` (`INITIAL_HOSPITAL_STAY_DAYS`). Set them to values appropriate to
+> the country or region being studied.
+>
 > **Approximation note:** ICU and ventilator occupancy are estimated using a rolling sum,
 > which is a computational simplification. A more precise model would use a queueing model
 > with individual-level data, which is not available at this stage.
@@ -361,14 +398,33 @@ ventilator_usage_rate,0.02
 population,18000000
 ```
 
-The CSV is validated by `validate_user_csv()` in `data_interface.R`, which checks column
-names, required parameter presence, and numeric validity. On success, the parameters are
+Rates and the IFR are proportions between 0 and 1, not percentages. The CSV is validated by
+`validate_user_csv()` in `data_interface.R`, which checks column names, required parameter
+presence, numeric validity and the accepted range of each parameter (defined once in
+`CSV_PARAM_RANGES`):
+
+| Parameter | Accepted range |
+|-----------|----------------|
+| `r0` | 0.5 to 5 |
+| `incubation_period` | 1 to 14 days |
+| `infectious_period` | 1 to 21 days |
+| `ifr` | 0.0001 to 0.05 |
+| `icu_capacity` | 0 to 1,000,000 |
+| `ventilator_availability` | 0 to 1,000,000 |
+| `healthcare_staff` | 0 to 10,000,000 |
+| `icu_admission_rate` | 0.001 to 0.30 |
+| `ventilator_usage_rate` | 0.001 to 0.10 |
+| `population` | 10,001 to 10,000,000,000 |
+
+These ranges are working limits and can be changed in `CSV_PARAM_RANGES`. A value outside its
+range is rejected with a message that names the parameter and the accepted range. On success, the parameters are
 applied to both views via `dataset_params`.
 
 **Design rationale:** The dataset is a parameter snapshot — a "photo" of the user's health
 system and epidemiological context. The platform uses it as the starting point for simulation.
 Users then adjust sliders to explore "what if" scenarios. Dates are not part of the dataset;
-they are simulation parameters controlled via the Simulation Scope panel.
+they are simulation parameters controlled via the Simulation Scope panel (Advanced View) and the
+Scenario parameters panel (Simple View).
 
 ## 9. Visual Design System
 
@@ -379,13 +435,16 @@ All chart styling is centralised in the `afa_theme()` function inside `mod_viz.R
 
 | Role | Name | Hex |
 |------|------|-----|
-| Primary / navbar | Dark green | `#324027` |
+| Navbar | Near black | `#1E2A16` |
+| Primary surface | Dark green | `#324027` |
 | Secondary surface | Earthy green | `#48553F` |
-| Accent (sparingly) | Orange | `#F59342` |
+| Accent on dark backgrounds (sparingly) | Orange | `#F59342` |
+| Accent on light backgrounds (chart lines) | Burnt orange | `#D17E38` |
 | Body text | Near black | `#1E2A16` |
 | Page background | Green grey tint | `#F4F6F5` |
 | Panel / input background | Earthy tint | `#F8F5F1` |
 | Border | Grey | `#D0D4CE` |
+| Typeface | Open Sans | `www/fonts/` |
 
 ### 9.2 Chart colours — SEIR compartments
 
@@ -403,6 +462,10 @@ All chart styling is centralised in the `afa_theme()` function inside `mod_viz.R
 | Controlled | Circle | AfA sea green | `#3EA27F` |
 | Warning | Triangle | AfA orange | `#F59342` |
 | Critical | Square | AfA dark red | `#752111` |
+| No data | Grey (state label only) | Dark grey | `#5F6B58` |
+
+The state labels use darker text colours (`#1E6B4F`, `#8A4B12`, `#752111`, `#5F6B58`) so that
+the text meets the WCAG AA contrast ratio on a white background.
 
 ---
 
@@ -438,7 +501,7 @@ LOG_LEVEL=WARN   # suppress DEBUG and INFO output in production
 
 | Limitation | Status |
 |------------|--------|
-| External data connectivity (WHO, OWID APIs) | Deferred — architecture documented in section 8.4 |
+| External data connectivity (WHO, OWID APIs) | Deferred — see the Technical Submission Note, section 6.3 |
 | Sociodemographic data layer | Out of scope — relevant fields should be included in user CSV |
 | ICU / ventilator occupancy uses rolling sum approximation | By design — queueing model requires individual-level data not available |
 | IFR applied as a global value | By design — age-stratified IFR is outside current ToR scope |

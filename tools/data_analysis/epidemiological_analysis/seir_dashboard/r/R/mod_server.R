@@ -10,20 +10,28 @@
 #
 # Notes (design decisions):
 #   - Internal contract: ifr_value is ALWAYS a percentage in [0, 100].
+#   - IFR from a calibrated dataset is converted EXACTLY ONCE, by
+#     resolve_calibrated_params() / normalise_ifr_to_pct() in
+#     utils_helpers.R. Nothing in this file multiplies it by 100.
 #   - Simulation trigger: trigger_sim is incremented ONLY on:
 #       * dataset change
 #       * explicit user action (Run Simulation)
 #       * user parameter edits (field-level events)
 #     This avoids reactive feedback loops.
+#   - Population and simulation dates are validated BEFORE they
+#     are stored (validate_simulation_inputs()). If any of them is
+#     empty or invalid the user sees an on-screen message and no
+#     simulation is run; the last valid values stay in force.
 #   - Resource parameters (ICU capacity, ventilators) affect the
 #     Resource Pressure plot directly via reactive values passed
 #     to viz_plot_server. They do not re-run the ODE solver.
-#   - Calibrated parameter sets (currently: user CSV) are applied
-#     via apply_calibrated_params(), shared with the dataset_params
-#     observer below.
+#   - Calibrated parameter sets (currently: user CSV) arrive via
+#     the dataset_params reactive created in app.R. Loading the
+#     mock dataset restores the global defaults.
 #
 # Author: Cristian Paez
 # Created: 2025-11-07
+# Updated: 2026-10 — Testing recommendation (round 1).
 # ============================================================
 
 mod_server <- function(id, dataset_selector,
@@ -34,44 +42,42 @@ mod_server <- function(id, dataset_selector,
     # Local helpers
     # --------------------------------------------------------
 
-    # Convert IFR to a percentage in [0, 100] with strict rules.
-    # - If IFR <= 1  : treat as proportion and convert to percent.
-    # - If IFR <= 100: treat as percent already.
-    # - Otherwise    : fail explicitly (wrong scale).
-    # Used by apply_calibrated_params() for any calibrated dataset
-    # source (currently: user-uploaded CSV).
-    normalise_ifr_to_pct <- function(ifr_raw) {
-      if (!is.numeric(ifr_raw) || length(ifr_raw) != 1 || is.na(ifr_raw)) {
-        stop("Calibrated dataset invalid: IFR must be a non-NA scalar numeric value.")
-      }
-      if (ifr_raw <= 1)   return(ifr_raw * 100)
-      if (ifr_raw <= 100) return(ifr_raw)
-      stop(sprintf(
-        "Calibrated dataset invalid: IFR out of scale (value=%s). Expected proportion (<=1) or percent (<=100).",
-        as.character(ifr_raw)
-      ))
-    }
-
-    # Apply a full parameter refresh from a calibrated dataset
-    # (currently: user-uploaded CSV) into app_params. The input
-    # follows the canonical $parametros / $recursos / $poblacion
-    # structure produced by validate_user_csv() in data_interface.R.
-    # isolate() is used to avoid intermediate reactive states.
-    apply_calibrated_params <- function(calibrated_data, app_params) {
-      ifr_pct <- normalise_ifr_to_pct(calibrated_data$parametros$IFR)
+    # Copy a flat list of parameter values (as returned by
+    # resolve_calibrated_params()) into app_params and push the
+    # same values to the Advanced View controls.
+    # isolate() avoids intermediate reactive states. The control
+    # updates are sent once the current flush has completed, so
+    # they are never lost when the Advanced View UI has only just
+    # been rendered.
+    apply_param_values <- function(vals, app_params) {
       isolate({
-        app_params$r0_value           <- calibrated_data$parametros$R0
-        app_params$incubation_period  <- calibrated_data$parametros$incubation_period
-        app_params$infectious_period  <- calibrated_data$parametros$infectious_period
-        app_params$ifr_value          <- ifr_pct
-        app_params$icu_capacity       <- calibrated_data$recursos$INITIAL_ICU_CAPACITY
-        app_params$ventilator_availability <- calibrated_data$recursos$INITIAL_VENTILATOR_AVAILABILITY
-        app_params$healthcare_staff   <- calibrated_data$recursos$INITIAL_HEALTHCARE_STAFF
-        # Rates stored as percentages for UI + validation consistency
-        app_params$icu_admission_rate    <- calibrated_data$recursos$INITIAL_ICU_RATE * 100
-        app_params$ventilator_usage_rate <- calibrated_data$recursos$INITIAL_VENTILATOR_RATE * 100
-        app_params$population            <- calibrated_data$poblacion
+        for (nm in names(vals)) app_params[[nm]] <- vals[[nm]]
       })
+
+      session$onFlushed(function() {
+        updateSliderInput(session, "r0_value",
+                          value = vals$r0_value)
+        updateSliderInput(session, "incubation_period",
+                          value = vals$incubation_period)
+        updateSliderInput(session, "infectious_period",
+                          value = vals$infectious_period)
+        updateSliderInput(session, "ifr_value",
+                          value = vals$ifr_value)
+        updateNumericInput(session, "icu_capacity",
+                           value = vals$icu_capacity)
+        updateNumericInput(session, "ventilator_availability",
+                           value = vals$ventilator_availability)
+        updateNumericInput(session, "healthcare_staff",
+                           value = vals$healthcare_staff)
+        updateSliderInput(session, "icu_admission_rate",
+                          value = vals$icu_admission_rate)
+        updateSliderInput(session, "ventilator_usage_rate",
+                          value = vals$ventilator_usage_rate)
+        if (!is.null(vals$population)) {
+          updateNumericInput(session, "population",
+                             value = vals$population)
+        }
+      }, once = TRUE)
     }
 
     # --------------------------------------------------------
@@ -115,9 +121,9 @@ mod_server <- function(id, dataset_selector,
       req(dataset_selector())
 
       if (dataset_selector() == "csv") {
-        # CSV: parameters already applied to app_params via
-        # dataset_params reactive in app.R. Advanced View sliders
-        # are updated here from the same parameter set.
+        # CSV: parameters are applied to app_params and to the
+        # Advanced View controls by the dataset_params observer
+        # below.
         log_message("INFO", "CSV dataset selected — parameters applied via dataset_params",
                     .module = "SERVER")
 
@@ -129,42 +135,31 @@ mod_server <- function(id, dataset_selector,
     }, ignoreInit = FALSE)
 
     # --------------------------------------------------------
-    # Dataset params observer — applies calibrated parameters
-    # from a calibrated dataset source (currently: user-uploaded
-    # CSV) to app_params and updates all Advanced View sliders
-    # via updateSliderInput(). Fires when dataset_params changes
-    # — i.e. when a calibrated dataset is loaded. Ignored for
-    # mock (NULL).
+    # Dataset params observer — applies the parameters of the
+    # loaded dataset to app_params and to every Advanced View
+    # control. Fires when dataset_params changes, i.e. each time
+    # a dataset is loaded:
+    #   - user CSV : calibrated values are applied;
+    #   - mock     : the global defaults are restored.
     # --------------------------------------------------------
     observeEvent(dataset_params(), {
       dp <- dataset_params()
-      req(!is.null(dp), !is.null(dp$parametros))
+      req(!is.null(dp))
 
-      apply_calibrated_params(dp, app_params)
+      vals <- tryCatch(
+        resolve_calibrated_params(dp),
+        error = function(e) {
+          log_message("ERROR", paste("Dataset parameters rejected:", conditionMessage(e)),
+                      .module = "SERVER")
+          showNotification(conditionMessage(e), type = "error",
+                           duration = 10, session = session)
+          NULL
+        }
+      )
+      req(!is.null(vals))
 
-      # Update UI sliders to reflect loaded parameters
-      updateSliderInput(session, "r0_value",
-                        value = dp$parametros$R0)
-      updateSliderInput(session, "incubation_period",
-                        value = dp$parametros$incubation_period)
-      updateSliderInput(session, "infectious_period",
-                        value = dp$parametros$infectious_period)
-      updateSliderInput(session, "ifr_value",
-                        value = dp$parametros$IFR * 100)
-      updateNumericInput(session, "icu_capacity",
-                         value = dp$recursos$INITIAL_ICU_CAPACITY)
-      updateNumericInput(session, "ventilator_availability",
-                         value = dp$recursos$INITIAL_VENTILATOR_AVAILABILITY)
-      updateNumericInput(session, "healthcare_staff",
-                         value = dp$recursos$INITIAL_HEALTHCARE_STAFF)
-      updateSliderInput(session, "icu_admission_rate",
-                        value = dp$recursos$INITIAL_ICU_RATE * 100)
-      updateSliderInput(session, "ventilator_usage_rate",
-                        value = dp$recursos$INITIAL_VENTILATOR_RATE * 100)
-      if (!is.null(dp$poblacion)) {
-        updateNumericInput(session, "population",
-                           value = dp$poblacion)
-      }
+      apply_param_values(vals, app_params)
+      app_params$trigger_sim <- app_params$trigger_sim + 1L
 
       log_message("INFO",
                   "Advanced View updated from dataset parameters",
@@ -193,11 +188,17 @@ mod_server <- function(id, dataset_selector,
     }, ignoreInit = TRUE)
 
     observeEvent(input$ifr_value, {
-      if (!is.null(input$ifr_value) && is.numeric(input$ifr_value)) {
-        if (input$ifr_value < 0 || input$ifr_value > 100) {
-          stop("'ifr_value' must be within range [0, 100]")
-        }
+      # Invalid values are reported, never raised as an error —
+      # an error inside an observer would end the session.
+      if (!is_valid_number(input$ifr_value) ||
+          input$ifr_value < 0 || input$ifr_value > 100) {
+        showNotification(
+          "Infection fatality rate must be a number between 0 and 100 (%). The simulation was not updated.",
+          type = "error", duration = 8,
+          id = session$ns("ifr_error"), session = session)
+        return()
       }
+      removeNotification(session$ns("ifr_error"), session = session)
       app_params$ifr_value <- input$ifr_value
       app_params$trigger_sim <- app_params$trigger_sim + 1L
     }, ignoreInit = TRUE)
@@ -257,37 +258,69 @@ mod_server <- function(id, dataset_selector,
     }, ignoreInit = TRUE)
 
     # --------------------------------------------------------
-    # Parameter observers — Simulation date range and population
+    # Parameter observers — Simulation scope
+    # (total population and simulation date range)
+    #
+    # One observer handles the three fields together because
+    # they must be valid AS A SET (e.g. end date after start
+    # date). ignoreNULL = FALSE is essential: when the user
+    # clears a field the input becomes NULL / NA and the change
+    # must still be inspected so the user is told what is wrong.
+    #
+    # While any field is empty or invalid:
+    #   - an error message stays on screen;
+    #   - app_params is NOT modified and NO simulation runs;
+    #   - the last valid results remain displayed.
     # --------------------------------------------------------
+    observeEvent(
+      list(input$population, input$start_date, input$end_date),
+      {
+        problems <- validate_simulation_inputs(
+          population = input$population,
+          start_date = input$start_date,
+          end_date   = input$end_date
+        )
 
-    observeEvent(input$start_date, {
-      app_params$start_date <- input$start_date
-      app_params$trigger_sim <- app_params$trigger_sim + 1L
-    }, ignoreInit = TRUE)
+        if (length(problems) > 0) {
+          log_message("WARN", paste("Simulation scope rejected:",
+                                    paste(problems, collapse = " | ")),
+                      .module = "SERVER")
+          showNotification(
+            tagList(
+              tags$strong("The simulation was not updated."),
+              tags$ul(lapply(problems, tags$li))
+            ),
+            type     = "error",
+            duration = NULL,   # stays until the inputs are fixed
+            id       = session$ns("scope_error"),
+            session  = session
+          )
+          return()
+        }
 
-    observeEvent(input$end_date, {
-      app_params$end_date <- input$end_date
-      app_params$trigger_sim <- app_params$trigger_sim + 1L
-    }, ignoreInit = TRUE)
+        removeNotification(session$ns("scope_error"), session = session)
 
-    observeEvent(input$population, {
-      app_params$population <- input$population
-      app_params$trigger_sim <- app_params$trigger_sim + 1L
-    }, ignoreInit = TRUE)
+        app_params$population  <- input$population
+        app_params$start_date  <- input$start_date
+        app_params$end_date    <- input$end_date
+        app_params$trigger_sim <- app_params$trigger_sim + 1L
+      },
+      ignoreInit = TRUE,
+      ignoreNULL = FALSE
+    )
 
     # --------------------------------------------------------
     # Policy description: dynamic text below the selector
     # Explains to the user what each policy does in the model.
     # --------------------------------------------------------
     output$policy_description <- renderUI({
+      req(input$policy_type)
       desc <- switch(input$policy_type,
-        "no_intervention"   = "No measures applied. R\u2080 remains at its base value.",
-        "phased_mitigation" = "Gradual restrictions reduce R\u2080 proportional to compliance.",
-        "intermittent"      = "On/off interventions applied based on compliance level.",
-        "icu_triggered"     = "Restrictions activate when ICU demand exceeds capacity.",
+        "no_intervention"   = "No measures applied. R₀ remains at its base value.",
+        "static_mitigation" = "A constant reduction of R₀ for the whole simulation, proportional to compliance (up to 50% at full compliance).",
         ""
       )
-      tags$small(style = "color:#48553F; font-style:italic;", desc)
+      tags$small(class = "afa-help-text", desc)
     })
 
     # --------------------------------------------------------
