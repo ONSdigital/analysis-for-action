@@ -229,7 +229,7 @@ P0227,51,Male,White,North West,Employed,Fair,1 dose,0,32
 P0228,57,Male,White,East of England,Employed,Good,1 dose,0,37
 P0229,68,Female,"Black, Black British, Caribbean or African",North West,Retired,Good,1 dose,0,0
 P0230,77,Male,White,London,Retired,NA,3+ doses,2,0
-P0231,69,Male,Mixed or multiple ethnic groups,South East,Retired,Good,2 doses,0,0
+P0231,69,Male,Mixed or multiple ethnic groups,South East,Retired,Good,2 doses,5,0
 P0232,18,Female,White,North West,Employed,Very good,0 doses,0,38
 P0233,58,Male,White,West Midlands,Retired,Good,3+ doses,0,0
 P0234,25,Male,White,West Midlands,Employed,Very good,1 dose,0,31
@@ -419,7 +419,7 @@ P0417,32,Male,White,East of England,Economically inactive,NA,2 doses,0,0
 P0418,46,Male,White,West Midlands,Student,Good,1 dose,0,0
 P0419,23,Female,White,London,Employed,Very good,0 doses,0,NA
 P0420,59,Female,White,East of England,Retired,Good,2 doses,0,0
-P0421,72,Male,White,West Midlands,Employed,Fair,2 doses,1,35
+P0421,72,Female,White,West Midlands,Employed,Fair,2 doses,1,35
 P0422,35,Male,White,East of England,Employed,Good,1 dose,0,26
 P0423,21,Female,White,Yorkshire and The Humber,Unemployed,Very good,1 dose,0,0
 P0424,80,Male,White,West Midlands,Retired,NA,3+ doses,0,0
@@ -469,7 +469,7 @@ P0467,34,Male,Asian or Asian British,West Midlands,Employed,Good,0 doses,0,20
 P0468,52,Male,White,West Midlands,Employed,Very good,2 doses,0,35
 P0469,61,Female,White,East Midlands,Unemployed,Fair,3+ doses,0,0
 P0470,60,Male,White,North West,Employed,Good,1 dose,0,0
-P0471,66,Male,White,North East,Retired,Very bad,3+ doses,0,0
+P0471,66,Male,White,North East,Retired,Very bad,3+ doses,5,0
 P0472,80,Male,Other ethnic group,London,Retired,Very bad,3+ doses,0,0
 P0473,30,Male,White,East of England,Employed,Very good,2 doses,0,24
 P0474,62,Male,White,East Midlands,Employed,Fair,3+ doses,0,37
@@ -679,7 +679,7 @@ P0677,42,Male,White,South West,Unemployed,NA,3+ doses,0,0
 P0678,80,Female,White,North West,Retired,Bad,3+ doses,4,0
 P0679,NA,Female,Other ethnic group,London,Employed,Very good,1 dose,0,0
 P0680,80,Male,Mixed or multiple ethnic groups,South West,Retired,Fair,3+ doses,4,0
-P0681,55,Female,Asian or Asian British,North West,Employed,Fair,0 doses,3,32
+P0681,55,Female,Asian or Asian British,North West,Employed,NA,0 doses,3,32
 P0682,18,Female,White,London,Student,Very good,0 doses,0,0
 P0683,NA,Female,White,West Midlands,Retired,Good,3+ doses,1,0
 P0684,42,Male,Asian or Asian British,West Midlands,Employed,Good,1 dose,1,36
@@ -699,7 +699,7 @@ P0697,20,Male,White,South East,Student,Very good,0 doses,2,0
 P0698,45,Female,White,London,Employed,Good,1 dose,0,27
 P0699,54,Female,White,North West,Employed,Very good,3+ doses,0,NA
 P0700,29,Female,White,Yorkshire and The Humber,Employed,Very good,0 doses,0,37
-P0701,63,Male,White,London,Employed,Good,3+ doses,0,43
+P0701,63,Male,White,London,Employed,Good,NA,0,43
 P0702,66,Female,Other ethnic group,South East,Retired,Good,2 doses,0,0
 P0703,60,Male,White,North East,Economically inactive,Fair,2 doses,2,0
 P0704,18,Male,Mixed or multiple ethnic groups,North West,Student,Very good,1 dose,0,0
@@ -739,7 +739,7 @@ P0737,25,Female,"Black, Black British, Caribbean or African",Yorkshire and The H
 P0738,62,Male,White,South West,Employed,Good,NA,0,0
 P0739,80,Female,White,South West,Retired,Good,NA,0,0
 P0740,69,Female,Other ethnic group,South East,Retired,Very good,NA,0,0
-P0741,70,Male,White,East of England,Retired,NA,NA,0,0
+P0741,78,Male,White,North West,Retired,Good,3+ doses,0,0
 P0742,29,Male,White,North West,Unemployed,Very good,1 dose,0,0
 P0743,62,Male,Mixed or multiple ethnic groups,South East,Employed,Fair,2 doses,0,0
 P0744,26,Female,White,London,Employed,Very good,0 doses,0,33

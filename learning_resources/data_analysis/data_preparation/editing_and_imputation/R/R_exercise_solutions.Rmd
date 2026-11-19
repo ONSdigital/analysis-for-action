@@ -1,5 +1,5 @@
 ---
-title: "R_exercise_answers"
+title: "R_exercise_solutions"
 output: html_document
 date: "2026-10-28"
 ---
@@ -13,7 +13,7 @@ The following code relates to the exercises within the Preparation_and_editing_c
 If you encounter any issues running the code snippets, consider the following
 troubleshooting steps:
 - Ensure you have followed the setup instructions in the
-[README.md](../../../README.md) file including `install.packages()` for
+[README.md](../README.md) file including `install.packages()` for
 required packages.
 - Run code from top to bottom to ensure all dependencies are met.
 - Restart your R session and clear all outputs.
@@ -51,30 +51,33 @@ clean_survey_data <- read_csv(here::here("Data","cleaned_data.csv"))
 # Preparing and editing code
 ## Automatic editing exercise
 
-1. Set a restriction on the days_unable_28d column in survey_data, where the column should have non-negative values and less than and equal to 28.
+1. Set a restriction on the days_unable_28d column in survey_data_unique, where the column should have non-negative values and less than and equal to 28.
 
-2. Using survey_data, check if the rules have been violated and assign it to variable violate.
+2. Using survey_data_unique, check if the rules have been violated and assign it to variable violate.
 
 3. Convert violate to a dataframe using data.frame() function.
 
 4. Filter the rows where either of the edit rules have been violated.
 
-5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_28d is greater than 100, divide it by 10).
+5. Do the correction using the deducorrect package (Hint: the correction will be that wherever the days_unable_28d is greater than 28, divide it by 10).
+
 
 ```{r}
 
+# First run the code in preparation_and_editing_code.Rmd to get the survey_data_unique dataset.
+
 # Set the rule where days_unable_28d should be non-negative and less than and equal to 28
 
-E <- editrules::editset(c("days_unable_28d >=0", "days_unable_28d <= 28"))
+days_unable_edit_rule <- editrules::editset(c("days_unable_28d >=0", "days_unable_28d <= 28"))
 
 # Display the results
 
-E
+days_unable_edit_rule
 
 
 # Check if the rules are violated 
 
-violate <- editrules::violatedEdits(E, dat = survey_data)
+violate <- editrules::violatedEdits(days_unable_edit_rule, dat = survey_data_unique)
 
 # Display first 6 rows
 
@@ -88,13 +91,13 @@ violate_data <- data.frame(violate)
 # Filter the rows where either of the edit rules have been violated
 # Once you create a data frame you can see the column names by using $ sign
 
-violate_data %>% 
+violate_data |> 
 dplyr::filter(num1 == TRUE | num2 == TRUE)
 ```
 ```{r}
 # select records 145 and 376 record from the survey_data and the days_unable_28d column
 
-survey_data[c(145,376),9]
+survey_data_unique[c(145,376),9]
 ```
 ```{r}
 # Specify the rule and the correction 
@@ -107,7 +110,7 @@ corr_rules <- deducorrect::correctionRules(expression(if(days_unable_28d > 28) {
 
 # Apply simple replacement rules to a data.frame.
 
-corr <- deducorrect::correctWithRules(rules = corr_rules, dat = survey_data)
+corr <- deducorrect::correctWithRules(rules = corr_rules, dat = survey_data_unique)
 
 # list of alterations
 
@@ -125,9 +128,9 @@ corr$corrections
 
 3. Look at the difference in the standard deviation of the hours_worked_away_7d column in imputed data and original data.
 
-4. Impute the missing values for `hours_worked_away_7d` using mean imputation. 
 
 ```{r}
+set.seed(1)
 
 # Create a flag before imputation
 hours_worked_away_7d_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_7d), TRUE, FALSE)
@@ -136,10 +139,10 @@ hours_worked_away_7d_flag <- ifelse(is.na(clean_survey_data$hours_worked_away_7d
 mean_impute <- mice(clean_survey_data, method = 'mean', m = 1, maxit = 1)
 
 # Store imputed data using complete() function
-mean__data <- mice::complete(mean_impute) 
+mean_data_solution <- mice::complete(mean_impute) 
 
 # Add the imputation flags
-mean__data$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
+mean_data_solution$hours_worked_away_7d_flag <- hours_worked_away_7d_flag
 
 
 # Standard deviation of hours_worked_away_7d for original data 
@@ -148,8 +151,9 @@ sd(clean_survey_data$hours_worked_away_7d, na.rm = TRUE)
 
 # Standard deviation of hours_worked_away_7d for imputed data 
 
-sd(mean_data$hours_worked_away_7d, na.rm = TRUE)
+sd(mean_data_solution$hours_worked_away_7d, na.rm = TRUE)
 ```
+
 The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.53 (2dp). This is expected since mean imputation reduces the variance of the imputed variables because the imputation method adds more observations which are the mean - and so this reduces the average deviation from the mean for the data.
 
 
@@ -158,6 +162,8 @@ The value for the imputed data, 17.08 (2dp) is lower than the original data, 17.
 1. Carry out random hot deck imputation to impute the missing value in the general_health variable for the fifth person in the shorter data using the matching variable sex. Remember shorter data contains the first 10 observations from the clean_survey_data set.
 
 ```{r}
+set.seed(1)
+
 # Create a shorter data with 10 rows and all columns
 
 shorter_data <- clean_survey_data[1:10,]
@@ -195,16 +201,16 @@ shorter_data <- shorter_data |>
 ```{r}
 
 # Using hotdeck function in VIM package to carry out random hot deck imputation on general_health
-# Sex as domain variable
+# age_group as domain variable and employment_status as order variable
 VIM::hotdeck(data = shorter_data, variable = "general_health", 
              domain_var = "age_group",
              ord_var = "employment_status")
 ```
 
 ```{r}
-# Arranging ethnic_group column in ascending order 
+# Arranging employment_status column in ascending order 
 
-shorter_data %>% 
+shorter_data |> 
   dplyr::arrange(employment_status)
 ```
 
@@ -212,9 +218,10 @@ Therefore, the donor is P0002 and the imputed value is "Good".
 
 ## KNN Exercise 
 
-1. Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Then use the 5 closest donors for kNN, and use days_unable_28d, sex and employment_status as distance variables.
+1. Impute the missing value in the hours_worked_away_7d variable for the fifth person using K-Nearest Neighbours. Because all of the missing hours_worked_away_7d values in the dataset are among employed people, restrict the donor pool first to employed respondents only. Then use the 5 closest donors for kNN, and use days_unable_28d and sex as distance variables.
 
 ```{r}
+set.seed(1)
 
 # Select employed respondents only
 employed_data <- clean_survey_data |>
@@ -224,13 +231,13 @@ employed_data <- clean_survey_data |>
 # k is the number of nearest neighbour donors used
 
 knn_imputation_cont <- VIM::kNN(data = employed_data, variable = "hours_worked_away_7d", k = 5,
-                                dist_var = c("days_unable_28d", "sex", "employment_status"))
+                                dist_var = c("days_unable_28d", "sex"))
 
 
 # Display results
 
-knn_imputation_cont %>% 
-   dplyr::select("hours_worked_away_7d", everything()) %>%  
+knn_imputation_cont |> 
+   dplyr::select("hours_worked_away_7d", everything()) |> 
    head()
 
 ```

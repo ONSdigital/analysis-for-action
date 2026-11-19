@@ -16,12 +16,10 @@ This course does not cover the theory of any of the methods specified. The theor
 If you encounter any issues running the code snippets, consider the following
 troubleshooting steps:
 - Ensure you have followed the setup instructions in the
-[README.md](../../../README.md) file including `install.packages()` for
+[README.md](../README.md) file including `install.packages()` for
 required packages.
 - Run code from top to bottom to ensure all dependencies are met.
 - Restart your R session and clear all outputs.
-- For more detailed troubleshooting guidance, refer to the
-[troubleshooting document]([PLACEHOLDER]).
 
 # Packages and data
 
@@ -63,6 +61,9 @@ MICE assumes that the missing data are Missing at Random (MAR), which means that
 It imputes data on a variable by variable basis by specifying an imputation model per variable.
 
 ```{r}
+# Set seed to ensure same results
+set.seed(1)
+
 # Create a flag before imputation
 age_imputed <- ifelse(is.na(clean_survey_data$age), TRUE, FALSE)
 
@@ -119,7 +120,6 @@ Comparing the original and imputed data shows that the median age is lower in th
 
 3. Look at the difference in the standard deviation of the hours_worked_away_7d column in imputed data and original data.
 
-4. Impute the missing values for `hours_worked_away_7d` using mean imputation. 
 
 Solutions for the exercises can be found in R_exercise_solutions.Rmd.
 
@@ -134,7 +134,7 @@ Stochastic: it is an improvement to the previous method by aiming to preserve th
 
 In this section, regression imputation will be performed on the hours_worked_away_7d. As all the missing record are for employed individuals, the code will first filter by employment status. The aim for this regression is to impute for genuine item non-response among people that the question applies to, rather than trying to impute working hours for someone who does not work.
 
-## Determinstic imputation
+## Deterministic imputation
 
 Before carrying out imputation, check that variables have been assigned an appropriate data type. For example, categorical variables that you want to used in the model, such as sex and region, should be stored as factors in R. While numerical variables such as age and number of days should be stored as numeric or integer variables. The variable type can affect how an imputation method treats the data.
 
@@ -204,6 +204,8 @@ However, mice may remove some predictors if they are not suitable for the imputa
 Similar code can be used for stochastic regression imputation. You only have to change the method from method = "norm.predict" to method = "norm.nob" as shown below:
 
 ```{r}
+# Set seed to ensure same results
+set.seed(1)
 
 # Stochastic regression imputation
 # method used is "norm.nob"
@@ -277,7 +279,7 @@ This section will focus on using donor-based imputation, where missing values fo
 
 ## Random hot deck
 
-In random hot deck imputation, imputation classes (also known as donor pools or adjustment cells) are formed based on matching variables. For each recipient unit `i` in a given imputation class, the potential donors are units within that same class but with the target variable `y` observed. Of these potential donors, one is selected at random typically through equal-probability sampling and used to impute the recipient. To conduct the hot deck imputation, the code below will use a small part of the `clean_survey_data`, using only 10 rows in order to make the section easier to understand. Later, the full data set will be used when covering hierarchical hot deck imputation.
+In random hot deck imputation, imputation classes (also known as donor pools or adjustment cells) are formed based on matching variables. For each recipient unit `i` in a given imputation class, the potential donors are units within that same class but with the target variable `y` observed. Of these potential donors, one is selected at random typically through equal-probability sampling and used to impute the recipient. To conduct the hot deck imputation, the code below will use a small part of the `clean_survey_data`, using only 10 rows in order to make the section easier to understand.
 
 ```{r}
 # Create a shorter data with 10 rows and all columns
@@ -309,6 +311,8 @@ shorter_data <- shorter_data |>
     )
   )
 
+# Set seed to ensure same results
+set.seed(1)
 
 # Using hotdeck function in VIM package to carry out random hot deck imputation
 # variable equal to the variable you want to impute
@@ -339,6 +343,8 @@ In other words, the recipient is imputed using a donor that has the last unit y 
 
 
 ```{r}
+set.seed(1)
+
 # Using hotdeck function in VIM package to carry out sequential hot deck imputation
 # variable is the column that you want to impute
 # domain_var is the matching variable
@@ -372,13 +378,16 @@ Nearest neighbour donor imputation removes the restriction that the donor and th
 An extension of this concept is k-nearest neighbours imputation which is based on a variation of the Gower Distance for numerical, categorical, ordered and semi-continuous variables. To compute the Gower distance between two items you compare each element and compute a term. If the element is numeric, the term is the absolute value of the difference divided by the range. If the element is non-numeric the term is 1 if the elements are different or the term is 0 if the elements are the same. The Gower distance is the average of the terms. Each individual term will be between 0.0 and 1.0 inclusive, therefore the Gower distance will always be between 0.0 and 1.0 where a distance of 0.0 means the two items are the same and a distance of 1.0 means the two items are as far apart as possible, relative to the source data set.
 
 ```{r}
+# Set seed to ensure same results
+set.seed(1)
+
 # Using KNN function in VIM package 
 # k is the number of nearest neighbour donors used (k = 1 is Nearest Neighbour imputation)
 # dist_var takes the variables to be used for distance calculation
-# Here, variables have been chosen randomly but in a real method you would choose variables based upon relationships within your dataset
+# For this example, the distance variables have been selected for demonstration purposes. In practice, the choice should be informed by relationships within the data, selecting variables that are relevant to the variable being imputed.
 
-knn_imputation <- VIM::kNN(data = clean_survey_data, variable = "general_health", k = 4 ,  
-                          dist_var = c("sex","employment_status", "days_unable_28d"))
+knn_imputation <- VIM::kNN(data = clean_survey_data, variable = "general_health", k = 4,
+                           dist_var = c("sex","employment_status", "days_unable_28d"))
 
 # Display results
 
@@ -451,7 +460,7 @@ Now this function can be used to find the mean for variables in the dataset.
 
 ```{r}
 
-# Use the function to find the mean for age and days_unable_28d
+# Use the function to find the mean for age and hours_worked_away_7d
 
 mean_data_custom <- mean_impute(clean_survey_data, c("age", "hours_worked_away_7d"))
 
@@ -673,7 +682,6 @@ knn_employed_impute <- knn_impute(
     "hours_worked_away_7d"
   ),
   distance_variables = c(
-    "employment_status",
     "age",
     "sex"
   ),
