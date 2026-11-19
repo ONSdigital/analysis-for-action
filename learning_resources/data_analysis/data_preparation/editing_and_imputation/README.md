@@ -11,9 +11,9 @@ The folder contains the following key components:
 
 ```text
 ├── Data/
-│   ├── Unclean_dataset.csv
-│   ├── Cleaned_dataset.csv
-│   └── Data_dictionary.csv
+│   ├── unclean_data.csv
+│   ├── cleaned_data.csv
+│   └── data_dictionary.csv
 │
 ├── R/
 │   ├── Preparation_and_editing_code.Rmd
@@ -30,7 +30,7 @@ The folder contains the following key components:
 The following packages should be installed for the Rmd code:
 
 * `tidyverse`
-* `ditrules`
+* `editrules`
 * `deducorrect`
 * `VIM`
 * `mice`
