@@ -381,7 +381,7 @@ Stress testing evaluates the pipeline’s resilience under extreme or unexpected
 By simulating challenging scenarios, stress testing helps identify performance issues and ensures the pipeline can maintain integrity and produce reliable outputs even under pressure. Stress testing involves introducing variations or noise into the input data and observing how this affects the pipeline’s outputs, to ensure it can handle real-world challenges.
 
 ## Reduce repetition in test code (fixtures and parameterised tests)
-Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is [modular and reusable.
+Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is modular and reusable.
 
 ### Use fixtures to reduce repetition in test set up
 

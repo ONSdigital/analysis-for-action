@@ -5,9 +5,9 @@ author: ""
 # logo: "enter_logo"
 
 repository:
-  url: https://github.com/ONSdigital/ons-ppt/tree/QA_for_RAP/themes/data_analysis/RAP/QA_for_RAP/
-  path_to_book: book
-  # branch: main
+  url: https://github.com/ONSdigital/analysis-for-action
+  branch: main
+  path_to_book: learning_resources/data_analysis/reproducible_analytical_pipelines/quality_assurance_for_rap/book
 
 html:
   home_page_in_navbar: false
