@@ -28,7 +28,7 @@ The cost of their easy to use interface and flexibility is increased difficulty 
 Do not use spreadsheets for storage of data (or statistics production and modelling processes).
 Using spreadsheets to store data introduces problems like these:
 
-* Lack of audibility - changes to data are not recorded.
+* Lack of auditability - changes to data are not recorded.
 * Multiple users can't work with a single spreadsheet file at once, or risk complex versioning clashes which can be hard to resolve.
 * They are error prone and have no built in quality assurance.
 * Large files become cumbersome.
