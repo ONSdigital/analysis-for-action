@@ -1,3 +1,0 @@
-bump-my-version
-pre-commit
-pymarkdownlnt
