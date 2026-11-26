@@ -71,7 +71,7 @@ In short, comments that explain **why** you made programming choices will help y
 ```{code-block}
 # Tried solution X, but Y worked better because of Z
 
-# Don not use function X here, because of Y
+# Do not use function X here, because of Y
 
 # Temporary work around for bug in function X
 # TODO: fix function X, so that Y
@@ -141,7 +141,7 @@ print("Run me!")
 ````
 
 It is very easy to forget which parts of code have been commented out and why they have been commented.
-A human factor is then introduced, which might not be accounted for if someone in the future is not aware of the commented-out code. This can introduce significant risk.    
+A human factor is then introduced, which might not be accounted for if someone in the future is not aware of the commented-out code. This can introduce significant risk.
 It is likely to produce inconsistent runs of the same piece of code.
 The code might quickly become out of sync with the rest of the changes in the codebase,
 as developers may not consider updating code that is commented out if they assume it is obsolete.
@@ -149,7 +149,7 @@ as developers may not consider updating code that is commented out if they assum
 You should instead use appropriate control flow (such as `if/else` statements) to determine when sections of code should be run.
 Consider [defining these options in a dedicated configuration file](configuration.md) when changes are required between individual runs of your analysis. Using configuration files means that developers do not need to edit the code base to change the behaviour of your pipeline. Instead, they can just update the configuration.
 
-In summary, use comments sparingly but purposefully.    
+In summary, use comments sparingly but purposefully.
 Make sure comments:
 
 - explain **why** certain things are done, in order to provide context around the decisions that you have made.
@@ -161,7 +161,7 @@ Make sure comments:
 ## Docstrings
 
 When your code is structured as functions or classes, these functional units can be efficiently documented using docstrings.
-Docstrings are specialised multi-line descriptions that appear at the start of a function definition and are the de facto way of documenting these individual components.    
+Docstrings are specialised multi-line descriptions that appear at the start of a function definition and are the de facto way of documenting these individual components.
 
 In practice they can be either strings (as in Python docstrings) or comments (as in R comments).
 Note that module or script level docstrings are also commonly used (usually at the top of the module file in the case of Python).
@@ -227,20 +227,20 @@ def add_to_each(numbers, to_add):
 
 ```{code-tab} r R
 #' @title Add to a vector
-#' 
+#'
 #' @description Add a number to elements of a vector.
-#' 
+#'
 #' @details Cycles through a vector of numbers and adds a user-specified number to each element.
-#' 
+#'
 #' @param numbers A vector of numbers.
 #' @param add A float or integer to be added to each element of \code{numbers}.
-#' 
+#'
 #' @return \code{numbers} with \code{add} added to each element.
-#' 
+#'
 #' @seealso \code{\link{add}}
 #' @examples
 #'  add_to_each(list(1, 2, 3), 5)
-#' 
+#'
 #' @export
 add_to_each <- function(numbers, add) {
   if (!(is.vector(numbers) & is.numeric(numbers)) {
@@ -314,7 +314,7 @@ You may want to include:
 
 ```{code-tab} py
 """
-Data cleaning 
+Data cleaning
 
 Functions to tidy and clean ingested csv and SQL data
 """
@@ -336,22 +336,22 @@ You do not need to include module documentation if a file only contains one func
 
 ```{code-tab} py
 """
-Duck census main analysis 
+Duck census main analysis
 
 Produces the duck census bulletin outputs for the annual publication.
 
-Check the configuration file before running and run from the command line. 
+Check the configuration file before running and run from the command line.
 Detailed setup and desk instructions can be found in README.md.
 
 """
 ```
 
 ```{code-tab} r R
-# Duck census main analysis 
+# Duck census main analysis
 #
 # Produces the duck census bulletin outputs for the annual publication.
 #
-# Check the configuration file before running and run from the command line. 
+# Check the configuration file before running and run from the command line.
 # Detailed setup and desk instructions can be found in README.md.
 ```
 
@@ -395,7 +395,7 @@ Usually this means looking for an `index.html` file in the output directory and 
 This is sufficient for local usage. However, it is wise to host this documentation somewhere where it will be publicly available to improve the end-user experience and remove the need to browse the files looking for `index.html`.
 
 Your version control platform might support hosting web pages already.
-GitHub provides this hosting via GitHub Pages and is able to host not only documentation, but any web page virtually for free. 
+GitHub provides this hosting via GitHub Pages and is able to host not only documentation, but any web page virtually for free.
 In many cases, you may also be able to automatically update your hosted documentation using [Continuous Integration](continuous-integration) practices.
 
 
@@ -404,7 +404,7 @@ In many cases, you may also be able to automatically update your hosted document
 You may have access to an AI coding assistant that you can ask to generate module and function documentation for you. AI assistants can be very effective and can save you a lot of time. If you use one, always check that the documentation it produces is correct, clear and concise and manage your expectation by providing well-defined, bounded requirements. Do not expect a coding assistant to document your entire application correctly with minimal intervention.
 
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Wickham H, Danenberg P, Csárdi G. roxygen2 [online]. R-lib. [Accessed 24 September 2025]. Available from: https://roxygen2.r-lib.org/

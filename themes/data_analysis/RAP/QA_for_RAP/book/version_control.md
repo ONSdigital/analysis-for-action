@@ -7,7 +7,7 @@ This chapter will primarily discuss the benefits of using [the Git version contr
 :class: admonition-learning
 
 To get the most benefit from this section, you should have a basic understanding of how to use Git.
-Many of the examples used in this section refer to the command-line interface for Git, so general command-line knowledge may also help. 
+Many of the examples used in this section refer to the command-line interface for Git, so general command-line knowledge may also help.
 
 ```
 
@@ -138,7 +138,7 @@ The `main` or `master` branch is the default highest level branch in a Git repos
 ---
 width: 70%
 name: git_master
-alt: Diagram showing a horizontal flow from 'main' through five empty circles connected in sequence, demonstrating commits along a single “main” Git branch. 
+alt: Diagram showing a horizontal flow from 'main' through five empty circles connected in sequence, demonstrating commits along a single “main” Git branch.
 ---
 Commits along a single "main" Git branch.
 ```
@@ -185,7 +185,7 @@ You might do this when multiple features are being developed in parallel, or per
 ---
 width: 90%
 name: git_multiple_features
-alt: Diagram with a main branch in black, and two diverging branches named feature-1, in orange, and feature-2, in green. Each have directional arrows and commit points to the main branch. 
+alt: Diagram with a main branch in black, and two diverging branches named feature-1, in orange, and feature-2, in green. Each have directional arrows and commit points to the main branch.
 ---
 Working on multiple parallel branches.
 ```
@@ -226,7 +226,7 @@ This approach can be useful when deploying code directly into production from th
 However, analysts should use the most simple and beneficial approach to branching depending on their project.
 
 ```{note}
-Although the examples above use very simple branch names, it is important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on. 
+Although the examples above use very simple branch names, it is important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on.
 ```
 
 
@@ -551,7 +551,7 @@ internal developers can use the Conversation view to merge the PR changes onto t
 The repository settings can be adjusted to project branches against specific actions.
 You should consider preventing merging onto the `main` branch without an approved Pull Request to enforce peer review.
 You can combine this with a [Pull Request template](https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository)
-to ensure that a standard peer review process is followed for all changes. 
+to ensure that a standard peer review process is followed for all changes.
 ```
 
 
@@ -583,12 +583,12 @@ This means that after you create a fork, changes to the original repo need to be
 You should ensure that you synchronise your branch with any new changes before offering to contribute your changes to the original project (see [Pull Requests](pull-requests)).
 
 
-### Use GitHub Actions for continous integration
+### Use GitHub Actions for continuous integration
 
 Continuous Integration is discussed in more detail in [](continuous_integration.md).
 
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) GitHub. Understanding the GitHub flow [Online]. GitHub Guides. [Accessed 24 September 2025]. Available from: https://guides.github.com/introduction/flow/

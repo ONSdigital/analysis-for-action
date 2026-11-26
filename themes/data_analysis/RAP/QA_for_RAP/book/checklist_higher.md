@@ -18,7 +18,7 @@
 - Names used in the code are informative and concise.
 - Names used in the code are explicit, rather than implicit.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. PEP8 for Python [1] or Google [2] and tidyverse for R [3].
+- Code follows a standard style, e.g. PEP8 for Python [1] and Google [2] or tidyverse for R [3].
 
 ### Project structure
 
@@ -130,11 +130,11 @@
 - New issues or tasks are guided by users’ needs and stories.
 - Issues templates are used to ensure proper logging of the title, description, labels and comments.
 - Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
-- Quality assurance standards and processes for the project are defined. 
+- Quality assurance standards and processes for the project are defined.
 
 ## Template checklist
 
-To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below, or download a copy of this checklist.
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/QA_for_RAP/themes/data_analysis/RAP/QA_for_RAP/book/checklist_higher.md), or download a copy of the checklist from the Analysis for Action platform.
 
 ```{code-block} md
 ## Quality assurance checklist
@@ -155,7 +155,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Names used in the code are informative and concise.
 - [ ] Names used in the code are explicit, rather than implicit.
 - [ ] Code logic is clear and avoids unnecessary complexity.
-- [ ] Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
+- [ ] Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
 
 ### Project structure
 
@@ -264,10 +264,10 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] New issues or tasks are guided by users’ needs and stories.
 - [ ] Issues templates are used to ensure proper logging of the title, description, labels and comments.
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
-- [ ] Quality assurance standards and processes for the project are defined. 
+- [ ] Quality assurance standards and processes for the project are defined.
 ```
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/

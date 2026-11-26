@@ -4,7 +4,6 @@ parts:
 - caption: Overview
   chapters:
   - file: glossary
-  - file: managers_guide
   - file: checklists
     sections:
     - file: checklist_lower
@@ -26,6 +25,7 @@ parts:
   - file: peer_review
   - file: testing_code
   - file: continuous_integration
+  - file: managers_guide
 
 
 - caption: Resources

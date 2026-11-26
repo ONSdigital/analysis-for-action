@@ -42,7 +42,7 @@ These are not suitable for running analysis pipelines, because they do not ensur
 
 Contains code to create instances of objects and methods to edit these instances of classes and their attributes. Methods may also produce output other than the class instance.
 
-Examples of built in python classes are float, string, and bool.
+Examples of built in python classes are float, str, and bool.
 
 Examples of built in R classes are double, character, and logical.
 
@@ -159,7 +159,7 @@ Breaking code down in this way makes code easier to work with, understand and re
 
 ### Module
 
-A module is a script grouping related functions and/or classes that are reused across larger programs. It may also include statements used to initialise the module when it is imported in another script. 
+A module is a script grouping related functions and/or classes that are reused across larger programs. It may also include statements used to initialise the module when it is imported in another script.
 
 
 ### Notebooks
@@ -212,7 +212,7 @@ An argument is the value that is being passed to a given parameter.
 
 Having another developer review changes that you have made to code.
 This helps to assure that your code is readable and follows a sensible approach.
-It also helps to transfer understanding of the code between members of the team. 
+It also helps to transfer understanding of the code between members of the team.
 
 
 ### Pipeline
@@ -251,10 +251,6 @@ RAP is more generally a culture of wanting to improve the quality of your analys
 
 A script is a single file containing code. Code in scripts can be run interactively or procedurally.
 
-### Technical debt
-Accumulated shortcuts, quick fixes, or suboptimal design decisions made during the development of data workflows that can make future changes and maintenance more difficult and time-consuming.
-
-
 ### Variables
 
 A variable is a named code object for storing data within a programming language.
@@ -262,7 +258,7 @@ A variable is a named code object for storing data within a programming language
 
 ### Version control
 
-Saving versions of documents to keep an audit trails of changes.
+Saving versions of documents to keep an audit trail of changes.
 Version control tools typically allow you to backtrack to previous versions and to merge multiple concurrent changes from different users.
 
 
@@ -282,4 +278,3 @@ Some platforms (e.g. GitLab) are open source and can be hosted internally by you
 Virtual environments are tools for managing dependencies and isolating projects.
 A virtual environment is effectively a folder tree containing the programming language version and a list of dependencies.
 This helps keep track of dependencies and avoid conflicts between different projects.
-

@@ -315,7 +315,7 @@ Compare this against `bp = Reader(book_data)` then `bp.fetch()`, where there is 
 (code-style)=
 
 ``` {note}
-Writing custom classes is more common in Python than in R, as discussed in the [](modular_code.md) chapter. Because of this, the examples above only apply to Python. 
+Writing custom classes is more common in Python than in R, as discussed in the [](modular_code.md) chapter. Because of this, the examples above only apply to Python.
 ```
 
 
@@ -439,7 +439,7 @@ Here are a few tips to make sure you keep your project nice and simple:
 - Try not to 'reinvent the wheel' - use existing packages when they already have functionality that solves the problem.
 They will most likely be better documented and will not need extra maintenance.
 - Split your code into understandable parts - consider how to [make your code modular](modular).
-- Don not over-engineer your solution - if it is understandable and works, refrain from over-complicating for the sake of small increases in efficiency.
+- Do not over-engineer your solution - if it is understandable and works, refrain from over-complicating for the sake of small increases in efficiency.
 - When you have a choice of alternative packages to do the same thing, use one and stick to it. For example, the R packages dplyr and sqldf both enable the use of selection and filtering operations. Stick to one unless there is a very good reason to use both. When choosing between alternatives, think about their familiarity for other coders, ease of use and efficiency.
 
 ```{note}
@@ -598,7 +598,7 @@ odd_numbers = get_numbers_with_parity(list(range(1, 11), "odd"))
 ```{code-tab} r R
 # Simple and modular
 is_odd <- function(numbers) {
-  ifelse(numbers %% 2 == 1, TRUE, FALSE) 
+  ifelse(numbers %% 2 == 1, TRUE, FALSE)
 }
 
 get_odd <- function(numbers) {
@@ -619,7 +619,7 @@ get_numbers_with_parity <- function(numbers, parity) {
   } else {
     stop("parity must be 'odd' or 'even'")
   }
-  
+
   numbers[numbers %% 2 == remainder]
 }
 
@@ -855,7 +855,7 @@ report = pipeline(filepath)
 ```
 ````
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/

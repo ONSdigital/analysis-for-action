@@ -1,26 +1,26 @@
 # Testing code
 
-Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected. You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.  
+Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected. You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.
 
 Testing brings strong benefits. It helps you assure your code quality and makes developing your code more efficient.
 Code that has not been tested is more likely to contain errors and need more maintenance in the future.
 
 ## What should I test?
 
-The question you need to answer here is a simple one:    
+The question you need to answer here is a simple one:
 
-How can I demonstrate that my code does what it is supposed to do?    
+How can I demonstrate that my code does what it is supposed to do?
 
 As the developer of the code, you are best placed to decide what tests you need to put in place to answer that question confidently.
 
-Take a risk-based approach to testing. You should use tests proportionately based on your analysis.  This usually means writing more tests for parts of your code that are very new, more complex, or carry more risk.  
+Take a risk-based approach to testing. You should use tests proportionately based on your analysis.  This usually means writing more tests for parts of your code that are very new, more complex, or carry more risk.
 
-When you are developing your tests, here are some points to think about:    
+When you are developing your tests, here are some points to think about:
 
 1.  **You do not need to test everything**. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.
 2. **Check tool suitability**. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R `round()` function intentionally behaves differently to the rounding function in Excel. While you can be confident that `round()` works as specified, does it produce what you need?
 3. **Use tests to validate your approach**. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.
-4. **Test based on risk**. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time. 
+4. **Test based on risk**. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time.
 
 ## How are tests structured?
 
@@ -110,7 +110,7 @@ This assumes that your function is working correctly.
 You must create your test data independently, ensuring that it reflects how you want your code to work, rather than how it currently works.
 ```
 
-It is tempting to create a test dataset that closely mimics your real data. 
+It is tempting to create a test dataset that closely mimics your real data.
 
 However, using minimal and general data in tests make it clearer on what is being tested, and also avoids any unnecessary disclosure.
 
@@ -153,23 +153,23 @@ project/
 
 ````{tab} R
 ```
-project/  
-│  
-├── .Rproj  
-│  
-├── R/  
-│   ├── math.R  
-│   ├── strings.R  
-│   └── api.R  
-│  
-└── tests/  
-    │  
-    ├── testthat/  
-    │   ├── test-maths_abs.R  
-    │   ├── test-maths_sum.R  
-    │   └── test-strings_option.R  
-    │  
-    └── testthat.R  
+project/
+│
+├── .Rproj
+│
+├── R/
+│   ├── math.R
+│   ├── strings.R
+│   └── api.R
+│
+└── tests/
+    │
+    ├── testthat/
+    │   ├── test-maths_abs.R
+    │   ├── test-maths_sum.R
+    │   └── test-strings_option.R
+    │
+    └── testthat.R
 ```
 ````
 
@@ -188,7 +188,7 @@ class TestAbs:
 
     def test_abs_all_negative_values(self):
         ...
-    
+
     ...
 
 
@@ -198,7 +198,7 @@ class TestSum:
 
     def test_sum_all_negative_values(self):
         ...
-    
+
     ...
 ```
 
@@ -312,7 +312,7 @@ Integration tests that check very specific outcomes will need to be updated with
 
 ## Test that the analysis runs as expected using end-to-end tests
 
-End-to-end testing (sometimes called system testing) checks the entire workflow from start to finish, ensuring all components work correctly in real-world scenarios. While integration testing focuses on the interaction of specific modules, end-to-end testing involves all elements of a pipeline. This is useful when refactoring code for example, by providing assurance that overall functionality remains unchanged. 
+End-to-end testing (sometimes called system testing) checks the entire workflow from start to finish, ensuring all components work correctly in real-world scenarios. While integration testing focuses on the interaction of specific modules, end-to-end testing involves all elements of a pipeline. This is useful when refactoring code for example, by providing assurance that overall functionality remains unchanged.
 
 For example, a piece of analysis has an end-to-end test to check that outputs are generated and the data are the right shape or format. There might also be a "regression" test that checks that the exact values in the output remain the same. After you make any changes to tidy up or refactor the code, these end-to-end tests can be run to assure no functionality has accidentally changed.
 
@@ -351,7 +351,7 @@ If you know the expected outcome—based on user needs or internal requirements�
 
 TDD typically repeats three steps:
 1. Red - Write a test that you expect to fail.
-2. Green - Write or update our code to pass the new test.
+2. Green - Write or update your code to pass the new test.
 3. Refactor - Make improvements to the quality of the code without changing the functionality.
 
 As with any code that is adequately covered by tests, code written using TDD can be safely refactored. You can be more confident that your tests will capture any changes that would unintentionally alter the way your code works.
@@ -381,11 +381,11 @@ Stress testing evaluates the pipeline’s resilience under extreme or unexpected
 By simulating challenging scenarios, stress testing helps identify performance issues and ensures the pipeline can maintain integrity and produce reliable outputs even under pressure. Stress testing involves introducing variations or noise into the input data and observing how this affects the pipeline’s outputs, to ensure it can handle real-world challenges.
 
 ## Reduce repetition in test code (fixtures and parameterised tests)
-Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is [modular and reusable. 
+Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is modular and reusable.
 
 ### Use fixtures to reduce repetition in test set up
 
-As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run. You can be more tolerant of repetition in test code. However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently. You can use fixtures to help avoid this form of repetition in tests. 
+As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run. You can be more tolerant of repetition in test code. However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently. You can use fixtures to help avoid this form of repetition in tests.
 
 A fixture allows you to define your test preparation and clean up as functions. You then use the fixture to carry out these steps consistently for each test that they are required for.
 
@@ -424,7 +424,7 @@ skipping tests can lead to hidden problems that may become harder to fix later, 
 as the project grows. Whenever tests are set aside, it’s best to have a plan for going back to add
 them, to avoid risks to the stability and quality of the software.
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/

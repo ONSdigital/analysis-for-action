@@ -14,15 +14,8 @@ For training relating to the topics covered in this guidance, you can visit [Sta
 - Introduction to open source languages
 - Introduction to Git
 
-[Introduction to Statistical Programming](https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_intro.html) includes training covering:
-- Introduction to Python and R
-- Data Visualisation in Python and R
-- Statistics in Python and R
-- Best practice in programming
-- Modular programming
-
-[Intermediate Statistical Programming](https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_intro.html) includes training covering:
-- Reproducible Reporting in Rmarkdown 
+[Intermediate Statistical Programming](https://datasciencecampus.github.io/statistical_programming_training_pathways/stats_pathway_intermediate.html) includes training covering:
+- Reproducible Reporting in Rmarkdown
 - Editing and Imputation in Python and R
 - Version Control using the Command Line
 - Unit Testing
@@ -31,7 +24,7 @@ For training relating to the topics covered in this guidance, you can visit [Sta
 - Packaging and Documentation
 
 
-# Additional materials 
+# Additional materials
 
 The following links have been included here to show other potential online resources that exist that you may wish to explore and websites of interest. These materials are hosted on external websites that may not be maintained. You can use these as a starting point to find more resources that may be of interest to you.
 

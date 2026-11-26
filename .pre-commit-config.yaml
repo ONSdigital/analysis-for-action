@@ -14,10 +14,10 @@ repos:
         exclude: ^docs/user_guide/user_documentation\.md$
       - id: end-of-file-fixer
         name: Check for a blank line at the end of scripts (auto-fixes)
-        exclude: '\.Rd|^docs/user_guide/user_documentation\.md$'
+        exclude: '\.Rd|\.html$|^docs/user_guide/user_documentation\.md$'
       - id: trailing-whitespace
         name: Check for trailing whitespaces (auto-fixes)
-        exclude: ^docs/user_guide/user_documentation\.md$
+        exclude: '\.html$|^docs/user_guide/user_documentation\.md$'
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.7.1

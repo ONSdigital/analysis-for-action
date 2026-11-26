@@ -128,9 +128,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest 
+        pip install pytest
         pip install -r requirements.txt
-        
+
     - name: Test with pytest
       run: |
         pytest
@@ -138,7 +138,7 @@ jobs:
 
 The first section of this example describes when you should run the workflow.
 In this case, the CI workflow is run whenever code is `push`ed to the `master` branch or where any Pull Request is created.
-In the case of Pull Requests, the results of the CI workflow will be report on the request's page.
+In the case of Pull Requests, the results of the CI workflow will be reported on the request's page.
 If any of the workflow stages fail, this can block the merge of these changes onto a more stable branch.
 Subsequent commits to the source branch will trigger the CI workflow to run again.
 
@@ -170,7 +170,7 @@ The UK Gov Cookie Cutter package 'govcookiecutter' is an example of a repository
 
 For an example of continuous integration, please refer to the RAP in Action material to see how this was implemented in a COVID-19 project.
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) GitHub. *best-practice-and-impact/govcookiecutter: govcookiecutter-deploy-documentation.yml* [Online]. GitHub. [Accessed 24 September 2025] Available from: https://github.com/best-practice-and-impact/govcookiecutter/blob/main/.github/workflows/govcookiecutter-deploy-documentation.yml

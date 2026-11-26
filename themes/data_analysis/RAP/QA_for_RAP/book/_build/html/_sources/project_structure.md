@@ -117,7 +117,7 @@ A typical analytical project folder in Python might look like:
 |   -- main_analysis.R
 |   -- generate_plots.R
 ```
-```` 
+````
 
 Where you have written code that is used by multiple projects, this code should reside in its own separate folder.
 This will allow you to record changes to your code independent of other dependencies of each project.
@@ -167,7 +167,7 @@ Rstudio provides a standard template for R packages via `File > New Project... >
 R project structures can also be set up or extended, one component at a time, using the `usethis` workflow package. usethis() sets up packages that follow the structure in the R packages book.
 For example, `use_test()` will add the directories necessary for testing using `testthat` and generate basic test file templates for a given function name.
 
-Cookiecutters and project templates for R and Python can be found in our Packages Tool.(Link to RAP in Action)
+Cookiecutters and project templates for R and Python can be found in our RAP resource explorer tool.
 
 ## Use version controlled repositories
 
@@ -178,7 +178,7 @@ Developing your project using a version controlled repository has significant be
 See [](version_control.md) for more information.
 
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Greenfeld A.R., and contributors. cookiecutter [Online]. GitHub  [Accessed 24 September 2025]. Available from: https://github.com/cookiecutter/cookiecutter

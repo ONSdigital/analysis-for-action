@@ -1,6 +1,6 @@
 # Code quality assurance checklists
 
-This sections aims to provide a checklist for quality assurance of analytical projects in government.
+This section aims to provide a checklist for quality assurance of analytical projects in government.
 
 Quality assurance should be proportionate to the complexity and risk of your analysis.
 With this in mind, below you can find some checklists for three levels of quality assurance.

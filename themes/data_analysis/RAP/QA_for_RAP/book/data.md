@@ -1,10 +1,5 @@
 # Data management
 
-```{note}
-
-Note for PPT testers: The UK PPT Team think this information is useful to include in the PPT Toolkit, but think this may be covered elsewhere or better suited in a different unit. We would appreciate your thoughts on this in the testing process
-```
-
 Data management covers a broad range of disciplines, including organising, storing and maintaining data.
 Dedicated data architects and engineers typically handle data management. However, analysts are often expected to manage their own data or will work alongside other data professionals.
 This section aims to highlight good data management practices, so that you can either appreciate how your organisation handles its data
@@ -135,7 +130,7 @@ You can use Git to version data, but you should be mindful of where your remote 
 The `daff` package summarises changes in tabular data files, which can be integrated with Git to investigate changes to data.
 
 You might alternatively version your data manually e.g., by creating new database tables or files for each new version of the data.
-It must be possible to recreated previous versions of the data, for reproducibility.
+It must be possible to recreate previous versions of the data, for reproducibility.
 As such, it is important that you name data file versions uniquely, for example, using incrementing numbers and/or date of collection.
 Additionally, do not modify file versions after they have been used for analysis - they should be treated as read-only.
 All modifications to the data should result in new versions.
@@ -144,7 +139,7 @@ Finally, for this to be effective, your analysis should record the version of da
 You might document this in analysis reports or automatically logged by your code.
 
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) European Spreadsheet Risks Interest Group (EuSpRiG). Spreadsheet horror stories [Online]. EuSpRiG. [Accessed 24 September 2025]. Available from: https://eusprig.org/research-info/horror-stories/

@@ -19,6 +19,7 @@ pythonenv*
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+renv/
 
 # R build files
 .Rproj.user
@@ -58,6 +59,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+**/_build/.doctrees/
+**/_build/html/.buildinfo
 
 # Files built by Visual Studio
 *_i.c

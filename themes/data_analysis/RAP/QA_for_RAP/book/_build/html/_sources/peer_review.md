@@ -185,7 +185,7 @@ Developers working in pairs can approve changes to code as it is written. Howeve
 Set time aside, check in with your partner, plan goals, and ensure a comfortable working setup.
 
 2. Work Closely Together
-Stay engaged through clear communication and shared focus. As one person codes, the other looks for mistakes. 
+Stay engaged through clear communication and shared focus. As one person codes, the other looks for mistakes.
 
 3. Learn and Facilitate Learning
 Support each other’s growth, provide encouragement and guide the less experienced coder towards the solution.
@@ -204,7 +204,7 @@ Accept that not everything will go smoothly. Reflect on issues and learn from th
 ### Review separately when necessary
 
 A separate review involves sharing your code with a reviewer, and receiving written feedback.
-It is called 'separate' because the review happens independently of the author, who doesn’t need to be present. 
+It is called 'separate' because the review happens independently of the author, who doesn’t need to be present.
 This type of review is an iterative process, where the reviewer may make additional suggestions until they are satisfied with the code changes.
 
 This form of review works best when changes to the code are small and frequent.
@@ -239,7 +239,7 @@ a community led initiative that curates open source, statistical R packages.
 rOpenSci apply a rigorous peer review process to assure the quality of packages before including them in their collection.
 This peer review process is entirely remote and is performed in the open, via GitHub pull requests.
 
-In this example, the [`fingertipsR` package is reviewed](https://github.com/ropensci/software-review/issues/168) [3] by Public Health England.
+In this example from colleagues at Public Health England, the [`fingertipsR` package is reviewed](https://github.com/ropensci/software-review/issues/168) [3].
 The initial comment describes the package that is being submitted and includes a check against a list of minimum requirements.
 The `goodpractice` R package is used to check that good R packaging practices have been followed.
 Continuous integration is commonly used to carry out automated checks on code repositories [4].
@@ -261,7 +261,7 @@ More real world examples of peer review can be found in the RAP in Action materi
 ```
 
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) HM Treasury. The Aqua Book: guidance on producing quality analysis for government [Online]. GOV.UK. [Accessed 24 September 2025] Available from: https://www.gov.uk/guidance/the-aqua-book

@@ -49,11 +49,11 @@ Functions allow a piece of logic to be made reusable in a consistent and readabl
 
 When starting to write functions, you should consider what is the right level of complexity for a single function.
 A helpful starting point is to consider if the code containing the logic can be turned into a concise and readable function. Signs that the code is too complex to work as a single function are that the function is very long or you have to pass it lots of arguments to get it to work.
-If this is what you find, it is usually best to break the code into multiple smaller functions. You can 
+If this is what you find, it is usually best to break the code into multiple smaller functions. You can
 then use these smaller functions to build up a larger high-level function that performs the group of actions that you need.
 Smaller functions also have the advantage that you might also be able to re-use them in other places in your code. For example, in other high-level functions that perform similar tasks.
 
-This approach helps you break complex logic down into small, understandable chunks that can be documented and tested more easily. 
+This approach helps you break complex logic down into small, understandable chunks that can be documented and tested more easily.
 
 When writing functions, it is also important to consider how they interact with other parts of your code.
 As a general rule of thumb, your code should run in the same way if a call to your function was replaced by the value that it would have returned.
@@ -96,7 +96,7 @@ An object's 'state' is usually a set of variables that are particular to a given
 To illustrate, imagine a patient record that is represented by a `Record` class.
 You can have many instances of this class (many unique patient record), each defined by the following internal state:
 
-- Indiviudal name
+- Individual name
 - Patient number
 - Number of appointments
 ```
@@ -104,7 +104,7 @@ You can have many instances of this class (many unique patient record), each def
 When writing classes consider marking such states as ‘private’, since the end user does not need to know all the states associated with an object. This prevents users from accessing attributes directly, instead accessing them through class methods.
 
 ````{admonition} Method vs Function
-Methods in this context refer to functions that are strictly ‘attached’ to a given class. 
+Methods in this context refer to functions that are strictly ‘attached’ to a given class.
 ````
 
 In some languages ‘private’ state can be used to prevent access to parts of your class. In Python truly private instance variables do not exist [2], so it is not possible to prevent access to any part of your class. The standard convention in Python is to prefix attribute names with a single underscore (`_my_class_attribute`) to indicate that users shouldn’t be concerned with these attributes. You can also use the same naming convention to indicate that a method is ‘private’ and should not be used by users.
@@ -126,9 +126,9 @@ In short:
 - You should be able to replace functions with similar functions that share the same interface.
 ```
 
-However, note that inheritance locks your class into the object it inherits from. If the superclass changes, your class is forced to change with it. 
+However, note that inheritance locks your class into the object it inherits from. If the superclass changes, your class is forced to change with it.
 
-In OOP, an ‘interface’ can be defined to act as a blueprint or specification for writing classes. An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes. 
+In OOP, an ‘interface’ can be defined to act as a blueprint or specification for writing classes. An interface outlines the attributes and methods that a class must provide to be considered equivalent to a group of classes.
 
 Perhaps you want to use classes to read and write data - this might require several different classes, with read and write methods for different file formats. For example, one class could deal with storing data in a database, and another could store data in local .csv files instead. In your code, you could switch which class is provided to downstream functions. Your functions don’t need to know if they are reading or writing from databases or .csv files, however, they do require the read and write methods of the class to work in a standard way. An interface would help to define the standard for interacting with this group of classes.
 
@@ -171,9 +171,9 @@ class SqlHandler(FileHandler):
        return data
 ```
 
-When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), you can easily switch between them. 
+When multiple classes have a similar application programming interface (API, i.e. the methods they supply for users), you can easily switch between them.
 
-A good real-world example of this can be seen in the `scikit-learn` package, where the different linear model types are represented by different classes. Each linear model class supports a common set of methods, e.g. fit() and predict(). As such, you can use any model in a pipeline and swap them out with minimal effort. Therefore, when thinking about how to break you code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.
+A good real-world example of this can be seen in the `scikit-learn` package, where the different linear model types are represented by different classes. Each linear model class supports a common set of methods, e.g. fit() and predict(). As such, you can use any model in a pipeline and swap them out with minimal effort. Therefore, when thinking about how to break your code up into classes, consider the use of standardised methods across similar objects to make them interchangeable.
 
 
 (class-responsibilities)=
@@ -181,7 +181,7 @@ A good real-world example of this can be seen in the `scikit-learn` package, whe
 ```{note}
 As the complexity of your code grows you might find that one of your classes takes on the majority of the underlying logic. When most of your code resides in a single class, this can indicate that this class is responsible for too much of your code’s logic. This class might become overly complex and hence difficult to maintain.  This is known as ‘Data Driven Design’. For more complex analytical work, a better approach might be ‘Responsibility Driven Design’. Here, classes are smaller with more specific responsibilities. This reduces complexity and helps classes to avoid being affected by changes to other, unrelated parts of your code. However, be aware of the trade-off between the complexity of one large class versus many smaller classes.
 ```
-Responsibility Driven Design makes objects that are usually ‘passive’ become ‘active’. 
+Responsibility Driven Design makes objects that are usually ‘passive’ become ‘active’.
 
 ```{tip}
 Many Design Patterns are available with OOP.
@@ -247,23 +247,23 @@ Their directory now looks something similar to:
 ```` {tab} Python
 ```
 project
-├── main.py 
-├── modelling.py 
-├── processing.py 
-├── reporting.py 
-├── README.md 
+├── main.py
+├── modelling.py
+├── processing.py
+├── reporting.py
+├── README.md
 ```
 ````
 
 ```` {tab} R
 ```
-project 
-├── main.R 
-├── modelling.R 
-├── processing.R 
-├── reporting.R 
+project
+├── main.R
+├── modelling.R
+├── processing.R
+├── reporting.R
 ├── README.md
-└── project.Rproj 
+└── project.Rproj
 ```
 ````
 `````
@@ -434,7 +434,7 @@ The steps that you have taken to simplify your notebook code will make your code
 Keep in mind that other analysts can still run notebook files out of order, so they should not be used as the main method of actually generating outputs.
 Output generation should instead be trusted to scripts, where human decisions do not alter the order that code is run.
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Wickham H. Object-oriented programming [Online]. In: Advanced R. 2nd ed. Tidyverse [Accessed 24 September 2025]. Available from: https://adv-r.hadley.nz/oo.html

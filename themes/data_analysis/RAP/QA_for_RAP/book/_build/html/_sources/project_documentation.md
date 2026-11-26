@@ -120,7 +120,7 @@ the code style in use in the project and the review process have all been outlin
 ## User desk instructions
 
 If your project is very user focused for one particular task,
-for example, developing a statistic production pipeline for other analysts to execute,
+for example, developing a statistical production pipeline for other analysts to execute,
 it is very important that the code users understand how to appropriately run your code.
 
 These instructions should include:
@@ -176,7 +176,7 @@ A BibTeX entry for LaTeX users is
  }
 ```
 
-If your project includes multiple datasets, pieces of code or outputs with their own Digital Object Indentifier (DOI), this might include multiple citations.
+If your project includes multiple datasets, pieces of code or outputs with their own Digital Object Identifiers (DOIs), this might include multiple citations.
 
 
 ## Vignettes
@@ -189,7 +189,7 @@ Vignettes demonstrate the intended use for these classes and functions in a real
 This shows users how different code elements interact and how they might use your code in their own program.
 
 Another good example is this vignette describing [how to design vignettes](http://r-pkgs.had.co.nz/vignettes.html) in Rmarkdown [2].
-You can produce this type of documentation in any format, though Rmarkdown is particularly effectively at combining sections of code,
+You can produce this type of documentation in any format, though Rmarkdown is particularly effective at combining sections of code,
 code outputs, and descriptive text.
 
 You might also consider providing examples in an interactive notebook that users can run for themselves.
@@ -275,7 +275,7 @@ For example, within the UK all materials created by civil servants, ministers, g
 
 
 Open source software is software with source code that anyone can freely inspect, modify and enhance.
-Government analyst should aim to make all new source code open, unless it is justified to withold part of your source code.
+Government analysts should aim to make all new source code open, unless it is justified to withhold part of your source code.
 
 Personal benefits from open sourcing include:
 
@@ -289,7 +289,7 @@ While the public benefit from:
 - Sharing value - others can benefit from your work, either through reuse or demonstration of good practices.
 - Sharing opportunity - others can gain insight and experience from reading and possibly contributing to your code.
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Office for National Statistics. Contributing to gptables [Online]. GitHub. [Accessed 24 September 2025]. Available from: https://github.com/ONSdigital/gptables/blob/main/CONTRIBUTING.md

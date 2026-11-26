@@ -56,7 +56,7 @@
 - All input data is documented in a data register, including where they come from and their importance to the analysis.
 - Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops. Your analysis code is able to reproduce them at any time.
 - Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
-- Data quality is monitored. 
+- Data quality is monitored.
 
 ### Peer review
 
@@ -92,7 +92,7 @@
 
 ## Template checklist
 
-To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below, or download a copy of this checklist.
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/QA_for_RAP/themes/data_analysis/RAP/QA_for_RAP/book/checklist_lower.md), or download a copy of the checklist from the Analysis for Action platform.
 
 ```{code-block} md
 ## Quality assurance checklist
@@ -185,7 +185,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 ```
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/

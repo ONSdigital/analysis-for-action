@@ -15,7 +15,7 @@
 - Names used in the code are informative and concise.
 - Names used in the code are explicit, rather than implicit.
 - Code logic is clear and avoids unnecessary complexity.
-- Code follows a standard style, e.g. PEP8 for Python [1] or Google [2] and tidyverse for R [3].
+- Code follows a standard style, e.g. PEP8 for Python [1] and Google [2] or tidyverse for R [3].
 
 ### Project structure
 
@@ -72,7 +72,7 @@
 - Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops.
  Your analysis code is able to reproduce them at any time.
 - Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
-- Data quality is monitored. 
+- Data quality is monitored.
 - Fields within input and output datasets are documented in a data dictionary.
 - Large or complex data are stored in a database.
 
@@ -115,13 +115,12 @@
 
 - The roles and responsibilities of team members are clearly defined.
 - An issue tracker (e.g GitHub Project, Trello or Jira) is used to record development tasks.
-- New issues or tasks are guided by users’ needs and stories.
 - Issues templates are used to ensure proper logging of the title, description, labels and comments.
 - Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 
 ## Template checklist
 
-To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below, or download a copy of this checklist.
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/QA_for_RAP/themes/data_analysis/RAP/QA_for_RAP/book/checklist_moderate.md), or download a copy of the checklist from the Analysis for Action platform.
 
 ```{code-block} md
 ## Quality assurance checklist
@@ -139,7 +138,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] Names used in the code are informative and concise.
 - [ ] Names used in the code are explicit, rather than implicit.
 - [ ] Code logic is clear and avoids unnecessary complexity.
-- [ ] Code follows a standard style, e.g. PEP8 for Python or tidyverse for R.
+- [ ] Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
 
 ### Project structure
 
@@ -195,7 +194,7 @@ To use this checklist in your project, you can either refer to the checklist abo
 - [ ] All input data is documented in a data register, including where they come from and their importance to the analysis.
 - [ ] Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops. Your analysis code is able to reproduce them at any time.
 - [ ] Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
-- [ ] Data quality is monitored. 
+- [ ] Data quality is monitored.
 - [ ] Fields within input and output datasets are documented in a data dictionary.
 - [ ] Large or complex data are stored in a database.
 
@@ -237,12 +236,11 @@ To use this checklist in your project, you can either refer to the checklist abo
 
 - [ ] The roles and responsibilities of team members are clearly defined.
 - [ ] An issue tracker (e.g GitHub Project, Trello or Jira) is used to record development tasks.
-- [ ] New issues or tasks are guided by users’ needs and stories.
 - [ ] Issues templates are used to ensure proper logging of the title, description, labels and comments.
 - [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
 ```
 
-<details> 
+<details>
 <summary><h2 style="display:inline-block">References </h2></summary>
 
 1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
