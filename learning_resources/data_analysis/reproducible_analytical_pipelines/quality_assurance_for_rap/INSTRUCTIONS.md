@@ -1,5 +1,5 @@
-# **QA for RAP ** - Instructions for using markdown and html files
-This document provides instructions on how to use the markdown and html provided for the **QA for RAP** learning resource.
+# **Quality Assurance for RAP** - Instructions for using the markdown and html files
+This document provides instructions on how to use the markdown and html files provided for the [Quality Assurance for RAP learning resource](https://analysisforaction.org/learning-resources/data-analysis/reproducible-analytical-pipelines/quality-assurance-for-rap/).
 
 ## Files and locations
 The **markdown** files for this unit can be found directly in the `book`folder within this unit's directory.
