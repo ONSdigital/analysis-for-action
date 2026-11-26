@@ -134,7 +134,7 @@
 
 ## Template checklist
 
-To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/QA_for_RAP/themes/data_analysis/RAP/QA_for_RAP/book/checklist_higher.md), or download a copy of the checklist from the Analysis for Action platform.
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/main/learning_resources/data_analysis/reproducible_analytical_pipelines/quality_assurance_for_rap/book/checklist_higher.md), or download a copy of the checklist from the [Analysis for Action platform](https://analysisforaction.org/tools/data-analysis/rap-quality-assurance-checklists/).
 
 ```{code-block} md
 ## Quality assurance checklist

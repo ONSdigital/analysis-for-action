@@ -4,7 +4,7 @@ This document provides instructions on how to use the markdown and html files pr
 ## Files and locations
 The **markdown** files for this unit can be found directly in the `book`folder within this unit's directory.
 The **html** files for this unit can be found directly in the `book/_build/html`folder within this unit's directory.
-Both folders contain the same set of example files, but in different formats. Choose the appropriate folder based on your preferred programming language.
+The Markdown files are the source chapters. The HTML folder contains the built version of those chapters, together with navigation, search data and supporting assets.
 
 ## Viewing the files
 To view the markdown files, you can use any text editor or a markdown viewer. Within the `book` folder open the desired markdown file to read its contents.
