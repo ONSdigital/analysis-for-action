@@ -36,7 +36,7 @@ Using spreadsheets to store data introduces problems like these:
   * Converting dates to a different datetime format.
   * Converting numbers or text that resemble dates to dates.
 
-Stories of spreadsheet errors have been reported globally across academia, healthcare, police force, government and private organisations [1]. This illustrates the risks associated with spreadsheet used, and how these problems are more common than you might think.
+Stories of spreadsheet errors have been reported globally across academia, healthcare, police forces, government and private organisations [1]. This illustrates the risks associated with spreadsheet use, and how these problems are more common than you might think.
 
 ### Databases
 
