@@ -59,6 +59,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+**/_build/.doctrees/
+**/_build/html/.buildinfo
 
 # Files built by Visual Studio
 *_i.c

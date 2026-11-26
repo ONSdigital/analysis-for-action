@@ -1,0 +1,205 @@
+# Lower quality assurance
+
+## Quality assurance checklist
+
+### Modular code
+
+- Individual pieces of logic are written as functions. Classes are used if more appropriate.
+- Repetition in the code is minimalised. For example, by moving reusable code into functions or classes.
+
+### Good coding practices
+
+- Names used in the code are informative and concise.
+- Code logic is clear and avoids unnecessary complexity.
+- Code follows a standard style, e.g. [PEP8 for Python](https://www.python.org/dev/peps/pep-0008/) [1] and [Google](https://google.github.io/styleguide/Rguide.html) [2] or [tidyverse](https://style.tidyverse.org/) for R [3].
+
+### Project structure
+
+- A clear, standard directory structure is used to separate input data, outputs, code and documentation.
+
+### Code documentation
+
+- Comments are used to describe why code is written in a particular way, rather than describing what the code is doing.
+- Comments are kept up to date, so they do not confuse the reader.
+- Code is not commented out to adjust which lines of code run.
+- All functions and classes are documented to describe what they do, what inputs they take and what they return.
+- Python code is [documented using docstrings](https://www.python.org/dev/peps/pep-0257/) [4]. R code is [documented using `roxygen2` comments](https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html) [5].
+
+### Project documentation
+
+- A README file details the purpose of the project, basic installation instructions, and examples of usage.
+- Where appropriate, guidance for prospective contributors is available including a code of conduct.
+- If the code's users are not familiar with the code, desk instructions are provided to guide lead users through example use cases.
+- The extent of analytical quality assurance conducted on the project is clearly documented.
+- Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
+- Copyright and licenses are specified for both documentation and code.
+- Instructions for how to cite the project are given.
+
+### Version control
+
+- Code is version controlled (e.g. using Git)
+- Code is committed regularly, preferably when a discrete unit of work has been completed.
+- An appropriate branching strategy is defined and used throughout development.
+- Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.
+
+### Configuration
+
+- Credentials and other secrets are not written in code but are configured as environment variables.
+- Configuration is clearly separated from code used for analysis, so that it is simple to identify and update.
+- The configuration used to generate particular outputs, releases and publications is recorded.
+
+### Data management
+
+- All data for analysis are stored in an open format, so that specific software is not required to access them.
+- Input data are stored safely and are treated as read-only.
+- Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
+- All input data is documented in a data register, including where they come from and their importance to the analysis.
+- Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops. Your analysis code is able to reproduce them at any time.
+- Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
+- Data quality is monitored.
+
+### Peer review
+
+- Peer review is conducted and recorded near to the code. Merge or pull requests are used to document review, when relevant.
+
+### Testing
+
+- Core functionality is unit tested as code. See [`pytest` for Python](https://docs.pytest.org/en/stable/) [6] and [`testthat` for R](https://testthat.r-lib.org/) [7] .
+- Code based tests are run regularly, ideally being automated using continuous integration.
+- Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
+- Informal tests are recorded near to the code.
+- Stakeholder or user acceptance sign-offs are recorded near to the code.
+
+### Dependency management
+
+- Required passwords, secrets and tokens are documented, but are stored outside of version control.
+- Required libraries and packages are documented, including their versions.
+- Working operating system environments are documented.
+- Example configuration files are provided.
+
+### Logging
+
+- Misuse or failure in the code produces informative error messages.
+- Code configuration is recorded when the code is run.
+
+### Project management
+
+- The roles and responsibilities of team members are clearly defined.
+- An issue tracker (e.g GitHub Project, Trello or Jira) is used to record development tasks.
+- New issues or tasks are guided by users’ needs and stories.
+- Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
+
+
+## Template checklist
+
+To use this checklist in your project, you can either refer to the checklist above, use the Markdown template below or [on GitHub](https://github.com/ONSdigital/analysis-for-action/blob/main/learning_resources/data_analysis/reproducible_analytical_pipelines/quality_assurance_for_rap/book/checklist_lower.md), or download a copy of the checklist from the [Analysis for Action platform](https://analysisforaction.org/tools/data-analysis/rap-quality-assurance-checklists/).
+
+```{code-block} md
+## Quality assurance checklist
+
+### Modular code
+
+- [ ] Individual pieces of logic are written as functions. Classes are used if more appropriate.
+- [ ] Repetition in the code is minimalised. For example, by moving reusable code into functions or classes.
+
+### Good coding practices
+
+- [ ] Names used in the code are informative and concise.
+- [ ] Code logic is clear and avoids unnecessary complexity.
+- [ ] Code follows a standard style, e.g. PEP8 for Python and Google or tidyverse for R.
+
+### Project structure
+
+- [ ] A clear, standard directory structure is used to separate input data, outputs, code and documentation.
+
+### Code documentation
+
+- [ ] Comments are used to describe why code is written in a particular way, rather than describing what the code is doing.
+- [ ] Comments are kept up to date, so they do not confuse the reader.
+- [ ] Code is not commented out to adjust which lines of code run.
+- [ ] All functions and classes are documented to describe what they do, what inputs they take and what they return.
+- [ ] Python code is documented using docstrings. R code is documented using `roxygen2` comments.
+
+### Project documentation
+
+- [ ] A README file details the purpose of the project, basic installation instructions, and examples of usage.
+- [ ] Where appropriate, guidance for prospective contributors is available including a code of conduct.
+- [ ] If the code's users are not familiar with the code, desk instructions are provided to guide lead users through example use cases.
+- [ ] The extent of analytical quality assurance conducted on the project is clearly documented.
+- [ ] Assumptions in the analysis and their quality are documented next to the code that implements them. These are also made available to users.
+- [ ] Copyright and licenses are specified for both documentation and code.
+- [ ] Instructions for how to cite the project are given.
+
+### Version control
+
+- [ ] Code is version controlled (e.g. using Git)
+- [ ] Code is committed regularly, preferably when a discrete unit of work has been completed.
+- [ ] An appropriate branching strategy is defined and used throughout development.
+- [ ] Code is open-sourced. Any sensitive data are omitted or replaced with dummy data.
+
+### Configuration
+
+- [ ] Credentials and other secrets are not written in code but are configured as environment variables.
+- [ ] Configuration is clearly separated from code used for analysis, so that it is simple to identify and update.
+- [ ] The configuration used to generate particular outputs, releases and publications is recorded.
+
+### Data management
+
+- [ ] All data for analysis are stored in an open format, so that specific software is not required to access them.
+- [ ] Input data are stored safely and are treated as read-only.
+- [ ] Input data are versioned. All changes to the data result in new versions being created, or changes are recorded as new records.
+- [ ] All input data is documented in a data register, including where they come from and their importance to the analysis.
+- [ ] Outputs from your analysis are disposable and are regularly deleted and regenerated while analysis develops. Your analysis code is able to reproduce them at any time.
+- [ ] Non-sensitive data are made available to users. If data are sensitive, dummy data is made available so that the code can be run by others.
+- [ ] Data quality is monitored.
+
+### Peer review
+
+- [ ] Peer review is conducted and recorded near to the code. Merge or pull requests are used to document review, when relevant.
+
+### Testing
+
+- [ ] Core functionality is unit tested as code. See `pytest` for Python and `testthat` for R.
+- [ ] Code based tests are run regularly, ideally being automated using continuous integration.
+- [ ] Bug fixes include implementing new unit tests to ensure that the same bug does not reoccur.
+- [ ] Informal tests are recorded near to the code.
+- [ ] Stakeholder or user acceptance sign-offs are recorded near to the code.
+
+### Dependency management
+
+- [ ] Required passwords, secrets and tokens are documented, but are stored outside of version control.
+- [ ] Required libraries and packages are documented, including their versions.
+- [ ] Working operating system environments are documented.
+- [ ] Example configuration files are provided.
+
+### Logging
+
+- [ ] Misuse or failure in the code produces informative error messages.
+- [ ] Code configuration is recorded when the code is run.
+
+### Project management
+
+- [ ] The roles and responsibilities of team members are clearly defined.
+- [ ] An issue tracker (e.g GitHub Project, Trello or Jira) is used to record development tasks.
+- [ ] New issues or tasks are guided by users’ needs and stories.
+- [ ] Acceptance criteria are noted for issues and tasks. Fulfilment of acceptance criteria is recorded.
+```
+
+<details>
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0008/
+
+2) Google. Google R Style Guide [Online]. Google [Accessed September 24 2025]. Available from: https://google.github.io/styleguide/Rguide.html
+
+3) Wickham H. The Tidyverse Style Guide [Online]. Tidyverse [Accessed September 24 2025]. Available from: https://style.tidyverse.org/
+
+4) Van Rossum G, Warsaw B, Coghlan N. PEP 257 – Docstring Conventions [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: https://www.python.org/dev/peps/pep-0257/
+
+5) Wickham H, Danenberg P, Csárdi G. roxygen2: In-source documentation for R [Online]. The R Foundation [Accessed September 24 2025]. Available from: https://cran.r-project.org/web/packages/roxygen2/vignettes/roxygen2.html
+
+6) pytest-dev. pytest documentation [Online]. pytest [Accessed September 24 2025]. Available from: https://docs.pytest.org/en/stable/
+
+7) Wickham H. testthat: Unit testing for R [Online]. R-lib [Accessed September 24 2025]. Available from: https://testthat.r-lib.org/
+
+</details>

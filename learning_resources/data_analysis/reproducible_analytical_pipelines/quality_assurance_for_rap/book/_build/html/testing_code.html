@@ -1,0 +1,963 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Testing code &#8212; Quality Assurance for Reproducible Analytical Pipelines</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="_static/accessibility.css?v=6e02104c" />
+    <link rel="stylesheet" type="text/css" href="_static/admonitions.css?v=931fc306" />
+    <link rel="stylesheet" type="text/css" href="_static/logo.css?v=a4c2f84d" />
+    <link rel="stylesheet" type="text/css" href="_static/markdown_within_tabs.css?v=a3648b14" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'testing_code';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Automating code quality assurance" href="continuous_integration.html" />
+    <link rel="prev" title="Peer review" href="peer_review.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Quality Assurance for Reproducible Analytical Pipelines</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary of terms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_documentation.html">Project documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Testing code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ONSdigital/analysis-for-action" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/testing_code.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Testing code</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-i-test">What should I test?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-are-tests-structured">How are tests structured?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-reproducible-tests">Write reproducible tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-repeatable-tests">Write repeatable tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-all-tests-against-each-change-to-your-code">Run all tests against each change to your code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#record-the-outcomes-of-your-tests">Record the outcomes of your tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimise-your-test-data">Minimise your test data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-test-files-to-match-code-structure">Structure test files to match code structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structuring-tests">Structuring tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-new-logic-is-correct-using-unit-tests">Test that new logic is correct using unit tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-different-parts-of-the-code-interact-correctly-using-integration-tests">Test that different parts of the code interact correctly using integration tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-the-analysis-runs-as-expected-using-end-to-end-tests">Test that the analysis runs as expected using end-to-end tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-integration-and-end-to-end-testing">Good practices for integration and end-to-end testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-to-assure-that-bugs-are-fixed">Write tests to assure that bugs are fixed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-before-writing-logic">Write tests before writing logic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines">Acceptance and Stress Testing in Reproducible Analytical Pipelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-testing">Acceptance testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-testing">Stress Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests">Reduce repetition in test code (fixtures and parameterised tests)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-fixtures-to-reduce-repetition-in-test-set-up">Use fixtures to reduce repetition in test set up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-parameterisation-to-reduce-repetition-in-test-logic">Use parameterisation to reduce repetition in test logic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lacking-time-the-risks-to-skipping-tests">Lacking time? The risks to skipping tests</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="testing-code">
+<h1>Testing code<a class="headerlink" href="#testing-code" title="Link to this heading">#</a></h1>
+<p>Code documentation helps others to understand what you expect your code to do and how to use it. Code tests verify that your analytical code is working as expected. You cannot confirm your code works correctly if you don’t carry out tests, so you cannot be confident that your analysis is fit for purpose without them.</p>
+<p>Testing brings strong benefits. It helps you assure your code quality and makes developing your code more efficient.
+Code that has not been tested is more likely to contain errors and need more maintenance in the future.</p>
+<section id="what-should-i-test">
+<h2>What should I test?<a class="headerlink" href="#what-should-i-test" title="Link to this heading">#</a></h2>
+<p>The question you need to answer here is a simple one:</p>
+<p>How can I demonstrate that my code does what it is supposed to do?</p>
+<p>As the developer of the code, you are best placed to decide what tests you need to put in place to answer that question confidently.</p>
+<p>Take a risk-based approach to testing. You should use tests proportionately based on your analysis.  This usually means writing more tests for parts of your code that are very new, more complex, or carry more risk.</p>
+<p>When you are developing your tests, here are some points to think about:</p>
+<ol class="arabic simple">
+<li><p><strong>You do not need to test everything</strong>. It is realistic to assume that third party functions and tools (such as base R and CRAN packages) which are adequately quality assured. You may be less confident about very new functionality from third parties, or experimental tools. You may decide to test these if needed.</p></li>
+<li><p><strong>Check tool suitability</strong>. Think carefully about whether third party tools really do what you need for your particular context.  For example, the base R <code class="docutils literal notranslate"><span class="pre">round()</span></code> function intentionally behaves differently to the rounding function in Excel. While you can be confident that <code class="docutils literal notranslate"><span class="pre">round()</span></code> works as specified, does it produce what you need?</p></li>
+<li><p><strong>Use tests to validate your approach</strong>. Testing is a great way to verify that your approach is the right one. Writing tests helps challenge assumptions and uncover edge cases, making your code more robust.</p></li>
+<li><p><strong>Test based on risk</strong>. Be guided by the risks you need to mitigate. For example, if inputs are invalid or unusual, do you want the code to stop with an error message or do something else? Use tests to check that the code does the right thing at the right time.</p></li>
+</ol>
+</section>
+<section id="how-are-tests-structured">
+<h2>How are tests structured?<a class="headerlink" href="#how-are-tests-structured" title="Link to this heading">#</a></h2>
+<p>Tests come in many shapes and sizes, but usually follow the pattern:</p>
+<ol class="arabic simple">
+<li><p>Arrange - set up any objects needed for your test, for example sample input data and expected output data.</p></li>
+<li><p>Act - run the code that you are testing (one or more functions or methods).</p></li>
+<li><p>Assert - verify that the code performed the expected action, for example, that the output matched the expected output.</p></li>
+</ol>
+<div class="admonition-learning admonition">
+<p class="admonition-title">Key Learning</p>
+<p>Learning materials on how to write unit tests can be found in <a class="reference internal" href="learning.html"><span class="std std-doc">Learning resources</span></a>.</p>
+</div>
+<p>This section assumes that you are using a testing framework to run your tests (for example, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> for Python or <code class="docutils literal notranslate"><span class="pre">testthat</span></code> for R) and have your code in a package.
+It is more difficult to test code that is not in a package and therefore follow the testing good practices described here.</p>
+</section>
+<section id="write-reproducible-tests">
+<h2>Write reproducible tests<a class="headerlink" href="#write-reproducible-tests" title="Link to this heading">#</a></h2>
+<p>As an analyst, you routinely check that your analysis is carried out correctly.
+You might do this informally by running all or part of your analysis with example data or subsets of real data.</p>
+<p>While this builds confidence, these checks should be reproducible. As code changes, tests must be repeatable and produce consistent results, both for you and others.
+To ensure this, you can represent checks as code. This lets you or another analyst carry out the same verification again to get the same results. If a test is done manually, add a coded version so it can be rerun reliably.</p>
+<p>Code that you write for testing should also follow the good practices described earlier on in this resource, in particular <a class="reference internal" href="readable_code.html"><span class="doc std std-doc">Readable code</span></a>.</p>
+</section>
+<section id="write-repeatable-tests">
+<h2>Write repeatable tests<a class="headerlink" href="#write-repeatable-tests" title="Link to this heading">#</a></h2>
+<p>Your tests need to be repeatable for you to be able to trust their results.</p>
+<p>For tests to run repeatably, each test must be independent.
+There should not be a shared state between tests, for example a test should not depend on another test having already run.
+You could intentionally randomise the order that tests are executed to encourage this.</p>
+<p>Where possible, tests should be deterministic.
+As such, the only reason for a test to fail should be that the code being tested is incorrect.
+Where your code relies on randomness tests should reuse the same random seed each time.</p>
+<p>Where this is not possible/logical for the scenario that you are testing, you may want to run the test
+case multiple times and make an assertion about the distribution of the outcomes instead.
+For example, if you are testing a function that simulates a coin flip you might run it 100 times and
+check the proportion of heads versus tails is close to half (within a reasonable range).</p>
+</section>
+<section id="run-all-tests-against-each-change-to-your-code">
+<h2>Run all tests against each change to your code<a class="headerlink" href="#run-all-tests-against-each-change-to-your-code" title="Link to this heading">#</a></h2>
+<p>Run <strong>all</strong> tests whenever you make changes to your analysis.
+This ensures that changes do not break the existing, intended functionality of your code.
+Running the entire collection of tests has the added benefit of detecting unexpected side-effects of your changes.
+For example, you might detect an unexpected failure in part of your code that you did not change.</p>
+<p>If you run tests regularly, you will be more able to fix any issues before changes are added to a stable or production version of your code (e.g. the <code class="docutils literal notranslate"><span class="pre">main</span></code> Git branch).</p>
+<p>If you have altered the functionality of your code, this will likely break existing tests.
+Failing tests here act as a good reminder that you should update your tests and documentation to reflect the new functionality.
+Many testing frameworks support writing tests as examples in the function documentation.</p>
+<p>It’s not easy to remember to run your tests manually at regular intervals.
+Use <a class="reference internal" href="continuous_integration.html#continuous-integration"><span class="std std-ref">continuous integration</span></a> to automate
+the running of tests. This way, you can trigger tests to run when any changes are made to your
+remote version control repository.</p>
+</section>
+<section id="record-the-outcomes-of-your-tests">
+<h2>Record the outcomes of your tests<a class="headerlink" href="#record-the-outcomes-of-your-tests" title="Link to this heading">#</a></h2>
+<p>For auditability, it is important you record the outcome from running tests.
+Record the test outcomes with the code, so that
+it is clear which tests have been run successfully for a given version of the code.</p>
+<p>As mentioned above, automating the running of tests on a version control platform is the simplest and
+most effective way to achieve this association between the code version and test outcomes.
+See <a class="reference internal" href="continuous_integration.html"><span class="doc std std-doc">Automating code quality assurance</span></a> for further guidance on using these tools.</p>
+</section>
+<section id="minimise-your-test-data">
+<h2>Minimise your test data<a class="headerlink" href="#minimise-your-test-data" title="Link to this heading">#</a></h2>
+<p>Tests for analytical code will usually require data. To ensure that tests are clear in their meaning, you should use the smallest possible dataset for a test.</p>
+<p>Good test data are:</p>
+<ul class="simple">
+<li><p>only just detailed enough data to carry out the test</p></li>
+<li><p>fake, static (hardcoded), and readable</p></li>
+<li><p>stored closely to the test</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You must not copy the output from running your code to create your expected test outcomes.
+If you do this the test will check that the function is running in the same way that it ran when you generated the data.
+This assumes that your function is working correctly.</p>
+<p>You must create your test data independently, ensuring that it reflects how you want your code to work, rather than how it currently works.</p>
+</div>
+<p>It is tempting to create a test dataset that closely mimics your real data.</p>
+<p>However, using minimal and general data in tests make it clearer on what is being tested, and also avoids any unnecessary disclosure.</p>
+<p>Note that the way you write your test affects how the function is implemented.
+Using minimal, generalised data encourages you to follow good practices when designing your function.</p>
+</section>
+<section id="structure-test-files-to-match-code-structure">
+<h2>Structure test files to match code structure<a class="headerlink" href="#structure-test-files-to-match-code-structure" title="Link to this heading">#</a></h2>
+<p>The chapter <a class="reference internal" href="modular_code.html"><span class="doc std std-doc">Modular code</span></a> describes how complexity can be managed by separating code into related groups.
+Modular, well-structured code is easier to write tests for.
+But you also want to make it easy to identify which tests relate to which parts of your code.</p>
+<p>You should mirror the structure of your code in the structure of your test files.
+You might use one test file per function/class or one test file per module.
+Overall, the aim is to make it easy to find the tests for a given function or class and vice versa.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">R</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project/
+│
+├── src/
+│   ├── __init__.py
+│   ├── math.py
+│   ├── strings.py
+│   └── api.py
+│
+└── tests/
+    ├── unit/
+    │   ├── test_math.py
+    │   └── test_strings.py
+    │
+    ├── integration/
+    │   └── test_api.py
+    │
+    └── end_to_end/
+        └── test_end_to_end_pipeline.py
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project/
+│
+├── .Rproj
+│
+├── R/
+│   ├── math.R
+│   ├── strings.R
+│   └── api.R
+│
+└── tests/
+    │
+    ├── testthat/
+    │   ├── test-maths_abs.R
+    │   ├── test-maths_sum.R
+    │   └── test-strings_option.R
+    │
+    └── testthat.R
+</pre></div>
+</div>
+</div></div>
+<p>The Python example above has one file containing unit tests for each module (group of related functions and classes).
+When using this structure, you may want to also group multiple test functions into test classes.
+Having one test class per function/class that you are testing will make it clear that the group of tests relates to that function or class in your source code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># An example for tests/unit/test_math.py</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestAbs</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_abs_all_positive_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_abs_all_negative_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="o">...</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestSum</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_sum_all_positive_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_sum_all_negative_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Using classes for unit tests has many additional benefits, allowing reuse of the same logic either by class inheritance, or through fixtures.
+Similar to fixtures,
+you can use the same pieces of logic through class inheritance in Python.
+Note that it is easier to mix up and link unit tests when using class inheritance.
+The following code block demonstrates an example of class inheritance which will inherit both the
+variable and the <code class="docutils literal notranslate"><span class="pre">test_var_positive</span></code> unit test, meaning three unit tests are run.
+You can overwrite the variable within the subclass at any time, but will still inherit defined functions/tests from the parent class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TestBase</span><span class="p">:</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="mi">3</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_var_positive</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">&gt;=</span> <span class="mi">0</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestSub</span><span class="p">(</span><span class="n">TestBase</span><span class="p">):</span>
+    <span class="n">var</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_var_even</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">var</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p>The R  project structure above has one test file per function in the modules.
+There are multiple test files for the <code class="docutils literal notranslate"><span class="pre">math.R</span></code> module because it contains more than one function.
+Tests in these test files do not need grouping into classes, as the file name is used to indicate exactly which function or class is being tested.
+Tests in R are now linked together based on the file, previously named contexts.
+Context is now tied to test file name to ensure they are always synced.
+The <code class="docutils literal notranslate"><span class="pre">context()</span></code> function is now depreciated and should be removed from your R script.</p>
+<p>These are the common conventions for each of Python and R, but are interchangeable.
+Use the approach that makes it easiest for developers to identify the relationship between tests and the code they are testing.</p>
+<p>Note that some test frameworks allow you to keep the tests in the same file as the code that is being tested.
+This is a good way of keeping tests and code associated,
+but you should follow good modular code practices to separate unrelated code into different files.
+Additional arguments are made to separate tests and functions when you are packaging your code.
+If you store unit tests and code in the same file,
+the unit tests would also be packaged and installed by additional users.
+Therefore when packaging code,
+you should move the unit tests to an adjacent test folder as users will not need to have unit tests installed when installing the package.</p>
+<p>When separating unit tests into main package and testing scripts, it is important to import your package to ensure the correct functions are being unit tested.
+For the module structure outlined previously, use <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">src.math</span> <span class="pre">import</span> <span class="pre">my_math_function</span></code>.
+For R, you need to specify the name of your package within the <code class="docutils literal notranslate"><span class="pre">testthat.R</span></code> file within your tests folder.</p>
+</section>
+<section id="structuring-tests">
+<h2>Structuring tests<a class="headerlink" href="#structuring-tests" title="Link to this heading">#</a></h2>
+<p>To maintain a consistency across modules you develop, you should follow PEP8 (Python) [1]
+or Google / tidyverse (R) [2, 3] standards when structuring unit tests.</p>
+<p>For python this involves importing all needed functions at the beginning of the test file.
+To ensure you import the correct functions from your module,
+it is recommended to install a local editable version into your virtual environment.
+Run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> and any changes made to your
+module functions will also be updated in your python environment.
+Following this it is recommended to define fixtures, classes and then test functions.</p>
+<p>You should follow a similar structure in R, with all modules loaded in the beginning of a test script.
+Test contexts and then functions should be defined in turn.</p>
+<p>Generally, tests within the same file should follow some structure or order.
+It is recommended that the order that functions are defined in the main script is also mirrored
+within the test scripts.
+This will make it easier for future developers to debug and follow and
+ensures that no functions have been missed and do not have unit tests written.</p>
+</section>
+<section id="test-that-new-logic-is-correct-using-unit-tests">
+<h2>Test that new logic is correct using unit tests<a class="headerlink" href="#test-that-new-logic-is-correct-using-unit-tests" title="Link to this heading">#</a></h2>
+<p>When you implement new logic in code, tests are required to assure that the code works as expected.</p>
+<p>To make sure that your code works as expected, you should write tests for each individual unit in your code.
+A unit is the smallest modular piece of logic in the code - a function or method.</p>
+<p>Unit tests should cover realistic use cases for your function, such as:</p>
+<ul class="simple">
+<li><p>boundary cases, like the highest and lowest expected input values</p></li>
+<li><p>positive, negative, zero, and missing value inputs</p></li>
+<li><p>examples that trigger errors that have been defined in your code</p></li>
+</ul>
+<p>When your function documentation describes the expected inputs to your function, there is less need to test unexpected cases.
+If misuse is still likely or risky, then providing the user with an error is the best approach to mitigate this risk.</p>
+<p>Reusing logic from an existing package that is already tested does not require tests when you use that logic alone.
+You should be aware of whether your dependencies are sufficiently tested.
+Newly developed packages or those with very few users are more likely to not be thoroughly tested.</p>
+</section>
+<section id="test-that-different-parts-of-the-code-interact-correctly-using-integration-tests">
+<h2>Test that different parts of the code interact correctly using integration tests<a class="headerlink" href="#test-that-different-parts-of-the-code-interact-correctly-using-integration-tests" title="Link to this heading">#</a></h2>
+<p>Integration tests are those that test on a higher level than a unit. This includes testing that:</p>
+<ul class="simple">
+<li><p>multiple units work together correctly</p></li>
+<li><p>multiple high level functions work together (e.g., many units grouped into stages of a pipeline)</p></li>
+<li><p>the analysis works with typical inputs from other systems</p></li>
+</ul>
+<p>Integration tests give you assurance that your analysis is fit for purpose.
+Additionally, they give you safety when refactoring or rearranging large parts of code.
+Refactoring is an important part of managing the complexity of your analysis as it grows.</p>
+<p>You can similarly consider a high level stage of an analysis pipeline.
+If you have a stage responsible for imputing missing values, you can create integration tests to check that all values are
+imputed and that you used particular imputation methods for specific cases in your test data.
+When changes are made to individual imputation methods you might not expect these general characteristics to change.
+This test helps to identify cases where this inadvertently has changed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Integration tests are more robust when they focus on general high level outcomes that you do not expect to change often.
+Integration tests that check very specific outcomes will need to be updated with any small change to the logic within the part that is being tested.</p>
+</div>
+</section>
+<section id="test-that-the-analysis-runs-as-expected-using-end-to-end-tests">
+<h2>Test that the analysis runs as expected using end-to-end tests<a class="headerlink" href="#test-that-the-analysis-runs-as-expected-using-end-to-end-tests" title="Link to this heading">#</a></h2>
+<p>End-to-end testing (sometimes called system testing) checks the entire workflow from start to finish, ensuring all components work correctly in real-world scenarios. While integration testing focuses on the interaction of specific modules, end-to-end testing involves all elements of a pipeline. This is useful when refactoring code for example, by providing assurance that overall functionality remains unchanged.</p>
+<p>For example, a piece of analysis has an end-to-end test to check that outputs are generated and the data are the right shape or format. There might also be a “regression” test that checks that the exact values in the output remain the same. After you make any changes to tidy up or refactor the code, these end-to-end tests can be run to assure no functionality has accidentally changed.</p>
+<p>Use end-to-end tests to also quality assure a project from an end user’s perspective; these should be run in an environment that replicates the production environment as closely as possible. This type of testing can catch errors that individual unit tests might miss and confirms that the output is fit for purpose and the user requirements are met. End-to-end testing is a form of ‘black box’ testing, meaning the tester verifies functionality without focusing on the underlying code. It is therefore important to use end to end testing alongside other forms of testing such as unit tests.</p>
+</section>
+<section id="good-practices-for-integration-and-end-to-end-testing">
+<h2>Good practices for integration and end-to-end testing<a class="headerlink" href="#good-practices-for-integration-and-end-to-end-testing" title="Link to this heading">#</a></h2>
+<p>When devising an integration or end-to-end testing it’s important to follow these good practices:</p>
+<ul class="simple">
+<li><p>Planning ahead: Have a clear plan of what you want to test and how before you start.</p></li>
+<li><p>Testing Early:  Start testing integration as soon as parts are combined rather than waiting until everything is finished. This helps catch issues sooner.</p></li>
+<li><p>Use Real Data: Whenever possible, use real data in your tests to make sure everything behaves like it would in the real world. When not possible, make sure the test data reflect the complexities of real data.</p></li>
+<li><p>Automate tests: Automate your integration tests. This makes it easier to run them frequently and catch problems quickly.</p></li>
+<li><p>Checking dependencies: Make sure to test how different components rely on each other, as issues can arise there.</p></li>
+<li><p>Test for failures: don’t just test for success; also check how the system behaves when things go wrong. This helps ensure it handles errors gracefully.</p></li>
+<li><p>Keep tests isolated: Try to isolate tests so that one failure doesn’t affect another, making it easier to pinpoint issues.</p></li>
+<li><p>Document: Keep a record of tests, results, and issues found. This helps with future testing and understanding what changes might affect integration.</p></li>
+</ul>
+</section>
+<section id="write-tests-to-assure-that-bugs-are-fixed">
+<h2>Write tests to assure that bugs are fixed<a class="headerlink" href="#write-tests-to-assure-that-bugs-are-fixed" title="Link to this heading">#</a></h2>
+<p>Each time you find a bug in your code, you should write a new test to assert that the code works correctly.
+Once you resolve the issue, this new test should pass and give you confidence that the bug has been fixed.</p>
+<p>When you change or refactor your code in future, the new tests
+will continue to assure that bugs you have already fixed will not reappear.
+Doing this increases the coverage of your tests in a proportionate way.</p>
+</section>
+<section id="write-tests-before-writing-logic">
+<h2>Write tests before writing logic<a class="headerlink" href="#write-tests-before-writing-logic" title="Link to this heading">#</a></h2>
+<p>The best practice for testing code is to use test-driven development (TDD).
+This is an iterative approach that involves writing tests before writing the logic to meet the tests.</p>
+<p>If you know the expected outcome—based on user needs or internal requirements—you can define the test first, before you think about how you are going to write the solution.</p>
+<p>TDD typically repeats three steps:</p>
+<ol class="arabic simple">
+<li><p>Red - Write a test that you expect to fail.</p></li>
+<li><p>Green - Write or update your code to pass the new test.</p></li>
+<li><p>Refactor - Make improvements to the quality of the code without changing the functionality.</p></li>
+</ol>
+<p>As with any code that is adequately covered by tests, code written using TDD can be safely refactored. You can be more confident that your tests will capture any changes that would unintentionally alter the way your code works.</p>
+<p>This iterative approach also helps manage complexity. You should start by writing tests with minimal functionality and gradually expanding both tests and logic.</p>
+<p>Beyond test coverage, TDD encourages best practices, including keeping test data minimal, writing simple functions and classes and developing focused code. Though it takes practice, it leads to clean, robust and adaptable code.</p>
+</section>
+<section id="acceptance-and-stress-testing-in-reproducible-analytical-pipelines">
+<h2>Acceptance and Stress Testing in Reproducible Analytical Pipelines<a class="headerlink" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines" title="Link to this heading">#</a></h2>
+<p>In the development of reproducible analytical pipelines, acceptance testing and stress testing can be useful to consider, to ensure reliability, usability, and robustness of pipelines.</p>
+<section id="acceptance-testing">
+<h3>Acceptance testing<a class="headerlink" href="#acceptance-testing" title="Link to this heading">#</a></h3>
+<p>Acceptance testing verifies that the pipeline meets user, business, and operational requirements. It ensures that analytical outputs are accurate, relevant, and aligned with stakeholder expectations. There are three types of acceptance testing:</p>
+<ul class="simple">
+<li><p>User Acceptance Testing (UAT) enables end-users to test the pipeline to ensure it meets their needs and provides accurate outputs.</p></li>
+<li><p>Business Acceptance Testing (BAT) ensures the pipeline supports business processes and integrates smoothly with existing workflows.</p></li>
+<li><p>Operational Acceptance Testing (OAT) checks that the pipeline is ready for deployment, including aspects like error handling, maintenance, and recovery.</p></li>
+</ul>
+<p>These tests help validate that the pipeline is not only technically sound but also fit for purpose in real-world settings.</p>
+</section>
+<section id="stress-testing">
+<h3>Stress Testing<a class="headerlink" href="#stress-testing" title="Link to this heading">#</a></h3>
+<p>Stress testing evaluates the pipeline’s resilience under extreme or unexpected conditions—such as large datasets or noisy data.</p>
+<p>By simulating challenging scenarios, stress testing helps identify performance issues and ensures the pipeline can maintain integrity and produce reliable outputs even under pressure. Stress testing involves introducing variations or noise into the input data and observing how this affects the pipeline’s outputs, to ensure it can handle real-world challenges.</p>
+</section>
+</section>
+<section id="reduce-repetition-in-test-code-fixtures-and-parameterised-tests">
+<h2>Reduce repetition in test code (fixtures and parameterised tests)<a class="headerlink" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests" title="Link to this heading">#</a></h2>
+<p>Where possible, you should reduce repetition in your tests. As with functional code, test code is much easier to maintain when it is modular and reusable.</p>
+<section id="use-fixtures-to-reduce-repetition-in-test-set-up">
+<h3>Use fixtures to reduce repetition in test set up<a class="headerlink" href="#use-fixtures-to-reduce-repetition-in-test-set-up" title="Link to this heading">#</a></h3>
+<p>As your test suite grows, many of your tests may use similar code to prepare your tests or to clean up after each test has run. You can be more tolerant of repetition in test code. However, copying code snippets for each test is laborious and increases the risk of applying those steps inconsistently. You can use fixtures to help avoid this form of repetition in tests.</p>
+<p>A fixture allows you to define your test preparation and clean up as functions. You then use the fixture to carry out these steps consistently for each test that they are required for.</p>
+<p>In Class-based testing frameworks, these functions tend to be separated into <code class="docutils literal notranslate"><span class="pre">SetUp</span></code> and <code class="docutils literal notranslate"><span class="pre">TearDown</span></code> functions. These are set to run before and after each test, respectively.</p>
+<p>Fixtures can be scoped to run:</p>
+<ul class="simple">
+<li><p>Per test (function)</p></li>
+<li><p>Per group of tests</p></li>
+<li><p>Once per session (session), useful for expensive setup like starting a Spark session.</p></li>
+</ul>
+<p>Fixtures also help reset environments, such as cleaning up test databases or temporary files.</p>
+<p>For usage details see the documentation for packages that offer fixtures:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.pytest.org/en/stable/fixture.html">Python <code class="docutils literal notranslate"><span class="pre">pytest</span></code> Fixture</a> documentation [4]</p></li>
+<li><p><a class="reference external" href="https://testthat.r-lib.org/articles/test-fixtures.html">R <code class="docutils literal notranslate"><span class="pre">testthat</span></code> Fixture</a> documentation [5]</p></li>
+</ul>
+</section>
+<section id="use-parameterisation-to-reduce-repetition-in-test-logic">
+<h3>Use parameterisation to reduce repetition in test logic<a class="headerlink" href="#use-parameterisation-to-reduce-repetition-in-test-logic" title="Link to this heading">#</a></h3>
+<p>Similar steps are often repeated when testing multiple combinations of inputs and outputs.
+Parameterisation allows reduction of repetition in test code, in a similar way to writing your logic in functions.
+Specify pairs of inputs and expected outputs, so your testing tool can repeat the same test for each scenario.</p>
+<p>Using parameterisation in a test framework is equivalent to using a for-loop to apply a test function over multiple inputs and expected outputs.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, this can be achieved using the <a class="reference external" href="https://docs.pytest.org/en/stable/parametrize.html">Parametrize mark</a> [6].</p>
+<p>In R, the <code class="docutils literal notranslate"><span class="pre">patrick</span></code> package extends <code class="docutils literal notranslate"><span class="pre">testthat</span></code> to provide a
+<a class="reference external" href="https://rdrr.io/cran/patrick/man/with_parameters_test_that.html"><code class="docutils literal notranslate"><span class="pre">with_parameters_test_that</span></code></a> function to achieve this [7].</p>
+</section>
+</section>
+<section id="lacking-time-the-risks-to-skipping-tests">
+<h2>Lacking time? The risks to skipping tests<a class="headerlink" href="#lacking-time-the-risks-to-skipping-tests" title="Link to this heading">#</a></h2>
+<p>In an ideal world, you would never skip testing code, ensuring the software is reliable
+and easily reproducible. However, in practice there are times when skipping tests may be necessary, such as due to tight deadlines, limited resources, or the need to quickly get a feature up
+and running. While this can save time in the moment, it’s important to be cautious, as
+skipping tests can lead to hidden problems that may become harder to fix later, particularly
+as the project grows. Whenever tests are set aside, it’s best to have a plan for going back to add
+them, to avoid risks to the stability and quality of the software.</p>
+<details>
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Van Rossum G, Warsaw B, Coghlan N. PEP 8 – Style Guide for Python Code [Online]. Python Software Foundation; 2001 [Accessed September 24 2025]. Available from: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">https://www.python.org/dev/peps/pep-0008/</a></p></li>
+<li><p>Google. Google R Style Guide [Online]. Google. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://google.github.io/styleguide/Rguide.html">https://google.github.io/styleguide/Rguide.html</a></p></li>
+<li><p>Wickham H. The Tidyverse Style Guide [Online]. Tidyverse. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://style.tidyverse.org/">https://style.tidyverse.org/</a></p></li>
+<li><p>pytest. Fixtures: explicit, modular, scalable [Online]. [Accessed September 24 2025]. Available from: <a class="reference external" href="https://docs.pytest.org/en/stable/explanation/fixtures.html">https://docs.pytest.org/en/stable/explanation/fixtures.html</a></p></li>
+<li><p>testthat. Test fixtures [Online]. <a class="reference external" href="http://testthat.r-lib.org">testthat.r-lib.org</a>. [Accessed September 25 2025]. Available from: <a class="reference external" href="https://testthat.r-lib.org/articles/test-fixtures.html">https://testthat.r-lib.org/articles/test-fixtures.html</a></p></li>
+<li><p>pytest. How to parametrize fixtures and test functions [Online]. <a class="reference external" href="http://pytest.org">pytest.org</a>. [Accessed September 25 2025]. Available from: <a class="reference external" href="https://docs.pytest.org/en/stable/how-to/parametrize.html">https://docs.pytest.org/en/stable/how-to/parametrize.html</a></p></li>
+</ol>
+</details>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="peer_review.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Peer review</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="continuous_integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Automating code quality assurance</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-should-i-test">What should I test?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-are-tests-structured">How are tests structured?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-reproducible-tests">Write reproducible tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-repeatable-tests">Write repeatable tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-all-tests-against-each-change-to-your-code">Run all tests against each change to your code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#record-the-outcomes-of-your-tests">Record the outcomes of your tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#minimise-your-test-data">Minimise your test data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-test-files-to-match-code-structure">Structure test files to match code structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structuring-tests">Structuring tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-new-logic-is-correct-using-unit-tests">Test that new logic is correct using unit tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-different-parts-of-the-code-interact-correctly-using-integration-tests">Test that different parts of the code interact correctly using integration tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#test-that-the-analysis-runs-as-expected-using-end-to-end-tests">Test that the analysis runs as expected using end-to-end tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#good-practices-for-integration-and-end-to-end-testing">Good practices for integration and end-to-end testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-to-assure-that-bugs-are-fixed">Write tests to assure that bugs are fixed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#write-tests-before-writing-logic">Write tests before writing logic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-and-stress-testing-in-reproducible-analytical-pipelines">Acceptance and Stress Testing in Reproducible Analytical Pipelines</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#acceptance-testing">Acceptance testing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stress-testing">Stress Testing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduce-repetition-in-test-code-fixtures-and-parameterised-tests">Reduce repetition in test code (fixtures and parameterised tests)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-fixtures-to-reduce-repetition-in-test-set-up">Use fixtures to reduce repetition in test set up</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-parameterisation-to-reduce-repetition-in-test-logic">Use parameterisation to reduce repetition in test logic</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lacking-time-the-risks-to-skipping-tests">Lacking time? The risks to skipping tests</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

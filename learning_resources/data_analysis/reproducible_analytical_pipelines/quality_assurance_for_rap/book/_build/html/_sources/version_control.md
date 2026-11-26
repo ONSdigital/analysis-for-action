@@ -1,0 +1,602 @@
+# Version control
+
+Version control is managing changes to your analysis over time.
+This chapter will primarily discuss the benefits of using [the Git version control system](https://git-scm.com/).
+
+```{admonition} Pre-requisites
+:class: admonition-learning
+
+To get the most benefit from this section, you should have a basic understanding of how to use Git.
+Many of the examples used in this section refer to the command-line interface for Git, so general command-line knowledge may also help.
+
+```
+
+## Keep an audit trail of changes
+
+As discussed in the chapter on [](principles.md), an audit trail is essential for assuring quality analysis.
+It is important to be able to answer the following questions about your analysis:
+
+* What changes have been made to the project?
+* When were those changes made?
+* Why were those changes made?
+* Who made those changes?
+
+Version control software, like Git, records the answers to these questions throughout the development of a project.
+Development decisions can be detailed alongside changes, using commit messages and Pull or Merge Requests.
+In turn, this keeps the analysis workspace clean of commented-out old code and numerous files containing previous versions.
+
+Effective use of version control helps to identify which changes have negatively impacted your work and remove them.
+Furthermore, a detailed audit trail allows you to refer to specific versions of your code that have been used to produce outputs,
+which is important for reproducing your analysis.
+
+Git is invaluable when recording and combining changes from multiple developers, as merging allows us to resolve conflicts between overlapping changes.
+A remote Git repository maintains a single source of truth, even when multiple individuals are working on a project.
+Additionally, version control platforms, like GitHub and GitLab, can make it easier to track and review ongoing work.
+This avoids duplication of effort and keeps review embedded in the development workflow.
+
+
+## Include code and documentation in version control
+
+Ideally, you should include all code and documentation that is required to understand and run your analysis.
+
+This may include:
+
+* Project documentation including readme and contribution guidance.
+* Packaged functions and code documentation.
+* Unit tests.
+* Dummy data and example configuration files.
+* User documentation such as desk notes and installation guidance.
+
+## Exclude sensitive information from version control
+
+In a public repository, you may need to omit confidential or sensitive aspects of the project.
+
+```{caution}
+
+You should **never** include the following in your code repository:
+
+* Passwords, credentials or keys.
+* Real configuration files.
+* Code that contains sensitive information.
+  * for example, code that describes a method for fraud detection.
+  * or code that contains references to personally identifiable data.
+  * or code that might compromise security protocols.
+* Data, except for small example datasets.
+```
+
+It is again worth stressing the importance of not committing sensitive, unpublished, or disclosive data to your Git history.
+If you would like to include an example for end-users, a minimal dummy dataset can be committed to the repository.
+When creating realistic dummy data, care should be taken not to disclose sensitive features of the true data such as distributions and trends.
+Dummy data should always be carefully peer reviewed before being added to a repository.
+
+
+## Using Git for version control
+
+Git is a distributed version control system.
+This means that all users have access to a complete and self-contained history of changes to a given project.
+The software can be used to record local changes, with the option of then synchronising these changes with a central, remote repository.
+Remote repositories are typically hosted on a platform like GitHub or GitLab.
+
+The following sections describe useful concepts for using Git to version control your analysis.
+
+
+### Write short and informative commits
+
+Commits are collections of changes to one or more files in a repository.
+Every commit is attributed to the author of the changes, providing an audit trail.
+Each commit has a unique hash - or identifier - associated with it, which has a long (e.g., `121b5b4f18231e4ee32c9c61f6754429f9572743`) and short version (e.g., `121b5b4`).
+These hashes allow you to refer to specific changes, but each commit also has an associated message that is used to describe the changes.
+
+```{note}
+When adding changes to be included in a commit, you should preferentially add individual files or directories.
+For example, using `git add src/my_file.txt` rather than a catch-all like `git add .`.
+This specificity ensures that only intended changes are included, reducing the likelihood of including unrelated changes or files that should not be versioned
+(when they are not included in `.gitignore`).
+Using `git status` after adding changes can help to confirm that only the desired changes are included.
+```
+
+Most commit messages are short and informative, but in some cases you may want to provide more detail. [3]
+A concise summary of your change is usually sufficient,
+but remember that it is these commit messages that will be used in the future to understand what changes have been made to your project.
+You might rely on these to identify where an error has been introduced, so it is important that you write these messages clearly and informatively.
+
+How often you commit when working on a project should depend on what benefit you would like to get from versioning your work.
+When reviewing code that has been version controlled, the commit history provides a chronological summary of the changes that have been made to a project.
+To make this audit trail useful, commits should be made whenever a discrete unit of work has been completed.
+When useful commit messages have been used to describe these units of work,
+it is easier for others to understand steps taken to develop the analysis to its current state.
+
+You should also make commits whenever you have made changes that you might wish to revisit or undo.
+As Git allows you to easily `revert` changes by referring to a commit's hash,
+you should try to ensure that each commit only contains changes to single aspect of your analysis.
+Consider a commit that includes changes to several files.
+Imagine you discover that one change in this commit has created a bug in the analysis code.
+You can revert the commit to remove the bug, but this also removes the other changes that were made in the same commit.
+As such, you would need to invest more effort to work out which change causes the bug and selectively undo that change.
+
+
+### Use branching appropriately
+
+Branches are independent copies of a project's history, copied from a parent branch at a specific point in its history.
+You typically create a new branch to make a change to your code, which might be building a new feature or fixing a bug in your analysis.
+You can create multiple branches from a single parent branch when multiple changes are being worked on independently.
+This is especially useful when multiple analysts are working collaboratively and are making changes in parallel.
+
+Once changes have been implemented and sufficiently quality assured (think documentation and testing),
+the branch containing the changes can be merged onto another branch.
+The target branch for this merging is typically the parent branch, which the branch was branched from.
+You should eventually merge complete changes onto the `main` branch, which is the public-facing branch that is ready for use.
+You must resolve any overlapping or 'conflicting' changes between the current and target branches during merging.
+
+It is important to note that your approach to branching within a project
+should be proportional to number of collaborators and the complexity of the development work.
+For example, if working alone on a project you might only be working a single development branch at any moment in time,
+or might choose to track all changes on a single `main` branch.
+The `main` or `master` branch is the default highest level branch in a Git repository.
+
+```{figure} ./_static/git_main.png
+---
+width: 70%
+name: git_master
+alt: Diagram showing a horizontal flow from 'main' through five empty circles connected in sequence, demonstrating commits along a single “main” Git branch.
+---
+Commits along a single "main" Git branch.
+```
+
+More complex projects may warrant using branching.
+When using branches, the `main` branch should be considered as the most 'stable' branch in the repository -
+meaning that the code on this branch builds successfully and executes as expected.
+When you make changes to code, they may initially be less stable or reliable.
+Therefore, you should make these changes on a new branch so that the working code on the `main` branch is unaffected.
+As the changes to the code are refined, it becomes safer to merge these changes onto a higher level branch such as `main`.
+For example, when the code has been reviewed and suitably tested.
+You should aim to only merge onto a more stable branch when you do not expect it to break the working code on the target branch.
+
+```{figure} ./_static/git_feature.png
+---
+width: 70%
+name: git_feature
+alt: Diagram demonstrating the addition of a new feature, which sits above and parallel to the main branch.
+---
+Working on changes on a single `feature` branch.
+```
+
+Here a single `feature` branch has been created from the `main` branch.
+Changes are initially quite experimental, but are refined over a few commits.
+Finally, the complete, working feature is merged back onto the `main` branch.
+
+Many small scale projects iteratively work on individual feature or development branches in this way.
+The [GitHub flow branching strategy](https://guides.github.com/introduction/flow/) uses this approach in combination with [Pull Requests](pull-requests) [1],
+to incorporate peer review into the development workflow.
+
+```{figure} ./_static/git_develop.png
+---
+width: 90%
+name: git_develop
+alt: Diagram showing iterations of creating and merging a develop branch from a main branch.
+---
+Iteratively working on a `develop` branch.
+```
+
+You can create multiple branches from the `main` branch at any point.
+You might do this when multiple features are being developed in parallel, or perhaps when multiple analysts wish to make changes to the same piece of code independently.
+
+```{figure} ./_static/git_multiple_features.png
+---
+width: 90%
+name: git_multiple_features
+alt: Diagram with a main branch in black, and two diverging branches named feature-1, in orange, and feature-2, in green. Each have directional arrows and commit points to the main branch.
+---
+Working on multiple parallel branches.
+```
+
+Here two feature branches are created from `main`.
+Work on each feature is carried out independently of the other feature and can be merged onto `main` once it is complete.
+If changes from separate branches affect the same files, merging these branches to `main` may lead to merge conflicts.
+In these cases you should resolve the conflicts to keep your desired overall change.
+
+```{note}
+If you are able to break up your work into independent features that are not expected to affect the same files, you should do this.
+This helps to avoid conflicts in the merging process that need to be resolved manually.
+```
+
+In addition to having multiple branches from the `main` branch, you can also create deeper branches from other branches.
+You might create additional sub-branches when the development of a feature involves multiple sub-tasks,
+or when a problem needs to be fixed during development of a feature.
+Deeper branching usually reflects work that is less stable and more exploratory or experimental.
+
+```{figure} ./_static/git_deeper_branching.png
+---
+width: 90%
+name: git_deeper_branching
+alt: Diagram showing a sub branch being created from a feature branch.
+---
+Using deeper branching to manage sub-tasks.
+```
+
+In this example, a `feature` branch has been created.
+Early in development of the feature a bug that has been created needs to be fixed,
+but this work can be carried out independently to the remaining development of the feature.
+As such, another, deeper branch can be created to carry out the bug fix.
+Once the bug is fixed, the `bug-fix` branch can be merged onto the `feature` branch. And finally, the finished `feature` can be merged back onto `main`.
+
+An alternative to progressively merging changes onto `main` is for development work to be branched from a `develop` branch.
+For this, you would only use merges from `develop` onto the `main` branch to release a new version of the code.
+This approach can be useful when deploying code directly into production from the `main` branch.
+However, analysts should use the most simple and beneficial approach to branching depending on their project.
+
+```{note}
+Although the examples above use very simple branch names, it is important that you use informative names for your branches in practice. Aim to use meaningful names that describe the feature or bug that the changes will add on.
+```
+
+
+### Resolve merge conflicts
+
+Git is effective at merging different branches.
+However, when the same file is edited in two different branches at the same time, this can lead to a merge conflict when you try to merge those branches.
+When this happens, you will see a message telling you there is a merge conflict and which files are affected.
+The file name will appear as `branch-name|MERGING`.
+You can fix this by manually selecting which changes to keep.
+If using the command line, you can also run `git status` to output the names of the affected files.
+
+When merge conflicts happen, git will mark the clashes using this syntax:
+
+```none
+Changes on the branch being merged
+=======
+```
+
+The row of equals signs divides the old from the new.
+The contents in the first division are the changes in the current branch.
+Changes in the second division are from the new branch.
+You can choose to keep one, both, or neither.
+To resolve the merge conflict, you will need to make the necessary changes and delete the relevant symbols that git added to the text.
+Once you have resolved all conflicting text manually (there may be more than one), then you can add and commit the changes to resolve the merge conflicts.
+
+Avoid merge conflicts whenever possible.
+Do this by avoiding editing the same files across different branches.
+If this is difficult to do, it may be that your scripts need to be modularised or split into multiple scripts that carry out more specific tasks.
+
+### Versioning large files
+
+Storing large files in Git typically slows down your development workflow. While the Git Large Files Storage (LFS) extension allows you to version large files, it is recommended that remote Git repositories are not used to store data.
+
+Instead, keep data versioning separate from code using tools like DVC, or store data in external systems like cloud buckets or databases. This keeps your code clean and your workflow efficient.
+
+### Tag new releases
+
+Regularly `commit`ing changes using Git helps us to create a thorough audit trail of changes to your project.
+However, there may be discrete points in the history of the project that you want to mark for easier future reference.
+This is incredibly useful, as commit hashes like `121b5b4` serve as poor identifiers for human users.
+
+Git allows you to create "tags" to reference specific points in project's history.
+These tags essentially act as an alias for a particular commit hash, so you can refer to it by an informative label.
+You might use tags to mark a particular model version in an analytical project or an important stage of your analysis.
+For example, you might tag code that has been used to generate a particular output so that it can easily be accessed to reproduce that output in future.
+If developing a package as part of your analysis, these tags are also commonly used to indicate new package versions.
+
+By default, tags will reference the current position in history (i.e., the latest commit or `HEAD`).
+An annotated tag might be created for a new model version like so:
+
+```{code-block}
+git tag -a v0.2.7 -m "Model version 0.2.7"
+git push origin v0.2.7
+```
+
+You can also retrospectively tag an older commit by providing that `commit`'s hash:
+
+```{code-block}
+git tag -a v0.1.0 -m "Model version 0.1.0" 9fceb02
+git push origin v0.1.0
+```
+
+Once tags have been created, these locations in the projects history can be easily recovered by either checking out:
+
+```{code-block}
+git fetch --all
+git checkout tags/v0.1.0 -b new_branch_name
+```
+
+or cloning the tag:
+
+```{code-block}
+git clone https://github.com/<user>/<repo>.git --branch=v0.1.0
+```
+
+
+(excluding-from-git)=
+## Avoid committing sensitive information to Git repositories
+
+Code itself is very rarely sensitive, so it is typically okay to be open to sharing it.
+However, analysts may be required to use sensitive information in their analysis.
+This might be in the form of credentials, used to access a service, or data that contains personally identifiable information.
+
+In these cases, you need to minimise the risk of inadvertently sharing this information with your code.
+This subsection suggests how you might mitigate this risk in your analysis.
+
+You should ensure that passwords or credentials that are used in your code are stored in [environment variables](environment-variables)
+and are not written directly into code.
+This includes in the early stages of development, as your version control history will retain copies of these.
+
+
+### Automatically avoid committing unwanted files using .gitignore
+
+As mentioned above, you may not want to include all of the files associated with your project in a Git repository.
+A `.gitignore` file allows you to exclude folders or files from being tracked by Git. Within this file, you provide a list of text patterns.
+If a folder matches one of your `.gitignore` file patterns, none of the files or folders below that folder will be tracked.
+If an individual file matches one of the patterns, this file will not be tracked.
+
+Given this example `.gitignore` file:
+
+```none
+secrets.yaml
+sandpit/
+*.csv
+```
+
+The first pattern tells Git to ignore any file with the exact name `secrets.yaml`.
+The second will ignore all files within a folder named `sandpit/`.
+Note that if there are multiple folders in the project named `sandpit/`, they will all be excluded.
+You should make the pattern more specific if you want to exclude particular directories.
+The third pattern will exclude all `.csv` files, regardless of which folder or sub-folder they are in.
+
+```{caution}
+Files that are already being tracked by Git will not be excluded when you add new patterns to your `.gitignore` file.
+Ensure that you set up your `.gitignore` before adding files to be tracked in your repository.
+```
+
+While you may not want to share files containing credentials, configuration and data, it can be useful to provide dummy examples of these files.
+Demonstrating the format of these files can help others to reuse your code, without sharing sensitive information.
+
+
+### Exclude `.Rdata` and `.Rhistory` files
+
+R saves objects from your workspace (working environment) into an `.RData` file at the end of your session.
+This can save time when reloading large objects into R, when returning to a project.
+Depending on your settings, it may prompt you to ask if you would like to save them or it may do this automatically.
+If you have read sensitive information into R during the session, this information may be saved to the `.RData` file.
+As such, you must be careful not to include this information in commits to remote repositories.
+
+Similarly, R stores a record of all commands executed in your session in a `.Rhistory` file.
+If you have referenced sensitive information directly in your R commands, then this information will be written to the `.Rhistory` file.
+
+You can exclude these files (via `.gitignore`) or prevent R from generating them to handle this.
+If you do not use these files, it is safest not to generate them in the first place.
+
+In Rstudio, you can disable writing of these files via `Tools > Global options`:
+
+* Under Workspace, select `Never` for `Save workspace to .RData on exit:`.
+* Under History, deselect `Always save history`.
+
+Or to set these for a particular project you can include the following in your `.Rproj` file:
+
+```none
+RestoreWorkspace: No
+SaveWorkspace: No
+AlwaysSaveHistory: No
+```
+
+### Avoid saving data from Jupyter Notebooks
+
+By default, Jupyter Notebooks store output data (e.g. charts, tables), which can expose sensitive information if shared.
+
+Jupyter Notebooks save a copy of the data that is used to create cell outputs by default.
+For example, the data used to generate a chart, table or print a section of a dataframe.
+This can be useful for sharing your code outputs without others needing to re-execute the code cells.
+
+If you work with sensitive datasets in notebooks, you may be making sensitive data available to unauthorised individuals if these notebooks are  shared.
+
+
+To prevent this, the best way is to:
+
+- Clear the outputs from your notebooks manually committing them to Git repositories.
+`Cell > All > Output > Clear` and then save your notebook.
+- Or use command line:
+
+```none
+jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace <notebook_file_path>
+```
+
+As this can easily be forgotten, you can automate this process using Git filter:
+
+1. Set an attribute on notebook files by creating a `.gitattributes` file in the root of your repo:
+
+```none
+*.ipynb filter=jupyternotebook
+```
+
+2. Define cleaning instructions in a `.gitconfig` configuration file:
+
+```none
+[filter "jupyternotebook"]
+    clean = jupyter nbconvert --ClearOutputPreprocessor.enabled=True --inplace %f
+    required
+```
+
+3. Add this to your global `.gitconfig` or create a local `.gitconfig` file in the root of your repo.
+If you create a new config in your repo, you must run the following in that repo:
+
+```none
+git config --local include.path ../.gitconfig
+```
+
+This configuration will now run the notebook output cleaning command every time a change to an `.ipynb` file is added to your local repo.
+You will need to then `git add` the file a second time to add the changes from the cleaning.
+This should prevent notebook outputs from being included in commits to this repository.
+
+
+
+### Control access to code only when essential
+
+Remote version control platforms, like GitHub,
+have a visibility setting that represents whether the repo can be viewed publicly or only by owners of the project
+ Some analytical teams choose to develop code in the open. Others may work in a private repositories, and then might either change to public or migrate to a fresh public repository to make the code open.
+
+```{caution}
+Access control should not be used instead of the good practices outlined above.
+Restricting access can help to limit the risk of releasing sensitive information, but correct use of version control tools avoids these issues.
+```
+
+Only organisation members and collaborators may make direct contributions to the code in the repo regardless of the visibility status of a repo.
+Others can contribute by Forking and using Pull Requests.
+
+
+### Handle data breaches via Git
+
+If unauthorised individuals may access sensitive information through their accidental inclusion in a remote repository, this is a data breach.
+For example, pushing credentials or sensitive data to a remote public GitHub repository.
+
+To handle a data breach, you should:
+
+* Firstly, prevent further access to the information.
+  * Restrict access of the repository to only those who should have access to the information. For example, make a public repository private.
+  * Remove the offending files from the **commit history** of the repository.
+  * If credentials (passwords or keys) have been revealed, you should change these credentials.
+  * Ask anyone that you know has access to the repository to delete their local copy and re-clone the cleaned remote repository.
+* Secondly, report the incident.
+  * Record roughly how long the information was available for and the potential impact of releasing this information.
+  * Inform the data owner of the breach.
+  * Discuss the breach with a Data Protection Officer in your organisation.
+ They should be able to advise you on the steps you should take as well, according to your organisations data security policy.
+
+
+```{warning}
+Deleting a sensitive file and committing this change is not sufficient.
+All previous versions of files are retained in a repository's history, so sensitive parts of the file must be entirely removed from the history.
+```
+
+
+## Using GitHub
+
+A number of version control platforms extend the functionality of Git to further improve collaborative working.
+
+The following sections describe some of the beneficial features supported by [GitHub](https://github.com/), the leading software development platform.
+GitHub provides additional tools for better management of collaborative work. The following sections will describe how these tools may be applied in analytical workflows.
+
+
+(issues)=
+### Use Git issues to plan and discuss development of your project
+
+Issues offer a method for requesting or recording tasks, including enhancements and bug fixes in a project.
+They act as a collaborative todo list which users and developers can easily contribute to.
+
+The basic elements of an issue are the:
+
+* Title and description, provided by the person that submitted the issue.
+* Labels that categorise the issue (e.g., enhancement or bug).
+* Comments section where the issue can be discussed.
+* Assigned developers that are working on resolving the issue.
+
+Within an issue's description and comments, you can reference other issues both within (e.g., `#12`) and between repos,
+and tag individuals to notify them of your comments (`@name`).
+Similarly, you can link issues to specific [changes that will be merged to resolve or help to solve the issue](pull-requests).
+This makes them useful for discussing bugs and new features within a team.
+
+When a GitHub repo is publicly visible, the issues are also open and can be contributed to by others, including users.
+Open source projects benefit from this transparency by providing users with a platform to highlight which changes to the project will be most beneficial for them.
+In turn, developers in the community can then address these issues to improve the project.
+
+Analytical projects might use issues to plan and discuss the steps involved in developing the project.
+Collaborators might be tagged or assigned to the task where additional help is required.
+If your analysis code is widely useful, others that use your code may also suggest improvement and offer to contribute to the project via these issues.
+
+[Setting issue templates](https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository)
+for your project can be an effective way of encouraging users and collaborators to use informative descriptions when creating issues [2].
+For example, a bug issue should include simple instructions to help maintainers reproduce the problem.
+Feature requests might include information on how the user expects the new feature to work and details what problem it will help them to overcome.
+
+
+(pull-requests)=
+### Use pull requests for reviewing changes
+
+Once changes have been implemented, perhaps to meet the requirements of an issue,
+Pull Requests provide a useful interface for incorporating changes into the main project.
+Typically pull requests are used to merge a development branch (the source branch) onto a more stable branch in the main project (the target branch).
+The development branch here may be within the same repo, a [Fork](#fork-a-repository-to-maintain-an-independent-copy) of this project, or even a completely separate project.
+
+You should include the high level changes that have been made in the initial description of the pull request, and you might point to any relevant issues that it resolves.
+You can link pull requests to other issues and pull requests, and should provide a coherent narrative of development work much like issues.
+You can assign contributors or tag them in discussion, which can be useful for requesting help or review of a group of changes.
+
+Put checklists into your pull request comments.
+These come with check boxes that can be ticked.
+This is useful when breaking down tasks into smaller chunks.
+Use checklists to help the reviewer review all the relevant parts of the pull request when requesting a review.
+As a reviewer, use checklists to list changes needed before the pull request can be approved.
+
+Alongside the main "Conversation" view of a pull request, the GitHub web interface also provides a useful overview of changes that are included in the pull request.
+You are able to view the list of individual commits that are included in the pull request and, better still, you can view changes to each file in detail.
+
+```{figure} ./_static/github_pr_changes.png
+---
+width: 90%
+name: github_pr_changes
+alt: The GitHub Pull Request web interface.
+---
+Changes from [an example Pull Request on the `fingertipsR` package](https://github.com/ropensci/fingertipsR/pull/91/files) [4].
+```
+
+In the "Files changed" section of a PR (shown above), altered sections of files are shown before and after the changes were made, on the left and right respectively.
+Where changes have deleted lines of code, these lines are highlighted in red on the left panel. And changes that add lines of code to the file are shown on the right.
+
+This highlighted summary of changes provides a useful interface for [peer review](peer_review.md).
+When carrying out a review using this view, you can add comments to specific lines of code and these comments can include suggested changes.
+All comments made using this view are also shown in the main Conversation view.
+When completing a review, a reviewer can indicate whether the PR should be merged or if additional changes are required.
+
+Once a PR has been reviewed and the reviewer is happy with the changes,
+internal developers can use the Conversation view to merge the PR changes onto the target branch.
+
+```{note}
+The repository settings can be adjusted to project branches against specific actions.
+You should consider preventing merging onto the `main` branch without an approved Pull Request to enforce peer review.
+You can combine this with a [Pull Request template](https://docs.github.com/en/github/building-a-strong-community/creating-a-pull-request-template-for-your-repository)
+to ensure that a standard peer review process is followed for all changes.
+```
+
+
+(forking)=
+### Fork a repository to maintain an independent copy
+
+Forking a repository takes a complete copy of a third-party project's current state, including its history and all existing branches and tags.
+Any changes made to a fork do not affect the code on the original repo, and *vice versa*.
+
+You might fork a repository when you want to:
+
+* Contribute to a project as an external collaborator
+* Make changes to a project for your own use, or to maintain a copy that is independent to the original
+
+In the first case, lets consider an example where an issue describes a bug in a project's code.
+Looking at the code, you think that you know where the source of the bug is.
+You create a fork of the project and clone your copy of the project locally.
+Here you make commits that include changes to fix the bug and test that these changes work.
+Once the bug is fixed, you create a Pull Request on the original project and describe how your changes fix the bug.
+The source branch of this PR will be the branch that you committed to on your fork of the project,
+while the target will be the development or main branch of the original repo.
+
+In the second case, perhaps you want to reuse or adapt code from an existing project.
+If the changes that you wish to make to the code are not in line with the aim of the original project or the project is no longer actively maintained,
+then you might create a fork to contain these changes.
+
+You should note that forks do not automatically synchronise with the original repo.
+This means that after you create a fork, changes to the original repo need to be manually synchronised if you want to include them in your repo.
+You should ensure that you synchronise your branch with any new changes before offering to contribute your changes to the original project (see [Pull Requests](pull-requests)).
+
+
+### Use GitHub Actions for continuous integration
+
+Continuous Integration is discussed in more detail in [](continuous_integration.md).
+
+
+<details>
+<summary><h2 style="display:inline-block">References </h2></summary>
+
+1) GitHub. Understanding the GitHub flow [Online]. GitHub Guides. [Accessed 24 September 2025]. Available from: https://guides.github.com/introduction/flow/
+
+2) GitHub Docs. Configuring issue templates for your repository [Online]. GitHub. [Accessed 24 September 2025].  Available from: https://docs.github.com/en/free-pro-team@latest/github/building-a-strong-community/configuring-issue-templates-for-your-repository
+
+3) Tim Pope. tbaggery - A Note About Git Commit Messages. Tbaggery.com; 2024. [Accessed 24 September 2025].  Available from: https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+4) GitHub. *ropensci/fingertipsR: Pull request #91 – Add indicator metadata to fingertips_data* [Online]. GitHub. [Accessed 24 September 2025]. Available from: https://github.com/ropensci/fingertipsR/pull/91/files
+
+</details>

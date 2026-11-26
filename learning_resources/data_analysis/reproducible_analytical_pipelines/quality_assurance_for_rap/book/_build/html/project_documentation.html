@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Project documentation &#8212; Quality Assurance for Reproducible Analytical Pipelines</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
+    <link rel="stylesheet" type="text/css" href="_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" type="text/css" href="_static/accessibility.css?v=6e02104c" />
+    <link rel="stylesheet" type="text/css" href="_static/admonitions.css?v=931fc306" />
+    <link rel="stylesheet" type="text/css" href="_static/logo.css?v=a4c2f84d" />
+    <link rel="stylesheet" type="text/css" href="_static/markdown_within_tabs.css?v=a3648b14" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script src="_static/tabs.js?v=3030b3cb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'project_documentation';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Version control" href="version_control.html" />
+    <link rel="prev" title="Code documentation" href="code_documentation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Quality Assurance for Reproducible Analytical Pipelines</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary of terms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="checklists.html">Code quality assurance checklists</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="checklist_lower.html">Lower quality assurance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checklist_moderate.html">Moderate quality assurance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="checklist_higher.html">Higher quality assurance</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Guidance</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modular_code.html">Modular code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="readable_code.html">Readable code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_structure.html">Structuring your project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="code_documentation.html">Code documentation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">Version control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Data management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="peer_review.html">Peer review</a></li>
+<li class="toctree-l1"><a class="reference internal" href="testing_code.html">Testing code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="continuous_integration.html">Automating code quality assurance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managers_guide.html">Managing analytical code development</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Resources</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning resources</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/ONSdigital/analysis-for-action" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/project_documentation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Project documentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readme">README</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guidance">Contributing guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-desk-instructions">User desk instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vignettes">Vignettes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versioning">Versioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copyright-and-licenses">Copyright and Licenses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-source-your-code">Open source your code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="project-documentation">
+<h1>Project documentation<a class="headerlink" href="#project-documentation" title="Link to this heading">#</a></h1>
+<p>Documenting your project will makes it much easier for others to understand your goal and ways of working, whether you’re developing a package or collaborating on a piece of analysis.</p>
+<section id="readme">
+<h2>README<a class="headerlink" href="#readme" title="Link to this heading">#</a></h2>
+<p>When working on a collaborative or open coding project, it is good practice to describe an overview of your project in a README file.
+This allows users or developers to grasp the overall goal of your project.
+As well as a description of the project, it might include examples using your code or references to other associated projects.
+This file can be any text type, including <code class="docutils literal notranslate"><span class="pre">.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, and <code class="docutils literal notranslate"><span class="pre">.rst</span></code>, and can be associated with your automated documentation.</p>
+<p>The following are suggestions for a good README:</p>
+<ul class="simple">
+<li><p>Short statement of intent.</p></li>
+<li><p>Longer description describing the problem that your project solves and how it solves it.</p></li>
+<li><p>Basic installation instructions or link to installation guide.</p></li>
+<li><p>Example usage.</p></li>
+<li><p>Screenshot if your project has a graphical user interface.</p></li>
+<li><p>Links to other project guidance, for example methodological papers or document repositories.</p></li>
+<li><p>Links to related projects.</p></li>
+</ul>
+</section>
+<section id="contributing-guidance">
+<h2>Contributing guidance<a class="headerlink" href="#contributing-guidance" title="Link to this heading">#</a></h2>
+<p>When collaborating, it is also useful to set out the standards used within your project.
+This might include particular packages required for certain tasks and guidance on the code style used in the project.
+Consider including a code of conduct if you plan to have contributors from outside your organisation.</p>
+<p>The following is an example of the CONTRIBUTING file from the <a class="reference external" href="https://github.com/best-practice-and-impact/gptables/blob/master/CONTRIBUTING.md">gptables package</a> [1]:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Markdown</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">HTML</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Contributing
+
+When contributing to this repository, please first discuss the change you wish
+to make via issue, email, or any other method with the owners before making a change.
+
+## Pull/merge request process
+
+1. Branch from the `dev` branch. If you are implementing a feature name it
+`feature/name_of_feature`, if you are implementing a bugfix name it
+`bug/issue_name`.
+2. Update the README.md and other documentation with details of major changes
+to the interface, this includes new environment variables, useful file
+locations and container parameters.
+3. Once you are ready for review please open a pull/merge request to the
+`dev` branch.
+4. You may merge the Pull/Merge Request in once you have the sign-off of two
+maintainers.
+5. If you are merging `dev` to `master`, you must increment the version number
+in the VERSION file to the new version that this Pull/Merge Request would
+represent. The versioning scheme we use is [SemVer](http://semver.org/).
+
+## Code style
+
+- We name variables using few nouns in lowercase, e.g. `mapping_names`
+or `increment`.
+- We name functions using verbs in lowercase, e.g. `map_variables_to_names` or
+`change_values`.
+- We use the [numpydoc](https://numpydoc.readthedocs.io/en/latest/format.html)
+format for documenting features using docstrings.
+
+## Review process
+
+1. When we want to release the package we will request a formal review for any
+non-minor changes.
+2. The review process follows a similar process to ROpenSci.
+3. Reviewers will be requested from associated communities.
+4. The `dev` branch will only be released once reviewers are satisfied.
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><h1>Contributing</h1>
+<p>When contributing to this repository, please first discuss the change you wish
+to make via issue, email, or any other method with the owners of this
+repository before making a change.</p>
+<h2>Pull/merge request process</h2>
+<ol class="arabic simple">
+<li><p>Branch from the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch. If you are implementing a feature name it
+<code class="docutils literal notranslate"><span class="pre">feature/name_of_feature</span></code>, if you are implementing a bugfix name it
+<code class="docutils literal notranslate"><span class="pre">bug/issue_name</span></code>.</p></li>
+<li><p>Update the <a class="reference external" href="http://README.md">README.md</a> and other documentation with details of major changes
+to the interface, this includes new environment variables, useful file
+locations and container parameters.</p></li>
+<li><p>Once you are ready for review please open a pull/merge request to the
+<code class="docutils literal notranslate"><span class="pre">dev</span></code> branch.</p></li>
+<li><p>You may merge the Pull/Merge Request in once you have the sign-off of two
+maintainers.</p></li>
+<li><p>If you are merging <code class="docutils literal notranslate"><span class="pre">dev</span></code> to <code class="docutils literal notranslate"><span class="pre">master</span></code>, you must increment the version number
+in the VERSION file to the new version that this Pull/Merge Request would
+represent. The versioning scheme we use is <a class="reference external" href="http://semver.org/">SemVer</a>.</p></li>
+</ol>
+<h2>Code style</h2>
+<ul class="simple">
+<li><p>We name variables using few nouns in lowercase, e.g. <code class="docutils literal notranslate"><span class="pre">mapping_names</span></code>
+or <code class="docutils literal notranslate"><span class="pre">increment</span></code>.</p></li>
+<li><p>We name functions using verbs in lowercase, e.g. <code class="docutils literal notranslate"><span class="pre">map_variables_to_names</span></code> or
+<code class="docutils literal notranslate"><span class="pre">change_values</span></code>.</p></li>
+<li><p>We use the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+format for documenting features using docstrings.</p></li>
+</ul>
+<h2>Review process</h2>
+<ol class="arabic simple">
+<li><p>When we want to release the package we will request a formal review for any
+non-minor changes.</p></li>
+<li><p>The review process follows a similar process to ROpenSci.</p></li>
+<li><p>Reviewers will be requested from associated communities.</p></li>
+<li><p>Only once reviewers are satisfied, will the <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch be released.</p></li>
+</ol>
+</div></div>
+<p>In this example, the standard practices for using version control on GitHub,
+the code style in use in the project and the review process have all been outlined.</p>
+</section>
+<section id="user-desk-instructions">
+<h2>User desk instructions<a class="headerlink" href="#user-desk-instructions" title="Link to this heading">#</a></h2>
+<p>If your project is very user focused for one particular task,
+for example, developing a statistical production pipeline for other analysts to execute,
+it is very important that the code users understand how to appropriately run your code.</p>
+<p>These instructions should include:</p>
+<ul class="simple">
+<li><p>How to set up an environment to run your code (including how to install dependencies).</p></li>
+<li><p>How to configure the project, for example how to set folders and environment variables if you use them.</p></li>
+<li><p>How to run your code.</p></li>
+<li><p>What outputs (if any) your code or system produces and how these should be interpreted.</p></li>
+<li><p>What quality assurance has been carried out and what further quality assurance of outputs is required.</p></li>
+<li><p>How to maintain your project (including how to update data sources).</p></li>
+</ul>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
+<p>The environment that your code runs in includes the machine, the operating system (Windows, Mac, Linux…), the programming language, and any external packages.
+It is important to record this information to ensure reproducibility.</p>
+<p>The simplest way to document which packages your code is dependent on is to record them in a text file, for example <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+<p>Python packages record their dependencies within their <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file, via <code class="docutils literal notranslate"><span class="pre">setup(install_requires=...)</span></code>.
+You can get a list of your installed python packages using <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> in the command line.</p>
+<p>R packages and projects record their dependencies in a DESCRIPTION file.
+Packages are listed under the <code class="docutils literal notranslate"><span class="pre">Imports</span></code> key.
+You can get a list of your installed R packages using the <code class="docutils literal notranslate"><span class="pre">installed.packages()</span></code> function.</p>
+<p>You will find environment management tools, such as
+<code class="docutils literal notranslate"><span class="pre">renv</span></code> for R or
+<code class="docutils literal notranslate"><span class="pre">pyenv</span></code> for python useful for keeping track of software and package versions used in a project.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<p>It can be helpful to provide a citation template for research or analytical code that is likely to be referenced by others.
+You can include this in your code repository as a <code class="docutils literal notranslate"><span class="pre">CITATION</span></code> file or part of your <code class="docutils literal notranslate"><span class="pre">README</span></code>.
+For example, the R package <code class="docutils literal notranslate"><span class="pre">ggplot2</span></code> provides the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> To cite ggplot2 in publications, please use:
+
+ H. Wickham. ggplot2: elegant graphics for data analysis. Springer New York,
+ 2009.
+
+A BibTeX entry for LaTeX users is
+
+@Book{,
+   author = {Hadley Wickham},
+   title = {ggplot2: elegant graphics for data analysis},
+   publisher = {Springer New York},
+   year = {2009},
+   isbn = {978-0-387-98140-6},
+   url = {http://had.co.nz/ggplot2/book},
+ }
+</pre></div>
+</div>
+<p>If your project includes multiple datasets, pieces of code or outputs with their own Digital Object Identifiers (DOIs), this might include multiple citations.</p>
+</section>
+<section id="vignettes">
+<h2>Vignettes<a class="headerlink" href="#vignettes" title="Link to this heading">#</a></h2>
+<p>Vignettes are a form of supplementary documentation, containing applied examples that demonstrate the intended use of the code in your project or package.
+Docstrings may contain examples applying individual functional units, while vignettes may show multiple units being used together.</p>
+<p><a class="reference internal" href="code_documentation.html#docstrings"><span class="std std-ref">Docstrings</span></a> can be used to describe individual functional code elements.
+Vignettes demonstrate the intended use for these classes and functions in a realistic context.
+This shows users how different code elements interact and how they might use your code in their own program.</p>
+<p>Another good example is this vignette describing <a class="reference external" href="http://r-pkgs.had.co.nz/vignettes.html">how to design vignettes</a> in Rmarkdown [2].
+You can produce this type of documentation in any format, though Rmarkdown is particularly effective at combining sections of code,
+code outputs, and descriptive text.</p>
+<p>You might also consider providing examples in an interactive notebook that users can run for themselves.</p>
+</section>
+<section id="versioning">
+<h2>Versioning<a class="headerlink" href="#versioning" title="Link to this heading">#</a></h2>
+<p>Documenting the version of your code provides distinct points of reference in the code’s development.
+Recording the version of code used for analysis is important for reproducing your work.
+Combining versioning with <a class="reference internal" href="version_control.html"><span class="std std-doc">Version control</span></a> allows you to recover the exact code used to run your analysis, and therefore reproduce the same results.</p>
+<p>Semantic versioning provides useful rules for versioning releases of your code.
+Each level of version number indicates the extent of changes to the application programming interface (API) of your code,
+i.e., the part of the code that a user interacts with directly.
+Changes to the major version number indicate changes to the API that are not compatible with use of previous versions of the code.
+While changes to the minor and patch numbers indicate changes that are either compatible or have no effect on the use of the code, respectively.</p>
+<figure class="align-default" id="semantic-versioning">
+<a class="reference internal image-reference" href="_images/semantic_versioning.png"><img alt="Version number 1.5.3 with labels: 1 (Major, not backwards compatible), 5 (Minor, backwards compatible), 3 (Patch, bug fixes only)." src="_images/semantic_versioning.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Semantic versioning [3]</span><a class="headerlink" href="#semantic-versioning" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You will see this, or a similar version numbering, on packages that you install for Python and R.</p>
+</section>
+<section id="changelog">
+<h2>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h2>
+<p>A changelog records the major changes that have occurred to a project or package between versioned releases of the code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Changelog
+All notable changes to this project will be documented in this file.
+
+## [1.0.0] - 2020-01-21
+### Added
+- `add_to_each_in_list()`
+- online sphinx-generated documentation
+- contribution guide
+
+### Removed
+- `subtract_to_each_in_list()`
+
+### Changed
+- Improved function documentation
+
+### Fixed
+- bug in `multiple_each_in_list()`, where output was not returned
+</pre></div>
+</div>
+<p>Like versioning, users find a changelog is useful to determine whether an update to your code is compatible with their work, which may depend on your code.
+It can also document which parts of your code will no longer be supported in future version and which bugs in your code you have addressed.
+Your changelog can be in any format and should be associated with your code documentation, so that it is easy for users and other contributors to find.</p>
+</section>
+<section id="copyright-and-licenses">
+<h2>Copyright and Licenses<a class="headerlink" href="#copyright-and-licenses" title="Link to this heading">#</a></h2>
+<p>Copyright indicates ownership of work. Licenses outline the conditions under which others may use, modify and/or redistribute your work.
+As such, including a license with code is important for users and other developers alike.</p>
+<p>Both copyright and license are usually placed in a LICENSE file in your project.</p>
+<p>For example, within the UK all materials created by civil servants, ministers, government departments and their agencies are covered by Crown copyright [4]. The following example shows an example of an MIT LICENSE file that might be used on UK Government projects:</p>
+<blockquote>
+<div><p>Copyright 2020, Crown copyright</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”),
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</div></blockquote>
+</section>
+<section id="open-source-your-code">
+<h2>Open source your code<a class="headerlink" href="#open-source-your-code" title="Link to this heading">#</a></h2>
+<p>Open source software is software with source code that anyone can freely inspect, modify and enhance.
+Government analysts should aim to make all new source code open, unless it is justified to withhold part of your source code.</p>
+<p>Personal benefits from open sourcing include:</p>
+<ul class="simple">
+<li><p>Attribution - coding in the open creates a public record of your contributions to analysis and software.</p></li>
+<li><p>Collaboration - you can gain experience working with analysts in other departments.</p></li>
+<li><p>Review - peers and experts in the field can provide advice on improving your analysis and coding.</p></li>
+</ul>
+<p>While the public benefit from:</p>
+<ul class="simple">
+<li><p>Transparency - stakeholders can understand and reproduce your analysis.</p></li>
+<li><p>Sharing value - others can benefit from your work, either through reuse or demonstration of good practices.</p></li>
+<li><p>Sharing opportunity - others can gain insight and experience from reading and possibly contributing to your code.</p></li>
+</ul>
+<details>
+<summary><h2 style="display:inline-block">References </h2></summary>
+<ol class="arabic simple">
+<li><p>Office for National Statistics. Contributing to gptables [Online]. GitHub. [Accessed 24 September 2025]. Available from: <a class="github reference external" href="https://github.com/ONSdigital/gptables/blob/main/CONTRIBUTING.md">ONSdigital/gptables</a></p></li>
+<li><p>Wickham H. Vignettes [Online]. In: R Packages. 2nd ed. <a class="reference external" href="http://r-pkgs.org">r-pkgs.org</a>. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://r-pkgs.org/vignettes.html">https://r-pkgs.org/vignettes.html</a></p></li>
+<li><p>Preston-Werner T. Semantic Versioning 2.0.0 [Online]. <a class="reference external" href="http://semver.org">semver.org</a>. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://semver.org/">https://semver.org/</a></p></li>
+<li><p>The National Archives. Crown copyright [Online]. UK Government Licensing Framework. [Accessed 24 September 2025]. Available from: <a class="reference external" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/</a></p></li>
+</ol>
+</details>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="code_documentation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Code documentation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="version_control.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Version control</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#readme">README</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contributing-guidance">Contributing guidance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#user-desk-instructions">User desk instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies">Dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vignettes">Vignettes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#versioning">Versioning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copyright-and-licenses">Copyright and Licenses</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-source-your-code">Open source your code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
