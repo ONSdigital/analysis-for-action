@@ -2,7 +2,7 @@
 
 Configuration describes how your code runs when you execute it.
 
-In analysis, it it common to want to run the analysis code using different inputs or parameters, and also for other analysts to be able to run the code on different machines to reproduce the results.
+In analysis, it is common to want to run the analysis code using different inputs or parameters, and also for other analysts to be able to run the code on different machines to reproduce the results.
 This section describes how to define analysis configuration that is easy to update and can remain separate from the logic in your analysis.
 
 
@@ -18,7 +18,7 @@ In early development of your analysis, lets imagine a script that looks somethin
 ```{code-tab} python
 # Note: this is not an example of good practice
 # This is intended as example of what early pipeline code might look like
-data = read_csv("C:/a/very/specific/path/to/input_data.csv") 
+data = read_csv("C:/a/very/specific/path/to/input_data.csv")
 
 variables_test, variables_train, outcome_test, outcome_train = train_test_split(data["a", "b", "c"], data["outcome"], test_size=0.3, random_seed=42)
 
@@ -35,7 +35,7 @@ prediction.to_csv("outputs/predictions.csv")
 ```{code-tab} r R
 # Note: this is not an example of good practice
 # This is intended as example of what early pipeline code might look like
-data <- utils::read.csv("C:/a/very/specific/path/to/input_data.csv") 
+data <- utils::read.csv("C:/a/very/specific/path/to/input_data.csv")
 
 set.seed(42)
 split <- caTools::sample.split(data, SplitRatio = .3)
@@ -66,7 +66,7 @@ Instead, a better approach would be to clearly outline your configurations. Thes
 
 ```{code-tab} python
 # Note: this is not an example of good practice
-# This is intended as an example of basic in-code configuration. 
+# This is intended as an example of basic in-code configuration.
 
 # Configuration
 input_path = "C:/a/very/specific/path/to/input_data.csv"
@@ -95,7 +95,7 @@ prediction.to_csv(output_path)
 
 ```{code-tab} r R
 # Note: this is not an example of good practice
-# This is intended as an example of basic in-code configuration. 
+# This is intended as an example of basic in-code configuration.
 
 # Configuration
 input_path <- "C:/a/very/specific/path/to/input_data.csv"
@@ -106,7 +106,7 @@ test_split_proportion = .3
 model_method = "glm.fit"
 
 #analysis
-data <- utils::read.csv(input_path) 
+data <- utils::read.csv(input_path)
 
 set.seed(random_seed)
 split <- caTools::sample.split(data, SplitRatio = test_split_proportion)
@@ -127,7 +127,7 @@ Separating configuration from the rest of your code makes it easy to adjust para
 Basic objects (like lists and dictionaries) can be used to group related parameters.
 These objects can then be referenced in the analysis section of the script.
 
-The configuration could be extended to include other parameters, such as which variables are being selecting to train the model.
+The configuration could be extended to include other parameters, such as which variables are being selected to train the model.
 However, the configuration must be kept simple and easy to maintain.
 Before moving aspects of code to the configuration, consider whether it improves your workflow.
 You should include things that are dependent on the computer that you are using (e.g., file paths) or are likely to change between runs of your analysis, in your configuration.
