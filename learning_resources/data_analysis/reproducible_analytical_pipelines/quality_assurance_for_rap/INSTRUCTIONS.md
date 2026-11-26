@@ -2,8 +2,8 @@
 This document provides instructions on how to use the markdown and html files provided for the [Quality Assurance for RAP learning resource](https://analysisforaction.org/learning-resources/data-analysis/reproducible-analytical-pipelines/quality-assurance-for-rap/).
 
 ## Files and locations
-The **markdown** files for this unit can be found directly in the `book`folder within this unit's directory.
-The **html** files for this unit can be found directly in the `book/_build/html`folder within this unit's directory.
+The **markdown** files for this unit can be found directly in the `book` folder within this unit's directory.
+The **html** files for this unit can be found directly in the `book/_build/html` folder within this unit's directory.
 The Markdown files are the source chapters. The HTML folder contains the built version of those chapters, together with navigation, search data and supporting assets.
 
 ## Viewing the files
