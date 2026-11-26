@@ -7,3 +7,6 @@ pre-commit
 detect-secrets
 bandit
 pyyaml
+sphinx>5
+jupyter-book>0.12
+sphinx-tabs
