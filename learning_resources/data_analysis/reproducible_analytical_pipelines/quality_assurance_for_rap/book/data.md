@@ -117,7 +117,7 @@ You cannot rely on owners of data to provide historical versions of their data.
 
 As an analyst, it is your responsibility to ensure you identify the exact data that you have used.
 
-You should version and document all changes to the data that you use whether using a primary or secondary data source,.
+You should version and document all changes to the data that you use whether using a primary or secondary data source.
 You should include the reason why the version has changed in documentation for data versions.
 For example, if an open data source has been recollected, revisions have been made to existing data, or part of the data has been removed.
 
