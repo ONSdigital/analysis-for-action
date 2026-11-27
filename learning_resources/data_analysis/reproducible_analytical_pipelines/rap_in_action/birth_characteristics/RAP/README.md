@@ -1,7 +1,7 @@
 > An edited version of the original README is included below. It has been simplified and shortened to focus on key concepts.
 **Please note: This codebase is not functional and is provided for demonstration purposes only.**
 
-# Birth characteristics RAP: (Work in progress)
+# Birth characteristics RAP
 Repository for producing the Birth characteristics and Births by parents’ characteristics publications.
 
 ## Contents
